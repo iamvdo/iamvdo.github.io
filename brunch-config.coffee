@@ -1,5 +1,6 @@
 exports.config =
-  # See http://brunch.io/#documentation for docs.
+  paths:
+    public: '../public'
   files:
     javascripts:
       joinTo:
