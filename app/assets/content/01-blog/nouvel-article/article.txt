@@ -1,0 +1,25 @@
+﻿Title: Nouvel article
+
+----
+
+Text: bla bla bla
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 
+
+----
+
+Tags: 
+
+----
+
+Big: 0
