@@ -7,7 +7,7 @@ define('KIRBY', true);
 
 ---------------------------------------
 Panel folder name
----------------------------------------                                                                                                                                 
+---------------------------------------
 Will be autodetected. Only change if you 
 know what you are doing
 
@@ -32,8 +32,8 @@ are not sure about it.
 $root = dirname(dirname(__FILE__));
 
 // my root
-// go to static 'app/assets', brunch compile after to 'public': epic win 
-$root = str_replace('public', 'app/assets', $root);
+// go to static 'app/assets', brunch compile after to 'public': epic win
+$root = str_replace('public', 'iamvdo.github.io/app/assets', $root);
 
 /*
 
