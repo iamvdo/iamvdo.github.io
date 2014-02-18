@@ -6,6 +6,8 @@ Text: bla bla bla
 
 new text
 
+another text
+
 ----
 
 Subtitle: 
