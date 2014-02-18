@@ -1,2 +1,2 @@
 #Static files for iamvdo.me
-New readme
+New readmee
