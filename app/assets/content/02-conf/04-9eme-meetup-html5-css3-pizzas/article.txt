@@ -1,0 +1,47 @@
+Title: Meetup HTML5, CSS3 & Pizzas 2013
+----
+Subtitle: Le futur des effets graphiques sur le web
+----
+Date: 2013-04-23 19:00
+----
+Big: 0
+----
+Text:
+
+Le 23 avril dernier, j'ai eu l'occasion d'animer une présentation pompeusement nommée: **«Le futur des effets graphiques sur le web»**lors du [9ème Meetup HTML5](http://www.meetup.com/France-HTML5-User-Group/events/112441502/).
+
+Dans cette mini-présentation, j'ai évoqué des fonctionnalités de CSS très, voire trop, avancées. Tous les aspects de cette conférence sont donc à prendre à titre d'expérimentations. J'ai pu y parler de choses diverses:
+
+* les fonctions d'images: `cross-fade()`, `element()`
+* les masques CSS, SVG et les méthodes de rognage
+* les exclusions et les formes CSS
+* les filtres CSS avancés, avec notamment une démo d'utilisation des shaders
+
+Ma présentation est disponible en ligne, directement dans votre navigateur.
+
+* [Version HTML de «Le futur des effets graphiques sur le web»](http://iamvdo.me/conf/2013/meetupHTML5)
+
+Attention, prévoyez différents navigateurs et basculez de l'un à l'autre pour bénéficier de chaque effet:
+
+* Google Chrome Canary (28) (avec flags actifs: «Fonctionnalités expérimentales WebKit», «Shaders» et éventuellement «WebGL»
+* Firefox Nightly (23)
+* IE10
+
+Lors de ce même Meetup, deux autres présentations ont eu lieu:
+
+* Démonstration [d'un jeu basé sur la Gamepad API avec une manette Guitar Hero](http://sylvainw.github.io/HTML5-Future/avril2013.html).
+* [L'ère des icon-fonts](http://mfglabs.github.io/mfglabs-iconset/Keynote-font-icon.pdf): création d'une [police d'icônes libre de droit](http://mfglabs.github.io/mfglabs-iconset/) et utilisation via CSS3.
+
+Un grand merci aux organisateurs pour ce chouette évènement, ainsi qu'à tout ceux avec qui j'ai pu discuter lors de cette soirée.
+
+Et surtout, expérimentez!
+
+**Edit**: La vidéo est en ligne!
+
+<iframe frameborder="0" height="315" src="http://www.youtube.com/embed/FOc0LqviDng" width="560"></iframe>
+
+**Edit 2**: Quelques tweets pour vous donner envie de regarder la vidéo:
+<blockquote class="twitter-tweet" lang="fr"><p>La pres de <a href="https://twitter.com/iamvdo">@iamvdo</a> sur <a href="https://twitter.com/search?q=%23CSS3&amp;src=hash">#CSS3</a> est un concentré de fonctionnalités aussi géniales les une que les autres <a href="https://twitter.com/search?q=%23FranceHTML5&amp;src=hash">#FranceHTML5</a></p>&mdash; J.M. Cléry (@_jmpp) <a href="https://twitter.com/_jmpp/statuses/326766591687663616">23 Avril 2013</a></blockquote>
+<blockquote class="twitter-tweet" lang="fr"><p>Bravo à <a href="https://twitter.com/iamvdo">@iamvdo</a> pour sa présentation au meetup <a href="https://twitter.com/search?q=%23FRANCEHTML5&amp;src=hash">#FRANCEHTML5</a> avec une mention spéciale pour l’effet de brillance <a href="http://t.co/2u6yWa8hfH">http://t.co/2u6yWa8hfH</a></p>&mdash; Philippe Nenert (@papilip) <a href="https://twitter.com/papilip/statuses/326767744584409089">23 Avril 2013</a></blockquote>
+<blockquote class="twitter-tweet" lang="fr"><p>Drapeau HTML5 en pur CSS ! Bravo <a href="https://twitter.com/iamvdo">@iamvdo</a> <a href="https://twitter.com/search?q=%23FranceHTML5&amp;src=hash">#FranceHTML5</a></p>&mdash; Mathieu Santostefano (@welcoMattic) <a href="https://twitter.com/welcoMattic/statuses/326767917859491840">23 Avril 2013</a></blockquote>
+<blockquote class="twitter-tweet" lang="fr"><p>Démo filtres avancés au meetup <a href="https://twitter.com/search?q=%23francehtml5&amp;src=hash">#francehtml5</a> tout siimplement bluff ant. Bravo <a href="https://twitter.com/iamvdo">@iamvdo</a> !</p>&mdash; Raphaël Aparicio (@raphapari) <a href="https://twitter.com/raphapari/statuses/326768370156437504">23 Avril 2013</a></blockquote>

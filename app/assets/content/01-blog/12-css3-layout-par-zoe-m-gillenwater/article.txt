@@ -1,0 +1,35 @@
+Title: CSS3 Layout, par Zoe M. Gillenwater
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2013-02-28 11:00
+----
+Tags: CSS3, layout
+----
+Big: 0
+----
+Text:
+
+Encore [une très bonne présentation](http://fr.slideshare.net/zomigi/css3-layout) de Zoe M. Gillenwater ([@zomigi](http://twitter.com/zomigi)) sur les modèles de positionnement avancés et futurs en CSS.
+
+Pour ce qui est très proche de nous, on découvre notamment:
+
+* Une présentation approfondie de Flexbox avec [quelques](http://zomigi.com/demo/flexbox-feature-boxes-2.html) [cas](http://zomigi.com/demo/flexbox-form.html) [d'usages](http://zomigi.com/demo/flexbox-nav.html) intéressants.
+* Une présentation du Grid Layout avec [une démo](http://zomigi.com/demo/grid-media-block.html) (sous IE10).
+
+Pour le futur de CSS, elle présente certaines parties du [Basic Box Module](http://dev.w3.org/csswg/css3-box/):
+
+* Les floats du futur
+    * La nouvelle valeur `contour`.
+    * La nouvelle propriété `float-displace`
+* Les nouvelles méthodes pour contenir les floats:
+    * La nouvelle propriété `clear-after`
+    * La nouvelle valeur `contain-floats` pour `min-height` (dans le [CSS Intrinsic &amp; Extrinsic Sizing Module](http://dev.w3.org/csswg/css3-sizing/))
+
+Retrouvez d'ailleurs la liste de toutes [les propositions en cours pour contenir les flottants](http://dev.w3.org/csswg/css3-box/#contain-floats) au sein de ce module (Editor's Draft).
+
+Pour rappel sur comment contenir les flottants actuellement (création d'un contexte de formatage block), je vous conseille [cet article de Raphaël Goetter](http://blog.goetter.fr/post/38454826750/css-donner-des-superpouvoirs-aux-elements).
+
+Retrouvez donc [la présentation directement sur Slideshare](http://fr.slideshare.net/zomigi/css3-layout) ou sur son site perso avec en plus [pas mal de ressources intéressantes](http://zomigi.com/blog/css3-layout/).

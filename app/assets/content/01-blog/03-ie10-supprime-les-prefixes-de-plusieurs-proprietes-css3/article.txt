@@ -1,0 +1,69 @@
+Title: IE10 supprime les préfixes de plusieurs propriétés CSS3
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2012-06-01 11:00
+----
+Tags: CSS3, IE10
+----
+Text:
+
+Ca y est! Microsoft l'a fait. Lors du lancement de [Windows 8 Release Preview](http://blogs.msdn.com/b/ie/archive/2012/05/31/windows-release-preview-the-sixth-ie10-platform-preview.aspx), et donc de IE10 version 6, ils ont annoncés avoir **retiré les préfixes vendeurs `-ms-` des propriétés CSS3** des modules actuellement en CR (Candidate Recommandation) ou de ceux qui le seront cette année 2012. C'est donc *d'après eux* le cas pour les [Transitions](http://www.css3create.com/transition), [Animations](http://www.css3create.com/animation), [Transformations](http://www.css3create.com/Transformations-2D) et [Dégradés CSS](http://www.css3create.com/Degrades-CSS). Ils ont également ôté le préfixe de la propriété `font-feature-settings`.
+
+Ce choix n'est pas surprenant pour les dégradés (dont le module est déjà en CR) ou pour les Transitions dont le module est relativement stable. En revanche, il l'est plus pour les Animations et les Transformations, car ces deux fonctionnalités déjà présentes sous une autre forme dans la norme SVG font doublon, et des brouillons de spécifications tentant de réunir et d'uniformiser le tout sont encore en cours de travail.
+
+## Les Transitions
+
+IE10 respecte entièrement la [spécification définie par le W3C](http://w3.org/TR/css3-transitions), et notamment:
+
+* les valeurs négatives pour `transition-delay`
+* les valeurs supérieures à 1 pour `cubic-bezier()` qui permet de passer par des valeurs hors bornes (pour par exemple réaliser des effets de rebond)
+
+Les propriétés dont le préfixe a été enlevé: `transition`, `transition-property`, `transition-duration`, `transition-timing-function`, `transition-delay`
+
+## Les Dégradés
+
+Non seulement les préfixes sont supprimés, mais les fonctions `linear-gradient` et `radial-gradient` respectent [la nouvelle notation](http://www.w3.org/TR/css3-images/#gradients) avec les mots-clés `to` et `at`:
+
+* Un dégradé linéaire vers le coin bas/droit: `linear-gradient( to bottom right, red, green)`
+* Un dégradé linéaire dont le centre est le coin haut/gauche, vers le coin le plus éloigné:&nbsp; `radial-gradient( farthest-side at top left, red, green)`
+
+Les fonctions dont le préfixe a été enlevé: `linear-gradient`, `radial-gradient`, `repeating-linear-gradient`, `repeating-radial-gradient`
+
+## Les Animations
+
+Comme pour les transitions, les Animations CSS sont supportées intégralement, telles que [définies dans la spécification](http://w3.org/TR/css3-animations). Notons en plus:
+
+* les mots-clés `reverse` et `alternate-reverse` de la propriété `animation-direction` sont ajoutés
+
+Les propriétés dont le préfixe a été enlevé: `animation`, `animation-name`, `animation-duration`, `animation-timing-function`, `animation-iteration-count`, `animation-direction`, `animation-play-state`, `animation-delay`, `animation-fill-mode` et `@keyframes`
+
+## Les Transformations
+
+Tout n'est pas si rose. Bien que les préfixes soient otés, un problème persiste:
+
+* la déclaration `transform-style: preserve-3d` n'est toujours pas reconnue. Les éléments inclus dans d'autres ne subiront pas de transformations 3D.
+
+Les propriétés dont le préfixe a été enlevé: `transform`, `transform-origin`, `transform-style`, `perspective`, `perspective-origin`, `backface-visibility`
+
+## Flexible Box Layout
+
+La nouvelle version d'IE respecte [la dernière spécification](http://w3.org/TR/css3-flexbox) (sauf le très récent changement `display: flexbox` en `display: flex`), mais de manière préfixée.
+
+Les nouvelles propriétés pour tester Flexbox dans IE sont donc `display: -ms-flexbox`, `-ms-flex`, `-ms-flex-flow`, `-ms-flex-order`, `-ms-flex-pack`, `-ms-flex-align`, `-ms-flex-line-pack`
+
+C'est le second navigateur (après Chrome) a l'implémenter.
+
+## Viewport
+
+IE10 version 6 supporte également la nouvelle @-règle pour définir le viewport en CSS (en lieu et place de la balise `meta`). Cette @-règle fait partie du [CSS Device Adaptation](http://www.w3.org/TR/css-device-adapt/).
+
+La @-règle en question est `@viewport`, à utiliser de manière préfixée `@-ms-viewport`.
+
+C'est le second navigateur (après Opéra) a l'implémenter.
+
+## Gestion des polices
+
+La propriété `font-feature-settings` est donc utilisable sans préfixe. Les propriétés `font-variant-*` ne le sont toujours pas. [Testez cette propriété en ligne.](http://iamvdo.me/conf/2012/kiwiparty/#/7)

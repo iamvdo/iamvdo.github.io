@@ -1,0 +1,20 @@
+Title: Conseil pour les dégradés linéaires en CSS
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2012-07-16 11:00
+----
+Tags: CSS3, dégradés
+----
+Text:
+
+Fin 2011, la méthode de création des dégradés a changée, mais voici une petite astuce...
+
+**Conseil:** Pour un dégradé linéaire allant du haut vers le bas, n'utilisez plus le mot-clé `top`! Ce mot-clé est remplacé par `to bottom`. Mais ne l'utilisez pas non plus, c'est déjà la valeur par défaut. Pour un dégradé allant du bas vers le haut, inversez simplement l'ordre des couleurs...
+
+  * Un dégradé linéaire du haut vers le bas, rouge vers bleu: `linear-gradient( red, blue)`
+  * Un dégradé linéaire du bas vers le haut, rouge vers bleu: `linear-gradient( blue, red)`
+
+Et hop, la majorité des dégradés est réalisable. Et cela sans se soucier de la modification de syntaxe. Bien sur, [n'oubliez pas les préfixes](http://www.css3create.com/linear-gradient)

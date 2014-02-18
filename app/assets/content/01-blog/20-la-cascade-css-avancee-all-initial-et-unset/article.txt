@@ -1,0 +1,77 @@
+Title: La cascade CSS avancée: all, initial et unset
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2014-02-06 09:00
+----
+Tags: CSS, cascade, all, initial, unset
+----
+Big: 0
+----
+Text: 
+
+Firefox 27 est le premier navigateur a implémenter la gestion de la cascade avancée, à savoir la propriété `all`, et les mots-clés associés `inherit`, `initial` et surtout `unset`.
+
+J'ai déjà parlé des [deux premiers `inherit` et `initial`](la-cascade-css-inherit-et-initial) dans un autre billet, je vais donc évoquer ici le troisième `unset`.
+
+##Différences entre initial et unset
+
+Le mot-clé `unset` est identique à `initial`, sauf pour les propriétés héritées. En effet:
+
+* `initial` rétablit la valeur par défaut de la propriété telle que définie dans la spec
+* `unset` rétablit la valeur héritée de la propriété, ou à défaut, la valeur initiale
+
+Voici un exemple de code plus parlant, 3 items dans un block:
+
+<pre class="language-markup"><code>&lt;div class="block">
+	&lt;p class="item">I'm a text&lt;/p>
+	&lt;p class="item initial">I'm a text (initial)&lt;/p>
+	&lt;p class="item unset">I'm a text (unset)&lt;/p>
+&lt;/div></code></pre>
+
+Et le CSS associé:
+
+	.block {
+		color: orangered;
+		margin-left: 50px;
+		background: lightgray;
+	}
+	.item {
+		color: deepskyblue;
+		margin-left: 50px;
+	}
+	.initial {
+		color: initial;
+		margin-left: initial;
+	}
+	.unset {
+		color: unset;
+		margin-left: unset;
+	}
+
+(codepen: zGEqL height: 350 script: true)
+
+On remarque donc que:
+
+* Les `p` sont affichés de couleur `deepskyblue` avec une marge gauche de 50px.
+* L'utilisation d'`.initial` réinitialise la couleur de l'élément à celle de l'UA (puisque la propriété `color` n'a pas de valeur initiale en CSS) et sa marge gauche à 0 (valeurs par défaut pour ces propriétés)
+* L'utilisation d'`.unset` réinitialise la couleur de l'élément à `orangered` (couleur héritée de son parent `.block`) mais la marge gauche à 0 (puisque les marges ne s'héritent pas)
+
+##La propriété all
+
+Cette propriété permet, comme son nom l'indique, de **contrôler la cascade sur l'ensemble des propriétés CSS d'un élément**. Dans notre exemple précédent, on aurait pu écrire:
+
+	.initial {
+		all: initial;
+	}
+	.unset {
+		all: unset;
+	}
+
+Mais dans ce cas là, toutes les propriétés (et même celles définies par le navigateur) auraient été redéfinies. **Attention donc, c'est brut de décoffrage!**
+
+Pour info, la valeur par défaut de `display` est `inline` et non `block`, la valeur de `font-family` est `sans-serif`, et ainsi de suite... 
+
+L'utilisation qui en sera faite sera donc très réduite.

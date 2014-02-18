@@ -1,0 +1,88 @@
+Title: Utiliser @viewport pour le responsive
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2012-10-24 11:00
+----
+Tags: viewport, windows8, responsive
+----
+Text:
+
+Très récemment, un bug (qui en fait n'en est pas un) a été découvert sur Internet Explorer 10 et donc sur Windows 8. En effet, dans ce nouvel OS existe le Snap Mode. Ce mode permet de faire «cohabiter» deux applications au sein du même écran, mais la réelle nouveauté est que **chaque écran a son propre `viewport`**. C'est comme si nous avions affaire à deux écrans distincts. De cette façon, et puisque le développement d'applications natives peut se faire en HTML5/CSS3 sur cette plateforme, **il est envisageable de réaliser un design adapté grâce aux médias-queries** lorsque deux applications partagent le même écran.
+
+(image:snap.png text: Aperçu du Snap Mode dans Windows 8 pour le responsive - Source: mobilexweb.com)
+
+Oui mais voilà, il y a un hic. La `meta viewport`, telle qu'on l'utilise aujourd'hui, **n'est pas reconnue si la taille du `viewport` dans le Snap Mode est inférieure à 400px**. Cela pose des soucis, tout simplement car les médias-queries ne seront pas appliquées.
+
+Pour rappel, [la balise `meta viewport` a été créée par Apple](http://developer.apple.com/library/IOS/#documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html) lors de la sortie de l'iPhone afin de pouvoir [gérer la façon dont un site web s'affiche sur un petit écran](http://www.alsacreations.com/article/lire/1490-comprendre-le-viewport-dans-le-web-mobile.html) (pour faire simple). Cette balise est très pratique mais pas optimale:
+
+* C'est une balise HTML alors que son principe est de gérer l'affichage (problème de séparation entre forme et contenu)
+* Elle ne peut pas être modifiée de manière simple
+
+C'est pourquoi, sous l'impulsion d'Opera, **un nouveau module CSS3 a vu le jour: le [CSS Device Adaptation](http://www.w3.org/TR/css-device-adapt/)**. Ce module reprend les principes de base de la `meta viewport` mais en respectant les normes d'écriture de CSS. Ainsi `@viewport` est né. Voici un exemple de code identique pour la `meta viewport` et `@viewport`
+	
+<pre class="language-markup"><code>// en HTML 
+&lt;meta name="viewport" content="width=device-width,initial-scale=1" /> 
+</code></pre>
+
+	// en CSS 
+	@viewport { 
+		width: device-width; 
+		zoom: 1; 
+	}
+
+Pourquoi est-ce que je vous parle de ça? Tout simplement car IE10 implémente cette @-règle et que celle-ci fonctionne parfaitement dans le Snap Mode. **Microsoft a donc fait le choix de ne pas supporter la `meta viewport` **(qui d'ailleurs n'est pas standardisée) mais privilégie les standards.
+
+Il ne nous reste alors qu'à nous adapter. **C'est pour cela que nous devons commencer à utiliser `@viewport` dès aujourd'hui! (même si cela est encore contraignant)**
+
+Microsoft [conseille même d'utiliser une détection de taille d'écran](http://msdn.microsoft.com/fr-fr/library/ie/hh708740(v=vs.85).aspx) et de modifier le `viewport` en conséquence, de cette façon:
+
+	@media screen and (max-width: 400px) {
+    	@-ms-viewport {
+    		width: device-width;
+    	}
+	}
+
+Cela permet entre autres de modifier le `viewport` selon certains critères, comme la taille d'écran, l'orientation, la résolution...
+
+## Et les autres navigateurs?
+
+La règle `@viewport` est déjà [implémentée au sein d'Opera](http://dev.opera.com/articles/view/an-introduction-to-meta-viewport-and-viewport/) (Mobile et Mini) et d'IE10. Des bugs sont ouverts pour [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=747754) et [WebKit](https://bugs.webkit.org/show_bug.cgi?id=95959).
+
+Pour être utilisée, elle doit encore être préfixée de cette manière (en ajoutant même les versions non encore supportées):
+
+	@-webkit-viewport{
+		width: device-width;
+	}
+	@-moz-viewport{
+		width: device-width;
+	}
+	@-ms-viewport{
+		width: device-width;
+	}
+	@-o-viewport{
+		width: device-width;
+	}
+	@viewport{
+		width: device-width;
+	}
+
+Et bien entendu, la `meta viewport` doit encore être ajoutée pour les autres navigateurs. :(
+
+## Conclusion
+
+Beaucoup de prise de tête pour un seul navigateur me direz-vous? **Oui mais non!** Nous parlons ici de standard, certes en cours de réflexion, mais standard tout de même. Je vous invite à parcourir [la spécification actuellement en Working Draft](http://www.w3.org/TR/css-device-adapt/) ou [celle en Editor's Draft](http://dev.w3.org/csswg/css-device-adapt/) pour plus d'informations à ce sujet.
+
+Et puis, contrairement à certaines propriétés CSS3, le `viewport` ne sera pas utilisé de nombreuses fois dans la même feuille de style. Souvent même, il sera nécessaire de le spécifier une seule fois (comme nous le faisons actuellement).
+
+Profitons donc de ce «problème» pour utiliser cette nouvelle façon de définir le `viewport` sans attendre.
+
+J'attends vos retours et/ou commentaires et/ou tests. :)
+
+**Edit**: J'en ai profité pour mettre à jour [mon test de positionnement responsive avec `display: table`](http://dev.iamvdo.me/tumblr/tableLayout). Et ça fonctionne très bien.
+
+(image: layout-responsive-windows-8.png text: Utilisation de @viewport en mode Snap dans Windows 8)
+
+**Edit 2**: Cette syntaxe fonctionne très bien en Snap Mode sous Windows 8 mais peut poser des problèmes sur IE10 Mobile et notamment sur le Lumia 920, comme le souligne Raphaël dans les commentaires. Je vous conseille la [lecture détaillée de cet article](http://timkadlec.com/2013/01/windows-phone-8-and-device-width/) pour bien comprendre le problème et éventuellement mettre en place l'alternative proposée. Cependant, Microsoft a reconnu officiellement cela comme un bug: nul doute qu'il sera corrigé dans les prochaines versions de l'OS ou du navigateur.

@@ -1,0 +1,75 @@
+Title: La cascade CSS: inherit et initial
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2013-03-22 11:00
+----
+Tags: cascade, inherit, initial
+----
+Big: 0
+----
+Text:
+
+Dans la [gestion de la cascade CSS](http://www.w3.org/TR/css3-cascade/), il existe deux mots-clés qui peuvent s'avérer bien pratique. Ce sont les mots-clés `inherit` et `initial`.
+
+## Le mot-clé `inherit`
+
+Lorsque que la valeur spécifiée pour une propriété CSS est `inherit`, la valeur calculée de cet élément est identique à la valeur calculée de son parent. **Cela permet de forcer l'héritage**. Par exemple, prenons ce code HTML:
+
+<pre class="language-markup"><code>&lt;p&gt;Hello CSS!&lt;/p&gt;</code></pre>
+
+Et le CSS suivant:
+
+	p{
+		background: tomato;
+	}
+	p::after{
+		background: inherit;
+	}
+
+Dans ce cas, la couleur d'arrière-plan (qui ne s'hérite pas par défaut) du pseudo-élément sera la même que celle de l'élément `<p>`. Il est par exemple possible de créer une infobulle où la couleur de la petite flèche est toujours la même que la couleur de la bulle elle-même. Cela offre un gain de temps dans la mise à jour: une seule modification requise.
+
+(codepen: AsKpi user: iamvdo height: 200 script: true)
+
+Mais il existe pleins d'autres cas où ce mot-clé est très pratique (width et height d'un élément en absolute par exemple). Il existe même [une utilisation détournée de `inherit` qui permet d'animer les pseudo-éléments](http://blog.iamvdo.me/post/32892255091/animer-les-pseudo-elements-avec-les-transitions-css).
+
+Le mot-clé `inherit` est très bien supporté dans les navigateurs (depuis IE8).
+
+## Le mot-clé `initial` en CSS3
+
+Lorsque la valeur d'une propriété CSS est `initial`, la valeur utilisée sera la valeur initiale de la propriété telle qu'elle est définie dans la spécification CSS. **C'est une sorte de retour à un «état normal», non hérité**. Elle peut s'avérer pratique lorsque l'on souhaite annuler l'effet d'héritage tout en réinitialisant à la valeur par défaut:
+
+* lorsque l'on ne se souvient plus de cette valeur (e.g. C'est quoi déjà la valeur par défaut de `white-space`? `auto`, `normal`, `none`, `0`? `initial` est le mot-clé passe-partout)
+* lorsque cette valeur est dynamique (e.g. `text-align` vaut `left` en mode `ltr`, et vaut `right` en mode rtl. `text-align: initial` vaut `left` ou right` en fonction du contexte. Par ailleurs, les valeurs `start` et `end` couvrent justement ce cas là).
+
+### Cas d'utilisation: Annuler la propagation des tailles de police
+
+Lorsque l'on utilise des unités de polices relatives (avec l'unité em par exemple), la gestion de la cascade est toujours délicate. Par exemple, sur un navigateur configuré par défaut à 16px, si l'élément `<html>` est défini à 0.9em (14.4px) et les `<p>` à 1em, les `<p>` seront affichés en fait à 0.9em (14.4px). Il faudrait utiliser 1.111111em pour que les `<p>` soit proche de 16px. Le mot-clé `initial` peut alors devenir utile dès lors que l'imbrication devient complexe.
+
+Cas simple d'utilisation possible
+
+	html{
+		font-size: .9em; /* 14.4px */
+	}
+	p{
+		font-size: initial; /* 16px */
+	}
+
+(codepen: lJxsG user: iamvdo height: 350)
+
+Vous l'aurez compris, son utilisation est limitée. De plus, le support de `initial` est malheureusement plus faible, Opera et Internet Explorer ne la reconnaissent tout simplement pas.
+
+Ce mot-clé deviendra certainement plus utile lorsque la propriété `all` arrivera dans les navigateurs. La propriété `all` permettant de [redéfinir l'ensemble des propriétés CSS](http://www.w3.org/TR/css3-cascade/#all-shorthand) et ainsi stopper la cascade de manière globale.
+
+Pour plus d'infos, lire l'article détaillé sur le sujet de [la cascade CSS avancée](la-cascade-css-avancee-all-initial-et-unset).
+
+## Ressources supplémentaires
+
+Pour référence, voici quelques liens intéressants:
+
+* [inherit sur MDN](https://developer.mozilla.org/fr/docs/CSS/inherit)
+* [initial sur MDN](https://developer.mozilla.org/fr/docs/CSS/initial)
+* [spécification CSS2.1 (inherit)](http://www.w3.org/TR/CSS21/cascade.html#value-def-inherit)
+* [module CSS3 Cascading &amp; Inheritance (inherit et initial)](http://www.w3.org/TR/css3-cascade/#defaulting)

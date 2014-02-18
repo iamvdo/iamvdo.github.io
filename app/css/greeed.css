@@ -1,0 +1,20 @@
+.Greeed {
+	
+}
+.Greeed-column {
+	display: block;
+}
+.Greeed-column .item,
+.Greeed-column .item.istouch,
+.Greeed-column .item.istouch.past,
+.Greeed-column .item.istouch.future {
+	width: auto;
+	float: none;
+}
+/*
+.Greeed {
+	opacity: 1;
+	transform: scale(1);
+	transition: opacity .2s, transform .2s;
+}
+*/

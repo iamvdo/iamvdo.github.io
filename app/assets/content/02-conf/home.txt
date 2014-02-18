@@ -1,0 +1,3 @@
+Title: Conférences
+----
+Subtitle: Présentations publiques à [KiwiParty](http://kiwiparty.fr), [Blend Conférence](http://www.blendconference.com), [Meetup HTML5 Paris](http://www.meetup.com/France-HTML5-User-Group/), etc.

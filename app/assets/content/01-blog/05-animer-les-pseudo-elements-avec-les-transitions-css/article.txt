@@ -1,0 +1,92 @@
+Title: Animer les pseudo-éléments avec les transitions CSS
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2012-10-04 11:00
+----
+Tags: CSS3, transitions
+----
+Text:
+
+Il y a quelques heures, je [postais sur Twitter](https://twitter.com/iamvdo/status/253900042044338176) une présentation de [@kizmarh](https://twitter.com/kizmarh) qui nous propose **d'animer des pseudo-éléments via les transitions CSS**. Cette fonctionnalité (pourtant si attendue) n'est effective actuellement que sur Firefox. D'ailleurs, il y a quelques mois, j'ai réalisé un [menu style Lavalamp](http://www.css3create.com/Menu-en-full-CSS-style-Lavalamp) avec cette «technique».
+
+Si vous n'avez pas encore regardé la présentation, je vous propose de la voir avant la suite. Elle est en ligne [sur le site de l'auteur](http://kizu.ru/en/pseudos/).
+
+Entrons dans le vif du sujet. Après réflexion, et tentative de compréhension, je vais revenir sur certaines des techniques utilisées.
+
+## L'utilisation de `inherit`
+
+**La majeure partie de l'effet réside donc dans l'utilisation du mot-clé `inherit`**. Grâce à cette astuce, il devient donc possible d'appliquer la transition CSS sur le parent du pseudo-élément, et ainsi celui-ci hérite du style. Par exemple:
+
+	div{
+		width: 150px; 
+		height: 150px; 
+		transition: all 1s; 
+	} 
+	div::after{ 
+		width: inherit; 
+		height: inherit; 
+	} 
+	div:hover{ 
+		width: 300px; 
+	}
+
+(codepen: CvqJD user: iamvdo height: 380 script: true)
+
+Le pseudo-élément est animé, et cela dans [tous les navigateurs qui supportent les transitions](http://caniuse.com/#feat=css-transitions)! Bien entendu, cela pose plusieurs contraintes comme le fait que l'élément parent soit également animé. Pour cela il va falloir ruser.
+
+## La ruse...
+
+Dans le cas d'un agrandissement, il nous faut donc empêcher l'élément parent de s'agrandir. Pour cela, [@kizmarh](https://twitter.com/kizmarh) emploie les propriétés annexes, comme `min-width` et `max-width` en ce qui concerne la largeur. Appliquons donc ces propriétés sur notre parent:
+
+	div{ 
+		width: 150px; 
+		height: 150px;
+		transition: all 1s; 
+
+		min-width: 150px;
+		max-width: 150px;
+	} 
+	div::after{ 
+		width: inherit; 
+		height: inherit; 
+	} 
+	div:hover{ 
+		width: 300px; 
+	}
+
+(codepen: avxbI user: iamvdo height: 380)
+
+Et voilà.
+
+Mais qu'en est-il des autres fonctionnalités?
+
+## Les ruses de «la mort qui tue»
+
+###Déplacement absolu
+
+L'élément parent est fixé en relatif avec les 4 valeurs `top`, `right`, `bottom` et `left` à 0. Le pseudo-élément hérite de la valeur `right` et `bottom`. Lors du `hover`, seule la valeur `bottom` est modifiée.Verdict: ne fonctionne qu'avec `bottom` et `right`!
+
+###Changement de couleur
+
+Le texte de l'élément parent est placé à l'extérieur de la zone visible (`text-indent:-9999px`) et une ombre portée avec un décalage de 9999px est ajoutée. Le texte visible est donc l'ombre. Le pseudo-élément hérite de la couleur et la couleur peut donc être modifiée sans risque. Verdict: on commence à bidouiller pas mal...
+
+###Changement d'arrière-plan
+
+Utilisation des propriétés longues de `background`. Utilisation notamment de `background-position`, `background-size`... Par exemple, l'élément parent a son propre arrière-plan et position à 0 0. Le pseudo-élément a son propre arrière-plan mais hérite de la position. Il suffit ensuite de modifier cette position lors du survol. Verdict: la maintenance est rendue plus complexe voire impossible.
+
+Bien entendu, toutes les propriétés ne peuvent pas êtres contournées de cette façon.
+
+## Conclusion
+
+Pour terminer, je vous laisse décortiquer [l'effet infobulle](http://kizu.ru/en/pseudos/?full#Tooltips) (tooltip) réalisé dans la présentation. Attention, je vous préviens tout de suite: c'est carrément tordu! Mais ça fonctionne.
+
+Enfin, le plus simple serait quand même que les navigateurs suivent la voie que Firefox a ouverte. Un [bug est ouvert pour Webkit](http://code.google.com/p/chromium/issues/detail?id=54699) et le dernier commentaire est plutôt encourageant. Je ne sais pas où les autres navigateurs en sont.
+
+Si vous expérimentez cette technique, ou si vous avez des infos supplémentaires, voire des limitations non soulevées (notamment en ce qui concerne l'accessibilité), exprimez vous sur le forum de l'article.
+
+**Edit:** J'ai mis en place cette technique pour créer un menu Lavalamp qui fonctionne sur la majorité des navigateurs récents. Le résultat peut être vu [en ligne sur CodePen](http://codepen.io/iamvdo/pen/GsIxk).
+
+(codepen: GsIxk user: iamvdo height: 380)

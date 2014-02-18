@@ -1,0 +1,68 @@
+Title: Les filtres CSS opacity et drop-shadow
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2013-01-16 11:00
+----
+Tags: CSS3, filtres, opacity, drop-shadow
+----
+Text:
+
+Dans la longue liste des nouveautés CSS, il y a les filtres graphiques. Grâce à eux, il est d'ores et déjà possible de créer des flous, de modifier la luminosité ou le contraste, de convertir en niveaux de gris ou en négatif... Bref, la majeure partie des effets réalisés depuis un éditeur graphique.
+
+Pour découvrir ce que sont les filtres, vous pouvez:
+
+* lire cette [traduction](http://jeremie.patonnier.net/post/2012/01/12/Des-effets-pour-le-Web) par Jérémie Patonnier
+* découvrir une [explication rapide](http://www.css3create.com/Filtres-CSS) avec [démo à l'appui](http://www.css3create.com/Effets-de-survol-avec-transitions-et-filtres-CSS).
+* lire la [longue spécification officielle](https://dvcs.w3.org/hg/FXTF/raw-file/tip/filters/index.html)
+
+À la lecture de ces ressources, deux filtres attirent l'attention:
+
+* `filter: opacity`
+* `filter: drop-shadow`
+
+Et la question suivante se pose: **Quelle différence existe t'il entre ces filtres et les propriétés `opacity` et `box-shadow`?**
+
+##filter: drop-shadow vs. box-shadow
+
+[Un article sur bricss.net](http://bricss.net/post/33158273857/box-shadow-vs-filter-drop-shadow) l'a très bien expliqué et [un autre article plus complet existe également](http://demosthenes.info/blog/598/boxshadow-property-vs-dropshadow-filter-a-complete-comparison). Pour faire simple, la propriété `box-shadow` ajoute une ombre au bloc lui-même (un rectangle) alors que `filter: drop-shadow` ajoute une ombre à l'élément tout en conservant les contours et la transparence. Il s'applique à la couche alpha de l'élément. Ainsi, une ombre sur une image PNG suivra le contour de cette image:
+
+(codepen: lGvCo user: iamvdo height: 400 script: true)
+
+Malheureusement, `drop-shadow` n'accepte pas d'ombre interne ni de valeur d'étendue d'ombre, comme c'est le cas avec `box-shadow`.
+
+##filter: opacity vs. opacity
+
+La différence entre ces deux options est plus floue mais peut apparaître lors de l'utilisation simultanée de plusieurs filtres. Par exemple, lors de l'utilisation conjointe de `filter: blur` et d'`opacity`, un bug se produit: le flou est rogné sur les bords! Avec `filter: blur` et `filter: opacity`, aucune découpe.
+
+(codepen: DbkId user: iamvdo height: 400)
+
+**Mais pourquoi?**
+
+Je pense que tout cela est une question d'ordre dans le rendu d'une page web. Que dit la spec sur la propriété CSS `opacity`:
+
+>Opacity can be thought of as a postprocessing operation. Conceptually, after the element (including its descendants) is rendered into an RGBA offscreen image, the opacity setting specifies how to blend the offscreen rendering into the current composite rendering.
+
+On comprends donc que l'application de la propriété `opacity` s'effectue en post-traitement. Un élément est donc entièrement rendu hors de l'écran, puis la propriété `opacity` fusionne l'élément et la page pour le rendu final (compositing).
+
+Et sur les filtres CSS:
+
+>Filter effects are a way of processing an element's rendering before it is displayed in the document. Typically, rendering an element via CSS or SVG can conceptually described as if the element, including its children, are drawn into a buffer (such as a raster image) and then that buffer is composited into the elements parent. **Filters apply an effect before the compositing stage**. Examples of such effects are blurring, changing color intensity and warping the image.
+
+Les filtres CSS sont donc appliqués avant l'étape de compositing, et donc avant l'application de la propriété `opacity`.
+
+On peut donc en déduire que lorsque `opacity` s'applique, elle utilise les bornes connues de l'élément, et donc l'effet de flou est rogné.
+
+**Edit 20-03-2013**: Le problème ne semble plus être présent dans Chrome 27 sur WXP. Le bug semble donc corrigé.
+
+De plus, `filter: opacity` offre l'avantage de pouvoir intervenir avant ou après l'application d'un second filtre. Des différences peuvent donc intervenir, comme c'est le cas avec l'utilisation conjointe des filtres `drop-shadow` et `opacity`. Le résultat n'est pas similaire si le filtre est appliqué avant ou après.
+
+(codepen: Kgvkb user: iamvdo height: 400)
+
+Enfin, dernière possibilité graphique intéressante: la spécification en cours propose la fonction `filter()`. Cette fonction, qui retourne une image, pourrait être utilisée directement via CSS, par exemple avec la propriété `background-image`. Il deviendrait donc possible d'appliquer une image en arrière-plan d'un élément, et de modifier l'opacité de celle-ci. C'est en quelque sorte comme s'il existait `background-opacity`.
+
+Malheureusement, aucun navigateur n'implémente (encore) cette fonction!
+
+**Edit 20-01-2014**: La fonction `filter()` est implémentée de manière expérimentale dans WebKit (à tester avec une version Nightly)

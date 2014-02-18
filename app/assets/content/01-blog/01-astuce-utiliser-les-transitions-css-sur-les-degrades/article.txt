@@ -1,0 +1,76 @@
+Title: Utiliser les transitions CSS sur les dégradés
+----
+Subtitle: 
+----
+Description:  
+----
+Date: 2012-03-08 11:30
+----
+Tags: CSS3, CSS, transition, box-shadow, dégradés
+----
+Big: 1
+----
+Text:
+
+Faire des transitions entre les images d’arrière-plan est un rêve pour tout
+designer CSS. Actuellement, c’est totalement impossible, que ce soit avec des
+images ou avec des dégradés. La spécification CSS3 a tenté de résoudre ce
+problème en proposant la fonction [`cross-fade()`](http://www.w3.org/TR/2011/WD-css3-images-20110217/#cross-fade-function), qui permettrait exactement de
+réaliser cela, mais cette fonction a été retirée pour une étude plus poussée
+dans CSS Level 4. Les dernières versions de WebKit supportent néanmoins [une version
+expérimentale](http://peter.sh/files/examples/cross-fading.html) de cette
+fonction avec quelques contraintes, comme la taille des images identiques.
+
+En attendant que la fonction `cross-fade()` soit correctement définie et
+disponible pour tout les navigateurs, quelques astuces nous permettent de
+réaliser des transitions entre deux dégradés. Voici un article pour [effectuer
+des transitions entre images.](http://css3.bradshawenterprises.com/cfimg/)
+
+## Première astuce
+
+La première astuce consiste à utiliser une couleur de fond unie et un dégradé
+au dessus avec la transparence, par exemple:
+	
+	div{
+		 background-color: deeppink;
+		 background-image: linear-gradient( white, rgba(255,255,255,0));
+		 transition: background-color 1s;
+	}
+	div:hover{
+		 background-color: steelblue;
+	}
+
+(codepen: hxBCe user: iamvdo height: 380 script: true)
+
+Ainsi, lors du `:hover`, la couleur du fond est modifiée avec les transitions
+CSS. Le dégradé, lui, ne l’est pas. La contrainte de cette technique est que
+le dégradé doit avoir au minimum une couleur identique, celle du dégradé.
+[Vous pouvez trouver un exemple de cette technique sur
+CSS3Create.](http://www.css3create.com/Navigation-slide-CSS3-avec-target-et-transitions)
+
+## Seconde astuce
+
+La deuxième astuce consiste à combiner la première avec l’utilisation des
+ombres. Grâce à `box-shadow`, il suffit de créer un «faux» dégradé, et d’animer
+cette propriété, comme ceci:
+	
+	div{
+		background-color: deeppink;
+		box-shadow: 0 200px 100px -100px white inset; 
+		transition: box-shadow 1s;
+	}
+	div:hover{
+		background-color: green;
+		box-shadow: 0 200px 100px -100px yellow inset; 
+	}
+
+(codepen: JlmrE user: iamvdo height: 380)
+
+L’astuce ici réside dans le mot-clé `inset` pour créer une ombre interne, et
+dans l’utilisation de la valeur d’étendue de l’ombre pour agrandir la taille
+de l’ombre et ainsi simuler un dégradé linéaire.
+
+De plus, cette technique à le mérite de fonctionner depuis assez longtemps
+dans les navigateurs.
+
+J’attends vos commentaires et retours d’expérience.

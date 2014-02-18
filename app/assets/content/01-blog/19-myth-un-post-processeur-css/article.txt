@@ -1,0 +1,83 @@
+Title: Myth, un post-processeur CSS
+----
+Subtitle: 
+----
+Description:  
+----
+Date: 2013-12-18 11:30
+----
+Tags: CSS, postprocesseur, variables CSS
+----
+Big: 0
+----
+Text: 
+
+Il y a moins d'un mois, j'écrivais un article sur les [post-processeurs CSS](les-postprocesseurs-css) et je m'interrogeais, publiquement, sur l'intérêt de tels outils, comparés aux pré-processeurs. Je trouve l'idée très prometteuse. Le concept de conserver son CSS «propre», «future-proof» pour pouvoir y appliquer toutes sortes de traitements automatiques offrant un support maximal m'enchante.
+
+Sauf que, **tout n'est pas réalisable**. Je suis allé un peu trop loin dans mon cheminement, et j'ai franchi la limite à ne jamais dépasser: la cascade CSS et le DOM.
+
+Alors oui, cela dépend des actions effectuées, le fameux «ça dépend». Par exemple, l'utilisation d'[Autoprefixer](https://github.com/ai/autoprefixer) pour l'ajout des préfixes CSS en post-traitement est à préconiser sur l'utilisation des pré-processeurs (attention, je ne parle pas d'outil comme prefixmycss qui ajoute les préfixes au sein du navigateur). L'utilisation d'un polyfill pour les filtres pourrait l'être également.
+
+Par contre, lorsque je parle de polyfill pour les variables CSS ou `calc()`, il faut faire attention.
+
+## Myth.io
+
+Hier soir a été annoncé [Myth](http://myth.io). C'est une sorte de super-polyfill-post-processeur pour votre CSS, exactement ce dont je parlais. Et avec, les limites apparaissent. Reprenons les différents exemples de code proposés sur le site.
+
+### Les variables
+
+	/* CSS en entrée */
+	:root {
+	    var-purple: #847AD1;
+	}
+	a {
+	    color: var(purple);
+	}
+
+	/* CSS en sortie */
+	:root {
+	    var-purple: #847AD1;
+	}
+	a {
+	    color: #847AD1;
+	}
+
+Les variables CSS sont dans l'actualité cette semaine, depuis [l'annonce de la prise en charge par Firefox dans la version 29](http://mcc.id.au/blog/2013/12/variables). Mais, il faut faire attention, car les «variables CSS» n'en sont pas réellement. **Ce sont en fait des [propriétés personnalisées](http://dev.w3.org/csswg/css-variables)**. Et ces propriétés fonctionnent en suivant le principe même de CSS, la cascade! Les propriétés personnalisées sont uniquement connues dans le scope où elles sont définies, ce qui n'est pas le cas avec cet outil.
+
+Les variables, telles que présentées par Myth ne sont en fait «que» de simples variables, et non réellement des propriétés personnalisées, comme le prévoit CSS. Il y a donc tromperie sur la marchandise.
+
+Certes, cela peut s'avérer utile si le développeur reste rigoureux (ou [si le plugin l'est pour vous](https://github.com/segmentio/myth/issues/10) ) et ne crée que des variables globales, **mais le détournement d'une syntaxe normalisée pour en faire autre chose peut s’avérer dangereux**. De plus, le code n'est plus «future-proof», comme espéré au départ.
+
+### Mathématiques et couleurs
+
+Là encore, les exemples présentés sont trompeurs. Regardez mieux:
+
+	/* CSS en entrée */
+	pre {
+	    margin: calc(var(large) * 2);
+	}
+
+	/* CSS en sortie */
+	pre {
+	    margin: 20px;
+	}
+
+Cet exemple fonctionne ici avec l'utilisation d'une variable, mais qu'en est-il pour une autre utilisation de `calc()`, plus classique? Par exemple combinant unités relatives et absolues comme `calc( 50% - 25px )` (ce qui équivaut à 50% de la largeur de son *containing block* moins 25px)  **Bien entendu, ni un pré-processeur, ni un post-processeur ne pourront résoudre ces problèmes contextuels inhérents au document** sans en connaitre sa structure.
+
+Dans ce cas, votre CSS est bien préparé pour l'avenir, mais aucun outil ne pourra vous venir en aide pour offrir un meilleur support navigateur.
+
+Il en est de même pour l'exemple des fonctions de couleurs. Dans ce cas, c'est même encore plus problématique puisque la spécification n'en est qu'à ses balbutiements, et donc non stable. Il serait dangereux d'utiliser du code non normalisé, ou non en passe de l'être. De plus, la logique précédente s'applique, il n'est pas possible de profiter de la cascade CSS.
+
+	/* CSS en entrée */ 
+	a {
+	    color: color(var(purple) tint(20%));
+	}
+
+	/* CSS en sortie */
+	a {
+	    color: rgb(157, 149, 218);
+	}
+
+## Conclusion
+
+Même si le principe est intéressant sur la forme, **l'objectif principal ne peut (et ne pourra) jamais être atteint**. Après l'annonce d'hier, j'ai immédiatement [montré ma satisfaction](https://twitter.com/iamvdo/status/413039379733827584), mais sans vraiment prendre la mesure de ce que Myth nous propose. En réalité, et après étude, il s'avère que **ce post-processeur propose moins de choses que ce qu'a tenté récemment Nicolas Gallagher avec [rework-suit](https://github.com/suitcss/rework-suit)**, son post-processeur (ou pré-processeur transparent). Rework-suit propose le support des variables (identiques à Myth, puisque basé sur le même plugin), les préfixes automatiques avec Autoprefixer, ainsi que le support de l'opacité pour IE8.

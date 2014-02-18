@@ -1,0 +1,116 @@
+Title: Les postprocesseurs CSS
+----
+Subtitle: 
+----
+Description:  
+----
+Date: 2013-11-22 11:30
+----
+Tags: CSS, postprocesseur, grunt, brunch
+----
+Big: 0
+----
+Text: 
+
+C’est la tendance qui se dégage depuis quelques mois. Notamment depuis la démocratisation des [outils d’automatisation du workflow front-end, comme Grunt](http://gruntjs.com).
+
+Les postprocesseurs CSS, dont le nom évoque directement les préprocesseurs, sont en fait toutes les étapes qui devraient être effectuées en post-traitement, sans que le dev ne se soucis de cela. L’intérêt étant d’écrire du **code CSS propre, sans préfixes, maintenable, voire à la pointe**, afin d’obtenir en retour un **code compilé pour un maximum de compatibilité**.
+
+Actuellement, on peut évoquer [Rework](https://github.com/visionmedia/rework) et [PostCSS](https://github.com/ai/postcss) qui vont plus ou moins dans cette direction.
+
+##Automatiser les préfixes
+
+La première tâche à postprocesser, c’est **l’automatisation des préfixes CSS**. En effet, avant l’arrivée des préprocesseurs, et avant que les navigateurs ne soient aussi à jour, il fallait répéter les préfixes, souvent plusieurs fois. Par exemple, il y a quelques années, une transition CSS s’écrivait plus ou moins de cette façon, et c’était pénible:
+
+	.element {
+		-webkit-transition: background 1s ease;
+		   -moz-transition: background 1s ease;
+		    -ms-transition: background 1s ease;
+		     -o-transition: background 1s ease;
+		        transition: background 1s ease;
+	}
+
+Du coup, les préprocesseurs & Co. (comme [Sass](http://sass-lang.com/) et [Compass](http://compass-style.org/)) ont permis de s’affranchir de cela en écrivant quelque chose du style:
+
+	@import "compass/css3";
+
+	.element {
+		@single-transition(background, 1s, ease)
+	}
+
+qui génère le CSS adéquat. Mais, même si l’on pourrait penser que c’est mieux, ça ne l’est pas (en tout cas pour les préfixes). Certes l’outil travaille pour nous, mais le code manipulé s’éloigne du CSS, et certaines fois énormément. Mais surtout, **le CSS est dépendant du préprocesseur choisi et difficilement évolutif**. 
+
+Ce qui est mieux, c’est justement ce que nous offrent les outils de post-traitement. **Aujourd’hui, on écrit du «plain CSS» et c’est tout:**
+
+	.element {
+		transition: background 1s ease;
+	}
+
+Notre CSS sera alors généré de la «bonne» manière qu’il soit, en fonction de plusieurs critères définis en amont. **L’outil qui fait actuellement cela très bien s’appelle [AutoPrefixer](https://github.com/ai/autoprefixer)**, et si vous n’en avez jamais entendu parler, courez vite sur [leur GitHub](https://github.com/ai/autoprefixer) et prenez-le en main. Il est basé sur Rework mais devrait bientôt se baser sur PostCSS. Le code généré se base sur différents paramètres:
+
+* sur le pourcentage d’utilisateurs par navigateur basé sur les données [caniuse.com](http://caniuse.com)
+* sur le nombre de versions supportées d’un navigateur par rapport à la version actuelle
+* sur un navigateur particulier
+etc.
+
+Il permet également de nettoyer le CSS en enlevant les préfixes antidatés. Autoprefixer est disponible sous un nombre incroyable de forme, que ce soit comme plugin à votre éditeur de texte (type [Sublime Text](http://www.sublimetext.com/)), comme option d’outils d’aide à la gestion des assets comme [Prepros](http://alphapixels.com/prepros/) ou [Mixture](http://mixture.io/), ou tout simplement comme plugin à Grunt. Personnellement, j’utilise [Brunch](http://brunch.io) que je trouve plus simple que Grunt, et [autoprefixer-brunch](https://github.com/lydell/autoprefixer-brunch) avec support des source maps.
+
+##Incorporer les polyfills
+
+La deuxième fonctionnalité envisagée, c’est **l’automatisation de Polyfill**. Prenons l’exemple des [filtres CSS](https://developer.mozilla.org/fr/docs/CSS/filter). La spécification définit le filtre flou de cette manière:
+
+	.element {
+		filter: blur(10px);
+	}
+
+Sauf qu’actuellement seuls Chrome et Safari supportent cette fonctionnalité, et de manière préfixée. Pourtant Firefox permet également d’appliquer un flou sur un élément, mais en référençant un filtre SVG, de cette manière:
+
+	.element {
+		filter: url(‘#filtre’);
+	}
+
+Et IE 6-9 également, via les vieux filtres DirectX:
+
+	.element {
+		filter: progid:DXImageTransform.Microsoft.Blur(pixelradius=10);
+	}
+
+Pour générer les filtres CSS de chaque navigateur, un [polyfill](https://github.com/Schepp/CSS-Filters-Polyfill) existe. L’énorme avantage d’un postprocesseur serait ici d’automatiser cette tâche afin de ne conserver dans le CSS de travail que le code sans préfixes, et toujours future-proof.
+
+Une autre idée pourrait être d’utiliser [rework-vars](https://github.com/visionmedia/rework-vars), qui **ajoute le support des variables CSS telles que définies dans la [spécification officielle](http://dev.w3.org/csswg/css-variables/)**. Ainsi, notre CSS pourrait ressembler à cela:
+
+	:root {
+		var-color: #069;
+	}
+
+	.element {
+		color: var(color);
+	}
+
+Pour être compilé de cette façon (en fonction des options choisies):
+
+	:root {
+		var-color: #069;
+	}
+
+	.element {
+		color: #069;
+		color: var(color);
+	}
+
+Idem pour `calc()`, nous n'aurions plus besoin de préprocesseurs pour çà.
+
+##Quels autres traitements?
+
+Bien entendu, autre la minification, concaténation de fichiers, linters, tests, il existe d’autres petites actions que l’on pourrait effectuer en post-traitement. 
+Par exemple, le [postprocesseur PostCSS](https://github.com/ai/postcss) propose de vérifier que la propriété `content` est bien présente dès que le sélecteur contient `::after` ou `::before`. Au cas où il serait manquant, de le rajouter. On pourrait aussi envisager une tâche qui vérifie que le sélecteur `:focus` est systématiquement présent lorsque que `:hover` est utilisé, ou de le rajouter également, etc.
+
+##Mouais, pas sur...
+
+Certes, tout cela est encore très récent et le partage des tâches entre préprocesseurs et postprocesseurs peu sembler obscur. Voici une image qui tente de répartir les différentes actions:
+
+(image: postprocessor.jpg alt: Schéma représentant la chaine de développement CSS text: Nouveau worflow de développement CSS?)
+
+Pour moi, c’est vraiment la transparence des actions effectuées en post-traitement qui est importante, pour conserver son code le plus propre possible. J’espère avoir réussi à vous exposer mon point de vue mais je suis curieux de connaitre vos avis à ce sujet. Alors, vous en pensez quoi?
+
+:)

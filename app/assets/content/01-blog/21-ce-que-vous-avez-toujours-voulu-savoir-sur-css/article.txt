@@ -1,0 +1,457 @@
+Title: Ce que vous avez toujours voulu savoir sur CSS
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2014-02-13 09:05
+----
+Tags: CSS
+----
+Big: 1
+----
+Text:
+
+Aujourd’hui, c’est un fait: tout le monde connaît et utilise CSS. Et c’est tant mieux! Cependant, bien que le langage en lui-même soit plutôt simple, certains aspects peuvent sembler encore obscurs.
+
+Cet article fait suite à une présentation que j'ai donnée [lors de la Kiwi Party 2013](http://slides.iamvdo.me/kiwiparty13), puis [lors des MSTechDays 2014](http://slides.iamvdo.me/techdays14).
+
+##CSS, c’est simple
+
+«Le langage CSS, c’est très simple». On a tous entendu ça un jour. Et c’est vrai qu’écrire `color: red` pour changer la couleur d’un élément, c’est très facile. Mais dès lors que l’on rentre dans les profondeurs du langage, les choses se compliquent. Ce serait mentir de dire que personne n’est un jour passé par là:
+
+	.element {
+		padding: 15px;
+		width: 98.32%; /* pas compris, mais ça déborde à 98.33% */
+		position: relative; /* faut pas enlever */
+		overflow: hidden; /* ça non plus, tout foire sinon */
+		z-index: 9875687; /* p***, ça veut pas passer au-dessus! */
+	}
+
+Ne vous cachez pas, je vous vois… On s'est tous déjà dit: `<td>CSS Sucks</td>`! C’est parti pour un retour sur certaines notions importantes de CSS.
+
+##La cascade CSS
+
+Le C de CSS signifie Cascading (cascade en français), ça tout le monde le sait. Mais c’est quoi au fait la cascade? **C’est tout simplement le fait que les feuilles de styles proviennent de plusieurs origines**, à savoir:
+
+- les feuilles **Author**: les devs web
+- les feuilles **User**: les utilisateurs
+- les feuilles **UA**: les styles navigateurs (modifiés éventuellement par les réglages des utilisateurs)
+
+La cascade CSS applique alors un poids à chaque déclaration en suivant cet ordre:
+
+- récupération de toutes les déclarations CSS pour le média cible
+- tri des déclarations suivant cet ordre
+	1. UA
+	2. User
+	3. Author
+	4. Author `!important`
+	5. User `!important`
+- tri par spécificité des sélecteurs CSS (voir plus bas)
+- enfin, tri par position dans le CSS
+
+On remarque que les styles utilisateurs `!important` surclassent toujours les styles écrits par le développeur web, même les styles `!important`. C’est toujours bon de l’avoir en tête, notamment lorsque l’on parle de pixel perfect.
+
+Pour en savoir plus, je vous conseille [un article intéressant sur la création de feuilles de styles Utilisateurs (Author)](http://www.kloh.ch/le-pouvoir-des-feuilles-de-style-utilisateur-143)
+
+##Spécificité des sélecteurs
+
+C’est la troisième étape lors du classement des déclarations CSS. C’est surement la plus importante, car elle peut être délicate à gérer.
+**La spécificité des sélecteurs est la concaténation de 3 nombres** (A, B, C) et se calcule de cette manière (en CSS3):
+
+- A: Nombre d’`id` dans le sélecteur
+- B: Nombre de classes, de pseudo-classes et d’attributs dans le sélecteur
+- C: Nombre d’éléments dans le sélecteur
+
+Par exemple, prenons cette hiérarchie `.inner > ul > li > a#toto` et ciblons le lien:
+
+- `#toto` a une spécificité de `1,0,0`
+- `.inner ul li a` a une spécificité de `0,1,3`
+- `a:hover` a une spécificité de `0,1,1`
+
+On remarque donc que `#toto` prend le dessus sur les autres sélecteurs et que `a:hover` ne surclasse pas `.inner ul li a`, le lien ne sera donc jamais ciblé lors du survol.
+
+> **Astuce:** pour cibler un identifiant sans donner plus de spécificité, le sélecteur d'attribut peut être utilisé. Ainsi, `[id=toto]` est identique à `#toto`, mais a la même spécificité qu'une `class`.
+
+En matière de spécificité, il existe également les styles *inline* (dans la balise HTML via l’attribut `style`) qui surclassent tous les autres sélecteurs, et la directive `!important` qui surclasse les styles *inline*.
+
+Il existe 2 cas particuliers:
+
+- La pseudo-classe `:not()` n’entre pas dans le calcul de spécificité, mais son contenu oui. Ex: `ul li:not(.class)` a une spécificité de `0,1,2` et non pas `0,2,2`
+- Les styles appliqués aux pseudo-éléments ne peuvent pas êtres surclassés en modifiant les styles de l’élément lui-même. Les styles d'un pseudo-élément ont donc la priorité absolue.
+
+>**Note:** Attention, la concaténation des 3 nombres ne se fait pas en base 10. Ainsi, 10 classes n’ont pas une spécificité égale à un `id`. Pour l’anecdote, encore récemment certains navigateurs utilisaient une base 256 pour le calcul de la spécificité. Cela permettait donc de surclasser un `id` avec 256 classes! La spécification CSS n’est pas précise là dessus, elle dit uniquement d’utiliser «une large base».
+
+Pour plus de détails, je vous recommande [cette adaptation française parlant de la cascade CSS et de la spécificité des sélecteurs](http://marcarea.com/tuto/css-comprendre-la-cascade/) ou [cet outil de calcul de spécificité](http://specificity.keegan.st/).
+
+##Les valeurs CSS
+
+Parlons un peu des valeurs CSS, car **oui, il peut y avoir des différences entre la valeur spécifiée dans le fichier CSS et celle qui sera réellement utilisée par le navigateur**. Une valeur CSS passe en réalité par 4 étapes:
+
+###Specified value
+
+C’est la valeur spécifiée en CSS, ou c’est la valeur héritée de son parent, ou tout simplement la valeur initiale de la propriété.
+
+###Computed value
+
+C’est la valeur calculée de la propriété, au maximum avant le rendu de la page. Par exemple, les URLs relatives sont calculées absolues, les couleurs nommées sont converties (`red` devient `rgb(255,0,0)`), etc. Certains navigateurs réalisent quelques approximations dès ce stade. **Il est également possible que certaines valeurs soient calculées en fonction d’autres propriétés** (voir interaction entre `float`, `display` et `position` plus bas).
+
+> **Astuce:** la valeur calculée du mot-clé `transparent` est `rgba(0,0,0,0)`, soit du noir transparent. Attention par exemple lors de la création d’un dégradé CSS de blanc vers transparent, car du gris peut apparaître.
+
+###Used value
+
+C’est la valeur calculée «réelle». Tout ce qui doit être calculé pendant le rendu de la page est fait à ce moment. Par exemple, une taille en pourcentage dépend de son conteneur (`width: 50%` est convertie en `px`), les polices relatives également, etc. C’est cette valeur qui est récupérée en JS avec `window.getComputedStyle(element)`.
+
+###Actual value
+
+C’est la valeur réellement utilisée pour le rendu, avec les différentes approximations ou en fonction du support. Par exemple, une valeur calculée de 1.4px pour une bordure sera affichée à 1px, une couleur calculée à `rgb(255,0,0)` sera affichée en niveau de gris sur un écran monochrome, etc.
+
+> **Astuce:** vous retrouvez les valeurs CSS calculées grâce aux outils de développements des différents navigateurs. Un onglet avec ces valeurs est généralement présent.
+
+Pour aller plus loin dans la gestion de la cascade CSS (et donc dans la gestion des valeurs calculées), je vous recommande ces 2 articles que j'ai écrit sur [inherit](la-cascade-css-inherit-et-initial), [initial et unset](la-cascade-css-avancee-all-initial-et-unset).
+
+##Le box model CSS
+
+De prime abord, la gestion du modèle de boite est assez délicate car la première erreur très fréquente en CSS, c’est de penser que les propriétés `width` et `height` définissent la taille totale d’un élément. C’est normal de penser cela, mais en fait, elles définissent la taille du contenu de l’élément. **La taille totale est alors égale à la taille du contenu (`width`, `height`) + les marges internes (`padding`) + les bordures (`border`)**, comme le montre ce schéma:
+
+(image: modeleBoite.jpg text: Modèle de boite block en CSS2.1)
+
+Pour obtenir un calcul différent du modèle de boite (et ainsi `width` et `height` deviennent la taille totale), il est possible d’utiliser la déclaration `box-sizing: border-box`. Les marges internes et les bordures seront donc [inclues dans le calcul de la taille de la boite](https://developer.mozilla.org/fr/docs/Web/CSS/box-sizing). Cette propriété permet tellement de se simplifier la vie qu'[une bonne pratique est née](http://www.paulirish.com/2012/box-sizing-border-box-ftw/), celle d'appliquer ce mode à tous les éléments d'une page:
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+###Calcul de la largeur d’un élément
+
+Une autre confusion est de penser que la largeur par défaut d’un élément block est égale à 100% de celle de son conteneur. **La spécification définit que la largeur par défaut est `auto`, pas `100%`**. Cette légère nuance prend tout son sens en fonction du mode de positionnement utilisé:
+
+- si un élément est flottant ou en `display: inline-block`: sa largeur calculée est alors *shrink-to-fit* (au mieux par rapport au contenu)
+- si un élément est en `position: absolute` ou `fixed`: sa largeur calculée dépend alors de ses propriétés `left` et `right`
+	- si `left` et `right` sont `auto` (valeur par défaut), la largeur calculée est *shrink-to-fit*
+	- sinon, la largeur est calculée entre `left` et `right`
+
+> **Astuce:** un élément en `position: absolute`, avec `left: 0` et `right: 0` mesure donc 100% de la taille de son conteneur, et ce, sans préciser `width: 100%`. De plus, les marges internes et les bordures seront rendues à l’intérieur de l’élément.
+
+Il existe d’ailleurs [d’autres raisons pour ne pas utiliser width: 100%](http://blog.goetter.fr/post/13556565063/width-100-tu-es-le-mal) sur un élement.
+
+###Le *containing block*
+
+C’est l’une des notions les moins connues de CSS. En effet, le *containing block*, que l’on peut traduire par le «conteneur», est l’élément de référence qui définit la position et la taille de ses descendants. Mais attention, **le *containing block* n’est pas toujours le parent d’un élément**. Mais alors, c’est quoi?
+
+- si un élément est en `position: static` (par défaut) ou `position: relative`: son *containing block* est son parent.
+- si un élément est en `position: fixed`: son *containing block* est le *viewport* (la zone visible de l’écran) ou la page (media `print` par exemple)
+- si un élément est en `position: absolute`: son *containing block* est son premier ancêtre en `absolute`, `relative` ou `fixed` (par contre si aucun de ces ancêtres n’est positionné, c’est le *viewport*)
+
+En CSS3, un *containing block* est également créé dans ces cas là:
+
+- l’élément qui a une valeur de `transform` différente de `none`
+- l’élément qui défini la perspective d’une vue 3D (ex: `perspective: 500px`)
+- chaque colonne au sein du modèle Multicolumn Layout est un *containing block*, mais seulement pour ses enfants non positionnés.
+
+Un élément avec `width: 50%` ne mesure donc pas toujours 50% de la taille de son parent. Par contre, il mesurera toujours 50% de la taille de son *containing block*. De la même façon, un élément flottant au sein du modèle Multicolumn Layout sera positionné par rapport à la colonne dans laquelle il se trouve (son *containing block*).
+
+Lire [la spécificiation CSS officielle](http://www.w3.org/TR/CSS2/visudet.html#containing-block-details) pour en savoir plus.
+
+##Positionnement
+
+La gestion du positionnement est l’une des choses les moins évidentes en CSS, et c’est généralement là que la majorité des problèmes se posent. Je ne vais pas faire un cours sur le positionnement CSS ici, mais je vais revenir sur certaines croyances du langage, dont la première est que `vertical-align: middle` ne permet pas de centrer verticalement du contenu.
+
+###Les valeurs de display
+
+La propriété `display` modifie la façon dont les éléments sont générés dans la page. Il existe les valeurs «simples» comme `block`, `inline`, `inline-block` ou `list-item`, mais **cette propriété permet également de simuler une structure en tableau**, à l’aide des valeurs `table` (le tableau), `table-row` (une ligne de tableau) ou `table-cell` (une cellule de tableau). Elle peut s’avérer très pratique, notamment car:
+
+- les cellules d'une même ligne sont affichées côte à côte, et sont de mêmes hauteurs
+- elles s’adaptent en largeur également (si `table-layout: fixed` est utilisé)
+- il n’y a pas de sortie du flux (comme c’est le cas avec `float`)
+- les marges internes et les bordures sont inclues dans la taille des cellules (comme le fait `box-sizing`)
+- il est possible d’aligner verticalement le contenu d’une cellule avec `vertical-align: top`, `middle` ou `bottom`
+
+Un autre avantage de cette structure, c’est la possibilité de réordonner les éléments de manière différente du code source (bien qu’il doit être utilisé avec précaution, notamment pour des problèmes d’accessibilité que cela peut poser). Cela se fait avec les valeurs avancées de `display`:
+
+- `table-row-group` définit un groupe de lignes de tableau
+- `table-header-group` définit un groupe de lignes d’entête
+- `table-footer-group` définit un groupe de lignes de pied de page
+
+(image: tableFooterGroup.jpg text: Rendu visuel de l’utilisation de display: table-footer-group)
+
+Un élément affiché comme un «groupe de lignes de pied de page» sera donc toujours affiché en bas de toutes les autres lignes du tableau. Seule limitation, un seul élément peut être affiché de cette manière. Il convient donc de «ruser» en ajoutant des éléments dans le DOM dans certains cas.
+
+Malheureusement, le principal inconvénient de ce modèle tabulaire est l’impossibilité d’utiliser les marges internes sur les lignes du tableau, ni les marges externes sur les lignes et les cellules. De plus, un bug sous Firefox empêche le positionnement d’élément absolu au sein d’une cellule de tableau en relatif. Je vous invite à lire [cet article complet traitant le modèle tabulaire](http://www.alsacreations.com/tuto/lire/1522-le-modele-tabulaire-en-css.html) sur Alsacréations.
+
+Enfin, [l'imbrication d'élément utilisant de mode devient plus complexe](imbrication-de-boites-avec-display-table).
+
+###Interactions entre `display`, `float`, `position`
+
+Nous venons de voir différentes valeurs de `display`, mais qu’en est-il de l’interaction avec les autres modèles de positionnement. Par exemple, un élément flottant peut-il devenir une cellule de tableau? Et bien non. Tout simplement parce que ces règles CSS s’appliquent dans cet ordre:
+
+1. si un élément est en `display: none`, alors les propriétés `position` et `float` sont sans effets.
+2. si un élément est en `position: absolute` ou `fixed`, alors `float` est automatiquement calculé à `none` et la valeur calculée de `display` suit le tableau suivant.
+3. si un élément est en `float: left` ou `right`, alors la valeur calculée de `display` suit le tableau
+4. si l’élément est `<html>`, alors la valeur calculée de `display` suit le tableau
+5. sinon, la valeur de `display` est appliquée
+
+<table class="table--2-1">
+	<tr>
+		<th>Valeur spécifiée</th>
+		<th>Valeur calculée</th>
+	</tr>
+	<tr>
+		<td><code>inline-table</code></td>
+		<td><code>table</code></td>
+	</tr>
+	<tr>
+		<td><code>inline</code>, <code>inline-block</code>, <code>table-row-group</code>, <code>table-column</code>, <code>table-column-group</code>, <code>table-header-group</code>, <code>table-footer-group</code>, <code>table-row</code>, <code>table-cell</code>, <code>table-caption</code></td>
+		<td><code>block</code></td>
+	</tr>
+	<tr>
+		<td><code>block</code>, <code>list-item</code>, <code>table</code></td>
+		<td>valeur spécifiée</td>
+	</tr>
+	<caption class="caption">Valeurs de display quand float et position sont utilisés conjointement</caption>
+</table>
+
+On remarque donc qu’un élément en `position: absolute`, `fixed`, ou flottant (à gauche ou à droite) aura la valeur de `display` automatiquement calculée à `block` ou `table`. Il est donc impossible de forcer l’affichage d’un élément utilisant ces modes de positionnement, et même il est totalement inutile de le préciser en CSS (puisque la valeur initiale de `display` est `inline`, elle sera calculée à `block`). Cet exemple vous montre ce cas:
+
+	.element {
+		position: absolute;
+		display: block; /* inutile */
+		display: table-cell; /* sans effet */
+	}
+
+##Block Formatting Context
+
+Un *block formatting context* est un contexte de formatage block, c’est à dire un élément où les enfants sont affichés les uns en dessous des autres et où chaque enfant est visuellement séparé des autres par ses marges externes. C’est ce qui se passe par défaut dans une page web, car l’élément racine `<html>` crée tout simplement un contexte de formatage block. Mais d’autres règles créent implicitement des *block formatting context* ou BFC:
+
+- un élément flottant (à gauche ou à droite)
+- un élément en `position: absolute` ou `fixed`
+- un élément en `display: inline-block` ou `table-cell` ou `table-caption`
+- un élément avec une valeur pour `overflow` différente de `visible`
+
+Parmi les caractéristiques d’un BFC, on note:
+
+- ses enfants s’affichent les uns en dessous des autres
+- l’élément ne s’écoule pas autour des flottants externes
+- l’élément contient ses enfants flottants (la hauteur est calculée pour englober la marge basse des flottants)
+- la fusion des marges avec ses enfants n’a plus lieu
+
+Prenons donc cette hiérarchie HTML `.parent > p img` et ce CSS associé `img { float: left }`. L'image étant flottante, la hauteur de `.parent` s'adapte pour ne contenir que l'élément `<p>`, et donc l'image déborde.
+
+(image:bfc-et-float1.jpg text: Un élément flottant déborde de son parent)
+
+En suivant ce même principe, un parent qui ne contient que des éléments flottants à d'ailleurs une hauteur calculée à 0px!
+
+Pour contourner ce problème, il suffit de convertir le `.parent` en *block formatting context*. Pour cela, modifions le CSS comme ceci `.parent { overflow: hidden }`
+
+(image:bfc-et-float2.jpg text: L’élément flottant ne déborde plus de son parent, qui est un BFC)
+
+Je vous renvoi encore une fois vers [un article d’Alsacréations agrémenté d’images qui explique le principe d’un BFC](http://www.alsacreations.com/astuce/lire/1543-le-contexte-de-formatage-block-en-css.html).
+
+###La propriété clear
+
+Cette propriété CSS s’utilise conjointement à `float`. En effet, son rôle est d’empêcher que les bords d’un élément soit adjacents à un élément flottant, soit à gauche, soit à droite, soit les deux. Par contre, cela ne fonctionne uniquement si les éléments (flottants et `clear`) se trouvent dans le même *block formatting context*. Prenons un exemple qui sera plus parlant, une «architecture» classique (du siècle dernier) avec un menu flottant à gauche et le contenu à droite:
+
+<pre class="language-markup"><code>&lt;div class="menu">MENU&lt;/div>
+&lt;div class="contenu">
+	&lt;img src="" alt="">
+	&lt;p>...&lt;/p>
+	&lt;h2>Les Kiwis? Partis!&lt;/h2>
+	&lt;p>...&lt;/p>
+&lt;/div></code></pre>
+
+Et le CSS:
+
+	.menu {
+		float: left;
+		width: 150px;
+	}
+	.contenu {
+		margin-left: 150px;
+	}
+	.contenu img {
+		float: left;
+	}
+
+(image: bfc1.jpg text: Rendu du HTML et du CSS)
+
+L’image au sein du contenu est également flottante et l’on remarque que le titre `<h2>` «subit» l’effet du `float`: il se trouve donc à coté. Pour contrer cela, utilisons la propriété `clear` pour empêcher que le bord gauche du titre ne soit adjacent au `float`:
+
+	.contenu h2 {
+		clear: left;
+	}
+
+(image: bfc2.jpg text: Ajout de la propriété clear sur le titre)
+
+Le titre est bien déplacé vers le bas, mais très bas. Et oui, le menu étant également flottant, le `clear` empêche au titre d’être à coté du menu. Pour contourner ce problème, il nous faut alors créer un *block formatting context* sur le contenu, afin que la propriété `clear` n’agisse qu’au sein de ce BFC, comme ceci:
+
+	.contenu {
+		/* Création d’un BFC */
+		overflow: hidden;
+	}
+
+(image: bfc3.jpg text: Rendu final après création d'un block formatting context)
+
+Jouez avec [cette démo sur CodePen](http://codepen.io/iamvdo/pen/vzpoa)
+
+###Effets collatéraux
+
+Nous venons de voir que plusieurs modes de positionnement créent implicitement des BFC. Dans certains cas (comme pour éviter le dépassement des flottants ou la gestion de la propriété `clear`), nous devons forcer la création d’un contexte de formatage block. Mais **certaines des «méthodes» ont d’autres effets que celui souhaité:**
+
+- méthode `float` ou `position: absolute`, `fixed` : ces deux propriétés modifient également le flux de la page ainsi que la méthode de calcul de la largeur de l’élément.
+- méthode `display: inline-block` : ne crée pas de boite de niveau block. La méthode de calcul de la largeur de l’élément est donc différente.
+- méthode `display: table-cell` : ne crée pas non plus de boite de niveau block. De plus, la boite participe à un contexte de parent anonyme (`table-row`, puis `table`) sans pour autant y avoir accès. La méthode de calcul de la largeur de l’élément est donc différente et les marges externes n’existent pas.
+- méthode `overflow: hidden` : c’est la méthode la plus utilisée car elle ne modifie pas le mode de positionnement de l’élément. Par contre, elle empêche le débordement du contenu de l’élément (ce qui est d’ailleurs son premier rôle)
+
+###BFC: two more things
+
+Il existe deux autres façons de créer un contexte de formatage block.
+
+La première, c’est d’utiliser `display: table`. En effet, en suivant le principe des parents anonymes pour un élément `table-cell`, un élément `table` crée des enfants anonymes: d’abord un `table-row`, puis un `table-cell`, et donc un contexte de formatage block. L’intérêt ici, c’est que l’élément reste une boite de niveau block (en `display: table`), avec notamment la possibilité de gérer ses marges externes. Attention toutefois au calcul de la largeur de l’élément. C’est à vous de choisir la façon dont la taille du tableau est calculée:
+
+- `table-layout: auto` (par défaut) : la taille du tableau s’adapte aux cellules (contenu)
+- `table-layout: fixed` : la taille des cellules s’adaptent à la taille du tableau (une largeur doit être définie)
+
+La seconde méthode, c’est de recourir au mode de positionnement MultiColumn Layout. Il suffit pour cela de définir la propriété `column-count` (même à 1) ou `column-width`. Attention toutefois, mes tests de création de BFC avec cette méthode ne se sont pas tous avérés concluants. Il est certainement bon d’attendre que des modes de positionnement comme Flexbox se démocratise (et c’est pour dans très peu de temps) plutôt que d’utiliser cette méthode.
+
+>**Note:** Aussi étrange que cela puisse paraître, [l’élément HTML `<fieldset>` crée un contexte de formatage block](http://dev.w3.org/html5/spec-LC/rendering.html#the-fieldset-element-0). Cela explique certains bugs particuliers liés à cette balise.
+
+##La fusion des marges
+
+La fusion des marges, comme son nom l’indique, est **un mécanisme qui fusionne automatiquement certaines marges entre-elles**. Cela peut paraître étrange, voire gênant, mais au final cette fusion favorise le développement CSS. Tout d’abord, cette fusion ne se produit que de manière verticale et ne s’applique qu’au marges externes. Voici les 4 règles où une fusion a lieu:
+
+- la marge haute d’un bloc et la marge haute de son premier enfant (de manière récursive)
+- la marge basse d’un bloc et la marge basse de son dernier enfant, si la hauteur est `auto` (de manière récursive)
+- la marge basse d’un bloc et la marge haute de son suivant (qui n’est pas forcément un élément frère)
+- la marge haute et basse d’un bloc sans contenu
+
+> **Note:** lorsque j’ajoute «de manière récursive», c’est pour signifier que la fusion peut avoir lieu entre plusieurs éléments à la fois. Si vous prenez la hiérarchie suivante: `section > div > h1`, la marge haute de l’élément `<h1>` fusionne avec son parent (`<div>`), qui à son tour fusionne avec son parent (`<section>`). Cela fonctionne seulement si les éléments sont les premiers enfants de leur parent. Dans ce cas, la fusion a lieu sur plusieurs éléments à la fois.
+
+Néanmoins, **pour que les fusions décrites aient lieu, certaines contraintes s’appliquent:**
+
+- contraintes entre parents et enfants:
+	- il n’y a pas de fusion si le parent est un BFC (contexte de formatage block). Je vous renvoi un peu plus tôt dans l’article.
+	- il n’y a pas de fusion si le parent a des marges internes hautes ou basses (`padding`) ou des bordures hautes ou basses. Les marges internes et les bordures à gauche et à droite n’empêche pas la fusion.
+- contraintes entre les éléments suivants:
+	- les éléments doivent appartenir au même BFC. Pour rappel, la fusion se produit entre deux éléments suivants qui ne sont pas forcément frères.
+- les marges d'un élément flottant, en `position: absolute` ou en `display: inline-block` ne fusionnent pas avec les autres éléments
+
+Enfin, lorsque la fusion se produit, c’est la marge maximum entre les deux éléments qui est utilisée. Ainsi un élément ayant une marge basse de 20px et un élément ayant une marge haute de 10px seront séparés de 20px. Si l’un des éléments a une marge négative, celle-ci est déduite de la marge positive pour le calcul.
+
+Prenons la hiérarchie suivante `.container > .parent > .enfant + .enfant + .enfant` et le CSS `.enfant { margin: 50px }`, on se rend bien compte qu'entre chaque enfant la marge n'est que de 50px: la fusion a bien lieu.
+
+(image: fusion-des-marges1.jpg text: La fusion des marges se produit entre éléments frères)
+
+Si l'on affiche de manière plus marquée le parent avec `.parent { background: darkblue }`, on se rend compte qu'une fusion à également lieu en haut avec le premier enfant, et en bas avec le dernier enfant.
+
+(image: fusion-des-marges2.jpg text: La fusion des marges se produit également avec le parent)
+
+Pour empêcher cette fusion, il suffit de convertir le parent en BFC avec `.parent { overflow: hidden }` ou encore de lui appliquer un `padding` ou une bordure même transparente. Par exemple, `.parent { border: 1px solid transparent }`
+
+(image: fusion-des-marges3.jpg text: La fusion des marges ne se produit plus avec le parent si celui-ci est un BFC)
+
+Jouez avec [cette démo sur CodePen](http://codepen.io/iamvdo/pen/Fsqya)
+
+##Empilement CSS
+
+Dès que l’on parle empilement en CSS, la propriété qui nous vient à l’esprit est `z-index`. En effet, cette propriété permet de gérer le «niveau» d’affichage d’un élément: un `z-index` plus élévé affiche un élément devant les éléments avec un `z-index` plus faible, ou sans `z-index`. Et bien en fait, non. C’est légèrement plus compliqué que cela.
+
+Tout d’abord, la propriété `z-index` ne fonctionne que sur des éléments positionnés (`relatif`, `absolute` ou `fixed`), mais surtout **la propriété `z-index` est relative à son contexte d’empilement**. Mais c’est quoi un contexte d’empilement?
+
+###Contexte d’empilement
+
+Un contexte d’empilement est un élément HTML dans lequel les éléments enfants sont dessinés en respectant un ordre d’affichage précis. **Un élément au sein d’un contexte d’empilement affiché plus bas ne peut pas superposer un élément au sein d’un contexte d’empilement affiché plus haut**. Chaque contexte est alors «hermétique» aux autres contextes.
+
+L’élément `<html>` créé le premier contexte d’empilement de la page. Ensuite, **un nouveau contexte d’empilement est créé dès qu’un élément est positionné** (`position: relative`, `absolute` ou `fixed`) **et que son `z-index` est différent de `auto`**.
+
+C’est donc au sein de chaque contexte d’empilement que la propriété `z-index` fonctionne comme on pourrait le penser à la première lecture des spécifications.
+
+Prenons cet exemple suivant, 3 parents qui contiennent chacun un enfant:
+
+<pre class="language-markup"><code>&lt;div class="parent parent--red">
+	&lt;div class="enfant enfant--red">R&lt;/div>
+&lt;/div>
+&lt;div class="parent parent--green">
+	&lt;div class="enfant enfant--green">V&lt;/div>
+&lt;/div>
+&lt;div class="parent parent--blue">
+	&lt;div class="enfant enfant--blue">B&lt;/div>
+&lt;/div></code></pre>
+
+Et le CSS associé:
+
+	.enfant {
+		position: absolute;
+	}
+	.enfant--red {
+		z-index: 1;
+	}
+
+Chaque enfant est donc affiché de manière absolue, et le premier enfant (carré rouge, R) a un `z-index` de 1. Il superpose alors les autres carrés. Si nous ajoutons un `z-index` de 2 sur le second enfant (carré vert, V), il superpose à son tour les 2 autres carrés. Tout cela est normal puisqu’un seul contexte d’empilement est actuellement présent: l’élément `<html>`. Créons alors un nouveau contexte d’empilement, sur le parent englobant le carré vert, tout en conservant le `z-index` à 2 sur l’enfant Vert.
+
+	.parent--green {
+		/* Nouveau contexte d'empilement de niveau 0 */
+		position: relative;
+		z-index: 0;
+	}
+
+L’effet produit est que le carré vert (V) ne superpose plus les autres carrés bien que son `z-index` soit encore de 2. Il est tout simplement limité à son contexte d’empilement, qui lui est affiché en `z-index: 0`!
+
+(codepen: amuGx height: 420 script: true)
+
+Mais la propriété `z-index` n’est pas la seule à influencer l’ordre des éléments. Revenons sur la façon dont les éléments sont dessinés dans une page.
+
+###Ordre d’affichage
+
+Au sein de chaque contexte d’empilement, **les règles qui définissent l’ordre d’affichage des éléments sont les suivantes:**
+
+1. les bordures et `background` de l’élément racine du contexte d’empilement
+2. les éléments positionnés avec un `z-index` négatif
+3. les éléments `block` non-positionnés
+4. les flottants
+5. les éléments `inline` non-positionnés
+6. les éléments positionnés avec un `z-index: auto`
+7. les éléments positionnés avec un `z-index` positif
+
+Nous remarquons donc qu’un élément flottant est toujours affiché au dessus d’un élément block, et qu’un élément *inline* est toujours affiché au dessus des flottants. Nous remarquons également qu’un élément positionné dont le `z-index` est négatif est rendu derrière les éléments non-positionnés, et donc potentiellement derrière son parent. Par contre, **un élément ne peut jamais être affiché derrière l’élément qui crée le contexte d’empilement auquel il appartient**.
+
+Voici un exemple un peu farfelu d’empilement sans `z-index`:
+
+(codepen: pDABx height: 250)
+
+###Contexte d’empilement en CSS3
+
+En CSS3, de nouvelles propriétés créent des contextes d’empilement:
+
+- un élément dont l’opacité est inférieure à 1
+- un élément dont la propriété `transform` est différente de `none` (ce qui crée également un *containing block*, rappelez-vous)
+- un élément dont la propriété `transform-style` vaut `preserve-3d`
+- un élément dont la propriété `filter` est différente de `none`
+- un élément utilisant les propriétés `clip-path` ou `mask` (et déclinaisons)
+
+Reprenons l’exemple d’empilement précédent. Un nouveau contexte d’empilement peut également être créé de cette façon:
+
+	.parent--green {
+		/* Nouveau contexte d'empilement */
+		opacity: .99;
+	}
+
+Dans ce cas, la valeur d’opacité définie et calculée à 0.99 créé un contexte d’empilement (car inférieure à 1), bien que la valeur réellement utilisée pour le rendu sera 1. Il est également possible d’utiliser les transformations, même une rotation nulle (car différent de `none`):
+
+	.parent--green{
+		/* Nouveau contexte d'empilement */
+		transform: rotate(0);
+	}
+
+Voir le CodePen ci-dessus pour tester.
+
+##Conclusion
+
+Voilà, j’espère vous avoir donné quelques clés pour mieux comprendre les petites subtilités de CSS et que vous passerez moins de temps à comprendre les différents comportements du langage.
+
+Par contre, désolé, vous venez de perdre le coté «magique» de certaines fonctionnalités de CSS. :P
+
+N'hésitez pas à poser des questions si telle ou telle chose ne vous paraît pas assez claire, je vous répondrais et mettrais l'article à jour en conséquence si besoin.
+
+:)

@@ -1,0 +1,63 @@
+Title: Styler les input inactifs (disabled) sur iOS (iPhone, iPad)
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2013-02-07 11:00
+----
+Tags: input, disabled, astuce
+----
+Big: 0
+----
+Text:
+
+Si vous tentez d'appliquer un changement de couleur de texte ou d'arrière-plan à un champ de formulaire inactif, cette couleur ne sera pas correctement utilisée partout, notamment sur Safari et iOS.
+
+En effet, voici le rendu visuel obtenu sur iOS, même en forçant la couleur:
+
+<pre class="language-markup"><code>&lt;input type="text" /&gt;
+&lt;input type="text" disabled="disabled" /&gt;
+</code></pre>
+
+	input{
+    	color: black;
+    	background: deepskyblue;
+	}
+	input[disabled]{
+    	color: black;
+    	background: deepskyblue;
+	}
+
+(image: input-disabled-1.jpg text: Rendu d'un champ input disabled même en forçant les couleurs)
+
+Ce n'est pas du meilleur effet.
+
+Si jamais l'on vous demande de respecter précisément une maquette graphique, cela peut devenir vite problématique. De plus, si la couleur utilisée pour les `input` est plutôt claire, celle qui sera utilisée par défaut sur les `input disabled` le sera encore plus et des problèmes d'accessibilité peuvent se poser (contraste trop faible).
+
+Il existe donc une technique que voici.
+
+## 1 - Forcer l'opacité
+
+	input[disabled]{
+		...
+		opacity: 1;
+	}
+
+(image: input-disabled-2.jpg text: Rendu d'un champ input disabled après ajout de l'opacité)
+
+Ainsi, notre élément retrouve sa couleur de fond originelle, et sa couleur de bordure. Cela peut être suffisant mais si vous souhaitez également avoir le contrôle sur la couleur du texte, il est possible de la modifier.
+
+## 2 - Utiliser la propriété CSS non standard `-webkit-text-fill-color`
+
+	input[disabled]{
+		...
+		opacity: 1;
+		-webkit-text-fill-color: black;
+	}
+
+(image: input-disabled-3.jpg text: Rendu d'un champ input disabled après ajout de l'opacité et de -webkit-text-fill-color)
+
+Cette propriété spécifique au moteur de rendu WebKit permet de modifier la couleur du texte, mais surclasse la propriété `color`. [En apprendre plus sur cette propriété](https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariCSSRef/Articles/StandardCSSProperties.html#//apple_ref/css/property/-webkit-text-fill-color).
+
+Cette propriété est également souvent utilisée avec la déclaration `-webkit-background-clip: text` (non standard) pour permettre à [un arrière-plan d'être visible uniquement dans le texte](http://www.css3create.com/Typo-facon-Apple) (tel un masque).

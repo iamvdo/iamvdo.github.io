@@ -1,0 +1,45 @@
+Title: box-decoration-break: son support progresse... lentement!
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2013-04-16 11:00
+----
+Tags: CSS3
+----
+Big: 0
+----
+Text:
+
+La propriété `box-decoration-break` du [module CSS Backgrounds and Borders Level 3](http://www.w3.org/TR/css3-background/) n'est pas très connue, et pourtant s'avère bien pratique!
+
+Comme le dit la spécification, cette propriété propose de définir la façon dont un élément scindé en plusieurs fragments est affiché. Un élément peut se retrouver coupé lors:
+
+* d'un changement de page (`media print`)
+* d'un saut de colonne (Multicolumn Layout)
+* d'un changement de ligne, pour les éléments inline
+
+Lorsque qu'une boite est alors scindée, les options disponibles sont:
+
+* `slice`: chaque fragment est considéré comme une partie d'un seul élément (c'est la valeur par défaut).
+* `clone`: chaque fragment est indépendant et a ses propres bordures, marges et arrière-plans.
+
+Lorsque la valeur `clone` est utilisée, les propriétés suivantes sont affectées indépendamment pour chaque fragment:
+
+* `border` et ses déclinaisons
+* `border-image`
+* `border-radius`
+* `padding`
+* `box-shadow`
+* `background`
+
+(codepen: tLzwb user: iamvdo height: 350 script: true)
+
+Sur cette démo, vous distinguez clairement la différence de rendu entre l'élément de la première colonne (avec `box-decoration-break: clone`) et celui de la deuxième (avec `box-decoration-break: slice`) si vous utilisez un navigateur compatible.
+
+Cette propriété est actuellement supportée sur Opera (depuis la version 10.60) sans préfixes, et depuis peu dans Chrome avec préfixes. IE10 ne la supporte pas, ni Firefox et Safari d'ailleurs. Cependant Firefox supporte une propriété non standard `-moz-background-inline-policy` qui définit la manière dont traiter les arrière-plans au sein de plusieurs fragments. C'est une sorte de sous-propriété de `box-decoration-break`.
+
+## Conclusion
+
+Après tests, il s'avère que parmi les 3 situations qui créent des fragments, seule une est implémentée dans les navigateurs: celle qui s'applique aux éléments inline sur plusieurs lignes. En conséquence, il n'est pas possible d'utiliser `box-decoration-break` pour des fragments sur plusieurs colonnes ou sur plusieurs pages d'impression. Et c'est bien dommage...

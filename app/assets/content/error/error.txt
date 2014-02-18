@@ -1,0 +1,15 @@
+Title: Petite erreur
+----
+Subtitle: La page n'a pas été trouvée (et c'est bien dommage)
+----
+Text:
+
+Ce n'est pas grave. :)
+
+Le plus simple d'ici:
+
+* Vous prenez la troisième à droite
+* Au rond-point, tout droit
+* Au stop, vous êtes arrivés
+
+Sinon, vous pouvez [retourner à l'accueil](/) ou suivre l'une de ces 3 recommandations:

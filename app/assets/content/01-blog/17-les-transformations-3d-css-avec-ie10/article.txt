@@ -1,0 +1,141 @@
+Title: Les transformations 3D CSS avec IE10
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2013-04-17 11:00
+----
+Tags: CSS3, IE10, transformations
+----
+Big: 1
+----
+Text:
+
+Avez-vous déjà utilisé les transformations 3D avec CSS? Oui? Bon point. Si ce n'est pas le cas, je vous conseille [un article complet que j'avais écrit à ce sujet](http://www.html5-css3.fr/css3/transformations-3d-css3).
+
+Le problème des transformations CSS 3D, ce n'est pas le support dans les navigateurs, qui est aujourd'hui plutôt bon: Chrome 12+, Safari 4+, Firefox 10+, IE10, iOS, Android 3+ (les navigateurs Opera n'ont actuellement pas de support mais cela devrait changer avec [le passage à Blink](http://www.brucelawson.co.uk/2013/hello-blink/)). De plus, il est assez facile de prévoir des solutions de repli pour les navigateurs trop anciens.
+
+Le problème, c'est bien son support dans IE10, et notamment la propriété `transform-style: preserve-3d`. Cette propriété, qui **permet de forcer les éléments imbriqués à subir les transformations 3D lorsque le parent est transformé**, n'est tout simplement pas reconnue dans ce navigateur.
+
+Cette propriété peut être facultative dans le cas de transformations simples (un seul élément), mais devient nécessaire dès lors que l'on souhaite appliquer une transformation commune à un ensemble d'éléments, comme lors de la création du fameux effet Flip-Card (pourtant simple).
+
+Sur le site de Microsoft, il est expliqué clairement:
+
+> Pour le moment, Internet Explorer ne supporte pas le mot-clé `preserve-3d` sur la propriété `transform-style`. Vous pouvez contourner ce comportement en additionnant manuellement les transformations du parent à chaque élément à transformer.
+
+OK. Alors allons-y...
+
+## L'effet Flip-Card
+
+Voici un effet flip-card «classique»:
+
+(codepen: Jexso user: iamvdo height: 350 script: true)
+
+Notre démo est donc ici composée:
+
+* d'un élement `.scene` qui contient un élément `.flip`
+* l'élément .flip contient les 2 éléments `.avant` et `.arriere`
+* ces 2 éléments sont placés l'un sur l'autre et `.arriere` est transformé de 180deg sur l'axe X pour l'afficher à l'envers. Les faces arrières sont masquées.
+
+Lors du survol de `.scene`, l'élément `.flip` est transformé de 180deg sur l'axe X également pour créer le retournement. **Sans oublier de préciser `transform-style: preserve-3d` sur `.flip` pour que l'élément imbriqué `.arriere` subisse la transformation du parent.**
+</span>
+
+	.scene{
+	    perspective: 600px;
+	}
+	.flip{
+	    transform-style: preserve-3d;
+	}
+	.avant,
+	.arriere{
+	    position: absolute;
+	    backface-visibility: hidden;
+	}
+	.avant{
+	    background: tomato;
+	}
+	.arriere{
+	    background: deepskyblue;
+	    transform: rotateX(180deg);
+	}
+	.scene:hover .flip{
+	    transform: rotateX(180deg);
+	}
+
+Ce code fonctionne dans tous les navigateurs supportant les transformations 3D. Pour IE10, il faut se passer de `transform-style` et répercuter la transformation du parent sur les enfants. Il nous faut donc:
+
+* lors du survol de `.scene`, transformer de 180deg sur l'axe X l'élément `.avant` (0 +180)
+* lors du survol de `.scene`, transformer de 360deg sur l'axe Y l'élément `.arriere` (180 + 180)
+* ôter (ou mettre en commentaire) `transform-style: preserve-3d;`
+
+Le code CSS final devient donc:
+
+	.scene{
+	    perspective: 600px;
+	}
+	.flip{
+	    /* transform-style: preserve-3d; */
+	}
+	.avant,
+	.arriere{
+	    position: absolute;
+	    backface-visibility: hidden;
+	}
+	.avant{
+	    background: tomato;
+	}
+	.arriere{
+	    background: deepskyblue;
+	    transform: rotateX(180deg);
+	}
+	.scene:hover .avant{
+	    transform: rotateX(180deg);
+	}
+	.scene:hover .arriere{
+	    transform: rotateX(360deg);
+	}
+
+**Edit 04/06/2013**: En tout cas, c'est ce que l'on pourrait croire! (Merci à Johan dans les commentaires pour avoir remonté un bug)
+
+En fait, c'est plus compliqué que cela. IE10 a un comportement étrange lors de l'utilisation de `backface-visibility` et de `perspective`. Lors de l'animation, les faces arrières ne sont tout simplement pas masquées. Pour contrer ce problème, il nous faut alors définir les perspectives sur chaques éléments transformés, en utilisant la fonction `perspective()` prévue pour cela.
+
+De plus, il est préférable de définir les transformations initiales, même lorsque qu'il n'y a pas de rotation à effectuer. Le code final, compatible IE10 devient donc:
+
+	.scene{
+	    /* perspective: 600px; devient inutile */
+	}
+	.flip{
+	    /* transform-style: preserve-3d; */
+	}
+	.avant,
+	.arriere{
+	    position: absolute;
+	    backface-visibility: hidden;
+	}
+	.avant{
+	    background: tomato;
+	    transform: perspective(600px) rotateX(0);
+	}
+	.arriere{
+	    background: deepskyblue;
+	    transform: perspective(600px) rotateX(180deg);
+	}
+	.scene:hover .avant{
+	    transform: perspective(600px) rotateX(180deg);
+	}
+	.scene:hover .arriere{
+	    transform: perspective(600px) rotateX(360deg);
+	}
+
+Et voici le rendu final (identique à l'effet précédent mais compatible IE10!):
+
+(codepen: ynqIp user: iamvdo height: 350)
+
+## Conclusion
+
+Ce petit manque d'IE10 peut s'avérer vite pénible, notamment dans le cas d'imbrications complexes où chaque transformation doit alors se répercuter sur chaque enfant. Et le fait de devoir définir plusieurs fois la perspective rend la maintenance vraiment difficile.
+
+Je ne sais pas personnellement pourquoi IE10 n'implémente pas cette valeur pourtant si pratique (performance? politique?). Et vous, connaissez-vous la raison?
+
+**Edit 02/07/2013**: IE11 n'ajoute toujours pas le support de `transform-style: preserve-3d`.

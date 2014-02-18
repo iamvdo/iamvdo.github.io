@@ -1,0 +1,29 @@
+Title: Concours CSS «Anti-design»!
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2012-11-22 11:00
+----
+Tags: CSS3, concours, livre
+----
+Text:
+
+**Mise à jour:** Le concours est terminé. Merci à tous les participants d'avoir joué le jeu. [Vous pouvez découvrir les designs les plus kitsch](http://concours.livre-css3.fr). 
+
+Bonjour à tous. Suite à la sortie de mon [livre sur CSS3](http://livre-css3.fr) (que j'ai co-écrit avec Cédric Esnault), nous vous proposons un [concours pour vous faire gagner 10 exemplaires](http://concours.livre-css3.fr)!  
+
+Pour ce faire, et comme nous ne voulions pas simplement un «[Retweet pour participer](https://twitter.com/iamvdo/status/271606160195457024)», nous avons choisi de vous mettre au défi en vous demandant de **réaliser le design d'un formulaire**, mais de la façon **la plus kitsch possible**! Tout le monde a donc sa chance. :)
+
+Pour participer, authentifiez-vous sur le site et réalisez votre CSS en live! **Vous avez jusqu'au 2 décembre 2012 minuit!**
+
+Dans un deuxième temps, tous les designs réalisés seront exposés au public, et **tout le monde pourra voter pour son design préféré**!
+
+Les 10 designs considérés les plus «laids» seront récompensés.
+
+Plus d'infos sur le [site officiel](http://concours.livre-css3.fr).
+
+
+(image:http://concours.livre-css3.fr/images/livreCSS3.png text: Les 10 livres CSS3 à gagner)
+ 

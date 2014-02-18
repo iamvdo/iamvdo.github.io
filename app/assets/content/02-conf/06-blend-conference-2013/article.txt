@@ -1,0 +1,30 @@
+Title: Blend Conférence 2013
+----
+Subtitle: Le futur des effets graphiques en CSS
+----
+Date: 2013-10-29 14:00
+----
+Big: 0
+----
+Text:
+
+Le 29 octobre, j'ai animé **«Le futur des effets graphiques en CSS»** lors de la 1ère édition de [Blend Conférence](http://blendconference.com) à Lyon.
+
+Dans cette présentation d'une vingtaine de minutes, j'ai évoqué des fonctionnalités de CSS très, voire trop, avancées. Tous les aspects de cette conférence sont donc à prendre à titre d'expérimentations. J'ai pu y parler de choses diverses:
+
+* la fonction d'image `element()`
+* les masques CSS, SVG et les méthodes de rognage
+* les exclusions et les formes CSS
+* les filtres CSS avancés, avec notamment une démo d'utilisation des shaders
+* la fonction `filter()`
+
+Ma présentation est disponible en ligne, directement dans votre navigateur.
+
+* [Version HTML de «Le futur des effets graphiques en CSS»](http://iamvdo.me/conf/2013/blend)
+
+Attention, prévoyez différents navigateurs et basculez de l'un à l'autre pour bénéficier de chaque effet:
+
+* Google Chrome Canary (avec flags actifs: «Fonctionnalités expérimentales WebKit», «Shaders» et éventuellement «WebGL»
+* Firefox Nightly (23)
+* IE10
+* WebKit nightly pour `filter()`

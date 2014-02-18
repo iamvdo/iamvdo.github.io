@@ -1,0 +1,43 @@
+Title: Kiwi Party 2012
+----
+Subtitle: Les effets graphiques (très) avancés
+----
+Date: 2012-05-04 12:00
+----
+Big: 1
+----
+Text:
+
+La [kiwiparty](http://www.kiwiparty.fr) vient de s'achever. C'était l'occasion
+pour moi de donner une première conférence, sur CSS bien entendu.
+
+Dans cette mini-présentation, j'ai fait le tour des effets graphiques très,
+voire trop, avancés. Tous les aspects de cette conférence sont donc à prendre
+à titre d'expérimentations. J'ai pu y parler de choses diverses:
+
+  * apports en matière de typographie, avec notamment `font-feature-settings` pour le contrôle poussée des variantes de caractères.
+  * les fonctions d'images: `cross-fade()` ou `element()`
+  * l'interaction entre SVG et CSS
+  * les filtres CSS (flou, niveau de gris, négatif) et les filtres SVG complexes
+  * les masques CSS et SVG
+  * un soupçon de CSS4
+
+Retrouvez ma présentation **Les effets graphiques (très) avancés** sous
+différents support
+
+  * [Version HTML/CSS](http://kiwiparty2012.iamvdo.me)
+  * [Version Slideshare](http://www.slideshare.net/iamvdo/les-effets-graphiques-trs-avancs)  
+
+Note: La version HTML/CSS utilise le framework [reveal.js](http://t.co/EHXIAou3) de Hakim El Hattab.
+
+Pour en savoir plus:
+
+  * [Site de la kiwiparty](http://www.kiwiparty.fr)
+  * [Site d'Alsacréations](http://www.alsacreations.com)
+  * 1er compte rendu sur [weblife.fr](http://www.weblife.fr/evenements/kiwi-party-2012)
+
+Encore un grand merci à Alsacréations pour l'organisation.
+
+**Edit 04/04/2013**: La vidéo est en ligne!
+
+<iframe frameborder="0" width="480" height="270" src="http://www.dailymotion.com/embed/video/xyp3bl"></iframe><br /><a href="http://www.dailymotion.com/video/xyp3bl_les-effets-graphiques-tres-avances_tech" target="_blank">Les effets graphiques (tr&egrave;s) avanc&eacute;s</a> <i>par <a href="http://www.dailymotion.com/Alsacreations" target="_blank">Alsacreations</a></i>

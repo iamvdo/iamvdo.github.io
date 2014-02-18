@@ -1,0 +1,34 @@
+INTE
+- icon fonts header -> svg
+- responsive: switch icons -> hamburger icons: go to footer
+- page article blog: font serif blockquote
+- template error 404...
+- integration disqus
+- gzip svgz
+- add greeed only if it's present on page
+- sitemap.xml
+- rss: update links absolute
+- rss: change date
+- btn go to slides
+
+CONTENU
+- mapper ancien lien -> nouveau lien
+
+AUTRE
+- Compatibilité (css, classlist)
+
+MORE
+- kirby en Node.js
+- polyfill pour les variables
+- champ recherche?
+
+
+DEJA FAIT
+- flux RSS (rediriger vers feedburner)
+- twitter cards
+- footer? mes infos
+
+
+
+
+

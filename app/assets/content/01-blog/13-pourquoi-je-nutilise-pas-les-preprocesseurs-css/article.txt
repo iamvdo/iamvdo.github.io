@@ -1,0 +1,135 @@
+Title: Pourquoi je n'utilise pas les préprocesseurs CSS?
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2013-03-13 11:00
+----
+Tags: préprocesseurs
+----
+Big: 0
+----
+Text:
+
+Pour entrer directement dans le vif du sujet: non, **je ne suis pas contre les préprocesseurs**. D'ailleurs j'utilise PHP (HyperText Preprocessor) pour générer des sites web dynamiques. C'est même indispensable.
+
+En revanche, je ne travaille pas avec les préprocesseurs CSS parce que je n'en ai pas besoin. Je pense d'ailleurs que très peu de personnes en ont réellement besoin. Et cela pour plusieurs raisons que je vais détailler dans cet article:
+
+* Ils complexifient CSS
+* Ils n'ajoutent pas de fonctionnalités CSS aux CSS
+* Ils ne font pas (toujours) gagner de temps
+* Ils peuvent être dangereux pour le standard CSS (et provoquer une confusion)
+
+Pour faire court, je ne remets pas en cause le besoin, ni la logique de développement qui découle de l'utilisation des préprocesseurs CSS, mais cette automatisation est-elle efficace/utile pour tous? Et avec son utilisation intensive, n'est on pas en train de se mettre des bâtons dans les roues des standards?
+
+## Ils complexifient CSS
+
+Je sais qu'en lisant ce titre, certains d'entre vous fulminent! Avant que vous ne m'envoyiez [des menaces de mort sur Twitter](http://twitter.com/share?text=Quoi?!%20Tu%20critiques%20les%20préprocesseurs?%20J), je vais tenter de m'expliquer.
+
+J'ai bien employé ici le verbe «complexifier» et non le verbe «compliquer». Complexifier signifie juste «rendre plus complexe». Vous pouvez trouver la syntaxe des préprocesseurs simple, **elle n'en reste pas moins plus complexe que le CSS de base**.
+
+Exemple de syntaxe Sass pour des coins arrondis
+
+	@mixin border-radius($radius) {
+	    -webkit-border-radius: $radius;
+	            border-radius: $radius;
+	}
+	div{ 
+	    @include border-radius(5px); 
+	}
+
+Bien que cette syntaxe ne soit pas difficile à comprendre, elle est plus complexe que du simple CSS:
+
+Equivalent CSS
+
+	div{ 
+	    -webkit-border-radius: 5px;
+	            border-radius: 5px;
+	}
+
+Alors bien entendu, lorsque l'on ajoute les éléments imbriqués, les références, les inclusions complexes, l'héritage, etc., je pense que parler de complexification du langage n'est pas faux. (certes, la syntaxe des préprocesseurs est réutilisable et plus facilement mise à jour)
+
+Le problème avec cela, c'est que de jeunes intégrateurs ou des personnes ne travaillant pas dans le milieu du web (mais l'utilisant beaucoup) **se complexifient la tâche inutilement**, avec le gain de fonctionnalités et de temps en ligne de mire.
+
+## Ils n'ajoutent pas de fonctionnalités CSS aux CSS
+
+Comme je le disais plus haut, j'utilise PHP pour générer des pages web HTML. Ce langage me permet de **réaliser ce que HTML ne permets pas seul**: affichage conditionnel, traitement des formulaires, interaction avec des bases de données, suivi de l'internaute, etc. Mais c'est vrai aussi que je profite de ce langage de programmation pour créer du contenu HTML plus rapidement et plus maintenable.
+
+Quoi qu'il en soit, **les préprocesseurs CSS n'ajoutent pas de fonctionnalités CSS aux CSS**. Ce qu'ils font, c'est simplement permettre de générer des CSS plus rapidement **via une syntaxe propriétaire à chaque préprocesseur**, il n'y a pas de miracle.
+
+Attention, utiliser les préprocesseurs CSS ne fait pas de vous des experts CSS plus rapidement.
+
+Je pense même qu'une démocratisation intensive des préprocesseurs peut être dangereuse pour l'évolution du langage (voir plus bas).
+
+## Ils ne font pas (toujours) gagner du temps
+
+Il est évident que les préprocesseurs permettent de gagner en maintenance, en rigourosité, en temps de mise à jour, etc. mais seulement si ce besoin est extrêmement fort. Je pense personnellement que l'on peut **perdre plus de temps à mettre en place une structure trop complexe** avec un préprocesseur plutôt que de recopier 3 fois la même couleur dans CSS. Certes, cet exemple est un peu caricatural mais vous comprenez le principe. Pour faire un parallèle, vous n'utiliseriez pas PHP pour faire un simple `echo` d'une balise HTML sans contenu dynamique.
+
+N'oubliez pas que **vous voyez les préprocesseurs CSS avec vos yeux d'experts web**.
+
+Malheureusement, la plupart des gens qui font du web ne sont pas des experts web (loin de là) et beaucoup ne travaillent pas sur de très gros sites (où le nombre de pages est important):
+
+* site d'association (sportive, culturelle...)
+* site vitrine, site événementiel
+* site personnel / professionnel&nbsp;
+* site d'entreprise réalisé en interne / intranet
+* application web métier
+* et en règle générale tous les sites de moins de 20 pages.
+
+Ne faites pas miroiter à tous ces «développeurs» des fonctionnalités magiques, de la maintenabilité, des gains de temps en utilisant les préprocesseurs. C'est faux.
+
+Seule la bonne connaissance de CSS permet un gain de temps dans le développement.
+
+De plus, replonger ou découvrir un code réalisé avec les préprocesseurs CSS fait ressortir les questions liées à la programmation:
+
+* que contient cette variable à ce moment donné?
+* pourquoi cette boucle?
+* que fait cette inclusion déjà?
+* etc.
+
+Le gain de temps est-il toujours si évident?
+
+Enfin, ce que je pense surtout, c'est que **la majeure partie des fonctionnalités des préprocesseurs peuvent êtres réalisées sans**, tout en offrant un gain de temps et un niveau de maintenance équivalents. Cela grâce à la mise en place de conventions de travail via les [frameworks](http://www.knacss.com) [CSS](http://usablica.github.com/front-end-frameworks/compare.html) ou de principes de programmation orientée objet ([OOCSS](http://coding.smashingmagazine.com/2011/12/12/an-introduction-to-object-oriented-css-oocss/ "article in english"), etc.). Ce qui rend les préprocesseurs encore moins utile.
+
+## Ils peuvent être dangereux pour le standard CSS
+
+Une des questions que je me pose quand je pense aux préprocesseurs, c'est si **le langage CSS va continuer à évoluer ou si les préprocesseurs vont entièrement le remplacer?**
+
+Prenons l'exemple le plus pratique des préprocesseurs: les variables. Dans Sass, leur syntaxe est proche de la déclaration de variables PHP tout en conservant des aspects de CSS:
+
+	$variable: 8px;
+
+Il n'y a quasiment pas de contrainte.
+
+Dans le [module des variables CSS du W3C](http://www.w3.org/TR/2013/WD-css-variables-20130312/), les variables ne sont en fait pas des variables! Ce sont simplement des propriétés personnalisées qui s'héritent
+
+	div{
+		var-variable: 8px;
+	}
+
+Les mêmes contraintes du DOM s'appliquent donc (limite de la cascade, impossibilité de cibler le parent, etc.).
+
+Je me demande alors ce que vont devenir les variables CSS lorsque celles-ci seront un standard W3C et qu'elles seront supportées par les navigateurs (si cela arrive un jour). Les développeurs qui utilisent actuellement les préprocesseurs seront-ils prêts à **modifier leurs méthodes d'aujourd'hui pour mettre en place les standards de demain**, alors que cela impose plus de contraintes. Je ne crois pas.
+
+Le risque, c'est qu'à terme, les «nouveautés CSS» apparaissent dans les préprocesseurs et que le standard CSS stagne, voire régresse.
+
+C'est d'ailleurs déjà le cas avec certaines fonctionnalités:
+
+* utilisation d'une couleur transparente avec notation raccourcie `rgba(white, .5)` ou fonctions de couleurs `saturate()`, `desaturate()`, `lighten()`, `darker()` : toutes ces fonctionnalités sont très pratique mais le langage CSS doit-il tenter de normaliser cela également?
+* `min()`, `max()`: des fonctions éponymes ont déjà été à l'étude par le W3C dans le passé. Est-il encore utile d'y réfléchir pour une réintroduction?
+* calcul avec les opérateurs arithmétiques: personne n'utilise `calc()` ?
+* imbrications des sélecteurs: le langage CSS doit-il permettre cela aussi?
+* etc.
+
+De plus, je pense que la syntaxe des préprocesseurs peut provoquer une confusion avec le langage CSS lui-même, si elle n'est pas clairement maitrisée. Et peut-être encore plus demain si toutes **les fonctionnalités décrites ci-dessus deviennent des standards de fait**.
+
+## Conclusion
+
+Je ne dis pas qu'il faut arrêter d'utiliser les préprocesseurs CSS, mais il faut être conscient de ce que cela implique. Vouloir à tout prix les mettre en place n'est pas toujours une bonne chose et peut devenir dangereux. Pas forcément pour vous, mais pour les autres, les non-experts, qui les utilisent sans savoir. Faites leur comprendre.
+
+Si vous aimez le langage CSS mais vous le trouvez limité, [impliquez-vous et faites le évoluer](http://www.w3.org/Style/CSS/current-work#contribute)!
+
+Mais surtout, ne les utilisez pas uniquement pour faire comme tout le monde. [«La mode, les moutons, faire de la merde, tout ça (@7studio) »](https://twitter.com/7studio/status/311523951765499905)
+
+Et vous, [avez-vous besoin des préprocesseurs CSS](http://blog.kaelig.fr/post/24877648508/preprocesseurs-css-renoncer-par-choix-ou-par)?

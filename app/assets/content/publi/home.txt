@@ -1,0 +1,15 @@
+Title: Publications
+----
+Articles:
+
+{
+"0": 
+	{
+	"title": "Livre: CSS3 Le design web moderne",
+	"subtitle": "Éditions Dunod",
+	"url": "http://livre-css3.fr",
+	"image": "http://www.css3create.com/squelettes/images/livreCSS3.png",
+	"date": "2012-08-16 08:00:00",
+	"big": "1"
+	}
+}

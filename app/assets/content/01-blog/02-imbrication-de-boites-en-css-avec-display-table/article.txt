@@ -1,0 +1,153 @@
+Title: Imbrication de boites avec display: table
+----
+Subtitle: 
+----
+Description:  
+----
+Date: 2012-03-27 11:30
+----
+Tags: CSS, CSS3, responsive, display, table-layout
+----
+Big: 1
+----
+Text:
+
+Tout d’abord, plantons un peu le décor: les valeurs `table`, `table-row`,
+`table-cell`, etc. permettent de simuler une structure en tableau, de la même
+façon que le faisaient les balises `table`, `tr`, `td`, etc., mais de façon
+propre, puisque la mise en forme est entièrement réalisée via CSS.
+
+Si vous avez besoin d’un rappel, la conférence donnée par Raphaël à Paris-Web
+2011, justement sur [les tableaux de mise en
+page](http://www.slideshare.net/goetter/vive-les-tableaux-de-mise-en-page) est
+une très bonne introduction.
+
+Maintenant que nous savons que IE7 est mort aussi – moins de 4% en mars en
+France –, les valeurs `table` et cie de la propriété `display` prennent tout
+leur sens dans la construction de pages web. Il est donc temps de faire
+quelques tests d’empilements, parce que tout n’est pas si rose, surtout à
+l’heure du responsive design.
+
+Le deal: en mode «écran de bureau», on affiche 4 blocs cotes à cotes, puis en
+mode «tablette», 2 blocs sur 2 lignes, et en mode mobile, 4 blocs les uns en
+dessous des autres. Pour faire cela avec les valeurs `table`, ce n’est pas si
+simple. Je me suis amusé à le créer et cela demande plusieurs imbrications de
+blocs.
+
+[La démo en ligne est par ici.](http://dev.iamvdo.me/tumblr/tableLayout)
+
+## Le fonctionnement
+
+En mode «écran de bureau», on a donc 4 éléments en `display: table-cell`
+(cellule) et un élément en `display: table`. Facile.
+
+<pre>
+<code class="language-markup">&lt;div id="bloc">
+	&lt;div>1&lt;/div>
+	&lt;div>2&lt;/div>
+	&lt;div>3&lt;/div>
+	&lt;div>4&lt;/div>
+&lt;/div></code>
+</pre>
+
+	#bloc{
+		display: table;
+		table-layout: fixed;
+	}
+	#bloc > div{
+		display: table-cell;
+		text-align: center;
+		vertical-align: middle;
+	}
+	
+
+Le problème se pose quand on passe en mode tablette, car il nous faut 2 lignes
+de 2 éléments. Il nous manque alors un élément parent pour les deux premiers
+blocs, et un pour les deux suivants afin de créer les lignes. Le problème,
+c’est qu’en ajoutant de nouveaux blocs parents, la mise en forme «écran de
+bureau» n’est plus possible, car les cellules ne sont plus enfants directs du
+tableau.
+
+Pour pallier ce problème, il nous faut ruser en multipliant les éléments, pour
+que certains se comportent comme des cellules de tableau, et en même temps,
+qu’ils se comportent comme des tableaux qui contiendront d’autres cellules,
+afin de créer un layout complexe.
+
+<pre>
+<code class="language-markup">&lt;div id="bloc">
+	&lt;div>
+		&lt;div>
+			&lt;div>1&lt;/div>
+			&lt;div>2&lt;/div>
+		&lt;/div>
+	&lt;/div>
+	&lt;div>
+		&lt;div>
+			&lt;div>3&lt;/div>
+			&lt;div>4&lt;/div>
+		&lt;/div>
+	&lt;/div>
+&lt;/div></code>
+</pre>	
+	
+	/* ecran de bureau */
+	#bloc {
+		display: table;
+		table-layout: fixed;
+	}
+	#bloc > div {
+		display: table-cell;
+	}
+	#bloc > div > div {
+		display: table;
+	}
+	#bloc > div > div > div {
+		display: table-cell;
+	}
+	
+	/* tablette */
+	#bloc > div {
+		display :table;
+	}
+	#bloc > div > div {
+		display: table-row;
+	}
+	#bloc > div > div > div {
+		display: table-cell;
+	}
+	
+
+En mode «mobile», l’empilement des blocs n’est pas non plus évident à gérer
+car trop d’éléments sont parfois présents, mais dans le même temps, il en
+manque au dernier niveau. Il faut alors recourir à un empilement
+supplémentaire de blocs et de valeurs, comme `table-row-group` (groupe de
+lignes) qui contient des `table-row` (lignes), qui contiennent des `table-
+cell` (cellules) pour que l’élément en bas de la hiérarchie conserve les
+avantages des tableaux. (Sinon, `display: block` est très bien!)
+
+## Conclusion
+
+Tout cela n’est pas très optimisé niveau balisage HTML, mais ça a le mérite de
+fonctionner, et aucun élément ne sort du flux de la page. Mais surtout, tous
+les avantages que l’on connait aux tableaux sont applicables (hauteurs de
+blocs identiques, alignement vertical au sein d’une cellule, largeurs fluides,
+etc.)
+
+Je n’ai (pour le moment) trouver aucune autre façon de faire, mais je suis en
+attente de vos commentaires et/ou retours d’expériences sur l’utilisation de
+cette technique.
+
+J’ai quand même l’impression que ces valeurs (si pratiques soient-elles) ne
+vont pas servir souvent dans le cadre d’un web design adaptatif complet. C’est
+dommage. Elle serviront par contre parfaitement pour une partie précise d’une
+page. Du coup, les modèles Flexbox, Grid Layout (avec template) restent encore
+très attendus.
+
+Note: Marche parfaitement dans Firefox, Chrome/Safari, IE8 (avec Respond.js
+pour media-queries), Opera.
+
+**Edit (12/04/12)**: Le principe de ce test est d’avoir toujours le dernier enfant
+affiché telle une cellule. De cette façon, les éléments frères ont une hauteur
+identique. J’ai donc ajouté la possibilité de modifier le contenu de chaque
+élément pour voir le comportement des éléments frères. Pour que tout marche
+parfaitement, j’ai du ajouter un `vertical-align: top` sur les enfants.

@@ -1,0 +1,6 @@
+SVG
+- mutliple path dans un clip-path (flou sur iOS 6 et 7)
+	- avec <use> ou <basic-shape>
+- si clip-path referencé dans un autre svg (meme inline) (inactif sur IE meme 11)
+- <use/> vs <use></use> (bug sur ios 6 au moins)
+- CSS filters sur SVG (flou sur iOS 6 et 7)

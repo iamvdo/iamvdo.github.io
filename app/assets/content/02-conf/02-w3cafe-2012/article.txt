@@ -1,0 +1,25 @@
+Title: W3Café 2012
+----
+Subtitle: Transitions, Animations, Transformations et plus si affinités
+----
+Date: 2012-06-29 14:00
+----
+Big: 1
+----
+Text:
+
+Le 29 juin dernier, j'ai eu l'ocassion d'animer un atelier lors du W3Café dans les locaux de Microsoft France. Cet atelier faisait le tour de quelques modules CSS3, avec notamment les transitions, les animations, les transformations 2D et 3D et les filtres.
+
+En effet, ces modules très attendus arrivent à leurs termes et le W3C recommande aux navigateurs d'ôter les préfixes dès aujourd'hui pour une utilisation simplifiée. C'est d'ailleurs le cas récent dans Internet Explorer 10. Il est donc temps d'en comprendre le fonctionnement.
+
+Mon atelier: **[CSS3: Transitions, animations, transformations et plus si affinités...](http://iamvdo.me/conf/2012/w3cafe)** est disponible en ligne
+
+  * [Version HTML/CSS](http://iamvdo.me/conf/2012/w3cafe)
+
+D'autres orateurs ont également animés différents ateliers, avec notamment David Rousset (twitter:@davrous) pour **IE10 et développement HTML5 sur Windows 8**, Christophe Porteneuve: (twitter:@porteneuve) pour **Tony Stark préfère JavaScript**, Jérémie Patonnier: (twitter:@JeremiePat) pour **Mettre du SVG dans vos pages Web : Techniques et bonnes pratiques**, Dominique Hazael Massieux: (twitter:@dontcallmedom) pour **Réaliser une appli mobile à base de HTML5** et Tristan Nitot: (twitter:@nitot) pour **Mozilla et le Web mobile.**
+
+Pour en savoir plus:
+
+  * <a href="http://france.w3cafe.org">W3café Paris: site officiel</a>
+
+Merci à tous les organisateurs pour ce super évènement.

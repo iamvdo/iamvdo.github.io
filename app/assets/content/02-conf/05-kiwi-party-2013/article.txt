@@ -1,0 +1,37 @@
+Title: Kiwi Party 2013
+----
+Subtitle: Ce que vous avez toujours voulu savoir sur CSS
+----
+Date: 2013-06-29 11:00
+----
+Big: 1
+----
+Text:
+
+Le 29 juin dernier s'est déroulé la [Kiwi Party](http://www.kiwiparty.fr): un évènement web entièrement gratuit, organisé par [Alsacréations](http://www.alsacreations.com). Les conférences ont été variées et toutes plus intéressantes les unes que les autres. De mon coté, j'ai pu y présenter **«Ce que vous avez toujours voulu savoir sur CSS»**, une sorte de retour aux bases au langage CSS.
+
+Dans cette présentation, j'ai notamment évoqué:
+
+*   La cascade CSS
+*   La spécificité des sélecteurs
+*   Le box model CSS2.1 et CSS3
+*   Les valeurs de `display` (modèle tabulaire)
+*   Les interactions entre `display`, `float` et `position`
+*   Le block formatting context
+*   La fusion des marges
+*   Les contextes d'empilement et `z-index`
+
+Les slides utilisées pour la conf sont en ligne:
+
+*   [[Slides] Ce que vous avez toujours voulu savoir sur CSS](http://iamvdo.me/conf/2013/kiwiparty)
+
+Je tenais à féliciter et à remercier encore une fois Alsacréations pour l'organisation de cet événement. Vous êtes au top.
+
+Merci aussi pour tous les retours positifs que j'ai pu avoir sur ma présentation et tous ceux avec qui j'ai échangé, discuté et avec qui j'ai pu me désaltéré pendant l'::after! :)
+
+Voici deux compte-rendus, en attendant l'officiel:
+
+*   [Kiwi Party sur Weblife](http://www.weblife.fr/evenements/kiwi-party-2013)&nbsp;
+*   [Kiwi Party 2013, un événement fruité](http://www.tleonetti.com/kiwiparty-2013-un-evenement-fruite/)
+
+À l'année prochaine?

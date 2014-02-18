@@ -1,0 +1,26 @@
+Title: Ça bouge dans WebKit…
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2012-12-19 11:00
+----
+Tags: CSS3, WebKit
+----
+Text:
+
+Voici quelques annonces récentes pour le moteur WebKit en ce qui concerne CSS:
+
+* Les animations et transitions sur les pseudo-éléments [devraient bientôt être possibles](https://bugs.webkit.org/show_bug.cgi?id=92591)  \o/ . Notamment car les contenus générés via `::after` et `::before` [sont maintenant considérés comme des noeuds DOM](https://bugs.webkit.org/show_bug.cgi?id=103705) (ce qui n'était apparemment pas le cas avant).
+* [L'implémentation de `background-position`](https://bugs.webkit.org/show_bug.cgi?id=103440), tel que défini en CSS3, est terminée. ( ex: `background-position: bottom 20px right 50px;` ) 
+* Les [dégradés linéaires et radiaux actuels sont mis à jour](https://bugs.webkit.org/show_bug.cgi?id=104591) pour enfin supporter [la nouvelle syntaxe](https://bugs.webkit.org/show_bug.cgi?id=67166) sans préfixes (mot-clés + angles différents)
+* [Prise en charge de `widows` et `orphans` pour l'impression](https://bugs.webkit.org/show_bug.cgi?id=9410)
+
+Plus expérimental:
+
+* le Grid Layout est toujours en cours d'implémentation
+* `-webkit-image-set() `[peut être appliquée à cursor](https://bugs.webkit.org/show_bug.cgi?id=99493).
+* CSS Exclusion avance...
+
+[Source](http://peter.sh/2012/12/vp9-and-opus-background-position-offset-and-ruby-positioning/)

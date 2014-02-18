@@ -1,0 +1,180 @@
+Title: Comprendre z-index et les contextes d'empilement
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2013-01-21 11:00
+----
+Tags: CSS3, z-index, empilement, traduction
+----
+Big: 1
+----
+Text:
+
+Cet article est une traduction de [What No One Told You About Z-Index](http://philipwalton.com/articles/what-no-one-told-you-about-z-index/) écrit par [Philip Walton](http://twitter.com/philwalton) le 22 décembre 2012.
+____
+
+##Ce que personne ne vous a dit sur z-index
+
+Le problème avec `z-index`, c’est que très peu de personnes ont réellement compris son fonctionnement. Ce n’est pas très compliqué, mais si vous n’avez jamais pris le temps de lire la spécification, il y a certainement des aspects cruciaux qui vous ont échappé. 
+
+Vous ne me croyez pas? Ok, voyons si vous pouvez résoudre ce problème? 
+
+## Le problème 
+
+Dans le HTML suivant, vous avez trois `<div>`, et chaque `<div>` contient un seul élément `<span>`. Chaque `<span>` a sa propre couleur d’arrière-plan, respectivement rouge, vert et bleu. Chaque `<span>` est positionné de manière absolue près du coin haut gauche du document, de manière à chevaucher légèrement un autre élément `<span>`, ce qui permet de bien distinguer l’empilement. Le premier `<span>` a une valeur de `z-index` de 1, alors que les deux autres non pas de `z-index` défini. 
+
+Voici à quoi ressemble le HTML et le CSS. J’ai également inclus une démo du rendu (via [CodePen](http://codepen.io))
+
+<pre class="language-markup"><code>&lt;div>
+    &lt;span class="red">Red&lt;/span>
+&lt;/div>
+&lt;div>
+    &lt;span class="green">Green&lt;/span>
+&lt;/div>
+&lt;div>
+    &lt;span class="blue">Blue&lt;/span>
+&lt;/div>
+</code></pre>
+
+	.red, .green, .blue { 
+		position: absolute;
+	}
+	.red { 
+		background: red;
+		z-index: 1;
+	}
+	.green {
+		background: green;
+	}
+	.blue {
+		background: blue;
+	}
+
+(codepen: ksBaI user: philipwalton username: Philip Walton height: 400 script: true)
+
+**Le challenge:** essayez de faire passer le `<span>` rouge derrière les éléments bleu et vert en respectant ces règles:
+
+* Ne pas modifier le code HTML
+* Ne pas ajouter ni modifier la propriété `z-index`, sur aucun élément
+* Ne pas ajouter ni modifier la propriété `position`, sur aucun élément
+
+Pour vérifier que vous avez bien compris, cliquez sur «Edit on CodePen» et jouez un peu avec. Le résultat doit être identique à l’exemple ci-dessous:
+
+_Attention: Ne cliquez pas sur l’onglet CSS dans l’exemple ci-dessous au risque de dévoiler la solution._
+
+(codepen: dfCtb user: philipwalton username: Philip Walton height: 400)
+
+## La solution
+
+La solution est d’ajouter une valeur d’opacité inférieure à 1 sur la première `<div>` (le parent du `<span>` rouge). Voici le CSS du CodePen ci-dessus: 
+
+	div:first-child{
+		opacity: .99;
+	} 
+
+Si vous êtes perplexe et n’aviez jamais pensé que l’opacité avait un impact sur l’ordre d’empilement des éléments, bienvenue au club. J’ai eu la même réaction quand je suis tomber pour la première fois sur ce cas.
+
+Heureusement, la suite de l’article va clarifier les choses.
+
+## Ordre d’empilement (Stacking order)
+
+`z-index` semble très simple: les éléments avec un `z-index` plus élévé apparaissent devant les éléments avec un `z-index` plus faible. Et bien en fait, non. Et c’est bien là le problème de `z-index`. Ça parait tellement simple, que beaucoup de développeurs ne prennent pas le temps de lire les détails.
+
+Chaque élément HTML peut être devant ou derrière un autre élément du document. C’est ce que l’on appelle l’ordre d’empilement. Les règles qui définissent cet ordre sont plutôt bien définies dans la spécification, mais comme je l’ai déjà mentionné, elles ne sont pas bien comprises par la plupart des développeurs web.
+
+Quand les propriétés `z-index` et `position` ne sont pas utilisées, les règles sont plutôt simples: l’ordre d’empilement est identique à l’ordre d’apparition dans le HTML. (OK, c’est en fait [un peu plus compliqué que cela](http://www.w3.org/TR/CSS2/zindex.html), mais tant que vous n’utilisez pas des marges négatives pour superposer des éléments en ligne, vous ne rencontrerez jamais ce genre de cas là)
+
+Quand vous commencez à utiliser la propriété `position`, les éléments positionnés (et ses enfants) sont affichés devant les éléments non-positionnés. (Un élément est considéré «positionné» lorsque que la valeur de la propriété `position` est différente de `static`, comme par exemple `relative`, `absolute`, etc.)
+
+Enfin, lorsque `z-index` est associé, les choses deviennent plus délicates. D’abord, il est naturel de penser que les éléments avec un `z-index` plus élevé apparaissent devant les éléments avec un `z-index` plus faible, et que les éléments qui ont un `z-index` sont affichés devant les éléments qui n’en ont pas, mais ce n’est pas si simple. Premièrement, le `z-index` ne fonctionne que sur les éléments positionnés. Si vous tentez d’appliquer un `z-index` sans position définie, il ne se passera rien. Deuxièmement, les valeurs de `z-index` peuvent créer un contexte d’empilement, et subitement les choses deviennent légèrement plus compliquées.
+
+## Contextes d’empilement (Stacking contexts)
+
+Un groupe d’éléments qui ont un parent commun qui se déplace d’avant en arrière dans l’ordre d’empilement est ce que l’on appelle un contexte d’empilement. Une bonne compréhension des contextes d’empilement est la clé pour vraiment saisir la manière dont le `z-index` fonctionne.
+
+Chaque contexte d’empilement a un élément HTML unique comme racine. Lorsque un nouveau contexte d’empilement est créé sur un élément, cela contraint ses enfants à apparaître à un endroit précis dans l’ordre d’empilement. Cela signifie qu’un élément au sein d’un contexte d’empilement, qui est le plus bas dans l’ordre d’empilement, ne peut pas être affiché devant un élément qui est dans un autre contexte d’empilement affiché plus haut, même avec un `z-index` très important.
+
+De nouveaux contextes d’empilement peuvent êtres créés:
+
+* Lorsque un élément est la racine du document (l’élément `<html>`)
+* Lorsque un élément dont la valeur de la propriété `position` est différente de `static` et lorsque `z-index` est différent de `auto`.
+* Lorsque un élément à une opacité inférieure à 1
+
+La première et la seconde façon de créer un contexte d’empilement sont plutôt claires et sont généralement connues des développeurs web (mêmes s’ils ne savent pas forcément que ça a un nom).
+
+La troisième façon (l’opacité) n’est presque jamais évoquée hors des spécifications du W3C.
+
+___
+
+**Note personnelle de traduction**: Il existe d’autres règles qui crée un contexte d’empilement (en CSS3):
+
+* Lorsque un élément dont la valeur de la propriété `transform` est différente de `none`
+* Lorsque un élément dont la valeur de la propriété `transform-style` vaut `preserve-3d`
+* Lorsque un élément dont la valeur de la propriété `filter` est différente de `none`
+* Lorsque un élément, enfant d’un Flexbox, dont la valeur de la propriété `z-index` est différente de `auto` (même si la valeur de la propriété `position` est `static`)
+* Lors de l’utilisation des propriétés `clip-path`, `mask` ou `mask-image`
+* et d’autres…
+
+___
+
+## Définir l’ordre d’empilement d’un élément
+
+Réussir à déterminer l’ordre d’affichage pour chaque élément d’une page (y compris les bordures, les arrière-plans, les textes, etc.) est très difficile et très loin du cadre de cet article (je vous renvoie une nouvelle fois à [la spécification](http://www.w3.org/TR/CSS2/zindex.html)).
+
+Mais dans la plupart des cas, une compréhension de base peut permettre de prévoir plus facilement le développement CSS. Commençons donc par définir l’ordre d’affichage au sein de chaque contexte d’empilement.
+
+### Ordre d’empilement au sein du même contexte d’empilement
+
+Voici les règles qui définissent l’ordre d’affichage pour un contexte d’empilement (du bas vers le haut):
+
+* L’élément racine du contexte d’empilement
+* Les éléments positionnés (et ses enfants) avec un `z-index` négatif (les valeurs les plus hautes sont affichées devant les plus basses; les éléments avec le même `z-index` sont affichés en suivant l’ordre du HTML)
+* Les éléments non-positionnés (en suivant l’ordre du HTML)
+* Les éléments positionnés (et ses enfants) avec un `z-index` dont la valeur est `auto` (en suivant l’ordre du HTML)
+* Les éléments positionnés (et ses enfants) avec un `z-index` positif (les valeurs les plus hautes sont affichées devant les plus basses; les éléments avec le même `z-index` sont affichés en suivant l’ordre du HTML)
+
+Note: les éléments positionnés avec un `z-index` négatif sont affichés en premier dans le contexte d’empilement, ce qui signifie qu’ils apparaissent derrière tous les autres éléments. Grâce à cela, il devient possible qu’un élément soit affiché derrière son parent, ce qui est normalement impossible. Cela fonctionne uniquement si le parent est dans le même contexte d’empilement et si ce parent n’est pas l’élément racine du contexte d’empilement. Un très bon exemple de cette technique est [la création d’ombres sans images](http://nicolasgallagher.com/css-drop-shadows-without-images/demo/) par Nicolas Gallagher.
+
+### Ordre d’empilement global
+
+Avec une solide compréhension sur la création de nouveaux contextes d’empilement ainsi qu’une maîtrise de l’ordre d’empilement au sein d’un contexte d’empilement, il devient assez facile de déterminer l’ordre d’empilement global des éléments.
+
+La clé de la réussite est d’être capable de repérer quand de nouveaux contextes d’empilement sont créés. Si vous appliquez un `z-index` d’un milliard sur un élément et que l’ordre de cet élément n’est pas affecté, vérifiez si l’un de ses parents ne crée pas un contexte d’empilement. Si c’est le cas, votre `z-index` ne vous sera pas d’une grande aide.
+
+## Pour conclure
+
+Revenons au problème initial, j’ai recréé la structure HTML en ajoutant des commentaires pour chaque balise qui indique son ordre d’empilement. Cet ordre se base sur le CSS d’origine.
+
+<pre class="language-markup"><code>&lt;div>&lt;!-- 1 -->
+    &lt;span class="red">&lt;!-- 6 -->&lt;/span>
+&lt;/div>
+&lt;div>&lt;!-- 2 -->
+    &lt;span class="green">&lt;!-- 4 -->&lt;/span>
+&lt;/div>
+&lt;div>&lt;!-- 3 -->
+    &lt;span class="blue">&lt;!-- 5 -->&lt;/span>
+&lt;/div></code></pre>
+
+Lorsque nous appliquons la propriété opacité sur la première `<div>`, l’ordre d’empilement est modifié de cette façon: 
+
+<pre class="language-markup"><code>&lt;div>&lt;!-- 1 -->
+    &lt;span class="red">&lt;!-- 1.1 -->&lt;/span>
+&lt;/div>
+&lt;div>&lt;!-- 2 -->
+    &lt;span class="green">&lt;!-- 4 -->&lt;/span>
+&lt;/div>
+&lt;div>&lt;!-- 3 -->
+    &lt;span class="blue">&lt;!-- 5 -->&lt;/span>
+&lt;/div></code></pre>
+
+Le `span.red`, initialement en position 6, se retrouve en 1.1. J’ai utilisé ici la notation avec un point pour bien symboliser la création d’un nouveau contexte d’empilement où `span.red` devient le premier élément au sein de ce contexte.
+
+C’est donc maintenant un peu plus clair sur pourquoi l’élément rouge est affiché sous les autres éléments. L’exemple original contenait seulement deux contextes d’empilement, le contexte racine et celui formé par le `span.red`. Avec l’ajout de l’opacité sur le parent de `span.red`, nous avons créé un troisième contexte, et donc, le `z-index` du `span.red` est uniquement actif au sein de ce nouveau contexte. Du fait que la première `<div>` (celle où l’opacité est appliquée) et ses éléments frères ne sont ni positionnés ni n’ont de `z-index`, leur ordre d’affichage est celui du HTML, ce qui signifie que la première `<div>`, et tous ses enfants contenus dans le contexte d’empilement, sont affichés sous la deuxième et la troisième `<div>`.
+
+## Ressources complémentaires
+
+* [Elaborate description of Stacking Contexts](http://www.w3.org/TR/CSS2/zindex.html)
+* [The staking context](https://developer.mozilla.org/en-US/docs/CSS/Understanding_z-index/The_stacking_context)
+* [The Z-Index CSS Property: A Comprehensive Look](http://coding.smashingmagazine.com/2009/09/15/the-z-index-css-property-a-comprehensive-look/)

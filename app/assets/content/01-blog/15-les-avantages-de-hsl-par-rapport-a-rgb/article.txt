@@ -1,0 +1,123 @@
+Title: Les avantages de hsl() par rapport à rgb()
+----
+Subtitle: 
+----
+Description: 
+----
+Date: 2013-03-28 11:00
+----
+Tags: couleurs, rgb, hsl, rgba, hsla
+----
+Big: 1
+----
+Text:
+
+Le [module CSS3 Color](http://www.w3.org/TR/css3-color/) définit 4 fonctions de couleur: `rgb()`, `hsl()` et leurs pendants respectifs avec transparence `rgba()` et `hsla()`.
+
+Les fonctions `rgb()` ou `rgba()`, comme leurs noms l'indiquent, acceptent comme paramètres les valeurs Rouge (R), Vert (G), Bleu (B) et Alpha (A) définissants une couleur.
+
+* les valeurs R, V, et B allant de 0 (noir) à 255 (blanc)
+* la valeur Alpha allant de 0 (transparent) à 1 (visible)
+
+Voici deux exemples d'utilisation:
+
+	/* Un rouge foncé */
+	color: rgb(80, 0, 0);
+
+	/* Du noir transparent à 50% */
+	color: rgba(0, 0, 0, .5);
+
+Cela peut être très pratique, mais dans la majorité des cas il est très difficile de décliner une couleur afin d'obtenir des couleurs plus claires, plus foncées ou la couleur complémentaire de la teinte de base. Par exemple, prenons cette couleur:
+
+	color: rgb(227, 93, 54);
+
+Personne ne peut me dire instantanément les valeurs de la couleur qui est 10% plus foncée! Après un passage dans Photoshop, je trouve
+
+	color: rgb(201, 84, 48);
+
+Super.
+
+## Les avantages de hsl()
+
+Les fonctions `hsl()` ou `hsla()` reposent sur un mode de représentation des couleurs différent, basé sur une Teinte (H), la Saturation (S) et la Lumière (L):
+
+* Teinte: valeur de couleur sur un cercle chromatique de 0° (Rouge) à 360° (Rouge). A 60°: Jaune, à 120°: Vert, à 180°: Cyan, à 240°: Bleu, à 300°: Magenta.
+* Saturation: de 0 à 100%
+* Lumière ou Luminance: de 0 (entièrement noir) à 100% (entièrement blanc). 50% correspond à la teinte de base.
+
+Voici donc du rouge foncé:
+
+	color: hsl(0, 100%, 16%);
+
+Et du noir transparent (peu importe la teinte et la saturation en fait, seule la luminosité à 0% compte)
+
+	color: hsla(0, 100%, 0%, .5);
+
+Cette façon de représenter la couleur nous offre pas mal d'avantages.
+
+(image: hsl.jpg text: Représentation graphique du modèle HSL en CSS)
+
+### Nuances et ombres
+
+Le premier avantage est la possibilité évidente de définir les nuances (couleurs plus claires) et ombres (couleurs plus foncées) d'une teinte. Il suffit pour cela de modifier la luminosité.
+
+	/* Teinte de base */
+	color: hsl(14, 76%, 55%);
+
+	/* Plus foncée */
+	color: hsl(14, 76%, 75%);
+
+	/* Plus claire */
+	color: hsl(14, 76%, 35%);
+
+### Couleurs complémentaires
+
+En jouant sur le paramètre Teinte, il est possible d'obtenir les couleurs complémentaires. Pour cela, il suffit d'ajouter 180° à la valeur de la teinte sur le cercle chromatique (un demi-tour).
+
+	/* Teinte de base */
+	color: hsl(14, 76%, 55%);
+
+	/* Couleur complémentaire */
+	color: hsl(**194**, 76%, 55%);
+
+Il est également envisageable d'obtenir les couleurs complémentaires adjacentes en ajoutant 120° puis 240°.
+
+	/* Complémentaire adj. 1 */
+	color: hsl(**134**, 76%, 55%);
+
+	/* Complémentaire adj. 2 */
+	color: hsl(**254**, 76%, 55%);
+
+### Couleurs analogues
+
+Toujours en jouant sur ce paramètre Teinte, il est possible d'obtenir les couleurs analogues (couleurs adjacentes). Pour cela, il suffit d'ajouter ou d'enlever à la valeur de la teinte des angles de 30°.
+
+	/* Analogue 1 */
+	color: hsl(44, 76%, 55%);
+
+	/* Analogue 2 */
+	color: hsl(344, 76%, 55%);
+
+### Couleurs monochromes
+
+Enfin, en modifiant le paramètre Saturation, nous obtenons une palette de couleur dite monochrome.
+
+	/* Désaturation */
+	color: hsl(14, 46%, 55%);
+
+	/* Désaturation plus forte */
+	color: hsl(14, 16%, 55%);
+
+## Conclusion
+
+Les avantages à utiliser `hsl()` au lieu de `rgb()` sont évidents. Néanmoins, il existe une contrainte de taille: les logiciels graphiques (tel Photoshop) n'utilisent pas le même modèle HSL que celui de CSS. Il n'est donc pas possible de récupérer les valeurs fournies pour les utiliser directement dans votre CSS. Pour pouvoir utiliser les bonnes valeurs, vous devrez les convertir grâce à des outils comme:
+
+* [Coloratum](http://css.coloratum.com/)
+* [ColorZilla](http://www.colorzilla.com/)
+* [Recherchez «RGB to HSL» sur Google](https://www.google.fr/search?q=rgb+to+hsl)
+
+Deuxième contrainte, ces fonctions [ne sont supportées qu'à partir d'IE9.](https://developer.mozilla.org/en-US/docs/CSS/color_value#Browser_Compatibility) Espérons que la mise à jour vers Windows 8 accélère les choses.
+
+Allez, et comme vous êtes sympa, voici une petite démo en ligne!
+
+(codepen: vBlxt user: iamvdo height: 600 script: true)
