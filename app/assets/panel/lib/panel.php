@@ -121,6 +121,10 @@ class panel extends site {
         $panel->user->logout();
         exit();
         break;
+      case 'push':
+        shell_exec('cd ~/iamvdo && ./iamvdo-github.sh push');
+        go(url());
+        break;
       case 'files':
         $thumbDir = c::get('root') . '/thumbs';
         $panel->fancybox = true;

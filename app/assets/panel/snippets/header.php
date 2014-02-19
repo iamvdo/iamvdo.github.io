@@ -39,6 +39,7 @@
 
 <div class="menu">
   <h1><a class="home" href="<?php echo url() ?>">Kirby Panel</a></h1>
+  <a class="logout" href="<?php echo showurl('push') ?>">Push</a>
 
   <?php if(c::get('lang.support')): ?>
   <select class="lang" onchange="window.location = this.value">
