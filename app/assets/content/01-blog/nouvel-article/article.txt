@@ -2,7 +2,7 @@
 
 ----
 
-Text: 
+Text: Du texte
 
 ----
 
@@ -22,4 +22,4 @@ Tags:
 
 ----
 
-Big: 
+Big: 0
