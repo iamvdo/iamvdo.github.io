@@ -32,9 +32,7 @@ class action {
     if(get('add-page')) {
       $result = data::addContent();
       if(success($result)){
-
-        shell_exec('cd ~/iamvdo-test/iamvdo.github.io && git add app/assets/content && git commit -m "Test" && git push');
-        //print_r($result);
+        shell_exec('cd ~/iamvdo && ./iamvdo-github.sh add-page');
         go($result['url'] . '/show' . c::get('uri.param.separator') . 'content');
       }
     }
@@ -54,7 +52,10 @@ class action {
     
     if(get('update-content')) {
       $result = data::updateContent();
-      if(success($result)) go(showurl('content'));
+      if(success($result)){
+        shell_exec('cd ~/iamvdo && ./iamvdo-github.sh update-content');
+        go(showurl('content'));
+      }
       growl($result);
     }
     
