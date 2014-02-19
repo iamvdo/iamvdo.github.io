@@ -1,18 +1,8 @@
-Title: Ce que vous avez toujours voulu savoir sur CSS
-----
-Subtitle: 
-----
-Description: 
-----
-Date: 2014-02-13 09:05
-----
-Tags: CSS
-----
-Big: 1
-----
-Text:
+﻿Title: Ce que vous avez toujours voulu savoir sur CSS
 
-Aujourd’hui, c’est un fait: tout le monde connaît et utilise CSS. Et c’est tant mieux! Cependant, bien que le langage en lui-même soit plutôt simple, certains aspects peuvent sembler encore obscurs.
+----
+
+Text: Aujourd’hui, c’est un fait: tout le monde connaît et utilise CSS. Et c’est tant mieux! Cependant, bien que le langage en lui-même soit plutôt simple, certains aspects peuvent sembler encore obscurs.
 
 Cet article fait suite à une présentation que j'ai donnée [lors de la Kiwi Party 2013](http://slides.iamvdo.me/kiwiparty13), puis [lors des MSTechDays 2014](http://slides.iamvdo.me/techdays14).
 
@@ -181,7 +171,7 @@ Un élément affiché comme un «groupe de lignes de pied de page» sera donc to
 
 Malheureusement, le principal inconvénient de ce modèle tabulaire est l’impossibilité d’utiliser les marges internes sur les lignes du tableau, ni les marges externes sur les lignes et les cellules. De plus, un bug sous Firefox empêche le positionnement d’élément absolu au sein d’une cellule de tableau en relatif. Je vous invite à lire [cet article complet traitant le modèle tabulaire](http://www.alsacreations.com/tuto/lire/1522-le-modele-tabulaire-en-css.html) sur Alsacréations.
 
-Enfin, [l'imbrication d'élément utilisant de mode devient plus complexe](imbrication-de-boites-avec-display-table).
+Enfin, [l'imbrication d'élément utilisant ce mode devient plus complexe](imbrication-de-boites-avec-display-table).
 
 ###Interactions entre `display`, `float`, `position`
 
@@ -455,3 +445,23 @@ Par contre, désolé, vous venez de perdre le coté «magique» de certaines fon
 N'hésitez pas à poser des questions si telle ou telle chose ne vous paraît pas assez claire, je vous répondrais et mettrais l'article à jour en conséquence si besoin.
 
 :)
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 2014-02-13 09:05
+
+----
+
+Tags: CSS
+
+----
+
+Big: 1
