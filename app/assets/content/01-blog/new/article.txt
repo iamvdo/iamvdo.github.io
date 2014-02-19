@@ -1,0 +1,25 @@
+﻿Title: New
+
+----
+
+Text: 
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 
+
+----
+
+Tags: 
+
+----
+
+Big: 
