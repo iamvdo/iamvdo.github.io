@@ -122,7 +122,6 @@ class panel extends site {
         exit();
         break;
       case 'push':
-        print_r('push');
         shell_exec('cd ~/iamvdo && ./iamvdo-github.sh push');
         go(url());
         break;

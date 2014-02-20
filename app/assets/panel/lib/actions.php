@@ -79,7 +79,6 @@ class action {
     if(get('delete-page')) {
       $result = data::deleteDir();
       if(success($result)){
-        print_r($result);
         shell_exec('cd ~/iamvdo && ./iamvdo-github.sh delete-page');
         go(showurl('dashboard'));
       }
