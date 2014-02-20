@@ -21,5 +21,3 @@ c::set('upload.allowed', array(
   'application/gzip',
   'application/zip',
 ));
-
-c::set('settings.flip', true);
