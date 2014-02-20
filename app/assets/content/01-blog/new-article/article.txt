@@ -2,7 +2,7 @@
 
 ----
 
-Text: 
+Text: some text
 
 ----
 
@@ -14,7 +14,7 @@ Description:
 
 ----
 
-Date: 
+Date: 2014-02-20 12:30
 
 ----
 
@@ -22,4 +22,4 @@ Tags:
 
 ----
 
-Big: 
+Big: 0
