@@ -37,7 +37,7 @@
 
       <div class="filemenu">
         <a href="<?php echo dourl('files', 'edit-file') ?>/?file=<?php echo base64_encode($file->filename()) ?>"><?php echo l::get('files.edit') ?></a>
-        <a href="<?php echo dourl('files', 'replace-file') ?>/?file=<?php echo base64_encode($file->filename()) ?>"><?php echo l::get('files.replace') ?></a>
+        <!--<a href="<?php echo dourl('files', 'replace-file') ?>/?file=<?php echo base64_encode($file->filename()) ?>"><?php echo l::get('files.replace') ?></a>-->
         <a href="<?php echo dourl('files', 'delete-file') ?>/?file=<?php echo base64_encode($file->filename()) ?>"><?php echo l::get('files.delete') ?></a>
       </div>
     </li>

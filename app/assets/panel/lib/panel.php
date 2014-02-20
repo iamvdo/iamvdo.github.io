@@ -103,7 +103,7 @@ class panel extends site {
     $panel->action    = $panel->uri->param('do');
     $panel->nocontent = ((string)$page->contents() == '') ? true : false;
               
-    if($panel->isHome && $panel->show != 'info' && $panel->show != 'logout') $panel->show = 'home';
+    if($panel->isHome && $panel->show != 'info' && $panel->show != 'logout' && $panel->show != 'push') $panel->show = 'home';
                   
     switch($panel->action) {
       case 'edit-pages':
@@ -122,6 +122,7 @@ class panel extends site {
         exit();
         break;
       case 'push':
+        print_r('push');
         shell_exec('cd ~/iamvdo && ./iamvdo-github.sh push');
         go(url());
         break;

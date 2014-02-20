@@ -1,5 +1,5 @@
 title: Article
-pages: true
+pages: false
 files: true
 fields:
   title: 
