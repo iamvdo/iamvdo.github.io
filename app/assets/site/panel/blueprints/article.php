@@ -1,3 +1,8 @@
+<?php if(!defined('KIRBY')) exit ?>
+
+#Article
+#Used for blog post
+
 title: Article
 pages: false
 files: true
@@ -7,8 +12,9 @@ fields:
     type:  text
   text: 
     label: Text
-    type:  textarea
-    size:  large
+    help: "Image (image: source.jpg text: texte alternatif), CodePen: (codepen: hash height: 350 script: true|false)"
+    type: textarea
+    size: large
   subtitle: 
     label: Subtitle
     type: text
