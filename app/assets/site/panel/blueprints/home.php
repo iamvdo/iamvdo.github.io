@@ -14,3 +14,8 @@ fields:
   subtitle: 
     label: Subtitle
     type: text
+  articles:
+    label: Articles
+    help: Use JSON
+    type: textarea
+    size: large
