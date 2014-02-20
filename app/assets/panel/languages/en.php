@@ -63,13 +63,13 @@ l::set(array(
   'nocontent.text' => 'There\'s no content for this page available.',
     
   // pages
-  'pages.title' => 'Visible subpages',
-  'pages.title.home' => 'Visible pages',
+  'pages.title' => 'Articles',
+  'pages.title.home' => 'Categories',
   'pages.home' => 'Home',
   'pages.sort' => 'Sort',
   'pages.add' => 'Add',
   'pages.delete' => 'Remove',
-  'pages.invisible' => 'Invisible subpages',
+  'pages.invisible' => 'Drafts',
   'pages.invisible.home' => 'Invisible pages',
   'pages.no.visible' => 'No visible pages so far',
   'pages.no.invisible' => 'No invisible pages so far',
