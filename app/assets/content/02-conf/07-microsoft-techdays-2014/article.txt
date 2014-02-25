@@ -2,12 +2,12 @@
 
 ----
 
-Text: Le 11 février 2014 se tenait les [Microsoft Tech Days](http://www.microsoft.com/france/mstechdays/) au Palais des Congrès de Paris. C'était l'occasion pour moi de présenter à nouveau une présentation que j'ai initialement donnée lors de la [KiwiParty 2013](http://2013.kiwiparty.fr), à savoir [**un retour aux bases avancées de CSS!**](ce-que-vous-avez-toujours-voulu-savoir-sur-css)
+Text: Le 11 février 2014 se tenait les [Microsoft Tech Days](http://www.microsoft.com/france/mstechdays/) au Palais des Congrès de Paris. C'était l'occasion pour moi de présenter à nouveau une présentation que j'ai initialement donnée lors de la [KiwiParty 2013](http://2013.kiwiparty.fr), à savoir [**un retour aux bases avancées de CSS!**](blog/ce-que-vous-avez-toujours-voulu-savoir-sur-css)
 
 Pour découvrir cette présentation, plusieurs options:
 
 - les slides en HTML: [«CSS, c'est pas si facile»](http://slides.iamvdo.me/techdays14)
-- [l'article détaillé](ce-que-vous-avez-toujours-voulu-savoir-sur-css) que j'ai écrit suite à cela
+- [l'article détaillé](blog/ce-que-vous-avez-toujours-voulu-savoir-sur-css) que j'ai écrit suite à cela
 - la vidéo (slides + audio)
 
 <iframe width="560" height="315" src="//www.youtube.com/embed/N84oE-wR4KQ" frameborder="0" allowfullscreen></iframe>
