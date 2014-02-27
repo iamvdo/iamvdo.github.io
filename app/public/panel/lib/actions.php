@@ -34,7 +34,7 @@ class action {
       if(success($result)){
         $url = str_replace('/panel/', '', $result['url']); // /panel/blog/new-article
         $url = 'app/public/content/\*' . $url;
-        shell_exec('cd ~/iamvdo && ./iamvdo-github.sh add-page ' . $url);
+        shell_exec('cd ~/iamvdo/shell-scripts && ./iamvdo-github.sh add-page ' . $url);
         go($result['url'] . '/show' . c::get('uri.param.separator') . 'content');
       }
     }
@@ -57,7 +57,7 @@ class action {
       if(success($result)){
         $url = str_replace('/panel/', '', $result['url']); // /panel/blog/new-article
         $url = 'app/public/content/\*' . $url;
-        shell_exec('cd ~/iamvdo && ./iamvdo-github.sh update-content ' . $url);
+        shell_exec('cd ~/iamvdo/shell-scripts && ./iamvdo-github.sh update-content ' . $url);
         go(showurl('content'));
       }
       growl($result);
@@ -79,7 +79,7 @@ class action {
     if(get('delete-page')) {
       $result = data::deleteDir();
       if(success($result)){
-        shell_exec('cd ~/iamvdo && ./iamvdo-github.sh delete-page');
+        shell_exec('cd ~/iamvdo/shell-scripts && ./iamvdo-github.sh delete-page');
         go(showurl('dashboard'));
       }
     }
@@ -100,7 +100,7 @@ class action {
       $result = data::sort($flip);
     
       if(success($result)){
-        shell_exec('cd ~/iamvdo && ./iamvdo-github.sh update-url');
+        shell_exec('cd ~/iamvdo/shell-scripts && ./iamvdo-github.sh update-url');
         go(showurl('dashboard'));
       }
       growl($result);
@@ -116,7 +116,7 @@ class action {
     if(get('options')) {
       $result = data::changeDirname();
       if(success($result)){
-        shell_exec('cd ~/iamvdo && ./iamvdo-github.sh update-url');
+        shell_exec('cd ~/iamvdo/shell-scripts && ./iamvdo-github.sh update-url');
         return $result;
       }
       growl($result);
@@ -136,7 +136,7 @@ class action {
     if(get('update-info')) {
       $result = data::updateInfo();
       if(success($result)){
-        shell_exec('cd ~/iamvdo && ./iamvdo-github.sh update-info');
+        shell_exec('cd ~/iamvdo/shell-scripts && ./iamvdo-github.sh update-info');
         go(showurl('content'));
       }
       growl($result);
@@ -158,7 +158,7 @@ class action {
     if(get('upload-file')) {
       $result = data::uploadFile();
       if(success($result)){
-        shell_exec('cd ~/iamvdo && ./iamvdo-github.sh upload-file');
+        shell_exec('cd ~/iamvdo/shell-scripts && ./iamvdo-github.sh upload-file');
         go(showurl('files'));
       }
     }
@@ -179,7 +179,7 @@ class action {
     if(get('edit-file')) {
       $result = data::editFile();
       if(success($result)){
-        shell_exec('cd ~/iamvdo && ./iamvdo-github.sh edit-file');
+        shell_exec('cd ~/iamvdo/shell-scripts && ./iamvdo-github.sh edit-file');
         go(showurl('files'));
       }
     }
@@ -225,7 +225,7 @@ class action {
 
       $result = data::deleteFile();
       if(success($result)){
-        shell_exec('cd ~/iamvdo && ./iamvdo-github.sh delete-file');
+        shell_exec('cd ~/iamvdo/shell-scripts && ./iamvdo-github.sh delete-file');
         go(showurl('files'));
       }
 
