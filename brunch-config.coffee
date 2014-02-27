@@ -1,7 +1,7 @@
 exports.config =
   paths:
     public: 'app/public'
-    watched: ['app/css','app/js']
+    watched: ['app/css','app/js','vendor']
   files:
     javascripts:
       joinTo:
