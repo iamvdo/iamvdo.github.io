@@ -5,14 +5,14 @@ exports.config =
   files:
     javascripts:
       joinTo:
-        'app.js': /^app/
-        'vendor.js': /^vendor/
+        'js/app.js': /^app/
+        'js/vendor.js': /^vendor/
       order:
         after: ['app/js/main.js']
     stylesheets:
       joinTo:
-        'app.css': /^app/
-        'vendor.css': /^vendor/
+        'css/app.css': /^app/
+        'css/vendor.css': /^vendor/
       order:
         before: ['app/css/main.css','app/css/svg.css']
     templates:
