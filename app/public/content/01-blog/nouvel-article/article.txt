@@ -2,7 +2,7 @@
 
 ----
 
-Text: 
+Text: test
 
 ----
 
@@ -14,7 +14,7 @@ Description:
 
 ----
 
-Date: 
+Date: 2014-02-27 14:35
 
 ----
 
@@ -22,4 +22,4 @@ Tags:
 
 ----
 
-Big: 
+Big: 0
