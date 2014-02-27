@@ -1,17 +1,18 @@
 exports.config =
   paths:
-    public: '../public'
+    public: 'app/public'
+    watched: ['app/css','app/js']
   files:
     javascripts:
       joinTo:
-        'js/app.js': /^app/
-        'js/vendor.js': /^vendor/
+        'app.js': /^app/
+        'vendor.js': /^vendor/
       order:
         after: ['app/js/main.js']
     stylesheets:
       joinTo:
-        'css/app.css': /^app/
-        'css/vendor.css': /^vendor/
+        'app.css': /^app/
+        'vendor.css': /^vendor/
       order:
         before: ['app/css/main.css','app/css/svg.css']
     templates:
