@@ -10,15 +10,12 @@ function setDateFr ($timestamp, $fullDate = false) {
 	$moisFr = array('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout', 'septembre', 'octobre', 'novembre', 'décembre');
 	$today = new DateTime();
 
-	//$timestamp = new DateTime($timestamp);
-	//$time = Date( $timestamp );
-
 	$diff = 'à l\'instant';
 
 	$diffMinutes = ( $today->getTimestamp() - $timestamp ) / 60;
 
 	// si moins d'1 minute
-	if ( floor($diffMinutes) == 0 ) {
+	if ( $diffMinutes < 1 ) {
 		return $diff;
 	}
 	// si moins de 60min
