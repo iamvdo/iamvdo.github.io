@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 /*
- * Helper 
+ * Helper
  * Date au format francais + affichage temps écoulé plutot que la date
  *
- */ 
+ */
 function setDateFr ($timestamp, $fullDate = false) {
 
 	$moisFr = array('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout', 'septembre', 'octobre', 'novembre', 'décembre');
@@ -18,7 +18,7 @@ function setDateFr ($timestamp, $fullDate = false) {
 	$diffMinutes = ( $today->getTimestamp() - $timestamp ) / 60;
 
 	// si moins d'1 minute
-	if ( $diffMinutes == 0 ) {
+	if ( floor($diffMinutes) == 0 ) {
 		return $diff;
 	}
 	// si moins de 60min
@@ -46,12 +46,12 @@ function setDateFr ($timestamp, $fullDate = false) {
 
 					$diffAn = floor($diffMois / 12);
 					$diffResteMois = $diffMois % 12;
-					
+
 					$diff = ($diffAn == 1) ? $diffAn . ' an' : $diffAn . ' ans';
 					if ($diffResteMois !== 0) {
 						$diff .= ', ' . $diffResteMois . ' mois';
 					}
-					
+
 					if ( $fullDate ) {
 						$diff .= ' (' . $moisFr[Date('m', $timestamp) - 1] . ' ' . Date('Y', $timestamp) . ')';
 					}
@@ -59,8 +59,6 @@ function setDateFr ($timestamp, $fullDate = false) {
 			}
 		}
 	}
-
-	
 
 	return $diff;
 }
