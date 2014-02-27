@@ -22,5 +22,5 @@ exports.config =
     definition: false
   plugins:
     imageoptimizer:
-      smushit: false
+      smushit: true
       path: '/'
