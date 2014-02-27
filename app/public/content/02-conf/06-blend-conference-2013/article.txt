@@ -1,14 +1,8 @@
-Title: Blend Conférence 2013
-----
-Subtitle: Le futur des effets graphiques en CSS
-----
-Date: 2013-10-29 14:00
-----
-Big: 0
-----
-Text:
+﻿Title: Blend Conférence 2013
 
-Le 29 octobre, j'ai animé **«Le futur des effets graphiques en CSS»** lors de la 1ère édition de [Blend Conférence](http://blendconference.com) à Lyon.
+----
+
+Text: Le 29 octobre, j'ai animé **«Le futur des effets graphiques en CSS»** lors de la 1ère édition de [Blend Conférence](http://blendconference.com) à Lyon.
 
 Dans cette présentation d'une vingtaine de minutes, j'ai évoqué des fonctionnalités de CSS très, voire trop, avancées. Tous les aspects de cette conférence sont donc à prendre à titre d'expérimentations. J'ai pu y parler de choses diverses:
 
@@ -28,3 +22,27 @@ Attention, prévoyez différents navigateurs et basculez de l'un à l'autre pour
 * Firefox Nightly (23)
 * IE10
 * WebKit nightly pour `filter()`
+
+**Edit 27/02/2014:** La vidéo de la présentation est en ligne:
+
+<iframe width="560" height="315" src="//www.youtube.com/embed/B_IQz-YdxxA?rel=0" frameborder="0" allowfullscreen></iframe>
+
+----
+
+Subtitle: Le futur des effets graphiques en CSS
+
+----
+
+Description: 
+
+----
+
+Date: 2013-10-29 14:00
+
+----
+
+Tags: 
+
+----
+
+Big: 0
