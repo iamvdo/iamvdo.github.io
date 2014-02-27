@@ -1,4 +1,4 @@
 .DS_Store
 node_modules
-app/public/app.css
-app/public/app.js
+app/public/css
+app/public/js
