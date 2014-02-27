@@ -33,7 +33,7 @@ $root = dirname(dirname(__FILE__));
 
 // my root
 // go to static 'app/assets', brunch compile after to 'public': epic win
-$root = str_replace('public', 'iamvdo.github.io/app/assets', $root);
+//$root = str_replace('public', 'iamvdo.github.io/app/assets', $root);
 
 /*
 
