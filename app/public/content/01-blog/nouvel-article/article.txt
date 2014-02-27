@@ -1,3 +1,27 @@
-Title: Nouvel article
+﻿Title: Nouvel article
+
 ----
+
 Text: Test
+
+bla bla
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 
+
+----
+
+Tags: 
+
+----
+
+Big: 0
