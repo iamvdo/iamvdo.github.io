@@ -14,11 +14,15 @@ function setDateFr ($timestamp, $fullDate = false) {
 	//$time = Date( $timestamp );
 
 	$diff = 'à l\'instant';
-	
+
 	$diffMinutes = ( $today->getTimestamp() - $timestamp ) / 60;
-	
+
+	// si moins d'1 minute
+	if ( $diffMinutes == 0 ) {
+		return $diff;
+	}
 	// si moins de 60min
-	if( $diffMinutes < 60 ){
+	else if ( $diffMinutes < 60 ){
 		// affiche les minutes
 		$diff = floor( $diffMinutes ) . 'min';
 	} else {
