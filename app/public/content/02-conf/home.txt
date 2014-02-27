@@ -1,3 +1,9 @@
-Title: Conférences
+﻿Title: Conférences
+
 ----
-Subtitle: Présentations publiques à [KiwiParty](http://kiwiparty.fr), [Blend Conférence](http://www.blendconference.com), [Meetup HTML5 Paris](http://www.meetup.com/France-HTML5-User-Group/), etc.
+
+Subtitle: Présentations publiques à [KiwiParty](http://kiwiparty.fr), [Microsoft TechDays](http://www.microsoft.com/france/mstechdays/), [Blend Conférence](http://www.blendconference.com), etc.
+
+----
+
+Articles: 
