@@ -33,7 +33,7 @@ class action {
       $result = data::addContent();
       if(success($result)){
         $url = str_replace('/panel/', '', $result['url']); // /panel/blog/new-article
-        $url = 'app/assets/content/\*' . $url;
+        $url = 'app/public/content/\*' . $url;
         shell_exec('cd ~/iamvdo && ./iamvdo-github.sh add-page ' . $url);
         go($result['url'] . '/show' . c::get('uri.param.separator') . 'content');
       }
@@ -56,7 +56,7 @@ class action {
       $result = data::updateContent();
       if(success($result)){
         $url = str_replace('/panel/', '', $result['url']); // /panel/blog/new-article
-        $url = 'app/assets/content/\*' . $url;
+        $url = 'app/public/content/\*' . $url;
         shell_exec('cd ~/iamvdo && ./iamvdo-github.sh update-content ' . $url);
         go(showurl('content'));
       }
