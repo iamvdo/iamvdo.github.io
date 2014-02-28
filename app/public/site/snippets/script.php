@@ -1,10 +1,4 @@
-<?php 
-if (isset($article)) {
-	?>
-	<script src="<?php echo url('js/vendor.js'); ?>"></script>
-	<?php
-}
-?>
+<script src="<?php echo url('js/vendor.js'); ?>"></script>
 <script src="<?php echo url('js/app.js'); ?>"></script>
 <script type="text/javascript">
 
