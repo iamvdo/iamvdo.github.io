@@ -6,14 +6,14 @@ These files are compiled using [Brunch](http://github.com/brunch/brunch)
 
 First
 
-  npm install
+	npm install
 
 Then
 
-  bower install
+	bower install
   
 And
 
-  brunch build -P
+	brunch build -P
 
 Enjoy!
