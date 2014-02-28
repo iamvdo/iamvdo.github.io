@@ -1,6 +1,6 @@
 {
   "name": "iamvdo.me",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "dependencies": {
     "greeed": "https://github.com/iamvdo/Greeed.git",
     "heeere": "https://github.com/iamvdo/Heeere.git"
