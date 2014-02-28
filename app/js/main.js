@@ -12,10 +12,10 @@
 		},
 		afterInit: function () {
 			/* 60fps scolling FTW */
+			/*
 			var childrens = document.querySelectorAll('.item'),
 				timer,
 				delay = 150;
-			/*
 			window.addEventListener('scroll', function() {
 				clearTimeout(timer);
 				if ( 'none' !== childrens[0].style.pointerEvents ){
