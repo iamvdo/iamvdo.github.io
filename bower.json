@@ -1,7 +1,8 @@
 {
   "name": "iamvdo.me",
-  "version": "0.0.1",
-  "main": "public/app.js",
-  "dependencies": {},
+  "version": "1.0.0",
+  "dependencies": {
+    'Greeed': 'git@github.com:iamvdo/Greeed.git'
+  },
   "overrides": {}
 }
