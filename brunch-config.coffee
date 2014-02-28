@@ -1,18 +1,18 @@
 exports.config =
   paths:
     public: 'app/public'
-    watched: ['app/css','app/js','vendor']
+    watched: ['app/css','app/js','vendor','bower_components']
   files:
     javascripts:
       joinTo:
         'js/app.js': /^app/
-        'js/vendor.js': /^vendor/
+        'js/vendor.js': /^(bower_components|vendor)/
       order:
         after: ['app/js/main.js']
     stylesheets:
       joinTo:
         'css/app.css': /^app/
-        'css/vendor.css': /^vendor/
+        'css/vendor.css': /^(bower_components|vendor)/
       order:
         before: ['app/css/main.css','app/css/svg.css']
     templates:
