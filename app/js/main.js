@@ -1,5 +1,5 @@
 (function(){
-	
+
 	var heeereOptions = {
 		elems: '.item'
 	};
@@ -21,7 +21,7 @@
 				if ( 'none' !== childrens[0].style.pointerEvents ){
 					for (var i = childrens.length - 1; i >= 0; i--) {
 						childrens[i].style.pointerEvents = 'none';
-					};	
+					};
 				}
 
 				timer = setTimeout(function(){
