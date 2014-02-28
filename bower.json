@@ -2,7 +2,7 @@
   "name": "iamvdo.me",
   "version": "1.0.0",
   "dependencies": {
-    'Greeed': 'git@github.com:iamvdo/Greeed.git'
+    "Greeed": "git@github.com:iamvdo/Greeed.git"
   },
   "overrides": {}
 }
