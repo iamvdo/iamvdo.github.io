@@ -8,7 +8,7 @@
 		fakeItem : true,
 		fakeItemClass : 'item item--fake',
 		afterLayout: function () {
-			heeere.bind('.Greeed', heeereOptions);
+			heeere.bind(heeereOptions);
 		},
 		afterInit: function () {
 			/* 60fps scolling FTW */
