@@ -2,7 +2,34 @@
 
 ----
 
-Text: 
+Text: En CSS, la propriété `quotes` permet de définir le rendu pour les guillemets. Pour cela, une ou plusieurs paires de guillemets doivent être précisées, comme ceci:
+
+    blockquote {
+        /* une paire de guillemets */
+        quotes: "«" "»";
+    }
+
+Ici, les guillemets typographiques français sont définis pour les éléments `blockquote`. Ils pourraient l'être de manière plus globale, sur `body` ou sur `article` par exemple.
+
+Ensuite, il est possible d'utiliser ces guillemets grâce aux mots-clés `open-quote` et `close-quote`, comme ceci:
+
+    blockquote::before {
+        content: open-quote;
+    }
+    blockquote::after {
+        content: close-quote;
+    }
+
+Pour respecter les règles typographiques françaises, il serait préférable d'ajouter [une espace fine insécable](http://fr.wikipedia.org/wiki/Espace_fine_ins%C3%A9cable) après le guillemet ouvrant et une avant le guillemet fermant, ce qui nous donnerait:
+
+    blockquote {
+        /* une paire de guillemets */
+        quotes: "«\00A0" "\00A0»";
+    }
+
+Et voilà le résultat d'une citation:
+
+> Une belle citation utilisant `quotes` et `content: open-quote`. Le support est plus que bon et inclus depuis IE8.
 
 ----
 
@@ -14,12 +41,12 @@ Description:
 
 ----
 
-Date: 
+Date: 2014-03-03 17:00
 
 ----
 
-Tags: 
+Tags: quotes
 
 ----
 
-Big: 
+Big: 0
