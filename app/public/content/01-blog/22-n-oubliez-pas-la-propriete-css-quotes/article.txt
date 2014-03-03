@@ -31,6 +31,10 @@ Et voilà le résultat d'une citation:
 
 > Une belle citation utilisant `quotes` et `content: open-quote`. Le support est plus que bon et inclus depuis IE8.
 
+**Edit:** Le [micro-framework typographique TinyTypo](http://tinytypo.tetue.net/) de [@tetue](http://twitter.com/tetue) utilise ce principe pour afficher les guillemets en fonction de la langue de la page. Je vous laisse [découvrir le code](https://github.com/tetue/tinytypo/blob/master/css/typo.css#L384). Merci à [@7studio](http://twitter.com/7studio) pour le rappel. 
+
+D'autres exemples d'utilisation en commentaires!
+
 ----
 
 Subtitle: 
