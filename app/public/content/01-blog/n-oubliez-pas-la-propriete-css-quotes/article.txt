@@ -9,9 +9,9 @@ Text: En CSS, la propriété `quotes` permet de définir le rendu pour les guill
         quotes: "«" "»";
     }
 
-Ici, les guillemets typographiques français sont définis pour les éléments `blockquote`. Ils pourraient l'être de manière plus globale, sur `body` ou sur `article` par exemple.
+Ici, les guillemets typographiques français sont définis pour les éléments `<blockquote>`. Ils pourraient l'être de manière plus globale, sur `<body>` ou sur `<article>` par exemple.
 
-Ensuite, il est possible d'utiliser ces guillemets grâce aux mots-clés `open-quote` et `close-quote`, comme ceci:
+Ensuite, il est possible d'utiliser ces guillemets grâce à la propriété `content` et aux mots-clés `open-quote` et `close-quote`, comme ceci:
 
     blockquote::before {
         content: open-quote;
