@@ -20,7 +20,7 @@ Ensuite, il est possible d'utiliser ces guillemets grâce aux mots-clés `open-q
         content: close-quote;
     }
 
-Pour respecter les règles typographiques françaises, il serait préférable d'ajouter [une espace fine insécable](http://fr.wikipedia.org/wiki/Espace_fine_ins%C3%A9cable) après le guillemet ouvrant et une avant le guillemet fermant, ce qui nous donnerait:
+Pour respecter les règles typographiques françaises, il serait préférable d'ajouter [une espace fine insécable](http://fr.wikipedia.org/wiki/Espace_fine_insécable) après le guillemet ouvrant et une avant le guillemet fermant, ce qui nous donnerait:
 
     blockquote {
         /* une paire de guillemets */
