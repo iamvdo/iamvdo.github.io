@@ -141,8 +141,7 @@
 }
 .article-text a:hover,
 .article-text a:focus {
-	/* background: #272727; */
-	border-bottom: 2px solid white; /**/
+	border-bottom: 2px solid white;
 }
 .article-text strong,
 .article-text strong a {
@@ -184,13 +183,10 @@
 	text-indent: 2em;
 	border-top: 1px dashed rgba(0,0,0,.2);
 	border-bottom: 1px dashed rgba(0,0,0,.2);
+	quotes: "«" "»";
 }
-.article-text blockquote > * {
-	/* color: #aaa; */
-}
-.article-text blockquote::before /*,
-.article-text blockquote::after */ {
-	content: '«';
+.article-text blockquote::before {
+	content: open-quote;
 	color: #272727;
 	text-shadow: none;
 	text-indent: 0;
@@ -199,12 +195,6 @@
 	position: absolute; top: 50%;
 	left: 0; margin-top: -1ex;
 }
-/*
-.article-text blockquote::after {
-	content: close-quote;
-	left: auto; right: 0;
-}
-*/
 .article-text figure {
 	padding: 1em;
 	text-align: center;
