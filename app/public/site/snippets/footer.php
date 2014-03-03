@@ -18,7 +18,7 @@
 			</nav>
 		</div>
 		<div class="underfooter superlink u-align--center">
-			<p class="u-small">Fait main avec <span class="u-small">♥</span>, Greeed, Heeere et <a class="superLink superLink--inverted" href="http://getkirby.com">Kirby</a>. <?php echo Date('Y'); ?></p>
+			<p class="u-small">Fait main avec <span class="u-small">♥</span>, <a href="https://github.com/iamvdo/Greeed">Greeed</a>, <a href="https://github.com/iamvdo/Heeere">Heeere</a> et <a href="http://getkirby.com">Kirby</a>. <?php echo Date('Y'); ?></p>
 		</div>
 	</div>
 </footer>
