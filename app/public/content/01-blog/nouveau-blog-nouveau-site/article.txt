@@ -2,7 +2,7 @@
 
 ----
 
-Text: 
+Text: Il y a un mois, je publiais ce nouveau site regroupant presque l'intégralité de mon travail: publications sur [mon blog](/blog) et [ailleurs](/ailleurs), [tutoriels CSS3](http://css3create.com), [conférences](/conf), [code](http://github.com/iamvdo)...
 
 ----
 
@@ -22,4 +22,4 @@ Tags:
 
 ----
 
-Big: 
+Big: 0
