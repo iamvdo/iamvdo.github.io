@@ -12,25 +12,21 @@
 		},
 		afterInit: function () {
 			/* 60fps scolling FTW */
-			/*
-			var childrens = document.querySelectorAll('.item'),
-				timer,
-				delay = 150;
-			window.addEventListener('scroll', function() {
-				clearTimeout(timer);
-				if ( 'none' !== childrens[0].style.pointerEvents ){
-					for (var i = childrens.length - 1; i >= 0; i--) {
-						childrens[i].style.pointerEvents = 'none';
-					};
-				}
+			var body = document.body,
+				cover = document.createElement('div');
+				cover.setAttribute('class','scroll-cover'),
+				timer = null;
 
-				timer = setTimeout(function(){
-					for (var i = childrens.length - 1; i >= 0; i--) {
-						childrens[i].style.pointerEvents = 'auto';
-					};
-				}, delay);
+			window.addEventListener('scroll', function() {
+
+				clearTimeout(timer);
+				body.appendChild(cover);
+
+				timer = setTimeout( function () {
+							body.removeChild(cover);
+						}, 100);
+
 			}, false);
-			*/
 		}
 	};
 

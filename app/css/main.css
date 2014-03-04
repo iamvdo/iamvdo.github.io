@@ -273,3 +273,13 @@ footer a:focus {
 .underfooter a:focus {
 	color: #000;
 }
+/* 60fps FTW */
+.scroll-cover {
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	position: fixed;
+	pointer-events: auto !important;
+	z-index: 10000;
+}
