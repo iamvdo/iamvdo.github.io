@@ -11,10 +11,6 @@
 	width: auto;
 	float: none;
 }
-/*
-.Greeed {
-	opacity: 1;
-	transform: scale(1);
-	transition: opacity .2s, transform .2s;
+.Greeed-column + .Greeed-column .item-link {
+	border-left-color: rgba(0,0,0,.25);
 }
-*/
