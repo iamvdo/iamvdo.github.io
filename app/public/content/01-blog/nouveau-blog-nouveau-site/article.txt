@@ -10,17 +10,17 @@ Parmi les retours, certains m'ont demandé comment a été réalisé l'effet de 
 
 ##La grille
 
-Au départ, je voulais une grille d'élément avec les contraintes suivantes:
+Au départ, je voulais une grille d'éléments avec les contraintes suivantes:
 
 * Chaque élément peut avoir une taille différente en hauteur. La largeur sera la même afin d'éviter de partir dans tous les sens et d'aider la lecture.
 * Les éléments doivent êtres classés de haut en bas (par date dans mon cas), mais répartis dans des colonnes
-* La grille doit être responsive
+* La grille doit être responsive et être définie en `em`
 
 N'ayant pas trouvé de solution en CSS (même Flexbox est à la rue sur ce coup), j'ai commencé par m'intéresser à Masonry, dans sa version évoluée nommée [Isotope](http://isotope.metafizzy.co/). **Après de nombreux tests, il s'est avéré que le résultat obtenu n'était pas parfait:**
 
 * pas de responsive par défaut et pas évident à mettre en place du au coté automagique d'Isotope
 * code assez lourd et dépendant de jQuery
-* par défaut, le positionnement des éléments de la grille se fait avec les transformations CSS, mais ayant besoin de ces transformations pour mon effet visuel, cela devenait très contraignant. Le mode sans transformations utilise le positionnement absolute avec top et left et provoque donc quelques problèmes de performance
+* par défaut, le positionnement des éléments de la grille se fait avec les transformations CSS, mais ayant besoin de ces transformations pour mon effet visuel, cela devenait très contraignant. Le mode sans transformations utilise le positionnement `absolute` avec `top` et `left` et provoque donc quelques problèmes de performance
 
 Ensuite, j'ai également testé [Salvattore](http://salvattore.com/). **C'est une petite librairie basée sur les *breakpoints* définis depuis les *media-queries* CSS**. Le concept semble super, mais là encore, le résultat n'a pas été optimal et le code encore jeune contenait quelques bugs irrésolus (cela s'est peut-être arrangé depuis).
 
@@ -40,7 +40,7 @@ Cependant, après avoir mis en place cette solution, j'en suis arrivé aux concl
 * sur mobile (ou tactile plutôt), il est impossible de cliquer sur des liens au sein des éléments (les événements `touch*` étant réservés à la reconstruction du scroll)
 * sur mobile basse performance (hors dernières générations), le résultat est très lent, voire inutilisable
 
-Là encore, j'ai décidé d'utiliser mon propre script, mais basé sur Stroll.js. Le concept est simple: j'ajoute des classes HTML aux éléments qui se trouvent avant (`.past`), après (`.future`) ou au sein du viewport (`.inside`). Ensuite, c'est le CSS qui se charge du reste. Dans mon cas, cela donne:
+Là encore, j'ai décidé d'utiliser mon propre script, inspiré par Stroll.js. Le concept est simple: j'ajoute des classes HTML aux éléments qui se trouvent avant (`.past`), après (`.future`) ou au sein du viewport (`.inside`). Ensuite, c'est le CSS qui se charge du reste. Dans mon cas, cela donne:
 
     .item {
         opacity: 1;
@@ -61,6 +61,12 @@ Là encore, j'ai décidé d'utiliser mon propre script, mais basé sur Stroll.js
 Sur mobile, un problème de [déclenchement d'événement `scroll`](http://tjvantoll.com/2012/08/19/onscroll-event-issues-on-mobile-browsers/) m'a conduit à désactiver l'effet 3D (après de nombreux essais).
 
 Le script se trouve également [sur GitHub: Heeere!](http://github.com/iamvdo/heeere)
+
+##Coté technique
+
+L'intégralité du site est basé sur [Kirby](http://getkirby.com), un CMS écrit en PHP basé sur des fichiers textes et sans bases de données. C'est extrêmement puissant et vraiment pratique. Son seul inconvénient étant son prix, 30$ par site.
+
+Les fichiers statiques sont versionnés sur GitHub
 
 ----
 
