@@ -5,8 +5,8 @@
 	};
 	var greeedOptions = {
 		breakpoints : [34,48,65,88,110,140],
-		fakeItem : true,
-		fakeItemClass : 'item item--fake',
+		classItem: false,
+		classFakeItem : 'item item--fake',
 		afterLayout: function () {
 			heeere.bind(heeereOptions);
 		},

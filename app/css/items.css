@@ -87,6 +87,9 @@
 .item + .item .item-link {
 	border-top-color: rgba(0,0,0,.25);
 }
+.Greeed-column + .Greeed-column .item-link {
+	border-left-color: rgba(0,0,0,.25);
+}
 .item-link:hover,
 .item-link:focus {
 	background-color: rgba(255,255,255,.1);
@@ -195,11 +198,9 @@
 }
 
 /* min 576px */
-@media (min-width: 36em){
+@media (min-width: 36em) {
 	.item {
 		height: 10em;
-		width: 25%;
-		float: left;
 	}
 	.item--big {
 		height: 20em;
@@ -247,5 +248,5 @@
 		transform: translate(0, 0);
 		transition-delay: .1s;
 	}
-	
+
 }
