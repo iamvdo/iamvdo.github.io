@@ -19,7 +19,7 @@
 				<?php 
 				$source = $page->parent()->uri;
 				 ?>
-				<svg viewBox="0 0 100 100" class="svg-icon svg-icon--<?php echo $source; ?>">
+				<svg viewBox="0 0 100 100" width="50" height="50" class="svg-icon svg-icon--<?php echo $source; ?>">
 					<use xlink:href="#svg-<?php echo $source; ?>">
 				</svg>
 			</div>
