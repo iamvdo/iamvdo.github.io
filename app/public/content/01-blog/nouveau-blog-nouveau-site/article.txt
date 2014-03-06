@@ -58,7 +58,7 @@ Là encore, j'ai décidé d'utiliser mon propre script, inspiré par Stroll.js. 
         transform: perspective(500px) rotateX(-90deg) translateY(10em) translateZ(0);
     }
 
-Sur mobile, un problème de [déclenchement d'événement `scroll`](http://tjvantoll.com/2012/08/19/onscroll-event-issues-on-mobile-browsers/) m'a conduit à désactiver l'effet 3D (après de nombreux essais).
+Sur mobile, un problème de [déclenchement d'événement `scroll`](http://tjvantoll.com/2012/08/19/onscroll-event-issues-on-mobile-browsers/) et de performance m'ont conduit à désactiver l'effet 3D (après de nombreux essais).
 
 Le script se trouve également [sur GitHub: Heeere!](http://github.com/iamvdo/heeere)
 
@@ -66,7 +66,7 @@ Le script se trouve également [sur GitHub: Heeere!](http://github.com/iamvdo/he
 
 L'intégralité du site est basé sur [Kirby](http://getkirby.com), un CMS écrit en PHP basé sur des fichiers textes et sans bases de données. C'est extrêmement puissant et vraiment pratique. Son seul inconvénient étant son prix, 30$ par site.
 
-Les fichiers statiques sont versionnés sur GitHub
+Les fichiers statiques [sont versionnés sur GitHub](https://github.com/iamvdo/iamvdo.github.io) et un *hook post-receive* se charge du déploiement automatique. Ces fichiers sont ensuite compilés avec [Brunch](http://brunch.io) avec les tâches par défaut. J'y ai juste ajouté [Autoprefixer](https://github.com/lydell/autoprefixer-brunch) pour l'ajout des préfixes CSS de manière automatique et [ImageOptimizer](https://github.com/steffenmllr/imageoptmizer-brunch) pour le traitement des images.
 
 ----
 
