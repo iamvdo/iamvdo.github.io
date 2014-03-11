@@ -2,7 +2,7 @@
 
 ----
 
-Text: 
+Text: Les *headers* fixes sont tendances. Pourtant, ce n'est pas toujours très bien réalisé et cela peut vite devenir insupportable, voire rendre un site inutilisable, surtout sur mobile. IL n'est pas rare de voir des *headers* fixes occuper plus d'un tiers de la hauteur d'une page. Voici quelques exemples:
 
 ----
 
@@ -22,4 +22,4 @@ Tags:
 
 ----
 
-Big: 
+Big: 0
