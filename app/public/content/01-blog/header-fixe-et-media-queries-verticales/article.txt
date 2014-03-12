@@ -14,34 +14,24 @@ Le site s'affiche avec le menu replié au sein de la fameuse icone hamburger. Pa
 
 (image: fixed-header-2.png text: Affichage avec 1px de plus en largeur en mode paysage) 
 
-Aie. Le *header* se transforme et devient fixe. De plus, les éléments du menu réapparaissent côte à côte, ce qui dépasse de la fenêtre.
+Aie. Le *header* se transforme et devient fixe. De plus, les éléments du menu réapparaissent côte à côte, ce qui dépasse de la fenêtre. **Cela est du à la *media-query* qui ne teste que la largeur de l'appareil**.
 
-Pourtant, une technique très simple à mettre en place existe: les *media-queries* verticales! Il suffit d'appliquer des styles en fonction de la hauteur de la fenêtre au lieu de la largeur, tout simplement. Voici un exemple pour un *header* fixe:
+Pourtant, une technique très simple à mettre en place existe: les *media-queries* verticales! **Il suffit d'appliquer des styles en fonction de la hauteur de la fenêtre au lieu de la largeur, tout simplement**. Voici un exemple pour un *header* fixe:
 
     .header {
-        
+        /* styles par défaut */
     }
     
-    @media (min-height: 25em) {
+    @media (min-height: 20em) {
         .header {
             position: fixed;
             top: 0; left: 0; right: 0;
         }
     }
 
-Dans ce cas précis, le positionnement du *header* n'est pas modifié par défaut. Si la hauteur actuelle de la fenêtre est supérieure à 25em, alors le *header* devient fixe et se trouve positionné en haut!
+Dans ce cas précis, le positionnement du *header* n'est pas modifié par défaut. Si la hauteur actuelle de la fenêtre est supérieure à 20em, alors le *header* devient fixe et se trouve positionné en haut!
 
-Cependant, un bug sur les *iAppareils* oblige à ajouter également l'orientation de l'écran. En effet, sur un iPhone 5 par exemple, même en affichage paysage le `device-height` reste celui du mode portrait. Notre *media-query* devient donc:
-
-    /* pour les écrans de plus de 25em de haut ET en mode portrait */
-    @media (min-height: 25em) and (orientation: portrait) {
-        .header {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-        }
-    }
-
-Cela signifie donc qu'en mode paysage (c'est à dire lorsque la largeur de l'écran est plus large que la hauteur), le *header* n'est jamais fixe.
+Bien entendu, tout cela doit être à adapter au cas par cas. Les valeurs utilisées ici n'ont qu'un but de présentation du problème.
 
 Voici un CodePen illustrant ce principe et [une page de test dédiée](http://lab.iamvdo.me/fixed-header-responsive):
 
