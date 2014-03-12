@@ -14,7 +14,7 @@ Le site s'affiche avec le menu replié au sein de la fameuse icone hamburger. Pa
 
 (image: fixed-header-2.png text: Affichage avec 1px de plus en largeur en mode paysage) 
 
-Aie. Le *header* se transforme et devient fixe. De plus, les éléments du menu réapparaissent côte à côte, ce qui dépasse de la fenêtre. **Cela est du à la *media-query* qui ne teste que la largeur de l'appareil, à savoir 568px**.
+Aie. Le *header* se transforme, occupe une bonne partie de la hauteur, et devient fixe. De plus, les éléments du menu réapparaissent côte à côte, ce qui dépasse de la fenêtre. **Cela est du à la *media-query* qui ne teste que la largeur de l'appareil, à savoir 568px**.
 
 ____
 **Note:** Je ne critique pas ce site en particulier, c'est juste le premier exemple que j'ai trouvé. :)
@@ -33,7 +33,9 @@ Pourtant, une technique très simple à mettre en place existe: les *media-queri
         }
     }
 
-Dans ce cas précis, le positionnement du *header* n'est pas modifié par défaut. Si la hauteur actuelle de la fenêtre est supérieure à 20em, alors le *header* devient fixe et se trouve positionné en haut!
+Dans ce cas précis, le positionnement du *header* n'est pas modifié par défaut. **Si la hauteur actuelle de la fenêtre est supérieure à 20em, alors le *header* devient fixe et se trouve positionné en haut!**
+
+Cette astuce peut s'avérer très pratique, notamment sur des écrans peu large et long. De plus, si le *viewport* est réglé pour être égal à `device-width`, la différence d'agrandissement en mode paysage [peut alors aller jusqu'à 44% sur un iPhone](http://blog.goetter.fr/post/32513655620/viewport-adieu-width-device-width) comme le précise Raphaël Goetter sur son blog. **Cela provoque très souvent des débordements de contenus en hauteur**.
 
 Bien entendu, tout cela doit être à adapter au cas par cas. Les valeurs utilisées ici n'ont qu'un but de présentation du problème.
 
