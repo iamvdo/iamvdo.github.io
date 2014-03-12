@@ -2,9 +2,9 @@
 
 ----
 
-Text: Les *headers* fixes sont tendances. Pourtant, ce n'est pas toujours très bien réalisé et cela peut vite devenir insupportable, voire rendre un site inutilisable, surtout sur mobile. Il n'est pas rare de voir des *headers* fixes occuper plus d'un tiers de la hauteur d'une page. De plus, si la navigation se trouve repliée au sein du *header*, lors du dépliage, des éléments peuvent être masqués.
+Text: **Les *headers* fixes sont tendances**. Pourtant, ce n'est pas toujours très bien réalisé et cela peut vite devenir insupportable, voire rendre un site inutilisable, surtout sur mobile. Il n'est pas rare de voir des *headers* fixes occuper plus d'un tiers de la hauteur d'une page. De plus, si la navigation se trouve repliée au sein du *header*, lors du dépliage, des éléments peuvent être masqués.
 
-La tendance actuelle en matière de *responsive webdesign*, c'est d'adapter le site en fonction de la largeur de la fenêtre. Malheureusement, ce n'est pas toujours suffisant, surtout si par méconnaissance on se base sur les valeurs des écrans de smartphones connus (iPhone pour ne pas le citer). Par exemple, baladons-nous sur le site Awwwards, dans la catégorie Responsive, et prenons le premier site sympa à l'oeil. Hum celui là: http://murmure.me
+La règle actuelle en matière de *responsive webdesign*, c'est d'adapter le site en fonction de la largeur de la fenêtre. Malheureusement, ce n'est pas toujours suffisant, surtout si par méconnaissance on se base sur les valeurs des écrans de smartphones connus (iPhone pour ne pas le citer). Par exemple, baladons-nous sur le site Awwwards, dans la catégorie Responsive, et prenons le premier site sympa à l'oeil. Hum celui là: [http://murmure.me](http://murmure.me)
 
 Vérifions alors l'affichage de ce site sur un iPhone5 en mode paysage:
 
@@ -14,7 +14,9 @@ Le site s'affiche avec le menu replié au sein de la fameuse icone hamburger. Pa
 
 (image: fixed-header-2.png text: Affichage avec 1px de plus en largeur en mode paysage) 
 
-Aie. Le *header* se transforme et devient fixe. De plus, les éléments du menu réapparaissent côte à côte, ce qui dépasse de la fenêtre. **Cela est du à la *media-query* qui ne teste que la largeur de l'appareil**.
+Aie. Le *header* se transforme et devient fixe. De plus, les éléments du menu réapparaissent côte à côte, ce qui dépasse de la fenêtre. **Cela est du à la *media-query* qui ne teste que la largeur de l'appareil, à savoir 568px**.
+
+    >**Note:** Je ne critique pas ce site en particulier, c'est juste le premier exemple que j'ai trouvé. :)
 
 Pourtant, une technique très simple à mettre en place existe: les *media-queries* verticales! **Il suffit d'appliquer des styles en fonction de la hauteur de la fenêtre au lieu de la largeur, tout simplement**. Voici un exemple pour un *header* fixe:
 
