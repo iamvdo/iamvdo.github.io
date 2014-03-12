@@ -1,4 +1,4 @@
-﻿Title: Header fixe et media-queries avancées
+﻿Title: Header fixe et media-queries verticales
 
 ----
 
@@ -51,7 +51,7 @@ Description:
 
 ----
 
-Date: 
+Date: 2014-03-12 15:00
 
 ----
 
