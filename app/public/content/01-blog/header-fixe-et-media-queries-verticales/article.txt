@@ -2,7 +2,29 @@
 
 ----
 
-Text: Les *headers* fixes sont tendances. Pourtant, ce n'est pas toujours très bien réalisé et cela peut vite devenir insupportable, voire rendre un site inutilisable, surtout sur mobile. IL n'est pas rare de voir des *headers* fixes occuper plus d'un tiers de la hauteur d'une page. Voici quelques exemples:
+Text: Les *headers* fixes sont tendances. Pourtant, ce n'est pas toujours très bien réalisé et cela peut vite devenir insupportable, voire rendre un site inutilisable, surtout sur mobile. Il n'est pas rare de voir des *headers* fixes occuper plus d'un tiers de la hauteur d'une page. De plus, si la navigation se trouve repliée au sein du *header*, lors du dépliage, des éléments peuvent être masqués.
+
+Voici quelques exemples:
+
+
+Pourtant, une technique très simple à mettre en place existe: les *media-queries* verticales! Il suffit d'appliquer des styles en fonction de la hauteur de la fenêtre au lieu de la largeur, comme cela est fait principalement. Voici un exemple pour un *header* fixe:
+
+    .header {
+        
+    }
+    
+    @media (min-height: 30em) {
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+        }
+    }
+
+Dans ce cas précis, le *header* est affiché normalement par défaut. Si la hauteur actuelle de la fenêtre est supérieure à 30em, alors le *header* devient fixe et se trouve positionné en haut!
+
+Voici un CodePen illustrant ce principe:
+
+(codepen: rbype height: 450 script: true)
 
 ----
 
