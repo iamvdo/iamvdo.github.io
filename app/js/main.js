@@ -6,7 +6,7 @@
 	var greeedOptions = {
 		breakpoints : [34,48,65,88,110,140],
 		classItem: 'item',
-		classFakeItem : 'tem--fake',
+		classFakeItem : 'item--fake',
 		layout: 'float',
 		units: 'fixed',
 		afterLayout: function () {
