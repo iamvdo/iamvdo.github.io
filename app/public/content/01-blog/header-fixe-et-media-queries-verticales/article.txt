@@ -16,7 +16,9 @@ Le site s'affiche avec le menu replié au sein de la fameuse icone hamburger. Pa
 
 Aie. Le *header* se transforme et devient fixe. De plus, les éléments du menu réapparaissent côte à côte, ce qui dépasse de la fenêtre. **Cela est du à la *media-query* qui ne teste que la largeur de l'appareil, à savoir 568px**.
 
-    >**Note:** Je ne critique pas ce site en particulier, c'est juste le premier exemple que j'ai trouvé. :)
+____
+**Note:** Je ne critique pas ce site en particulier, c'est juste le premier exemple que j'ai trouvé. :)
+____
 
 Pourtant, une technique très simple à mettre en place existe: les *media-queries* verticales! **Il suffit d'appliquer des styles en fonction de la hauteur de la fenêtre au lieu de la largeur, tout simplement**. Voici un exemple pour un *header* fixe:
 
