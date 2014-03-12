@@ -1,28 +1,49 @@
-﻿Title: Header fixe et media-queries verticales
+﻿Title: Header fixe et media-queries avancées
 
 ----
 
 Text: Les *headers* fixes sont tendances. Pourtant, ce n'est pas toujours très bien réalisé et cela peut vite devenir insupportable, voire rendre un site inutilisable, surtout sur mobile. Il n'est pas rare de voir des *headers* fixes occuper plus d'un tiers de la hauteur d'une page. De plus, si la navigation se trouve repliée au sein du *header*, lors du dépliage, des éléments peuvent être masqués.
 
-Voici quelques exemples:
+La tendance actuelle en matière de *responsive webdesign*, c'est d'adapter le site en fonction de la largeur de la fenêtre. Malheureusement, ce n'est pas toujours suffisant, surtout si par méconnaissance on se base sur les valeurs des écrans de smartphones connus (iPhone pour ne pas le citer). Par exemple, baladons-nous sur le site Awwwards, dans la catégorie Responsive, et prenons le premier site sympa à l'oeil. Hum celui là: http://murmure.me
 
+Vérifions alors l'affichage de ce site sur un iPhone5 en mode paysage:
 
-Pourtant, une technique très simple à mettre en place existe: les *media-queries* verticales! Il suffit d'appliquer des styles en fonction de la hauteur de la fenêtre au lieu de la largeur, comme cela est fait principalement. Voici un exemple pour un *header* fixe:
+img
+
+Le site s'affiche avec le menu replié au sein de la fameuse icone hamburger. Parfait. Ajoutons 1px à la largeur à présent:
+
+img
+
+Aie. Le *header* se transforme et devient fixe. De plus, les éléments du menu réapparaissent côte à côte, ce qui dépasse de la fenêtre.
+
+Pourtant, une technique très simple à mettre en place existe: les *media-queries* verticales! Il suffit d'appliquer des styles en fonction de la hauteur de la fenêtre au lieu de la largeur, tout simplement. Voici un exemple pour un *header* fixe:
 
     .header {
         
     }
     
-    @media (min-height: 30em) {
+    @media (min-height: 25em) {
         .header {
             position: fixed;
             top: 0; left: 0; right: 0;
         }
     }
 
-Dans ce cas précis, le *header* est affiché normalement par défaut. Si la hauteur actuelle de la fenêtre est supérieure à 30em, alors le *header* devient fixe et se trouve positionné en haut!
+Dans ce cas précis, le positionnement du *header* n'est pas modifié par défaut. Si la hauteur actuelle de la fenêtre est supérieure à 25em, alors le *header* devient fixe et se trouve positionné en haut!
 
-Voici un CodePen illustrant ce principe:
+Cependant, un bug sur les *iAppareils* oblige à ajouter également l'orientation de l'écran. En effet, sur un iPhone 5 par exemple, même en affichage paysage le `device-height` reste celui du mode portrait. Notre *media-query* devient donc:
+
+    /* pour les écrans de plus de 25em de haut ET en mode portrait */
+    @media (min-height: 25em) and (orientation: portrait) {
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+        }
+    }
+
+Cela signifie donc qu'en mode paysage (c'est à dire lorsque la largeur de l'écran est plus large que la hauteur), le *header* n'est jamais fixe.
+
+Voici un CodePen illustrant ce principe et [une page de test dédiée](http://lab.iamvdo.me/fixed-header-responsive):
 
 (codepen: rbype height: 350 script: true)
 
