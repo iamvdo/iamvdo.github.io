@@ -43,6 +43,8 @@ Voici un CodePen illustrant ce principe et [une page de test dédiée](http://la
 
 (codepen: rbype height: 350 script: true)
 
+(codepen: rbype height: 450)
+
 ----
 
 Subtitle: 
