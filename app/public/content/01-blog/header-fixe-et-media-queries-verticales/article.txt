@@ -8,11 +8,11 @@ La tendance actuelle en matière de *responsive webdesign*, c'est d'adapter le s
 
 Vérifions alors l'affichage de ce site sur un iPhone5 en mode paysage:
 
-img
+(image: fixed-header-1.png text: Affichage sur un iPhone 5 en mode paysage) 
 
 Le site s'affiche avec le menu replié au sein de la fameuse icone hamburger. Parfait. Ajoutons 1px à la largeur à présent:
 
-img
+(image: fixed-header-2.png text: Affichage avec 1px de plus en largeur en mode paysage) 
 
 Aie. Le *header* se transforme et devient fixe. De plus, les éléments du menu réapparaissent côte à côte, ce qui dépasse de la fenêtre.
 
