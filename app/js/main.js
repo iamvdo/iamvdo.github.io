@@ -5,8 +5,10 @@
 	};
 	var greeedOptions = {
 		breakpoints : [34,48,65,88,110,140],
-		classItem: false,
-		classFakeItem : 'item item--fake',
+		classItem: 'item',
+		classFakeItem : 'tem--fake',
+		layout: 'float',
+		units: 'fixed',
 		afterLayout: function () {
 			heeere.bind(heeereOptions);
 		},
