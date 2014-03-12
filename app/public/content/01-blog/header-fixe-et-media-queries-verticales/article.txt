@@ -4,7 +4,7 @@
 
 Text: **Les *headers* fixes sont tendances**. Pourtant, ce n'est pas toujours très bien réalisé et cela peut vite devenir insupportable, voire rendre un site inutilisable, surtout sur mobile. Il n'est pas rare de voir des *headers* fixes occuper plus d'un tiers de la hauteur d'une page. De plus, si la navigation se trouve repliée au sein du *header*, lors du dépliage, des éléments peuvent être masqués.
 
-(image: fixed-header-0.png text: Un cas critique de header et de footer fixe)
+(image: fixed-header-0.png text: Un cas critique de header et de popin fixe)
 
 La règle actuelle en matière de *responsive webdesign*, **c'est d'adapter le site en fonction de la largeur de la fenêtre**. Malheureusement, ce n'est pas toujours suffisant, surtout si par méconnaissance on se base sur les valeurs des écrans de smartphones connus (iPhone pour ne pas le citer). Par exemple, baladons-nous sur le site Awwwards, dans [la catégorie Responsive](http://www.awwwards.com/websites/responsive-design/), et prenons le premier site sympa à l’œil. Hum celui là: [http://murmure.me](http://murmure.me)
 
