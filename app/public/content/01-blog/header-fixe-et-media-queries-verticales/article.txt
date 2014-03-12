@@ -26,8 +26,6 @@ Voici un CodePen illustrant ce principe:
 
 (codepen: rbype height: 350 script: true)
 
-(codepen: rbype height: 550 script: true)
-
 ----
 
 Subtitle: 
