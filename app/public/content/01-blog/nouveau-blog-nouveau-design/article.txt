@@ -6,7 +6,7 @@ Text: Il y a un mois, je publiais ce nouveau site regroupant presque l'intégral
 
 (image: iamvdo-responsive.png text: Nouveau site perso et responsive)
 
-Parmi les retours, certains m'ont demandé comment a été réalisé l'effet de la page d'accueil, à savoir **la grille où les éléments apparaissent avec un effet 3D**. Petit retour d'expérience.
+Parmi les retours, certains m'ont demandé comment a été réalisé [l'effet de la page d'accueil](/), à savoir **la grille où les éléments apparaissent avec un effet 3D**. Petit retour d'expérience.
 
 ##La grille
 
