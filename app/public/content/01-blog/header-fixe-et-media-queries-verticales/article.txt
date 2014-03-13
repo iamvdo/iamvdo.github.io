@@ -6,7 +6,7 @@ Text: **Les *headers* fixes sont tendances**. Pourtant, ce n'est pas toujours tr
 
 (image: fixed-header-0.png text: Un cas critique de header et de popin fixe)
 
-La règle actuelle en matière de *responsive webdesign*, **c'est d'adapter le site en fonction de la largeur de la fenêtre**. Malheureusement, ce n'est pas toujours suffisant, surtout si par méconnaissance on se base sur les valeurs des écrans de smartphones connus (iPhone pour ne pas le citer). Par exemple, baladons-nous sur le site Awwwards, dans [la catégorie Responsive](http://www.awwwards.com/websites/responsive-design/), et prenons le premier site sympa à l’œil. Hum celui là: [http://murmure.me](http://murmure.me)
+La règle actuelle en matière de *responsive webdesign*, **c'est d'adapter le site en fonction de la largeur de la fenêtre**. Malheureusement, ce n'est pas toujours suffisant, surtout si par méconnaissance on se base sur les valeurs des écrans de smartphones connus (iPhone pour ne pas le citer), sans penser réellement au contenu. Par exemple, baladons-nous sur le site Awwwards, dans [la catégorie Responsive](http://www.awwwards.com/websites/responsive-design/), et prenons le premier site sympa à l’œil. Hum celui là: [http://murmure.me](http://murmure.me)
 
 Vérifions alors l'affichage de ce site sur un iPhone 5 en mode paysage:
 
@@ -57,7 +57,7 @@ Description:
 
 ----
 
-Date: 2014-03-12 15:00
+Date: 2014-03-13 10:58
 
 ----
 
