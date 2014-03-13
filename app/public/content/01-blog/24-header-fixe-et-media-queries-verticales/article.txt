@@ -47,6 +47,8 @@ Voici un CodePen illustrant ce principe et [une page de test dédiée](http://la
 
 (codepen: rbype height: 450)
 
+Et vous, avez-vous déjà utilisé des *media-queries* verticales (ou autre) ?
+
 ----
 
 Subtitle: 
