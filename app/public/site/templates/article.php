@@ -75,11 +75,18 @@
 			var disqus_shortname = 'iamvdo';
 			(function() {
 				var disqus_thread = document.getElementById('disqus_thread');
-				disqus_thread.addEventListener('click', function () {
+				function loadComments() {
+					console.log('load');
 					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+					dsq.onload = removeClick();
 					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-				});
+				}
+				function removeClick () {
+					console.log('remove');
+					disqus_thread.removeEventListener('click', loadComments);
+				}
+				disqus_thread.addEventListener('click', loadComments);
 			})();
 		</script>
 
