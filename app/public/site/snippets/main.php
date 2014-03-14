@@ -181,7 +181,9 @@ krsort($links);
 		// date
 		$time = new DateTime($date);
 		$time = $time->getTimestamp();
-		
+
+		$new = ( (time() - $time) < 60*60*24*12 );
+
 		?>
 		<li class="<?php echo $element . ' ' . $classModifier . ' ' . $classImg . ' ' . $classBig; ?>">
 			<a class="<?php echo $element . '-link'; ?>" href="<?php echo $url; ?>">
@@ -208,7 +210,20 @@ krsort($links);
 				<?php 
 				} 
 				?>
-				<time class="<?php echo $element . '-date'; ?>"><?php echo setDateFr($time); ?></time>
+				<time class="<?php echo $element . '-date'; ?>">
+					<?php 
+					echo setDateFr($time);
+					if ($new) {
+						?>
+						<span class="<?php echo $element . '-date-new'; ?>" style="font: normal .75em sans-serif;
+	color: #FFF;
+	background: #f03d36;
+	margin-left: 1em;
+	padding: .1em .5em;
+	border-radius: 2px;">RÉCENT</span>
+						<?php
+					}?>
+				</time>
 				<span class="item-title"><?php echo $title; ?></span>
 				<span class="item-subtitle"><?php echo $subtitle; ?></span>
 			</a>
