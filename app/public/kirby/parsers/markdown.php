@@ -817,22 +817,13 @@ class Markdown_Parser {
 	function _doHeaders_callback_atx($matches) {
 		$level = strlen($matches[1]);
 
-		if ($level === 2) {
-			$vdoText = $this->runSpanGamut($matches[2]);
-			$vdoIdText = str::urlify($vdoText);
+		$vdoIdText = str::urlify($this->runSpanGamut($matches[2]));
 
-			$block = "<h$level id=\"". $vdoIdText ."\">";
-		} else {
-			$block = "<h$level>";
-		}
-
+		$block  = "<h$level id=\"". $vdoIdText ."\">";
 		$block .= $this->runSpanGamut($matches[2]);
+		$block .= "<a href=\"#".$vdoIdText."\" class=\"self-link\"></a>";
+		$block .= "</h$level>";
 
-		if ($level === 2) {
-			$block .= "<a href=\"#".$vdoIdText."\" class=\"self-link\"></a>";
-		}
-
-		$block.="</h$level>";
 		return "\n" . $this->hashBlock($block) . "\n\n";
 	}
 
