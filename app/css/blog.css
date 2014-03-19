@@ -254,6 +254,21 @@
 }
 .media-legend {
 }
+.article-text .self-link {
+	font-weight: normal;
+	color: rgba(0,0,0,.2);
+	border: none;
+	text-shadow: none;
+	margin: 0 .5em;
+	padding: 0;
+}
+.article-text .self-link:hover {
+	border: none;
+	color: #FFF;
+}
+.article-text .self-link::before {
+	content: '#';
+}
 .button {
 	font-size: medium;
 	color: #ddd;
