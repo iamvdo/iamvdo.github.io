@@ -817,10 +817,11 @@ class Markdown_Parser {
 	function _doHeaders_callback_atx($matches) {
 		$level = strlen($matches[1]);
 
-		$vdoIdText = str::urlify($this->runSpanGamut($matches[2]));
+		$vdoText = $this->runSpanGamut($matches[2]);
+		$vdoIdText = str::urlify($matches[2]);
 
 		$block  = "<h$level id=\"". $vdoIdText ."\">";
-		$block .= $this->runSpanGamut($matches[2]);
+		$block .= $vdoText;
 		$block .= "<a href=\"#".$vdoIdText."\" class=\"self-link\"></a>";
 		$block .= "</h$level>";
 
