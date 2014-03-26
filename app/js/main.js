@@ -1,7 +1,8 @@
 (function(){
 
 	var heeereOptions = {
-		elems: '.item'
+		elems: '.item',
+		smooth: true
 	};
 	var greeedOptions = {
 		breakpoints : [34,48,65,88,110,140],
