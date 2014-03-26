@@ -13,11 +13,12 @@
   },
   "dependencies": {
     "javascript-brunch": ">= 1.0 < 1.8",
-    "css-brunch": ">= 1.0 < 1.8",
     "uglify-js-brunch": ">= 1.0 < 1.8",
+    "postcss-brunch": "0.2.x",
     "clean-css-brunch": ">= 1.0 < 1.8",
     "auto-reload-brunch": ">= 1.0 < 1.8",
-    "autoprefixer-brunch": "~1.7.3",
-    "imageoptmizer-brunch": "0.0.4"
+    "imageoptmizer-brunch": "0.0.4",
+    "autoprefixer": "~1.1.20140319",
+    "css-mqpacker": "0.0.3"
   }
 }
