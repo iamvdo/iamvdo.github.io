@@ -28,4 +28,4 @@ exports.config =
         use(require('autoprefixer')().postcss)
     imageoptimizer:
       smushit: true
-      path: 'content'
+      path: '/'
