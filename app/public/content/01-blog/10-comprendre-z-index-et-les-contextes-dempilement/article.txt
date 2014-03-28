@@ -170,6 +170,7 @@ C’est donc maintenant un peu plus clair sur pourquoi l’élément rouge est a
 * [The Z-Index CSS Property: A Comprehensive Look](http://coding.smashingmagazine.com/2009/09/15/the-z-index-css-property-a-comprehensive-look/)
 
 Je me permets également de vous proposer mon article complet sur les subtilités de CSS:
+
 * [Ce que vous avez toujours voulu savoir sur CSS](ce-que-vous-avez-toujours-voulu-savoir-sur-css)
 
 ----
