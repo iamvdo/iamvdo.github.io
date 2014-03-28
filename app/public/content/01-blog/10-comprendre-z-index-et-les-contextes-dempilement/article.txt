@@ -1,18 +1,8 @@
-Title: Comprendre z-index et les contextes d'empilement
-----
-Subtitle: 
-----
-Description: 
-----
-Date: 2013-01-21 11:00
-----
-Tags: CSS3, z-index, empilement, traduction
-----
-Big: 1
-----
-Text:
+﻿Title: Comprendre z-index et les contextes d'empilement
 
-Cet article est une traduction de [What No One Told You About Z-Index](http://philipwalton.com/articles/what-no-one-told-you-about-z-index/) écrit par [Philip Walton](http://twitter.com/philwalton) le 22 décembre 2012.
+----
+
+Text: Cet article est une traduction de [What No One Told You About Z-Index](http://philipwalton.com/articles/what-no-one-told-you-about-z-index/) écrit par [Philip Walton](http://twitter.com/philwalton) le 22 décembre 2012.
 ____
 
 ##Ce que personne ne vous a dit sur z-index
@@ -178,3 +168,26 @@ C’est donc maintenant un peu plus clair sur pourquoi l’élément rouge est a
 * [Elaborate description of Stacking Contexts](http://www.w3.org/TR/CSS2/zindex.html)
 * [The staking context](https://developer.mozilla.org/en-US/docs/CSS/Understanding_z-index/The_stacking_context)
 * [The Z-Index CSS Property: A Comprehensive Look](http://coding.smashingmagazine.com/2009/09/15/the-z-index-css-property-a-comprehensive-look/)
+
+Je me permets également de vous proposer mon article complet sur les subtilités de CSS:
+* [Ce que vous avez toujours voulu savoir sur CSS](ce-que-vous-avez-toujours-voulu-savoir-sur-css)
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 2013-01-21 11:00
+
+----
+
+Tags: CSS3, z-index, empilement, traduction
+
+----
+
+Big: 1
