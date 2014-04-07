@@ -401,7 +401,7 @@ Au sein de chaque contexte d’empilement, **les règles qui définissent l’or
 3. les éléments `block` non-positionnés
 4. les flottants
 5. les éléments `inline` non-positionnés
-6. les éléments positionnés avec un `z-index: auto`
+6. les éléments positionnés avec un `z-index: auto` ou `z-index: 0`
 7. les éléments positionnés avec un `z-index` positif
 
 Nous remarquons donc qu’un élément flottant est toujours affiché au dessus d’un élément block, et qu’un élément *inline* est toujours affiché au dessus des flottants. Nous remarquons également qu’un élément positionné dont le `z-index` est négatif est rendu derrière les éléments non-positionnés, et donc potentiellement derrière son parent. Par contre, **un élément ne peut jamais être affiché derrière l’élément qui crée le contexte d’empilement auquel il appartient**.
