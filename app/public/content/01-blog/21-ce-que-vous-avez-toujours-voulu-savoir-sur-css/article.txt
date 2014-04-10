@@ -171,7 +171,7 @@ Un élément affiché comme un «groupe de lignes de pied de page» sera donc to
 
 Malheureusement, le principal inconvénient de ce modèle tabulaire est l’impossibilité d’utiliser les marges internes sur les lignes du tableau, ni les marges externes sur les lignes et les cellules. De plus, un bug sous Firefox empêche le positionnement d’élément absolu au sein d’une cellule de tableau en relatif. Je vous invite à lire [cet article complet traitant le modèle tabulaire](http://www.alsacreations.com/tuto/lire/1522-le-modele-tabulaire-en-css.html) sur Alsacréations.
 
-Enfin, [l'imbrication d'élément utilisant ce mode devient plus complexe](imbrication-de-boites-avec-display-table).
+Enfin, [l'imbrication d'éléments utilisants ce mode devient plus complexe](imbrication-de-boites-avec-display-table).
 
 ###Interactions entre `display`, `float`, `position`
 
