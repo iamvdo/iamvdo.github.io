@@ -1,18 +1,8 @@
-Title: Les avantages de hsl() par rapport à rgb()
-----
-Subtitle: 
-----
-Description: 
-----
-Date: 2013-03-28 11:00
-----
-Tags: couleurs, rgb, hsl, rgba, hsla
-----
-Big: 1
-----
-Text:
+﻿Title: Les avantages de hsl() par rapport à rgb()
 
-Le [module CSS3 Color](http://www.w3.org/TR/css3-color/) définit 4 fonctions de couleur: `rgb()`, `hsl()` et leurs pendants respectifs avec transparence `rgba()` et `hsla()`.
+----
+
+Text: Le [module CSS3 Color](http://www.w3.org/TR/css3-color/) définit 4 fonctions de couleur: `rgb()`, `hsl()` et leurs pendants respectifs avec transparence `rgba()` et `hsla()`.
 
 Les fonctions `rgb()` ou `rgba()`, comme leurs noms l'indiquent, acceptent comme paramètres les valeurs Rouge (R), Vert (G), Bleu (B) et Alpha (A) définissants une couleur.
 
@@ -78,15 +68,15 @@ En jouant sur le paramètre Teinte, il est possible d'obtenir les couleurs compl
 	color: hsl(14, 76%, 55%);
 
 	/* Couleur complémentaire */
-	color: hsl(**194**, 76%, 55%);
+	color: hsl(194, 76%, 55%);
 
 Il est également envisageable d'obtenir les couleurs complémentaires adjacentes en ajoutant 120° puis 240°.
 
 	/* Complémentaire adj. 1 */
-	color: hsl(**134**, 76%, 55%);
+	color: hsl(134, 76%, 55%);
 
 	/* Complémentaire adj. 2 */
-	color: hsl(**254**, 76%, 55%);
+	color: hsl(254, 76%, 55%);
 
 ### Couleurs analogues
 
@@ -121,3 +111,23 @@ Deuxième contrainte, ces fonctions [ne sont supportées qu'à partir d'IE9.](ht
 Allez, et comme vous êtes sympa, voici une petite démo en ligne!
 
 (codepen: vBlxt user: iamvdo height: 600 script: true)
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 2013-03-28 11:00
+
+----
+
+Tags: couleurs, rgb, hsl, rgba, hsla
+
+----
+
+Big: 1
