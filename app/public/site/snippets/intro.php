@@ -39,3 +39,7 @@ if ($dir === 'tagged') {
 		</p>
 	</div>
 </section>
+<dl class="news superlink">
+	<dt class="news-title">CONFÉRENCE</dt>
+	<dd class="news-text">J'animerai une mini-conf sur la propriété CSS line-height à la <a href="http://kiwiparty.fr">KiwiParty</a> le 13 juin 2014</dd>
+</dl>

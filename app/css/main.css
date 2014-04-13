@@ -10,8 +10,8 @@
 	font-style: normal;
 }
 :root {
-	var-color-one: #f03d36;
-	var-color-two: #51C3FA;
+	--color-one: #f03d36;
+	--color-two: #51C3FA;
 }
 *,
 *::after,
@@ -41,9 +41,6 @@ html {
 	   -moz-text-size-adjust: none;
 	    -ms-text-size-adjust: none;
 	        text-size-adjust: none;
-}
-body {
-
 }
 h1,
 h2 {
@@ -163,7 +160,6 @@ header{
 .svg-icon--twitter .svg-icon-mask {
 	fill: #55ACEE;
 }
-
 .icon .svg-icon-mask {
 	fill: #f03d36;
 	transform: translateY(100px);
@@ -173,6 +169,28 @@ header{
 .icon:focus .svg-icon-mask {
 	/* opacity: 1; */
 	transform: translateY(0);
+}
+.news {
+	display: block;
+	margin-top: 1em;
+	font-size: .8em;
+	color: rgba(0,0,0,.6);
+	text-align: center;
+}
+.news-title,
+.news-text {
+	display: inline;
+}
+.news-title {
+	font-weight: bold;
+}
+.news-text + .news-title {
+	margin-left: 1em;
+}
+@media (max-width: 36em) {
+	.news {
+		font-size: .7em;
+	}
 }
 .intro{
 	font-size: 3em;
