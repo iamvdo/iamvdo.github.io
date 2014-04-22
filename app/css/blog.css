@@ -124,24 +124,24 @@
 	margin-top: 1em;
 }
 .article-text p {
-	color: #ddd;
+	color: #eee;
 	padding: .5em 0;
 	/* text-indent: 25px; */
 }
 
 .article-text a {
 	position: relative;
-	color: #ddd;
+	color: #eee;
 	text-decoration: none;
-	padding: 2px .25em;
-	margin: 0 -.25em;
-	border-bottom: 2px solid rgba(0, 0, 0, .2);
+	padding: 4px 2px;
+	background: linear-gradient(#272822,#272822) bottom no-repeat;
+	background-size: 100% 2px;
 	background-clip: border-box;
-	transition: border .2s;
+	transition: background-size .1s;
 }
 .article-text a:hover,
 .article-text a:focus {
-	border-bottom: 2px solid white;
+	background-size: 100% 100%;
 }
 .article-text strong,
 .article-text strong a {
@@ -155,7 +155,7 @@
 	font-size: .95em;
 	line-height: 1.5;
 	list-style: none;
-	color: #ccc;
+	color: #eee;
 }
 .article-text li {
 	position: relative;
@@ -163,7 +163,7 @@
 .article-text li::before {
 	content: '‒ ';
 	font-size: 1.2em;
-	color: #272727;
+	/*color: var(--color-two);*/
 	text-shadow: none;
 }
 .article-text ol {
@@ -181,9 +181,12 @@
 	margin: 1em 0;
 	font: italic 1em/1.7 Georgia, serif;
 	text-indent: 2em;
-	border-top: 1px dashed rgba(0,0,0,.2);
-	border-bottom: 1px dashed rgba(0,0,0,.2);
+	border: 0 dashed #aaa;
+	border-width: 1px 0;
 	quotes: "«" "»";
+}
+.article-text blockquote * {
+	color: #aaa;
 }
 .article-text blockquote::before {
 	content: open-quote;
@@ -260,6 +263,7 @@
 	text-shadow: none;
 	margin: 0 .5em;
 	padding: 0;
+	background: none;
 }
 .article-text .self-link:hover {
 	border: none;
