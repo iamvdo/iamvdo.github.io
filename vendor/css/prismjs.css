@@ -38,10 +38,10 @@ pre {
 
 /* Inline code */
 :not(pre) > code {
-	background: rgba(0, 0, 0, .2);
-	padding: .1em .3em;
-	border-radius: .3em;
-	white-space: pre-line;
+	background: rgba(0,0,0,.2);
+	padding: 4px 2px;
+	border-radius: 0;
+	white-space: nowrap;
 }
 
 .token.comment,
@@ -79,7 +79,7 @@ pre {
 .token.operator,
 .token.entity,
 .token.url,
-.language-css .token.string,
+.language-css > .token.string,
 .style .token.string {
 	color: #f8f8f2;
 }
