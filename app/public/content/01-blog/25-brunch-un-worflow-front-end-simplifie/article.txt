@@ -1,0 +1,239 @@
+Title: Brunch, un workflow front-end simplifié
+
+----
+
+Text:
+
+Il y quelques temps, j’ai découvert [Brunch](http://brunch.io), une alternative à [Grunt](http://gruntjs.com). Et je dois le dire, j’ai été surpris de comprendre quasiment instantanément le principe de fonctionnement, là où je voyais des fichiers de configuration Grunt de 3 kilomètres de long (environ 1.86 miles pour les anglophones qui passeraient par là). Et surtout, une rapidité d'exécution inégalée.
+
+##Mais c’est quoi au fait?
+
+Si vous êtes débutant, vous vous demandez sûrement ce que c’est que Brunch, Grunt ou encore [Gulp](http://gulpjs.com). Et c’est bien normal. Une petite explication s’impose.
+
+Ces outils sont des task runner, des processus d’automatisation de tâches répétitives sur les fichiers composants un site web:
+
+* compilation des scripts et des styles (préprocesseurs)
+* concaténation et minification
+* génération de source-maps
+* optimisation des images
+* et beaucoup d’autres tâches, de la plus simple à la plus avancée
+
+Après le travail de ces outils, vous aurez donc vos fichiers en double:
+
+* vos fichiers de développement, utiles uniquement pendant cette phase
+* vos fichiers optimisés, présents dans le dossier de votre choix. Ces fichiers sont de 2 types:
+	* les fichiers qui ont été compilés (scripts et styles)
+	* les fichiers statiques qui ont simplement été copiés tel quels (les fichiers qui n’ont pas besoin de compilation)
+
+Cela signifie que c’est **le dossier contenant les fichiers finaux qui devient la racine de votre site**. On l’appelle le dossier public.
+
+____
+Note: Ces outils peuvent aller beaucoup plus loin, avec notamment la génération de sites statiques basés sur des templates, mais je ne traiterais pas cette partie là.
+____
+
+##Configurez un nouveau projet
+
+Aucune contrainte. Brunch, comme les autres, ne vous impose rien. Pour pouvoir l’utiliser, vous aurez quand même besoin d’installer en local [Node.js](http://nodejs.com), qui install par défaut son gestionnaire de modules `npm`.
+
+Ensuite, installez brunch de manière globale:
+
+	npm install -g brunch
+
+Puis, deux fichiers à la racine de votre site web sont nécessaires:
+
+* `package.json` pour les plugins que vous souhaitez utiliser
+* `brunch-config.js` (ou `brunch-config.coffee`) pour la configuration de Brunch
+
+###Le fichier package.json
+
+<pre class="language-javascript"><code>{
+	"dependencies": {
+		"javascript-brunch": ">= 1.0 < 1.8",
+		"css-brunch": ">= 1.0 < 1.8",
+		"uglify-js-brunch": ">= 1.0 < 1.8",
+		"clean-css-brunch": ">= 1.0 < 1.8",
+		"auto-reload-brunch": ">= 1.0 < 1.8",
+		"imageoptmizer-brunch": "0.0.4"
+	}
+}</code></pre>
+
+Ici, 6 dépendances (plugins):
+
+* `javascript-brunch` pour le support de JavaScript
+* `css-brunch` pour le support de CSS
+* `uglify-js-brunch` pour la minification Javascript
+* `clean-css-brunch` pour la minification CSS
+* `auto-reload-brunch` permet de rafraichir le navigateur automatiquement dès qu’un changement sur un fichier a été détecté, pendant la phase de développement
+* `imageoptmizer-brunch` réduit le poids des images JPG et PNG lors de la copie
+
+La plupart de ces plugins ne sont que des passerelles vers des modules Node.js déjà existants.
+
+###Installez les dépendances
+
+Votre `package.json` étant configuré, il nous faut demander l’installation des plugins. Pour cela, c’est assez simple:
+
+	npm install
+
+Et c’est tout. Un dossier `node_modules` contenant chaque plugin devrait être créé.
+
+Il est également possible d’ajouter des plugins plus rapidement
+
+	npm install --save <nom-du-plugin>
+
+Le plugin sera chargé dans `node_modules` et le fichier `package.json` mis à jour automatiquement en conséquence.
+
+##Le fichier brunch-config.js:
+
+<pre class="language-javascript"><code>exports.config = {
+	"paths": {
+		"watched": ["dev"],
+		"public": "public"
+	},
+	"files": {
+		"stylesheets": {
+			"joinTo": "css/app.min.css",
+			"order": {
+				"before": ["dev/css/style.css"]
+			}
+		},
+		"javascripts": {
+			"joinTo": "js/app.min.js"
+		}
+	},
+	"conventions": {
+		"assets": /static[\\/]/
+	},
+	"plugins": {
+		"imageoptimizer": {
+			"smushit": true,
+			"path": "images/"
+		}
+	},
+	"modules": {
+		"wrapper": false,
+		"definition": false
+	}
+}</code></pre>
+
+Brunch est livré avec certains réglages par défaut et ce fichier permet de les modifier. Ici, plusieurs choses:
+
+* `paths` définit les différents chemins de votre application:
+	* `watched` pour définir les dossiers de votre application qui seront surveillés par Brunch. Par défaut, Brunch surveille 3 dossiers: `['app', 'test', 'vendor']`. Ici, c’est le dossier `dev` qui est surveillé.
+	* `public` pour définir le dossier final où vos fichiers compilés seront copiés. Par défaut, les fichiers sont compilés et déplacés vers le dossier `public` à la racine de votre site. Ici, le réglage par défaut est conservé, cette ligne n’est donc pas utile.
+* `files` configure les actions à effectuer sur les fichiers de votre application:
+	* `stylesheets` pour les fichiers de styles (CSS et préprocesseurs)
+	* `javascripts` pour les fichiers de scripts
+	* pour chaque type, les fichiers seront compilés et concaténés vers le fichier défini par `joinTo`, à la racine du dossier `public`. L’ordre de concaténation peut être définit avec `order` puis `before` ou `after`. Ici les fichiers CSS seront compilés dans le fichier `app.min.css` dans le dossier `css` de `public` (et `style.css` sera en début de fichier). Les fichiers JS seront quant à eux compilés dans `public/js/app.min.js`.
+* `conventions` modifie certaines des conventions de Brunch
+	* `assets` définit le nom du (des) dossier(s) de fichiers statiques. Tous les fichiers qui n’ont pas besoin d’êtres compilés (fichiers html, php, images, etc.) ont juste besoin d’être copiés tel quels dans public. Ici, je définis le dossier `static`.
+* `plugins` permet de configurer chaque dépendances. Reportez-vous à la doc de chaque plugin.
+* `modules` pour définir si vous avez besoin d’encapsuler votre code JavaScript en modules CommonJS ou AMD. Ici, je déclare à `false` pour compiler le code tel quel, sans rien ajouter.
+
+Pour une configuration complète, allez faire un tour sur [la documentation officielle](https://github.com/brunch/brunch/blob/master/docs/config.md).
+
+##Les squelettes
+
+Les squelettes sont un moyen d’obtenir rapidement une structure pour votre application. Ce sont des projets préconfigurés, donc avec un fichier `package.json` et un fichier `brunch-config.(js|coffee)` pré-remplis.
+
+Pour créer un nouveau projet projet basé sur un squelette:
+
+	brunch new <adresse>
+
+Où `<adresse>` peut référencer:
+
+* un dossier en local que vous auriez déjà configuré
+* un repository Git
+
+Il existe [une liste importante de squelettes](http://brunch.io/skeletons.html) déjà créés par la communauté. Vous pouvez les utiliser ou vous en inspirer pour créer les vôtres. 
+
+##La phase de développement
+
+C’est ma phase préférée. Parce qu’elle est très simple et vraiment efficace. Il suffit de lancer la compilation de Brunch:
+
+	brunch build
+
+Ou mieux de lancer le watcher:
+
+	brunch watch
+
+Les deux fonctions sont absolument identiques. La fonction `watch` est plus simple puisque qu'elle permet de surveiller vos fichiers en temps-réel. Chaque modification entraine alors une compilation instantanée.
+
+Que ce soit avec `build` ou `watch`, vous remarquerez que toutes les actions ne sont pas forcément effectuées. En effet, les actions (de Brunch et des plugins) sont réparties en deux phases:
+
+* la compilation
+* l'optimisation
+
+Chaque plugin est alors configuré pour effectuer ses tâches pendant l'une des 2 phases. Par défaut, toutes les phases d'optimisation sont désactivées. Pour les activer, il est possible de forcer les réglages de Brunch en ajoutant `optimize: true` dans le fichier de configuration ou de choisir un environnement différent.
+
+###Les environnements
+
+Les environnements permettent donc de choisir quelles actions vont êtres effectuées, et à quel moment. Il existe un environnement par défaut pour chaque phase de Brunch:
+
+* compilation: inutile de préciser quoi que ce soit
+* optimisation: l'environnement `--production` ou `-P` bascule dans ce mode
+
+Par exemple:
+
+	brunch watch
+
+Utilise l'environnement de compilation par défaut. Dans notre cas, nous aurons les sources-maps, le live-reload mais pas de minification des fichiers ni d'optimisations des images. Si je passe en environnement `--production`:
+
+	brunch watch -P
+
+J'aurais ici la minification et l'optimisation des images activées, mais plus les source-maps, ni le live-reload.
+
+Il est possible de créer ses propres environnements, toujours via le fameux fichier de configuration de Brunch:
+
+<pre class="language-javascript"><code>exports.config = {
+	"overrides": {
+		"DEV": {
+			"optimize": true
+			"sourceMaps": true
+			"plugins": {
+				"autoReload": {
+					"enabled": true
+				}
+			}
+		}
+	}
+}</code></pre>
+
+Ici, un environnement `DEV` est créé. Celui-ci active la phase d'optimisation (pour les plugins), les source-maps et le live-reload. Notre environnement peut-être utilisé avec l'option `-e`:
+
+	brunch watch -e DEV
+
+##Finalisez et déployez
+
+C’est l’étape finale. Le moment de déployer. Pour cela, plusieurs choix:
+
+* déplacez classiquement le dossier final sur votre FTP
+* si votre hébergement supporte Node, vous pouvez compiler directement sur votre serveur
+* toutes autres solutions de déploiement est envisagée (pages GitHub, Heroku, etc.)
+
+Notre architecture ressemble donc à cela au final:
+
+(image: architecture-finale.jpg text: Architecture finale après l'action de Brunch)
+
+
+Bientôt d’autres articles sur les plugins intéressants pour le traitement de CSS :)
+
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 
+
+----
+
+Tags: brunch, grunt
+
+----
+
+Big: 0
