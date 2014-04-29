@@ -2,6 +2,7 @@
   "name": "iamvdo.me",
   "version": "0.0.0",
   "dependencies": {
+    "classList": "https://github.com/components/classList.js.git",
     "greeed": "https://github.com/iamvdo/Greeed.git",
     "heeere": "https://github.com/iamvdo/Heeere.git"
   },
