@@ -1,10 +1,8 @@
-Title: Brunch, un workflow front-end simplifié
+﻿Title: Brunch, un workflow front-end simplifié
 
 ----
 
-Text:
-
-Il y quelques temps, j’ai découvert [Brunch](http://brunch.io), une alternative à [Grunt](http://gruntjs.com). Et je dois le dire, j’ai été surpris de comprendre quasiment instantanément le principe de fonctionnement, là où je voyais des fichiers de configuration Grunt de 3 kilomètres de long (environ 1.86 miles pour les anglophones qui passeraient par là). Et surtout, une rapidité d'exécution inégalée.
+Text: Il y quelques temps, j’ai découvert [Brunch](http://brunch.io), une alternative à [Grunt](http://gruntjs.com). Et je dois le dire, j’ai été surpris de comprendre quasiment instantanément le principe de fonctionnement, là où je voyais des fichiers de configuration Grunt de 3 kilomètres de long (environ 1.86 miles pour les anglophones qui passeraient par là). Et surtout, une rapidité d'exécution inégalée.
 
 ##Mais c’est quoi au fait?
 
@@ -219,6 +217,7 @@ Notre architecture ressemble donc à cela au final:
 
 Dans le prochain article, je parlerai plus spécifiquement du traitement de CSS (au sein de Brunch mais pas seulement) avec un post-processeur maison dont (twitter: goetter) vous [a parlé récemment](http://blog.goetter.fr/articles/goutez-aux-postprocesseurs-css/). :)
 
+D'ici là, prenez le temps de tester Brunch et n'hésitez pas à me poser vos questions, ici ou sur [twitter](http://twitter.com/iamvdo).
 
 ----
 
@@ -230,7 +229,7 @@ Description:
 
 ----
 
-Date: 2014-04-29 10:30
+Date: 2014-04-29 10:33
 
 ----
 
