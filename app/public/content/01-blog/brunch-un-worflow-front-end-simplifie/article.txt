@@ -214,7 +214,7 @@ C’est l’étape finale. Le moment de déployer. Pour cela, plusieurs choix:
 
 Notre architecture ressemble donc à cela au final:
 
-(image: architecture-finale.jpg text: Architecture finale après l'action de Brunch)
+(image: architecture.jpg text: Architecture finale après l'action de Brunch)
 
 
 Dans le prochain article, je parlerai plus spécifiquement du traitement de CSS (au sein de Brunch mais pas seulement) avec un post-processeur maison dont (twitter: goetter) vous [a parlé récemment](http://blog.goetter.fr/articles/goutez-aux-postprocesseurs-css/). :)
