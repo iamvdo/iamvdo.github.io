@@ -20,7 +20,9 @@
 .articleRelated .me {
 	border-radius: 0 0 3px 3px;
 }
-
+::selection {
+	background: #000;
+}
 /*
  * ------------------------------
  * articles-utils
@@ -134,10 +136,15 @@
 	color: #eee;
 	text-decoration: none;
 	padding: 4px 2px;
-	background: linear-gradient(#272822,#272822) bottom no-repeat;
-	background-size: 100% 2px;
-	background-clip: border-box;
-	transition: background-size .1s;
+	border-bottom: 2px solid #f03d36;
+}
+@supports (background-size: 100%) {
+	.article-text a {
+		border: none;
+		background: linear-gradient(#f03d36,#f03d36) bottom no-repeat;
+		background-size: 100% 2px;
+		transition: background-size .1s;
+	}
 }
 .article-text a:hover,
 .article-text a:focus {
@@ -152,8 +159,7 @@
 .article-text ol {
 	margin-left: 1.6em;
 	padding: 0 0 1em 1em;
-	font-size: .95em;
-	line-height: 1.5;
+	line-height: 1.6;
 	list-style: none;
 	color: #eee;
 }
@@ -163,7 +169,7 @@
 .article-text li::before {
 	content: '‒ ';
 	font-size: 1.2em;
-	/*color: var(--color-two);*/
+	color: #f03d36;
 	text-shadow: none;
 }
 .article-text ol {
