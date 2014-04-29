@@ -10,7 +10,7 @@ Il y quelques temps, j’ai découvert [Brunch](http://brunch.io), une alternati
 
 Si vous êtes débutant, vous vous demandez sûrement ce que c’est que Brunch, Grunt ou encore [Gulp](http://gulpjs.com). Et c’est bien normal. Une petite explication s’impose.
 
-Ces outils sont des task runner, des processus d’automatisation de tâches répétitives sur les fichiers composants un site web:
+Ces outils sont des task runner, **des processus d’automatisation de tâches répétitives** sur les fichiers composants un site web:
 
 * compilation des scripts et des styles (préprocesseurs)
 * concaténation et minification
@@ -20,8 +20,8 @@ Ces outils sont des task runner, des processus d’automatisation de tâches ré
 
 Après le travail de ces outils, vous aurez donc vos fichiers en double:
 
-* vos fichiers de développement, utiles uniquement pendant cette phase
-* vos fichiers optimisés, présents dans le dossier de votre choix. Ces fichiers sont de 2 types:
+* vos **fichiers de développement**, utiles uniquement pendant cette phase
+* vos **fichiers optimisés**, présents dans le dossier de votre choix. Ces fichiers sont de 2 types:
 	* les fichiers qui ont été compilés (scripts et styles)
 	* les fichiers statiques qui ont simplement été copiés tel quels (les fichiers qui n’ont pas besoin de compilation)
 
@@ -33,11 +33,13 @@ ____
 
 ##Configurez un nouveau projet
 
-Aucune contrainte. Brunch, comme les autres, ne vous impose rien. Pour pouvoir l’utiliser, vous aurez quand même besoin d’installer en local [Node.js](http://nodejs.com), qui install par défaut son gestionnaire de modules `npm`.
+Aucune contrainte. Brunch, comme les autres, ne vous impose rien. Pour pouvoir l’utiliser, vous aurez quand même besoin d’installer en local [Node.js](http://nodejs.com), qui installe par défaut son gestionnaire de modules `npm`.
 
-Ensuite, installez brunch de manière globale:
+Ensuite, installez Brunch de manière globale:
 
 	npm install -g brunch
+
+Cela vous permet d'obtenir un exécutable `brunch`.
 
 Puis, deux fichiers à la racine de votre site web sont nécessaires:
 
@@ -119,14 +121,14 @@ Brunch est livré avec certains réglages par défaut et ce fichier permet de le
 
 * `paths` définit les différents chemins de votre application:
 	* `watched` pour définir les dossiers de votre application qui seront surveillés par Brunch. Par défaut, Brunch surveille 3 dossiers: `['app', 'test', 'vendor']`. Ici, c’est le dossier `dev` qui est surveillé.
-	* `public` pour définir le dossier final où vos fichiers compilés seront copiés. Par défaut, les fichiers sont compilés et déplacés vers le dossier `public` à la racine de votre site. Ici, le réglage par défaut est conservé, cette ligne n’est donc pas utile.
+	* `public` pour définir le dossier final où vos fichiers compilés seront copiés. Par défaut, les fichiers sont compilés et déplacés vers le dossier `public` à la racine de votre site. Ici, le réglage par défaut est conservé, cette ligne n’est donc utile que pour l'explication.
 * `files` configure les actions à effectuer sur les fichiers de votre application:
 	* `stylesheets` pour les fichiers de styles (CSS et préprocesseurs)
 	* `javascripts` pour les fichiers de scripts
-	* pour chaque type, les fichiers seront compilés et concaténés vers le fichier défini par `joinTo`, à la racine du dossier `public`. L’ordre de concaténation peut être définit avec `order` puis `before` ou `after`. Ici les fichiers CSS seront compilés dans le fichier `app.min.css` dans le dossier `css` de `public` (et `style.css` sera en début de fichier). Les fichiers JS seront quant à eux compilés dans `public/js/app.min.js`.
+	* pour chaque type, les fichiers seront compilés et concaténés vers le fichier défini par `joinTo`, à la racine du dossier `public`. L’ordre de concaténation peut être défini avec `order.before` ou `order.after`. Ici les fichiers CSS seront compilés dans le fichier `app.min.css` dans le dossier `css` de `public` (et `style.css` sera en début de fichier). Les fichiers JS seront quant à eux compilés dans `public/js/app.min.js`.
 * `conventions` modifie certaines des conventions de Brunch
-	* `assets` définit le nom du (des) dossier(s) de fichiers statiques. Tous les fichiers qui n’ont pas besoin d’êtres compilés (fichiers html, php, images, etc.) ont juste besoin d’être copiés tel quels dans public. Ici, je définis le dossier `static`.
-* `plugins` permet de configurer chaque dépendances. Reportez-vous à la doc de chaque plugin.
+	* `assets` définit le nom du (des) dossier(s) de fichiers statiques. Tous les fichiers qui n’ont pas besoin d’êtres compilés (fichiers html, php, images, etc.) ont juste besoin d’être copiés tel quels dans public. Ici, je définis le dossier `static` avec une expression régulière.
+* `plugins` permet de configurer chaque dépendance. Reportez-vous à la doc de chaque plugin.
 * `modules` pour définir si vous avez besoin d’encapsuler votre code JavaScript en modules CommonJS ou AMD. Ici, je déclare à `false` pour compiler le code tel quel, sans rien ajouter.
 
 Pour une configuration complète, allez faire un tour sur [la documentation officielle](https://github.com/brunch/brunch/blob/master/docs/config.md).
@@ -144,7 +146,7 @@ Où `<adresse>` peut référencer:
 * un dossier en local que vous auriez déjà configuré
 * un repository Git
 
-Il existe [une liste importante de squelettes](http://brunch.io/skeletons.html) déjà créés par la communauté. Vous pouvez les utiliser ou vous en inspirer pour créer les vôtres. 
+Il existe [une liste importante de squelettes](http://brunch.io/skeletons.html) déjà créés par la communauté. Vous pouvez les utiliser ou vous en inspirer pour créer les vôtres. Mais ils ne sont en aucun cas obligatoires. 
 
 ##La phase de développement
 
@@ -156,7 +158,7 @@ Ou mieux de lancer le watcher:
 
 	brunch watch
 
-Les deux fonctions sont absolument identiques. La fonction `watch` est plus simple puisque qu'elle permet de surveiller vos fichiers en temps-réel. Chaque modification entraine alors une compilation instantanée.
+Les deux fonctions sont absolument identiques. La fonction `watch` est plus pratique puisque qu'elle permet de surveiller vos fichiers en temps-réel. **Chaque modification entraine alors une compilation instantanée**.
 
 Que ce soit avec `build` ou `watch`, vous remarquerez que toutes les actions ne sont pas forcément effectuées. En effet, les actions (de Brunch et des plugins) sont réparties en deux phases:
 
@@ -215,7 +217,7 @@ Notre architecture ressemble donc à cela au final:
 (image: architecture-finale.jpg text: Architecture finale après l'action de Brunch)
 
 
-Bientôt d’autres articles sur les plugins intéressants pour le traitement de CSS :)
+Dans le prochain article, je parlerai plus spécifiquement du traitement de CSS (au sein de Brunch mais pas seulement) avec un post-processeur maison dont (twitter: goetter) vous [a parlé récemment](http://blog.goetter.fr/articles/goutez-aux-postprocesseurs-css/). :)
 
 
 ----
@@ -228,12 +230,12 @@ Description:
 
 ----
 
-Date: 
+Date: 2014-04-29 10:30
 
 ----
 
-Tags: brunch, grunt
+Tags: workflow, brunch, grunt, gulp
 
 ----
 
-Big: 0
+Big: 1
