@@ -146,9 +146,9 @@ Certaines de ces tâches sont configurables, voir [toutes les options disponible
 
 ##Utilisez Pleeease en mode autonome
 
-La manière la plus simple d’utiliser Pleeease est en mode autonome, via la ligne de commande. Cette méthode est faite pour vous si vous n’utilisez pas de task runner ou si vous travaillez sur un petit projet.
+La manière la plus simple d’utiliser Pleeease est en mode autonome, via [la ligne de commande](http://pleeease.io/tool.html). Cette méthode est faite pour vous si vous n’utilisez pas de task runner ou si vous travaillez sur un petit projet.
 
-Tout d’abord, vous aurez besoin d’installer [Node.js](http://nodejs.org) qui est livré avec son gestionnaire de modules `npm`. Ensuite, lancez l’installation de Pleeease de manière globale au système.
+Tout d’abord, vous aurez besoin d’installer [Node.js](http://nodejs.org) qui est couramment livré avec son gestionnaire de modules `npm`. Ensuite, lancez l’installation de Pleeease de manière globale au système.
 
 	$ npm install -g pleeease
 
@@ -242,9 +242,9 @@ Si vous souhaitez modifier les tâches, utiliser la clé `plugin` dans votre fic
 
 Toute votre configuration sur les fichiers se fait classiquement via Brunch.
 
-Notez que [Pleeease-brunch](http://github.com/iamvdo/pleeease-brunch) est un optimiseur, donc les actions ne seront effectuées qu’avec `optimize: true` dans votre config. (l’environnement `--production` est déjà configuré de cette façon)
+Notez que [Pleeease-brunch](http://github.com/iamvdo/pleeease-brunch) est un optimiseur, donc les actions ne seront effectuées qu’avec `optimize: true` dans votre config ou en utilisant l’environnement `--production` (qui est déjà configuré de cette façon)
 
-Comme je vous aime bien, je vous ai même fait [un squelette Brunch](http://github.com/iamvdo/brunch-with-pleeease) pour gagner du temps.
+Comme je vous aime bien, je vous ai même fait [un squelette Brunch](http://github.com/iamvdo/brunch-with-pleeease) pour pouvoir tester plus rapidement.
 
 ##Et avec votre workflow?
 
