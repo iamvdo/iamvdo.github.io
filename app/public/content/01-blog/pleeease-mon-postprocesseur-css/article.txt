@@ -1,11 +1,8 @@
-Title: Pleeease, mon post-processeur CSS
+﻿Title: Pleeease, mon post-processeur CSS
 
 ----
 
-Text: 
-
-
-La semaine dernière, je vous parlais [d’optimisation de workflow front-end](brunch-un-worflow-front-end-simplifie) avec mon task runner préféré [Brunch](http://brunch.io). Aujourd’hui, je vous présente [Pleeease](http://pleeease.io), un post-processeur CSS maison. Apprenez à l’intégrer dans votre workflow pour traiter votre CSS de manière optimale.
+Text: La semaine dernière, je vous parlais [d’optimisation de workflow front-end](brunch-un-worflow-front-end-simplifie) avec mon task runner préféré [Brunch](http://brunch.io). Aujourd’hui, je vous présente [Pleeease](http://pleeease.io), un post-processeur CSS maison. Apprenez à l’intégrer dans votre workflow pour traiter votre CSS de manière optimale.
 
 (image: pleeease-logo.jpg text: Pleeease.io)
 
@@ -272,6 +269,8 @@ La fonction `process` prend 2 arguments, le CSS et les options, et retourne le C
 ##Et après?
 
 Pleeease n’en est encore qu’à ses balbutiements, certainements remplis de bugs. J’attends vos retours et tests avec impatience. :)
+
+Merci à [@goetter](http://twitter.com/goetter) pour les premiers tests.
 
 \#sharethelove
 
