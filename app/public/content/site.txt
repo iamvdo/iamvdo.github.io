@@ -10,7 +10,7 @@ Author: Vincent De Oliveira
 
 ----
 
-Description: Formateur CSS & UI. Auteur du livre CSS3 Le design web moderne. Créateur de css3create.com et de prefixmycss.com.
+Description: Formateur CSS & UI. Auteur du livre CSS3 Le design web moderne. Créateur de css3create.com et de pleeease.io.
 
 ----
 
