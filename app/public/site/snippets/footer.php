@@ -3,7 +3,7 @@
 		<div class="me item item--big item--me">
 			<img class="item-media" src="<?php echo url("images/me.jpg"); ?>" alt="Photo d'identité de moi">
 			<h2>Vincent De Oliveira <small>(aka iamvdo)</small></h2>
-			<p>Salut! Passionné du web, je suis formateur web à l'<a href="http://ensg.eu">ENSG Géomatique</a>, co-auteur du <a href="http://livre-css3.fr">livre «CSS3 Le design web moderne»</a>, créateur de <a href="http://css3create.com">CSS3Create</a> et de <a href="http://prefixmycss.com">PrefixMyCSS</a>.</p><p>J'écris sur mon <a href="<?php echo url('blog') ?>">mon blog</a> et <a href="<?php echo url('ailleurs') ?>">ailleurs</a> et anime même quelques <a href="<?php echo url('conf') ?>">conférences</a>!</p>
+			<p>Salut! Passionné du web, je suis formateur web à l'<a href="http://ensg.eu">ENSG Géomatique</a>, co-auteur du <a href="http://livre-css3.fr">livre «CSS3 Le design web moderne»</a>, créateur de <a href="http://css3create.com">CSS3Create</a> et de <a href="http://pleeease.io">Pleeease</a>.</p><p>J'écris sur mon <a href="<?php echo url('blog') ?>">mon blog</a> et <a href="<?php echo url('ailleurs') ?>">ailleurs</a> et anime même quelques <a href="<?php echo url('conf') ?>">conférences</a>!</p>
 		</div>
 		<div class="underfooter superlink">
 			<?php snippet('menu'); ?>
