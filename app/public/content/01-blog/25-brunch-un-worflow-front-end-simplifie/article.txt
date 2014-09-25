@@ -31,7 +31,7 @@ ____
 
 ##Configurez un nouveau projet
 
-Aucune contrainte. Brunch, comme les autres, ne vous impose rien. Pour pouvoir l’utiliser, vous aurez quand même besoin d’installer en local [Node.js](http://nodejs.com), qui installe par défaut son gestionnaire de modules `npm`.
+Aucune contrainte. Brunch, comme les autres, ne vous impose rien. Pour pouvoir l’utiliser, vous aurez quand même besoin d’installer en local [Node.js](http://nodejs.org), qui installe par défaut son gestionnaire de modules `npm`.
 
 Ensuite, installez Brunch de manière globale:
 
