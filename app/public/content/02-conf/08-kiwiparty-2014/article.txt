@@ -1,0 +1,51 @@
+﻿Title: Kiwi Party 2014
+
+----
+
+Text: Le 13 juin dernier, j'ai eu l'occasion de participer à la [KiwiParty](http://kiwiparty.fr), **cet évènement web strasbourgeois qui prend de l'ampleur…**
+
+Je précise que cet évènement proposant des conférences de qualité, pour pas moins de 250 personnes est organisé par toute l'équipe d'[Alsacréations](http://www.alsacreations.com). **Et il est totalement gratuit**. Je leur tire mon chapeau!
+
+Personnellement, j'y présentais une conférence sur les dessous de la propriété CSS `line-height`. Beaucoup de questionnement autour de cette présentation, notamment sur **le contenu pertinent à traiter sur cette seule propriété**. J'avais la pression. Et pourtant, il y en a des choses à dire. Avant même de commencer, je savais que 25min ne seraient pas de trop.
+
+J'espère avoir le temps d'écrire un article complet traitant cette propriété dans le détail. Pour faire court, j'ai donc pu évoquer les points CSS suivants:
+
+* notion de rythme vertical
+* calcul de hauteur de ligne (line-box), de hauteur d'élément
+* notion de contexte de formatage inline
+* problèmes d'alignements verticaux, `vertical-align`
+* notion de typographie: ligne de base, ascendante, descendante, aspect-ratio, hauteur d'x
+
+Vous pouvez retrouvez [mes slides «line-height cette propriété méconnue» en ligne](http://slides.iamvdo.me/kiwiparty14).
+
+Sinon, je vous conseille également les slides des conférences que j'ai pu suivre et que j'ai trouvées excellentes:
+
+* [Designing for accessibility](http://laurakalbag.com/accessibility-en-france/) de [Laura Kalbag](http://twitter.com/laurakalbag): un bon condensé des pratiques de bon sens pour offrir une bonne accessibilité.
+* [Responsive Logic](http://fr.slideshare.net/JulienZee/responsive-logic) de [Julien Cabanès](http://twitter.com/JulienCabanes): un aperçu des contraintes techniques du Responsive Web Design, parce que le RWD ce n'est pas aussi simple qu'on pourrait le croire.
+* [BEM, vos CSS sous vitamines](http://fr.slideshare.net/tzilliox/bem-vos-css-sous-vitamines) de [Thomas Zilliox](http://twitter.com/iamtzi): une excellente introduction à cette méthodologie de nommage CSS qui peut vous faire gagner en maintenabilité.
+* [ARIA toute une symphonie](https://speakerdeck.com/notabene/aria-toute-une-symphonie) de [Stéphane Deschamps](http://twitter.com/notabene): introduction vraiment claire sur le rôle et la mise en place d'ARIA.
+* [Faire le pont entre designers et développeurs avec Sass au Guardian](http://www.slideshare.net/kaelig/kiwi-party) de [Kaelig Deloumeau-Prigent](http://twitter.com/kaelig): retour d'expérience sur la mise en place de conventions Sass simplifiant le travail entre designers et développeurs.
+
+Non pas que les autres étaient mauvaises, mais je n'ai malheureusement pas pu les suivre. Je vous renvoi vers [la page Lanyrd de la Kiwi Party](http://lanyrd.com/2014/kiwiparty/coverage/) si vous souhaitez les découvrir.
+
+Mais la Kiwi Party, c'est aussi le `::before`, l'`::after`, et pour les plus téméraires, l'`::after::after`. J'ai passé de super moments avec vous. Pour les autres, on se voit l'année prochaine? ;)
+
+----
+
+Subtitle: Line-height, cette propriété méconnue
+
+----
+
+Description: 
+
+----
+
+Date: 2014-06-13 15:00
+
+----
+
+Tags: 
+
+----
+
+Big: 0
