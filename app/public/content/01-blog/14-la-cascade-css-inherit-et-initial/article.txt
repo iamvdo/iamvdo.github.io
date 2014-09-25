@@ -1,18 +1,8 @@
-Title: La cascade CSS: inherit et initial
-----
-Subtitle: 
-----
-Description: 
-----
-Date: 2013-03-22 11:00
-----
-Tags: cascade, inherit, initial
-----
-Big: 0
-----
-Text:
+﻿Title: La cascade CSS: inherit et initial
 
-Dans la [gestion de la cascade CSS](http://www.w3.org/TR/css3-cascade/), il existe deux mots-clés qui peuvent s'avérer bien pratique. Ce sont les mots-clés `inherit` et `initial`.
+----
+
+Text: Dans la [gestion de la cascade CSS](http://www.w3.org/TR/css3-cascade/), il existe deux mots-clés qui peuvent s'avérer bien pratique. Ce sont les mots-clés `inherit` et `initial`.
 
 ## Le mot-clé `inherit`
 
@@ -42,7 +32,7 @@ Le mot-clé `inherit` est très bien supporté dans les navigateurs (depuis IE8)
 Lorsque la valeur d'une propriété CSS est `initial`, la valeur utilisée sera la valeur initiale de la propriété telle qu'elle est définie dans la spécification CSS. **C'est une sorte de retour à un «état normal», non hérité**. Elle peut s'avérer pratique lorsque l'on souhaite annuler l'effet d'héritage tout en réinitialisant à la valeur par défaut:
 
 * lorsque l'on ne se souvient plus de cette valeur (e.g. C'est quoi déjà la valeur par défaut de `white-space`? `auto`, `normal`, `none`, `0`? `initial` est le mot-clé passe-partout)
-* lorsque cette valeur est dynamique (e.g. `text-align` vaut `left` en mode `ltr`, et vaut `right` en mode rtl. `text-align: initial` vaut `left` ou right` en fonction du contexte. Par ailleurs, les valeurs `start` et `end` couvrent justement ce cas là).
+* lorsque cette valeur est dynamique (e.g. `text-align` vaut `left` en mode `ltr`, et vaut `right` en mode rtl. `text-align: initial` vaut `left` ou `right` en fonction du contexte. Par ailleurs, les valeurs `start` et `end` couvrent justement ce cas là).
 
 ### Cas d'utilisation: Annuler la propagation des tailles de police
 
@@ -73,3 +63,23 @@ Pour référence, voici quelques liens intéressants:
 * [initial sur MDN](https://developer.mozilla.org/fr/docs/CSS/initial)
 * [spécification CSS2.1 (inherit)](http://www.w3.org/TR/CSS21/cascade.html#value-def-inherit)
 * [module CSS3 Cascading &amp; Inheritance (inherit et initial)](http://www.w3.org/TR/css3-cascade/#defaulting)
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 2013-03-22 11:00
+
+----
+
+Tags: cascade, inherit, initial
+
+----
+
+Big: 0
