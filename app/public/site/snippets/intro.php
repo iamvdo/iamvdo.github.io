@@ -41,5 +41,5 @@ if ($dir === 'tagged') {
 </section>
 <dl class="news superlink">
 	<dt class="news-title">CONFÉRENCE</dt>
-	<dd class="news-text">J'animerai une mini-conf sur les masques CSS à <a href="http://paris-web.fr">Paris-Web</a> le 16 octobre 2014</dd>
+	<dd class="news-text">Les postprocesseurs CSS à <a href="http://www.blendwebmix.com">Blend Conférence</a> à Lyon le 30 octobre 2014</dd>
 </dl>
