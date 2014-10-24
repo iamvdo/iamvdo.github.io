@@ -1,18 +1,8 @@
-Title: La cascade CSS avancée: all, initial et unset
-----
-Subtitle: 
-----
-Description: 
-----
-Date: 2014-02-06 09:00
-----
-Tags: CSS, cascade, all, initial, unset
-----
-Big: 0
-----
-Text: 
+﻿Title: La cascade CSS avancée: all, initial et unset
 
-Firefox 27 est le premier navigateur a implémenter la gestion de la cascade avancée, à savoir la propriété `all`, et les mots-clés associés `inherit`, `initial` et surtout `unset`.
+----
+
+Text: Firefox 27 est le premier navigateur a implémenter la gestion de la cascade avancée, à savoir la propriété `all`, et les mots-clés associés `inherit`, `initial` et surtout `unset`.
 
 J'ai déjà parlé des [deux premiers `inherit` et `initial`](la-cascade-css-inherit-et-initial) dans un autre billet, je vais donc évoquer ici le troisième `unset`.
 
@@ -74,4 +64,26 @@ Mais dans ce cas là, toutes les propriétés (et même celles définies par le 
 
 Pour info, la valeur par défaut de `display` est `inline` et non `block`, la valeur de `font-family` est `sans-serif`, et ainsi de suite... 
 
-L'utilisation qui en sera faite sera donc très réduite.
+L'utilisation qui en sera faite sera donc très limitée.
+
+**Update 24/10/2014**: Chrome 37 et Opera 24 supporte également `all`. Toujours aucun support dans Safari, ni IE.
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 2014-02-06 09:00
+
+----
+
+Tags: CSS, cascade, all, initial, unset
+
+----
+
+Big: 0
