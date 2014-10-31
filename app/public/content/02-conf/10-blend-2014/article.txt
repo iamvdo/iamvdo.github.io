@@ -1,0 +1,36 @@
+Title: Blend Web Mix 2014
+
+----
+
+Text: Le 30 octobre dernier se tenait BlendWebMix à Lyon, deuxième édition de la conférence qui mixe technique, design et business.
+
+C'était l'occasion pour moi de présenter une conférence sur **«Les postprocesseurs CSS»**, ou comment améliorer son workflow CSS. J'y parlais de préprocesseurs également et surtout de comment profiter du meilleur des 2 mondes.
+
+Pour découvrir la conférence, vous pouvez:
+
+* voir [les slides en ligne (version HTML)](http://slides.iamvdo.me/blend14)
+* voir ce que [les gens en ont pensé via Storify](https://storify.com/iamvdo/les-postprocesseurs-css)
+
+Malheureusement la conférence n'a pas été filmée.
+
+Je remercie toute l'équipe de Blend pour m'avoir convié une deuxième année de suite. Et merci à tous pour vos commentaires, retours et débats. :)
+
+----
+
+Subtitle: Les postprocesseurs CSS
+
+----
+
+Description: 
+
+----
+
+Date: 2014-10-30 15:00
+
+----
+
+Tags: 
+
+----
+
+Big: 0
