@@ -25,10 +25,15 @@ exports.config =
       rem: false
       pseudoElements: false
       opacity: false
+      mqpacker: false
     imageoptimizer:
       smushit: true
       path: '/'
   overrides:
+    noImg:
+      optimize: true
+      plugins:
+        off: ['imageoptmizer-brunch']
     DEV:
       optimize: true
       plugins:
