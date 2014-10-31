@@ -2,7 +2,8 @@
 
 	var heeereOptions = {
 		elems: '.item',
-		smooth: true
+		smooth: true,
+		viewportFactor: 0
 	};
 	var greeedOptions = {
 		breakpoints : [34,48,65,88,110,140],
