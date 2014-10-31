@@ -21,11 +21,17 @@ exports.config =
     wrapper: false
     definition: false
   plugins:
-    postcss:
-      config: (postcss) ->
-        postcss().
-        use(require('css-mqpacker').processor).
-        use(require('autoprefixer')().postcss)
+    pleeease:
+      rem: false
+      pseudoElements: false
+      opacity: false
     imageoptimizer:
       smushit: true
       path: '/'
+  overrides:
+    DEV:
+      optimize: true
+      plugins:
+        pleeease:
+          minifier: false
+        off: ['imageoptmizer-brunch']
