@@ -1,0 +1,37 @@
+Title: Paris-Web 2014
+
+----
+
+Text: Le 16 octobre dernier, j'ai eu le privilège d'animer une conférence à l'évènement web français le plus important à mes yeux: Paris-Web.
+
+Ma conférence de 15 minutes, intitulée **«Les masques CSS, vers de nouveaux usages dans le webdesign»** présente de manière succinte [la nouvelle spécification des masques CSS](http://www.w3.org/TR/css-masking-1/) avec notamment les méthodes de rognage, les différences entre masques CSS et SVG et se termine par quelques démos de ce qui est déjà réalisable aujourd'hui au sein des navigateurs.
+
+Pour découvrir la conférence, vous pouvez:
+
+* voir [les slides en ligne (version HTML)](http://slides.iamvdo.me/parisweb14)
+* regarder la vidéo ci-dessous
+* voir ce que [les gens en ont pensé via Storify](https://storify.com/iamvdo/les-masques-css)
+
+<iframe src="http://new.livestream.com/accounts/1764940/events/3463433/videos/65099212/player?width=640&height=360&autoPlay=false&mute=false" width="640" height="360" frameborder="0" scrolling="no"></iframe>
+
+Je remercie toute l'équipe de Paris-Web qui a fait un boulot énorme sur cette conférence. Merci aussi à tous pour vos commentaires et retours sur mon intervention en particulier, c'est toujours très agréable. :)
+
+----
+
+Subtitle: Les masques CSS, vers de nouveaux usages dans le webdesign
+
+----
+
+Description: 
+
+----
+
+Date: 2014-10-16 10:30
+
+----
+
+Tags: 
+
+----
+
+Big: 0
