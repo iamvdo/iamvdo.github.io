@@ -39,7 +39,7 @@ if ($dir === 'tagged') {
 		</p>
 	</div>
 </section>
-<dl class="news superlink">
+<!-- <dl class="news superlink">
 	<dt class="news-title">CONFÉRENCE</dt>
 	<dd class="news-text">Les postprocesseurs CSS à <a href="http://www.blendwebmix.com">Blend Conférence</a> à Lyon le 30 octobre 2014</dd>
-</dl>
+</dl> -->
