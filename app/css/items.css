@@ -40,7 +40,7 @@
 .item--css3create {
 	background-color: hsl(185, 60%, 41%);
 }
-.item--conf{
+.item--conf {
 	background-color: hsl(150, 60%, 41%);
 }
 .item--livre {
@@ -116,6 +116,8 @@
 .item-subtitle {
 	color: #000;
 	font-size: .8em;
+}
+.item:not(.item--conf) .item-subtitle {
 	opacity: 0;
 	transform: translate(0, 10px);
 	transition: opacity .2s, transform .2s;
