@@ -1,0 +1,90 @@
+Title: Advanced CSS filters
+
+----
+
+Text: Back in 2011, browsers started to implement CSS shorthand filters from the [Filter Effects specification](http://www.w3.org/TR/filter-effects/). Basically, at this time, only SVG filters were supported, and Firefox was the only browser than can applied them to HTML content (it's still the case).
+
+CSS shorthands, like `blur`, `contrast` or `grayscale` are a great addition to CSS, even if SVG filters referenced from CSS can achieve really amazing things. You can learn about these filters from many resources.
+
+Today, I want to go a bit further with two new possibilities with CSS.
+
+##`backdrop-filter`
+
+First of all, there's the `backdrop-filter` property defined in the Filter Effect Level 2. **It allows to apply filters to the backdrop of an element, not the background**. Consider that the backdrop is made up of all elements that can be seen through the element itself, behind its background, cropped to its bounding-box.
+
+Even if [I was sceptical at first](https://twitter.com/iamvdo/status/531822887632904192), I started to play with it in February in WebKit nightlies, and changed my mind: it is pretty awesome. Everyone should agree given my [Vine’s post](https://vine.co/v/OxmjlxdxKxl) that got 20K+ views in less than 48 hours.
+
+<video src="https://v.cdn.vine.co/r/videos/A44431A0F71179224496406986752_28dc713cdfd.5.1.15900121724377662582.mp4?versionId=FW.6zXLaRfmZzzdtdjWYO3VfBLorjaE9" width="300" height="300" autoplay loop muted></video>
+
+In last June, Apple announced at the WWDC conference that this property will be available in Safari 9 later this year. This is good news. So, it's time to test it.
+
+With this property, you can achieve many effects that weren’t easily possible until now. The most common one is the iOS blurred style effect:
+
+	.header {
+		background-color: rgba(255,255,255,.6);
+		backdrop-filter: blur(5px)
+	}
+
+Every element behind the header is blurred by 5px.
+
+<a height="580" class="jsbin-embed" href="http://jsbin.com/mokupo/embed?output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.34.1"></script>
+
+In the demo, I used `@supports` in order to apply `backdrop-filter` along with small adjustments (background color and element's position).
+
+You can also use `backdrop-filter` to improve readability of texts over images:
+
+	.text {
+		backdrop-filter: blur(1px)
+	}
+
+<a class="jsbin-embed" href="http://jsbin.com/rubofa/embed?output">JS Bin on jsbin.com</a>
+
+Or create simple graphic effects, close to what CSS blend-modes offer:
+
+	.text {
+		backdrop-filter: contrast(2) brightness(.3);
+	}
+
+<a class="jsbin-embed" href="http://jsbin.com/ninuva/embed?output">JS Bin on jsbin.com</a>
+
+Few things you should be aware of:
+
+* the background of the element where `backdrop-filter` is applied should be semi-transparent. Unless, you’ll never see the effect.
+* SVG could do this as well, with limitations
+* [there's a bug](https://code.google.com/p/chromium/issues/detail?id=497522) when combining `backdrop-filter` with any properties that crop elements (eg `border-radius`, `mask`, `clip-path`, etc). This means advanced effects are not possible for now.
+* `backdrop-filter` creates a new stacking context, as `opacity` does
+
+##filter()
+
+The second addition is the `filter()` function, not to be confused with the `filter` property. The `filter()` function takes two parameters: an image and a filter, returning a new processing image. This image can then be used with any CSS property that accept images. Something like:
+
+	.element {
+		background: filter(url(path/to/img.jpg), blur(5px));
+	}
+
+With this function, you’re now being able to apply filters to images before using them in backgrounds. You can think of it as a polyfill for `background-opacity`, `background-blur` and so on, but it’s much more powerful.
+
+DEMO FTW
+
+The good news is that this function, even with no mention from Apple, is also supported in Safari 9.
+
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 2016-07-27 15:00
+
+----
+
+Tags: 
+
+----
+
+Big: 1
