@@ -27,9 +27,11 @@ With this property, you can achieve many effects that weren’t easily possible 
 
 Every element behind the header is blurred by 5px.
 
-<a height="580" class="jsbin-embed" href="http://jsbin.com/mokupo/embed?output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.34.1"></script>
+(image: backdrop-filter-1.gif text: Result from my iPad using iOS9)
 
-In the demo, I used `@supports` in order to apply `backdrop-filter` along with small adjustments (background color and element's position).
+[You can test for yourself](http://jsbin.com/mokupo/embed?output) with iOS9 or Safari 9.
+
+In the demo, I use `@supports` in order to apply `backdrop-filter` along with small adjustments (background color and element's position) to keep a readable header even with no effects.
 
 You can also use `backdrop-filter` to improve readability of texts over images:
 
