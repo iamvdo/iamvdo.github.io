@@ -2,7 +2,7 @@
 /**
  * dir is blog, conf, tagged or home
  */
-$dir = $page->uri;
+$dir = $page->uri();
 $title = $page->title();
 $subtitle = $page->subtitle();
 // tag case

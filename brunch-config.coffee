@@ -6,7 +6,12 @@ exports.config =
     javascripts:
       joinTo:
         'js/app.js': /^app/
-        'js/vendor.js': /^(bower_components|vendor)/
+        'js/vendor.js': [
+          'bower_components/classList/classList.min.js',
+          'bower_components/greeed/greeed.js',
+          'bower_components/heeere/heeere.js',
+          /^vendor/
+        ]
       order:
         after: ['app/js/main.js']
     stylesheets:

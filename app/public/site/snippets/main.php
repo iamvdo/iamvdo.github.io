@@ -47,7 +47,7 @@ if ( $isHomePage ) {
 	}
 
 // else if it's tagged's page
-} elseif ( $page->uri === 'tagged') {
+} elseif ( $page->uri() === 'tagged') {
 	// what the tag
 	foreach ($_GET as $key => $value) {
 		$tag = $key;
@@ -57,7 +57,7 @@ if ( $isHomePage ) {
                   ->filterBy('tags', $tag, ',');
 
 // else if we are in a special category (with others articles)
-} elseif ( $page->uri === 'css3create' || $page->uri === 'ailleurs' || $page->uri === 'lab' || $page->uri === 'publi') {
+} elseif ( $page->uri() === 'css3create' || $page->uri() === 'ailleurs' || $page->uri() === 'lab' || $page->uri() === 'publi') {
 
 	$childs = array();
 
@@ -67,7 +67,7 @@ if ( $isHomePage ) {
 		$json[$i]['title'] = unwrap(kirbytext(utf8_decode($json[$i]['title'])));
 		$json[$i]['subtitle'] = (isset($json[$i]['subtitle'])) ? utf8_decode($json[$i]['subtitle']) : '';
 		$json[$i]['image'] = (isset($json[$i]['image'])) ? $json[$i]['image'] : '';
-		$json[$i]['source'] = $page->uri;
+		$json[$i]['source'] = $page->uri();
 
 		if (!isset($json[$i]['lang'])) {
 			$json[$i]['lang'] = 'fr';
@@ -79,7 +79,7 @@ if ( $isHomePage ) {
 
 // else, we are in a simple category
 }else {
-	$childs = $page->children->visible();
+	$childs = $page->children()->visible();
 }
 
 /**
@@ -102,7 +102,7 @@ foreach($childs as $child) {
 		if ($image) {
 			$image = $child->files->find($image)->url();
 		}
-		$source = $child->parent()->uri;
+		$source = $child->parent()->uri();
 		$big = ( isset($child->big()->value) ) ? $child->big()->value : 0;
 
 

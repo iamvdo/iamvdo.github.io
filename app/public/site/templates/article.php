@@ -17,7 +17,7 @@
 		<div class="wrap">
 			<div class="item-media">
 				<?php 
-				$source = $page->parent()->uri;
+				$source = $page->parent()->uri();
 				 ?>
 				<svg viewBox="0 0 100 100" width="50" height="50" class="svg-icon svg-icon--<?php echo $source; ?>">
 					<use xlink:href="#svg-<?php echo $source; ?>">
@@ -28,7 +28,7 @@
 				<p class="u-right"><?php echo l::get('article.readingTime'); ?>&nbsp;: <?php echo ceil(str_word_count(kirbytext($page->text())) / 250); ?>min</p>
 			</div>
 			<div class="article-text language-css">
-				<?php echo kirbytext($page->text()); ?>
+				<?php echo $page->text()->kirbytext(); ?>
 			</div>
 			<div class="article-utils article-utils--footer">
 				<?php 

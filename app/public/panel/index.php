@@ -1,101 +1,47 @@
 <?php
 
-// used for direct access protection
-define('KIRBY', true);
+define('DS', DIRECTORY_SEPARATOR);
 
-/*
+// fetch the site's index directory
+$index = dirname(__DIR__);
 
----------------------------------------
-Panel folder name
----------------------------------------
-Will be autodetected. Only change if you 
-know what you are doing
+// load the kirby bootstrapper
+require($index . DS . 'kirby' . DS . 'bootstrap.php');
 
-*/
-$folder = basename(dirname(__FILE__));
+// load the panel bootstrapper
+require(__DIR__ . DS . 'app' . DS . 'bootstrap.php');
 
-/*
-
----------------------------------------
-Document root of your kirby installation
----------------------------------------
-By default the panel must be installed in a 
-subfolder of your kirby site. Otherwise it 
-won't be able to load all the required files. 
-You can change that here but you must
-also change all the other roots to lead to
-the right folders. Don't change it if you 
-are not sure about it. 
-
-*/
-// old root
-$root = dirname(dirname(__FILE__));
-
-// my root
-// go to static 'app/assets', brunch compile after to 'public': epic win
-//$root = str_replace('public', 'iamvdo.github.io/app/assets', $root);
-
-/*
-
----------------------------------------
-Kirby system folder
----------------------------------------
-Link to the kirby system folder. 
-The panel loads a bunch of system files 
-from there, so this must be correct. 
-
-*/
-$rootKirby = $root . '/kirby';
-
-
-/*
-
----------------------------------------
-Site folder
----------------------------------------
-If you moved or reanamed your site folder
-you must change it here as well.
-Blueprints, config and accounts will be loaded
-from there. 
-
-*/
-$rootSite    = $root . '/site';
-$rootContent = $root . '/content';
-$rootPanel   = $root . '/' . $folder;
-
-// include kirby
-require_once($rootKirby . '/lib/kirby.php');
-require_once($rootPanel . '/lib/load.php');
-
-// set the root
-c::set('root',          $root);
-c::set('root.kirby',    $rootKirby);
-c::set('root.site',     $rootSite);
-c::set('root.content',  $rootContent);
-c::set('root.panel',    $rootPanel);
-
-// panel version
-c::set('panel.version.string', '0.9.2');
-c::set('panel.version.number', 0.92);
-c::set('panel.min.kirby.version', 1.11);
-c::set('panel.folder', $folder);
-
-paneload::lib();
-paneload::config();
-paneload::parsers();
-
-// switch on errors
-if(c::get('debug')) {
-  error_reporting(E_ALL);
-  ini_set('display_errors', 1);
+// check for a custom site.php
+if(file_exists($index . DS . 'site.php')) {
+  // load the custom config
+  require($index . DS . 'site.php');
 } else {
-  error_reporting(0);
-  ini_set('display_errors', 0);
+  // create a new kirby object
+  $kirby = kirby();
 }
 
-// set the timezone to make sure we 
-// avoid errors in php 5.3
-@date_default_timezone_set(c::get('timezone'));
+// fix the base url for the kirby installation
+if(!isset($kirby->urls->index)) {
+  $kirby->urls->index = dirname($kirby->url());
+}
 
-$site = new panel();
-$site->load();
+// the default index directory
+if(!isset($kirby->roots->index)) {
+  $kirby->roots->index = $index;
+}
+
+// the default avatar directory
+if(!isset($kirby->roots->avatars)) {
+  $kirby->roots->avatars = $index . DS . 'assets' . DS . 'avatars';
+}
+
+// the default thumbs directory
+if(!isset($kirby->roots->thumbs)) {
+  $kirby->roots->thumbs = $index . DS . 'thumbs';
+}
+
+// create the panel object
+$panel = new Panel($kirby, __DIR__);
+
+// launch the panel
+echo $panel->launch();

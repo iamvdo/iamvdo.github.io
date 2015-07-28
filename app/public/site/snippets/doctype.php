@@ -14,3 +14,4 @@
 	<meta name="twitter:site:id" content="132682355">
 	<meta name="twitter:creator" content="@iamvdo">
 	<meta property="og:image" content="<?php echo $site->full_url() . url('images/apple-touch-152.png'); ?>">
+	<script src="//assets.codepen.io/assets/embed/ei.js"></script>
