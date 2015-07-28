@@ -1,14 +1,1 @@
-<?php 
-
-$tags = explode(',', $page->tags()->value );
-
-?>
-
-publié il y a <?php echo setDateFr( $page->date(), true ); ?>
-<?php 
-foreach($tags as $tag){ 
-	?>
-	<a class="superLink" href="<?php echo $site->url(); ?>/tagged?<?php echo trim( $tag ); ?>"><?php echo trim( $tag ); ?></a>
-<?php 
-} 
-?>
+<?php echo l::get('article.publication') . ' ' . setDate($page->date(), c::get('lang.current')) . ' ' . l::get('article.publicationAgo') . setFullDate($page->date(), c::get('lang.current')); ?>

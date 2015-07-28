@@ -1,0 +1,32 @@
+Title: Elsewhere
+----
+Subtitle: Other articles written elsewhere
+----
+Articles:
+
+{
+"0": 
+  {
+  "title": "Les transformations 3D en CSS3, *Blog HTML5-CSS3*",
+  "subtitle": "http://www.html5-css3.fr",
+  "url": "http://www.html5-css3.fr/css3/transformations-3d-css3",
+  "date": "2011-11-08 10:30:00",
+  "big": "1"
+  },
+"1": 
+  {
+  "title": "Les transitions et animations CSS, *Le train de 13h37*",
+  "subtitle": "http://letrainde13h37.fr",
+  "url": "http://letrainde13h37.fr/17/transitions-et-animations-css/",
+  "date": "2012-09-04 13:37:00",
+  "big": "1"
+  },
+"2":
+  {
+  "title": "Les masques CSS, *24 jours de web*",
+  "subtitle": "http://www.24joursdeweb.fr",
+  "url": "http://www.24joursdeweb.fr/2013/les-masques-css/",
+  "date": "2013-12-12 09:00:00",
+  "big": "1"
+  }
+}

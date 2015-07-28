@@ -1,0 +1,15 @@
+Title: Tiny error
+----
+Subtitle: Page was not found (and it's too bad)
+----
+Text:
+
+But, that doesn't matter. :)
+
+Le plus simple d'ici:
+
+* Take third road on the left
+* At the roundabout, go straight
+* You should find your way
+
+Anyway, you could [go back to homepage](/) or follow our recommandations:

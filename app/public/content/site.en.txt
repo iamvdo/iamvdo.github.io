@@ -1,0 +1,25 @@
+Title: Vincent De Oliveira - CSS & UI
+
+----
+
+Subtitle: iamvdo
+
+----
+
+Author: Vincent De Oliveira
+
+----
+
+Description: Formateur CSS & UI. Auteur du livre CSS3 Le design web moderne. Créateur de css3create.com et de pleeease.io.
+
+----
+
+Full_url: http://iamvdo.me
+
+----
+
+Footer: Hello! I love the web and the open-source, co-author of a [french CSS3 book](http://livre-css3.fr), I also made [Pleeease](http://pleeease.io) and co-organize CSS Paris meetups.
+
+----
+
+Mentions: Hand-made with <span class="u-small">♥</span>, <a href="https://github.com/iamvdo/Greeed">Greeed</a>, <a href="https://github.com/iamvdo/Heeere">Heeere</a> and <a href="http://getkirby.com">Kirby</a>.

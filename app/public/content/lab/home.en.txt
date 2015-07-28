@@ -1,0 +1,18 @@
+Title: Experiments
+----
+Subtitle: Experiences with no goal
+----
+Articles:
+
+{
+"0": 
+  {
+  "title": "Skeuomorphic Payment Experiment",
+  "subtitle": "An online payment experiment that visually simulates a credit card",
+  "url": "http://iamvdo.me/css/skeuomorphic-payment-experiment/",
+  "image": "http://iamvdo.me/css/skeuomorphic-payment-experiment/images/skeuomorphic-payment-experiment.jpg",
+  "date": "2013-01-30 10:30:00",
+  "big": "1",
+  "lang": "en"
+  }
+}
