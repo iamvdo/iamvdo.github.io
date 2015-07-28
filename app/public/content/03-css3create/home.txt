@@ -12,7 +12,8 @@ Articles:
 	"url": "http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target",
 	"image": "",
 	"date": "2011-12-05 09:45:00",
-	"big": "0"
+	"big": "0",
+	"lang": "fr"
 	},
 "1": 
 	{
@@ -21,7 +22,8 @@ Articles:
 	"url": "http://www.css3create.com/CSS-3D-Panorama",
 	"image": "",
 	"date": "2012-01-05 10:55:00",
-	"big": "0"
+	"big": "0",
+	"lang": "fr"
 	},
 "2": 
 	{
@@ -30,7 +32,8 @@ Articles:
 	"url": "http://www.css3create.com/Menu-en-full-CSS-style-Lavalamp",
 	"image": "http://www.css3create.com/IMG/arton40.png",
 	"date": "2012-01-18 00:00:00",
-	"big": "1"
+	"big": "1",
+	"lang": "fr"
 	},
 "3": 
 	{
@@ -39,7 +42,8 @@ Articles:
 	"url": "http://www.css3create.com/Effets-de-survol-avec-transitions-et-filtres-CSS",
 	"image": "http://www.css3create.com/IMG/arton78.png",
 	"date": "2012-06-27 00:00:00",
-	"big": "0"
+	"big": "0",
+	"lang": "fr"
 	},
 "4": 
 	{
@@ -48,7 +52,8 @@ Articles:
 	"url": "http://www.css3create.com/Barre-de-progression-avec-l-element-HTML5-progress",
 	"image": "http://www.css3create.com/IMG/arton79.png",
 	"date": "2012-09-25 14:13:57",
-	"big": "0"
+	"big": "0",
+	"lang": "fr"
 	},
 "5": 
 	{
@@ -57,7 +62,8 @@ Articles:
 	"url": "http://www.css3create.com/Effet-coverflow-en-full-CSS",
 	"image": "http://www.css3create.com/IMG/arton82.png",
 	"date": "2012-10-09 10:07:36",
-	"big": "0"
+	"big": "0",
+	"lang": "fr"
 	},
 "6": 
 	{
@@ -66,7 +72,8 @@ Articles:
 	"url": "http://www.css3create.com/Navigation-a-onglets-fluides-avec-les-transitions-CSS",
 	"image": "http://www.css3create.com/IMG/arton80.png",
 	"date": "2012-10-25 14:56:41",
-	"big": "1"
+	"big": "1",
+	"lang": "fr"
 	},
 "7": 
 	{
@@ -75,7 +82,8 @@ Articles:
 	"url": "http://www.css3create.com/Effet-de-brillance-en-CSS-et-SVG",
 	"image": "http://www.css3create.com/IMG/artoff86.png",
 	"date": "2013-01-17 15:13:34",
-	"big": "1"
+	"big": "1",
+	"lang": "fr"
 	},
 "8": 
 	{
@@ -84,7 +92,8 @@ Articles:
 	"url": "http://www.css3create.com/Effet-accordeon-sur-une-image-en-CSS",
 	"image": "http://www.css3create.com/IMG/artoff87.jpg",
 	"date": "2013-02-06 22:09:23",
-		"big": "0"
+		"big": "0",
+		"lang": "fr"
 	},
 "9": 
 	{
@@ -93,7 +102,8 @@ Articles:
 	"url": "http://www.css3create.com/Reflection-en-CSS-sur-une-image",
 	"image": "http://www.css3create.com/IMG/artoff88.jpg",
 	"date": "2013-04-30 10:52:10",
-	"big": "0"
+	"big": "0",
+	"lang": "fr"
 	},
 "10": 
 	{
@@ -102,7 +112,8 @@ Articles:
 	"url": "http://www.css3create.com/Effet-soft-focus-en-CSS",
 	"image": "http://www.css3create.com/IMG/artoff90.jpg",
 	"date": "2013-05-31 11:16:14",
-	"big": "0"
+	"big": "0",
+	"lang": "fr"
 	},
 "11": 
 	{
@@ -111,7 +122,8 @@ Articles:
 	"url": "http://www.css3create.com/Filtre-CSS-flou-localise-ou-flou-progressif",
 	"image": "http://www.css3create.com/IMG/artoff91.png",
 	"date": "2013-06-20 15:50:38",
-	"big": "1"
+	"big": "1",
+	"lang": "fr"
 	},
 "12": 
 	{
@@ -120,7 +132,8 @@ Articles:
 	"url": "http://www.css3create.com/Simuler-background-clip-text",
 	"image": "http://www.css3create.com/IMG/artoff93.jpg",
 	"date": "2013-11-26 10:34:42",
-	"big": "1"
+	"big": "1",
+	"lang": "fr"
 	},
 "13": 
 	{
@@ -129,50 +142,7 @@ Articles:
 	"url": "http://www.css3create.com/Ombre-interne-sur-du-texte",
 	"image": "http://www.css3create.com/IMG/artoff94.jpg",
 	"date": "2013-11-26 10:34:49",
-	"big": "0"
+	"big": "0",
+	"lang": "fr"
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

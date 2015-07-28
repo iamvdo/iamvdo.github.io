@@ -15,3 +15,11 @@ Description: Formateur CSS & UI. Auteur du livre CSS3 Le design web moderne. Cr�
 ----
 
 Full_url: http://iamvdo.me
+
+----
+
+Footer: Salut! Passionné du web, je suis formateur web à l'[ENSG Géomatique](http://ensg.eu), co-auteur du [livre «CSS3 Le design web moderne»](http://livre-css3.fr), créateur de [CSS3Create](http://css3create.com) et de [Pleeease](http://pleeease.io). J'écris sur [mon blog](/) et [ailleurs](/ailleurs) et anime même quelques [conférences](/conf)!
+
+----
+
+Mentions: Fait main avec <span class="u-small">♥</span>, <a href="https://github.com/iamvdo/Greeed">Greeed</a>, <a href="https://github.com/iamvdo/Heeere">Heeere</a> et <a href="http://getkirby.com">Kirby</a>.

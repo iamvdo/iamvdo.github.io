@@ -1,3 +1,4 @@
+@charset 'UTF-8';
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,600);
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
 @font-face {
@@ -92,7 +93,10 @@ header{
 .reseaux-item:focus {
 	
 }
-.name a span {
+.name a {
+	white-space: nowrap;
+}
+.name a span.text {
 	display: inline-block;
 	opacity: 1;
 	transition: transform .2s, opacity .2s;
@@ -107,15 +111,14 @@ header{
 	transform: translate(-50px);
 	transition: transform .3s cubic-bezier(.5,2,.5,.8), opacity .3s;
 }
-.name a::after {
-	content: 'Retour accueil';
+.name a span.retour {
 	white-space: nowrap;
 	position: absolute;
 	left: 2em;
 	opacity: 0;
 	transition: transform .3s, opacity .3s;
 }
-.name a:hover span {
+.name a:hover span.text {
 	opacity: 0;
 	transform: translate(10px);
 }
@@ -123,7 +126,7 @@ header{
 	opacity: 1;
 	transform: translate(-12px);
 }
-.name a:hover::after {
+.name a:hover span.retour {
 	opacity: 1;
 	transform: translate(-10px);
 }

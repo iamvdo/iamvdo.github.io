@@ -1,46 +1,14 @@
-<?php 
-//include('connect.php');
-
-/**
- * BDD import
- * 1. CSS3Create data (via RSS) TODO, mabe use a text file
- */
+<?php
 
 $links = array();
+$currentLang = c::get('lang.current');
 
-/*
-if($r = $mysqli->query('SELECT * FROM articles WHERE source="CSS3Create"')){
-	$json = '{';
-	$compteur = 0;
-	while($data = $r->fetch_assoc()){
-		$json .= '"' . $compteur . '": {';
-		foreach ($data as $key => $value) {
-
-			// swith title and subtitle
-			if ($key === 'titre') {
-				$key = 'title';
-			} elseif ($key === 'soustitre') {
-				$key = 'subtitle';
-			}
-
-			$json .= '"' . $key . '": "' . utf8_encode($value) . '", ';
-		}
-		$json = substr($json, 0, strlen($json) - 2);
-
-		$json .= '}, ';
-
-		$compteur++;
-
-	}
-	$json = substr($json, 0, strlen($json) - 2);
-	$json .= '}';
-}
-*/
-//echo $json;
 
 function addArticleToLinks ($data, &$links) {
 
-	$links[strtotime($data['date'])] = $data;
+	if ($data['lang'] === c::get('lang.current')) {
+		$links[strtotime($data['date'])] = $data;
+	}
 
 }
 
@@ -56,7 +24,7 @@ $isHomePage = $page->isHomePage();
 if ( $isHomePage ) {
 	// list all pages: blog, conf, css
 	$childs = $pages->find('blog','conf','css')->children()->visible();
-	//print_r($childs);
+
 	// + list all others articles
 	$search = array('css3create', 'ailleurs', 'lab', 'publi');
 	$data = array();
@@ -68,6 +36,10 @@ if ( $isHomePage ) {
 			$json[$i]['subtitle'] = (isset($json[$i]['subtitle'])) ? utf8_decode($json[$i]['subtitle']) : '';
 			$json[$i]['image'] = (isset($json[$i]['image'])) ? $json[$i]['image'] : '';
 			$json[$i]['source'] = $value;
+
+			if (!isset($json[$i]['lang'])) {
+				$json[$i]['lang'] = 'fr';
+			}
 
 			// add to $links
 			addArticleToLinks($json[$i], $links);
@@ -97,6 +69,10 @@ if ( $isHomePage ) {
 		$json[$i]['image'] = (isset($json[$i]['image'])) ? $json[$i]['image'] : '';
 		$json[$i]['source'] = $page->uri;
 
+		if (!isset($json[$i]['lang'])) {
+			$json[$i]['lang'] = 'fr';
+		}
+
 		// add to $links
 		addArticleToLinks($json[$i], $links);
 	}
@@ -105,16 +81,18 @@ if ( $isHomePage ) {
 }else {
 	$childs = $page->children->visible();
 }
-//echo 'toto';
-//print_r($links);
 
 /**
  * get infos of all pages
  */
 foreach($childs as $child) {
 
+	if ( !$child->content($currentLang) ) {
+		continue;
+	}
+
 	if (is_array($child)) {
-		
+
 		$data = $child;
 
 	} else {
@@ -135,13 +113,14 @@ foreach($childs as $child) {
 			'date' => $child->date('Y-m-d H:i:s'),
 			'source' => $source,
 			'image' => $image,
-			'big' => $big
+			'big' => $big,
+			'lang' => $currentLang
 		);
 
 	}
 
 	addArticleToLinks($data, $links);
-	//$links[strtotime($data['date'])] = $data;
+
 }
 
 /**
@@ -149,8 +128,6 @@ foreach($childs as $child) {
  */
 krsort($links);
 
-//echo 'tata';
-//print_r($links);
  ?>
 
 <section class="main" role="main">
@@ -159,7 +136,6 @@ krsort($links);
 	$mois = array('janv', 'févr', 'mars', 'avril', 'mai', 'juin', 'juil', 'août', 'sept', 'oct', 'nov', 'déc');
 	$today = new DateTime();
 	foreach($links as $content){
-		//print_r($content);
 		$element = 'item';
 		$title = utf8_encode($content['title']);
 		$subtitle = utf8_encode($content['subtitle']);
@@ -212,7 +188,7 @@ krsort($links);
 				?>
 				<time class="<?php echo $element . '-date'; ?>">
 					<?php 
-					echo setDateFr($time);
+					echo setDate($time, $currentLang);
 					if ($new) {
 						?>
 						<span class="<?php echo $element . '-date-new'; ?>" style="font: normal .75em sans-serif;
@@ -220,7 +196,7 @@ krsort($links);
 	background: #f03d36;
 	margin-left: 1em;
 	padding: .1em .5em;
-	border-radius: 2px;">RÉCENT</span>
+	border-radius: 2px;"><?php echo l::get('article.new') ?></span>
 						<?php
 					}?>
 				</time>

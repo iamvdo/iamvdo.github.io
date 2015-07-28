@@ -25,7 +25,7 @@
 			</div>
 			<div class="article-utils">
 				<a class="utils-link" href="<?php echo url($source); ?>"><?php echo $page->parent->title(); ?></a>
-				<p class="u-right">Lecture&nbsp;: <?php echo ceil(str_word_count(kirbytext($page->text())) / 250); ?>min</p>
+				<p class="u-right"><?php echo l::get('article.readingTime'); ?>&nbsp;: <?php echo ceil(str_word_count(kirbytext($page->text())) / 250); ?>min</p>
 			</div>
 			<div class="article-text language-css">
 				<?php echo kirbytext($page->text()); ?>
@@ -49,7 +49,7 @@
 		<div id="disqus_thread" class="wrap">
 			<?php
 			$count = '';
-			$msg = 'Écrire un commentaire';
+			$msg = l::get('comments.write');
 			$req = curl_init('http://iamvdo.disqus.com/count-data.js?2=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 			curl_setopt($req, CURLOPT_RETURNTRANSFER, true);
 
@@ -61,11 +61,11 @@
 					// get the count
 					$count = substr($str, $i + strlen($needle), -7);
 					if ($count != 0) {
-						$msg = 'Charger les commentaires<span> (' . $count . ')</span>';
+						$msg = l::get('comments.load') . '<span> (' . $count . ')</span>';
 					}
 				} else {
 					// else, we don't know how many comments
-					$msg = 'Charger les commentaires';
+					$msg = l::get('comments.load');
 				}
 			}
 			?>

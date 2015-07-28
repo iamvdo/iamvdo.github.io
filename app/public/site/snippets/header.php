@@ -4,7 +4,10 @@
 	 ?>
 	<div class="wrap">
 		<p class="name">
-			<a href="<?php echo url('/'); ?>"><span><strong>Vincent</strong> De Oliveira</span></a>
+			<a href="<?php echo url('/'); ?>">
+				<span class="text"><strong>Vincent</strong> De Oliveira</span>
+				<span class="retour"><?php echo l::get('backHome'); ?></span>
+			</a>
 		</p>
 		<nav class="menu u-right" role="navigation">
 			<a class="menu-item icon icon--blog" href="<?php echo url('blog'); ?>">

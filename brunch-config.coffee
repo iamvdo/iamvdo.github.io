@@ -26,6 +26,7 @@ exports.config =
       pseudoElements: false
       opacity: false
       mqpacker: false
+      import: false
     imageoptimizer:
       smushit: true
       path: '/'
