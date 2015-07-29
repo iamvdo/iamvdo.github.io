@@ -135,9 +135,25 @@ header{
 }
 .menu-item {
 	display: inline-block;
+	vertical-align: middle;
+	height: 3.2em;
 	color: rgba(0,0,0,.5);
 	font-weight: bold;
 	margin: 0 .25em;
+	color: #fff;
+	
+	font-weight: normal;
+}
+.lang {
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	line-height: normal;
+}
+.lang-item {
+	display: block;
+	font-size: .8em;
+	text-decoration: none;
 }
 .icon {
 	width: 2.3em;

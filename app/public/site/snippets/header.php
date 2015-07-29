@@ -43,6 +43,25 @@
 					</g>
 				</svg>
 			</a>
+			<div class="menu-item lang">
+				<?php 
+				foreach ($site->languages() as $lang) {
+					if ($site->language() == $lang) {
+						?>
+						<span class="lang-item">
+							<?php echo $lang->code(); ?>
+						</span>
+					<?php
+					} else {
+						?>
+						<a class="lang-item" href="<?php echo $lang->url() ?>">
+							<?php echo $lang->code(); ?>
+						</a>
+					<?php
+					}
+				}
+				 ?>
+			</div>
 		</nav>
 	</div>
 </header>
