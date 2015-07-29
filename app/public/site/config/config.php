@@ -406,11 +406,23 @@ to set the default locale settings for all PHP functions
 
 */
 
-c::set('lang.support', true);
-c::set('lang.default', 'fr');
-c::set('lang.available', array('fr', 'en'));
-c::set('lang.detect', true);
-c::set('lang.locale', false);
+
+c::set('languages', array(
+  array(
+    'code'    => 'en',
+    'name'    => 'English',
+    'locale'  => 'en_US',
+    'url'     => '/en',
+  ),
+  array(
+    'code'    => 'fr',
+    'name'    => 'Français',
+    'default' => true,
+    'locale'  => 'fr',
+    'url'     => '/',
+  ),
+));
+c::set('language.detect', true);
 
 /* 
 
