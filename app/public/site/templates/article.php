@@ -33,14 +33,26 @@
 			<div class="article-utils article-utils--footer">
 				<?php 
 				if ($page->hasPrevVisible('date')) {
+					$ownLang = $page->prevVisible('date')->content()->language();
+					if ($ownLang == '') {
+						$ownLang = $site->defaultLanguage()->code();
+					}
+					if ( $site->language()->code() == $ownLang ) {
 					?>
-					<a class="utils-link" href="<?php echo $page->prevVisible('date')->url(); ?>"><?php echo $page->prevVisible('date')->title(); ?></a>
-					<?php
+						<a class="utils-link" href="<?php echo $page->prevVisible('date')->url(); ?>"><?php echo $page->prevVisible('date')->title(); ?></a>
+						<?php
+					}
 				}
 				if ($page->hasNextVisible('date')) {
-					?>
-					<a class="utils-link utils-link--next u-right" href="<?php echo $page->nextVisible('date')->url(); ?>"><?php echo $page->nextVisible('date')->title(); ?></a>
-					<?php
+					$ownLang = $page->nextVisible('date')->content()->language();
+					if ($ownLang == '') {
+						$ownLang = $site->defaultLanguage()->code();
+					}
+					if ( $site->language()->code() == $ownLang ) {
+						?>
+						<a class="utils-link utils-link--next u-right" href="<?php echo $page->nextVisible('date')->url(); ?>"><?php echo $page->nextVisible('date')->title(); ?></a>
+						<?php
+					}
 				}
 				?>
 			</div>
