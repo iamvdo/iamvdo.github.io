@@ -409,18 +409,18 @@ to set the default locale settings for all PHP functions
 
 c::set('languages', array(
   array(
-    'code'    => 'en',
-    'name'    => 'English',
-    'locale'  => 'en_US',
-    'url'     => '/en',
-  ),
-  array(
     'code'    => 'fr',
     'name'    => 'Français',
     'default' => true,
     'locale'  => 'fr',
-    'url'     => '/',
+    'url'     => '/'
   ),
+  array(
+    'code'    => 'en',
+    'name'    => 'English',
+    'locale'  => 'en_US',
+    'url'     => '/en'
+  )
 ));
 c::set('language.detect', true);
 
