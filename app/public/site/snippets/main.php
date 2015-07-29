@@ -1,15 +1,12 @@
 <?php
 
 $links = array();
-$currentLang = c::get('lang.current');
+$currentLang = $site->language()->code();
 
-
-function addArticleToLinks ($data, &$links) {
-
-	if ($data['lang'] === c::get('lang.current')) {
+function addArticleToLinks ($data, &$links, $lang) {
+	if ($data['lang'] === $lang) {
 		$links[strtotime($data['date'])] = $data;
 	}
-
 }
 
 /**
@@ -42,7 +39,7 @@ if ( $isHomePage ) {
 			}
 
 			// add to $links
-			addArticleToLinks($json[$i], $links);
+			addArticleToLinks($json[$i], $links, $currentLang);
 		}
 	}
 
@@ -54,7 +51,7 @@ if ( $isHomePage ) {
 	}
 	// list all pages with the tag
 	$childs = $pages->find('blog', 'conf')->children()->visible()
-                  ->filterBy('tags', $tag, ',');
+				  ->filterBy('tags', $tag, ',');
 
 // else if we are in a special category (with others articles)
 } elseif ( $page->uri() === 'css3create' || $page->uri() === 'ailleurs' || $page->uri() === 'lab' || $page->uri() === 'publi') {
@@ -74,7 +71,7 @@ if ( $isHomePage ) {
 		}
 
 		// add to $links
-		addArticleToLinks($json[$i], $links);
+		addArticleToLinks($json[$i], $links, $currentLang);
 	}
 
 // else, we are in a simple category
@@ -87,7 +84,12 @@ if ( $isHomePage ) {
  */
 foreach($childs as $child) {
 
-	if ( !$child->content($currentLang) ) {
+	$ownLang = $child->content()->language();
+	if ($ownLang == '') {
+		$ownLang = $site->defaultLanguage()->code();
+	}
+
+	if ( $site->language()->code() != $ownLang ) {
 		continue;
 	}
 
@@ -119,7 +121,7 @@ foreach($childs as $child) {
 
 	}
 
-	addArticleToLinks($data, $links);
+	addArticleToLinks($data, $links, $currentLang);
 
 }
 
@@ -210,7 +212,7 @@ krsort($links);
 			<!--<![endif]-->
 		</li>
 	<?php
-	}	
+	}   
 	 ?>
 	</ul>
 </section>
