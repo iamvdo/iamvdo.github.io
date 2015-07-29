@@ -43,3 +43,78 @@ RewriteRule ^(.*) index.php [L]
 # AddDefaultCharset UTF-8
 #
 # php_flag short_open_tag on
+
+
+# redirect to blog
+Redirect permanent /post/18948004680/astuce-utiliser-les-transitions-css-sur-les-degrades http://iamvdo.me/blog/astuce-utiliser-les-transitions-css-sur-les-degrades
+Redirect permanent /post/20001855905/imbrication-de-boites-en-css-avec-display-table http://iamvdo.me/blog/imbrication-de-boites-en-css-avec-display-table
+Redirect permanent /post/24194225426/ie10-supprime-les-prefixes-de-plusieurs-proprietes-css3 http://iamvdo.me/blog/ie10-supprime-les-prefixes-de-plusieurs-proprietes-css3
+Redirect permanent /post/27322738788/conseil-pour-les-degrades-lineaires-en-css http://iamvdo.me/blog/conseil-pour-les-degrades-lineaires-en-css
+Redirect permanent /post/32892255091/animer-les-pseudo-elements-avec-les-transitions-css http://iamvdo.me/blog/animer-les-pseudo-elements-avec-les-transitions-css
+Redirect permanent /post/34230233656/utilisez-viewport-pour-le-responsive http://iamvdo.me/blog/utilisez-viewport-pour-le-responsive
+Redirect permanent /post/36291021886/concours-css-anti-design http://iamvdo.me/blog/concours-css-anti-design
+Redirect permanent /post/38295993643/ca-bouge-dans-webkit http://iamvdo.me/blog/ca-bouge-dans-webkit
+Redirect permanent /post/40678404264/les-filtres-css-opacity-et-drop-shadow http://iamvdo.me/blog/les-filtres-css-opacity-et-drop-shadow
+Redirect permanent /post/41094013194/comprendre-z-index-et-les-contextes-dempilement http://iamvdo.me/blog/comprendre-z-index-et-les-contextes-dempilement
+Redirect permanent /post/42510603205/styler-les-input-inactifs-disabled-sur-ios-iphone http://iamvdo.me/blog/styler-les-input-inactifs-disabled-sur-ios-iphone
+Redirect permanent /post/44216635297/css3-layout-par-zoe-m-gillenwater http://iamvdo.me/blog/css3-layout-par-zoe-m-gillenwater
+Redirect permanent /post/45259636008/pourquoi-je-nutilise-pas-les-preprocesseurs-css http://iamvdo.me/blog/pourquoi-je-nutilise-pas-les-preprocesseurs-css
+Redirect permanent /post/45981346020/la-cascade-css-inherit-et-initial http://iamvdo.me/blog/la-cascade-css-inherit-et-initial
+Redirect permanent /post/46251119961/les-avantages-de-hsl-par-rapport-a-rgb http://iamvdo.me/blog/les-avantages-de-hsl-par-rapport-a-rgb
+Redirect permanent /post/48115638979/box-decoration-break-son-support-progresse http://iamvdo.me/blog/box-decoration-break-son-support-progresse
+Redirect permanent /post/48120687924/les-transformations-3d-css-avec-ie10 http://iamvdo.me/blog/les-transformations-3d-css-avec-ie10
+Redirect permanent /post/67740912296/les-postprocesseurs-css http://iamvdo.me/blog/les-postprocesseurs-css
+Redirect permanent /post/70376667669/myth-un-post-processeur-css http://iamvdo.me/blog/myth-un-post-processeur-css
+
+#redirect to conf
+Redirect permanent /post/22584600061/kiwiparty-2012 http://iamvdo.me/conf/kiwi-party-2012
+Redirect permanent /post/26341983392/atelier-w3cafe-standards-web http://iamvdo.me/conf/w3cafe-2012
+Redirect permanent /post/40511090812/sfeirplays-conference-css3 http://iamvdo.me/conf/sfeir-plays-2013
+Redirect permanent /post/48762843099/retour-sur-9eme-meetup-html5-css3-pizzas http://iamvdo.me/conf/9eme-meetup-html5-css3-pizzas
+Redirect permanent /post/54330620081/retour-sur-kiwi-party-2013 http://iamvdo.me/conf/kiwi-party-2013
+
+Redirect permanent /conf/2012/kiwiparty http://slides.iamvdo.me/kiwiparty12
+Redirect permanent /conf/2012/w3cafe http://slides.iamvdo.me/w3cafe12
+Redirect permanent /conf/2013/sfeir http://slides.iamvdo.me/sfeir13
+Redirect permanent /conf/2013/meetupHTML5 http://slides.iamvdo.me/meetup13
+Redirect permanent /conf/2013/kiwiparty http://slides.iamvdo.me/kiwiparty13
+Redirect permanent /conf/2013/blend http://slides.iamvdo.me/blend13
+
+#redirect to lab
+Redirect permanent /post/41891853202/skeuomorphic-payment-experiment http://lab.iamvdo.me/skeuomorphic-payment-experiment
+Redirect permanent /css/skeuomorphic-payment-experiment http://lab.iamvdo.me/skeuomorphic-payment-experiment
+
+# ?
+Redirect permanent /post/22251940213/css-3d-panorama http://css3create.com/css/panorama3D
+Redirect permanent /post/41050426355/effet-de-brillance-en-css-et-svg http://www.css3create.com/Effet-de-brillance-en-CSS-et-SVG
+Redirect permanent /post/52123635426/livecoding-un-plugin-pour-editer-du-code-en-live-dans https://github.com/iamvdo/Reveal-liveCoding
+
+
+# disqus need
+# redirect to blog
+Redirect permanent /post/18948004680 http://iamvdo.me/blog/astuce-utiliser-les-transitions-css-sur-les-degrades
+Redirect permanent /post/20001855905 http://iamvdo.me/blog/imbrication-de-boites-en-css-avec-display-table
+Redirect permanent /post/24194225426 http://iamvdo.me/blog/ie10-supprime-les-prefixes-de-plusieurs-proprietes-css3
+Redirect permanent /post/27322738788 http://iamvdo.me/blog/conseil-pour-les-degrades-lineaires-en-css
+Redirect permanent /post/32892255091 http://iamvdo.me/blog/animer-les-pseudo-elements-avec-les-transitions-css
+Redirect permanent /post/34230233656 http://iamvdo.me/blog/utilisez-viewport-pour-le-responsive
+Redirect permanent /post/36291021886 http://iamvdo.me/blog/concours-css-anti-design
+Redirect permanent /post/38295993643 http://iamvdo.me/blog/ca-bouge-dans-webkit
+Redirect permanent /post/40678404264 http://iamvdo.me/blog/les-filtres-css-opacity-et-drop-shadow
+Redirect permanent /post/41094013194 http://iamvdo.me/blog/comprendre-z-index-et-les-contextes-dempilement
+Redirect permanent /post/42510603205 http://iamvdo.me/blog/styler-les-input-inactifs-disabled-sur-ios-iphone
+Redirect permanent /post/44216635297 http://iamvdo.me/blog/css3-layout-par-zoe-m-gillenwater
+Redirect permanent /post/45259636008 http://iamvdo.me/blog/pourquoi-je-nutilise-pas-les-preprocesseurs-css
+Redirect permanent /post/45981346020 http://iamvdo.me/blog/la-cascade-css-inherit-et-initial
+Redirect permanent /post/46251119961 http://iamvdo.me/blog/les-avantages-de-hsl-par-rapport-a-rgb
+Redirect permanent /post/48115638979 http://iamvdo.me/blog/box-decoration-break-son-support-progresse
+Redirect permanent /post/48120687924 http://iamvdo.me/blog/les-transformations-3d-css-avec-ie10
+Redirect permanent /post/67740912296 http://iamvdo.me/blog/les-postprocesseurs-css
+Redirect permanent /post/70376667669 http://iamvdo.me/blog/myth-un-post-processeur-css
+
+#redirect to conf
+Redirect permanent /post/22584600061 http://iamvdo.me/conf/kiwi-party-2012
+Redirect permanent /post/26341983392 http://iamvdo.me/conf/w3cafe-2012
+Redirect permanent /post/40511090812 http://iamvdo.me/conf/sfeir-plays-2013
+Redirect permanent /post/48762843099 http://iamvdo.me/conf/9eme-meetup-html5-css3-pizzas
+Redirect permanent /post/54330620081 http://iamvdo.me/conf/kiwi-party-2013
