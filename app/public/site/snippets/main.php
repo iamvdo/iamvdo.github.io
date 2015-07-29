@@ -89,7 +89,7 @@ foreach($childs as $child) {
 		$ownLang = $site->defaultLanguage()->code();
 	}
 
-	if ( $site->language()->code() != $ownLang ) {
+	if ( $ownLang == 'fr' && $site->language()->code() != $ownLang ) {
 		continue;
 	}
 
