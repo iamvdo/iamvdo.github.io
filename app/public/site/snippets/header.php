@@ -48,14 +48,14 @@
 				foreach ($site->languages() as $lang) {
 					if ($site->language() == $lang) {
 						?>
-						<span class="lang-item">
-							<?php echo $lang->code(); ?>
+						<span class="lang-item lang-item--selected">
+							<?php echo strtoupper($lang->code()); ?>
 						</span>
 					<?php
 					} else {
 						?>
 						<a class="lang-item" href="<?php echo $lang->url() ?>">
-							<?php echo $lang->code(); ?>
+							<?php echo strtoupper($lang->code()); ?>
 						</a>
 					<?php
 					}
