@@ -129,7 +129,7 @@ class Page extends PageAbstract {
     } else if($this->parent->isHomePage()) {
       return $this->site->url($lang) . '/' . $this->parent->slug($lang) . '/' . $this->slug($lang);
     } else {
-      return $this->parent->url($lang) . '/' . $this->slug($lang);
+      return (($this->parent->url($lang) == '/') ? '' : $this->parent->url($lang)) . '/' . $this->slug($lang);
     }
 
   }
