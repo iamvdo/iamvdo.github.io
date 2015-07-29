@@ -4,7 +4,7 @@
 	 ?>
 	<div class="wrap">
 		<p class="name">
-			<a href="<?php echo url('/'); ?>">
+			<a href="<?php echo $site->language()->url(); ?>">
 				<span class="text"><strong>Vincent</strong> De Oliveira</span>
 				<span class="retour"><?php echo l::get('backHome'); ?></span>
 			</a>
