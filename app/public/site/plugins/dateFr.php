@@ -59,7 +59,10 @@ function setFullDate ($timestamp, $lang) {
 	$moisFr = array('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout', 'septembre', 'octobre', 'novembre', 'décembre');
 	$month = Date('F', $timestamp);
 	$year = Date('Y', $timestamp);
-	if ($lang === 'fr') {
+	if ($lang == '') {
+		$lang = site()->language()->code();
+	}
+	if ($lang == 'fr') {
 		$month = $moisFr[Date('m', $timestamp) - 1];
 	}
 	$date = ' (' . $month . ' ' . $year . ')';
