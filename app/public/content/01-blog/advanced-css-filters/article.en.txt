@@ -2,7 +2,7 @@ Title: Advanced CSS filters
 
 ----
 
-Text: Back in 2011, browsers started to implement CSS shorthand filters from the [Filter Effects specification](http://www.w3.org/TR/filter-effects/). Basically, at this time, only SVG filters were supported, and Firefox was the only browser than can applied them to HTML content (it's still the case).
+Text: Back in 2011, browsers started to implement CSS shorthand filters from the [Filter Effects specification](http://www.w3.org/TR/filter-effects/). Basically, at this time, only SVG filters were supported, and Firefox was the only browser that can apply them to HTML content (it's still the case).
 
 CSS shorthands, like `blur`, `contrast` or `grayscale` are a great addition to CSS, even if SVG filters referenced from CSS can achieve really amazing things. You can learn about these filters from many resources.
 
