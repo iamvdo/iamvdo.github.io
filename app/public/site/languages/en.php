@@ -1,5 +1,6 @@
 <?php 
 
+l::set('home', 'Home');
 l::set('backHome', 'Back home');
 
 l::set('article.publication', 'published');
