@@ -8,7 +8,9 @@ kirbytext::$post[] = function($kirbytext, $value) {
     //print_r($matches);
     $level = $matches[1];
     $text  = $matches[2];
-    $slug  = URLify::filter($text);
+
+    $slug = preg_replace("/<(\\/*[a-z0-9]+)>/i", '', $matches[2]);
+    $slug = URLify::filter($slug);
 
     $title  = '<h' . $level . ' id="' . $slug . '">';
     $title .= $text;
