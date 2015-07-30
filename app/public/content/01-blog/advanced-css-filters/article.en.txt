@@ -2,11 +2,15 @@ Title: Advanced CSS filters
 
 ----
 
-Text: Back in 2011, browsers started to implement CSS shorthand filters from the [Filter Effects specification](http://www.w3.org/TR/filter-effects/). Basically, at this time, only SVG filters were supported, and Firefox was the only browser that can apply them to HTML content (it's still the case).
+Text: 
 
-CSS shorthands, like `blur`, `contrast` or `grayscale` are a great addition to CSS, even if SVG filters referenced from CSS can achieve really amazing things. You can learn about these filters from many resources.
+>This is my first post in english. If you find any errors, or if you can't figure it out, please let me know.
 
-Today, I want to go a bit further with two new possibilities with CSS.
+Back in 2011, browsers started to implement CSS shorthand filters from the [Filter Effects specification](http://www.w3.org/TR/filter-effects/). Basically, at this time, only SVG filters were supported, and Firefox was the only browser that can apply them to HTML content (it's mainly still the case).
+
+CSS shorthands, like `blur()`, `contrast()` or `grayscale()` are a great addition to CSS, even if [SVG filters can achieve really amazing things](http://www.smashingmagazine.com/2015/05/why-the-svg-filter-is-awesome/). You can learn about these filters [from](http://bennettfeely.com/filters/) [many](http://www.html5rocks.com/en/tutorials/filters/understanding-css/) [resources](https://css-tricks.com/almanac/properties/f/filter/).
+
+Today, I want to go a bit further, introducing new features with CSS.
 
 ##`backdrop-filter`
 
@@ -14,9 +18,12 @@ First of all, there's the `backdrop-filter` property defined in the Filter Effec
 
 Even if [I was sceptical at first](https://twitter.com/iamvdo/status/531822887632904192), I started to play with it in February in WebKit nightlies, and changed my mind: it is pretty awesome. Everyone should agree given my [Vine’s post](https://vine.co/v/OxmjlxdxKxl) that got 20K+ views in less than 48 hours.
 
-<video src="https://v.cdn.vine.co/r/videos/A44431A0F71179224496406986752_28dc713cdfd.5.1.15900121724377662582.mp4?versionId=FW.6zXLaRfmZzzdtdjWYO3VfBLorjaE9" width="300" height="300" autoplay loop muted></video>
+<figure>
+	<video src="https://v.cdn.vine.co/r/videos/A44431A0F71179224496406986752_28dc713cdfd.5.1.15900121724377662582.mp4?versionId=FW.6zXLaRfmZzzdtdjWYO3VfBLorjaE9" width="300" height="300" autoplay loop muted></video>
+	<figcaption class="caption">Vine's post</figcaption>
+</figure>
 
-In last June, Apple announced at the WWDC conference that this property will be available in Safari 9 later this year. This is good news. So, it's time to test it.
+In last June, Apple announced at the WWDC conference that this property will be available in Safari 9 later this year. This is good news. So, it's time to review it.
 
 With this property, you can achieve many effects that weren’t easily possible until now. The most common one is the iOS blurred style effect:
 
@@ -27,49 +34,68 @@ With this property, you can achieve many effects that weren’t easily possible 
 
 Every element behind the header is blurred by 5px.
 
-(image: backdrop-filter-1.gif text: Result from my iPad using iOS9)
+[See live result on JSBin](http://jsbin.com/mokupo/embed?css,output) (only Safari 9)
 
-[You can test for yourself](http://jsbin.com/mokupo/embed?output) with iOS9 or Safari 9.
+(image: backdrop-filter-1.gif caption: Result from my iPad using iOS9)
 
-In the demo, I use `@supports` in order to apply `backdrop-filter` along with small adjustments (background color and element's position) to keep a readable header even with no effects.
+In the demo, I use `@supports` in order to apply `backdrop-filter` along with small adjustments (background color and element's position) to keep a readable header in browsers with no support.
 
-You can also use `backdrop-filter` to improve readability of texts over images:
+`backdrop-filter` can also improve readability of texts over images:
 
 	.text {
 		backdrop-filter: blur(1px)
 	}
 
-<a class="jsbin-embed" href="http://jsbin.com/rubofa/embed?output">JS Bin on jsbin.com</a>
+[See live result on JSBin](http://jsbin.com/rubofa/embed?css,output) (only Safari 9)
 
-Or create simple graphic effects, close to what CSS blend-modes offer:
+(image: css-backdrop-filter-1.png caption: A very small blur can improve readability)
+
+Combining multiple filters, you can create simple graphic effects, close to what CSS blend-modes offer:
 
 	.text {
-		backdrop-filter: contrast(2) brightness(.3);
+		background: rgba(0,0,0,.6);
+		backdrop-filter: grayscale(1) contrast(3) blur(1px);
 	}
 
-<a class="jsbin-embed" href="http://jsbin.com/ninuva/embed?output">JS Bin on jsbin.com</a>
+[See live result on JSBin](http://jsbin.com/ninuva/embed?css,output) (only Safari 9)
+
+(image: css-backdrop-filter-2.png caption: Multiple filters applied on backdrop)
 
 Few things you should be aware of:
 
 * the background of the element where `backdrop-filter` is applied should be semi-transparent. Unless, you’ll never see the effect.
-* SVG could do this as well, with limitations
 * [there's a bug](https://code.google.com/p/chromium/issues/detail?id=497522) when combining `backdrop-filter` with any properties that crop elements (eg `border-radius`, `mask`, `clip-path`, etc). This means advanced effects are not possible for now.
 * `backdrop-filter` creates a new stacking context, as `opacity` does
+* it can be animated
+* as of now, this property is prefixed in Safari: `-webkit-backdrop-filter`
+* there's a [CanIUse page for support](http://caniuse.com/#feat=css-backdrop-filter)
 
 ##filter()
 
-The second addition is the `filter()` function, not to be confused with the `filter` property. The `filter()` function takes two parameters: an image and a filter, returning a new processing image. This image can then be used with any CSS property that accept images. Something like:
+Sometimes, you don't want to apply filters on the element, nor on the backdrop. You just want to apply filters on the background, but there's no `background-filter` property. **This is where the `filter()` function may come in handy**. The `filter()` function, not to be confused with the `filter` property, takes two parameters: an image and a filter, returning a new processing image. This image can then be used with any CSS property accepting images. Something like:
 
 	.element {
 		background: filter(url(path/to/img.jpg), blur(5px));
 	}
 
-With this function, you’re now being able to apply filters to images before using them in backgrounds. You can think of it as a polyfill for `background-opacity`, `background-blur` and so on, but it’s much more powerful.
+As a result, you’re now able to apply filters to images before using them in backgrounds. You can think of it as a polyfill for `background-filter` (or `background-opacity`, `background-blur`, whatever), but it’s much more powerful.
 
-DEMO FTW
+(image: css-filter-function-minions.png caption: Few results of the CSS filter function)
 
 The good news is that this function, even with no mention from Apple, is also supported in Safari 9.
 
+[See live result on JSBin](http://jsbin.com/deroqa/embed?css,output) (only Safari 9)
+
+Few things you should be aware of:
+* there's a bug with `background-size`
+* it can be animated
+* as of now, this function is prefixed in Safari: `-webkit-filter()`
+
+It's also worth mentioning that both `backdrop-filter` and `filter()` can be animated easily with CSS transitions or animations, or even with JavaScript.
+
+(image: filter-minion.gif caption: Animating opacity on background)
+
+I'm strongly looking forward to seeing browsers implement these filters features. SVG could do this as well, but such great effects can be done in a simplified way with CSS. From the past year, many CSS discussions were too much focused on architecture, methodologies & tools. It's good to remember that CSS is also everything about graphic design (along with SVG).
 
 ----
 
@@ -81,7 +107,7 @@ Description:
 
 ----
 
-Date: 2016-07-27 15:00
+Date: 2015-07-30 15:30
 
 ----
 
