@@ -12,7 +12,7 @@ Text:
 
 Back in 2011, browsers started to implement CSS shorthand filters from the [Filter Effects specification](http://www.w3.org/TR/filter-effects/). Basically, at this time, only SVG filters were supported, and Firefox was the only browser that can apply them to HTML content (it's mainly still the case).
 
-CSS shorthands, like `blur()`, `contrast()` or `grayscale()` are a great addition to CSS, even if [SVG filters can achieve really amazing things](http://www.smashingmagazine.com/2015/05/why-the-svg-filter-is-awesome/). You can learn about these filters [from](http://bennettfeely.com/filters/) [many](http://www.html5rocks.com/en/tutorials/filters/understanding-css/) [resources](https://css-tricks.com/almanac/properties/f/filter/).
+CSS shorthands filters, like `blur()`, `contrast()` or `grayscale()` are a great addition to CSS, even if [SVG filters can achieve really amazing things](http://www.smashingmagazine.com/2015/05/why-the-svg-filter-is-awesome/). You can learn about these filters [from](http://bennettfeely.com/filters/) [many](http://www.html5rocks.com/en/tutorials/filters/understanding-css/) [resources](https://css-tricks.com/almanac/properties/f/filter/).
 
 Today, I want to go a bit further, introducing new features with CSS.
 
@@ -36,7 +36,7 @@ With this property, you can achieve many effects that weren’t easily possible 
 		backdrop-filter: blur(5px)
 	}
 
-Every element behind the header is blurred by 5px.
+Every element behind the header is blurred by 5px. That's it.
 
 [See live result on JSBin](http://jsbin.com/mokupo/embed?css,output) (only Safari 9)
 
