@@ -27,6 +27,25 @@
 				<a class="utils-link" href="<?php echo url($source); ?>"><?php echo $page->parent->title(); ?></a>
 				<p class="u-right"><?php echo l::get('article.readingTime'); ?>&nbsp;: <?php echo ceil(str_word_count(kirbytext($page->text())) / 250); ?>min</p>
 			</div>
+			<?php
+			$c = array('fr' => 'en', 'en' => 'fr');
+			$ownLang = (string)$page->content()->language();
+			if ($ownLang == '') {
+				$ownLang = $site->defaultLanguage()->code();
+			}
+			$otherLang = (string)$page->content($c[$ownLang])->language();
+			if ($otherLang == '') {
+				$otherLang = $site->defaultLanguage()->code();
+			}
+			if ($ownLang != $otherLang) {
+				$p = $page->content($c[$ownLang]);
+				?>
+				<div class="article-utils article-utils--footer">
+					<p class="u-right"><?php echo l::get('article.langAvailable') . ' <a href="' . $page->url($c[$ownLang]) .'">[' . strtoupper($c[$ownLang]) . '] ' . $p->title() . '</a>'; ?></p>
+				</div>
+				<?php
+			}
+			?>
 			<div class="article-text language-css">
 				<?php echo $page->text()->kirbytext(); ?>
 			</div>

@@ -14,7 +14,7 @@ if ($dir === 'tagged') {
 	
 }
 
- ?>
+?>
 <section class="intro">
 	<div class="intro-content">
 		<h1 class="intro-title"><?php echo unwrap(markdown($title)); ?></h1>
@@ -39,7 +39,18 @@ if ($dir === 'tagged') {
 		</p>
 	</div>
 </section>
-<!-- <dl class="news superlink">
-	<dt class="news-title">CONFÉRENCE</dt>
-	<dd class="news-text">Les postprocesseurs CSS à <a href="http://www.blendwebmix.com">Blend Conférence</a> à Lyon le 30 octobre 2014</dd>
-</dl> -->
+<dl class="news superlink">
+	<dt class="news-title">INFO</dt>
+<?php
+if ($site->language()->code() == 'fr') {
+	?>
+	<dd class="news-text">Blog now available in <a href="<?php echo $site->language('en')->url(); ?>"><?php echo $site->language('en')->name(); ?></a></dd>
+	</dl>
+	<?php 
+} else {
+	?>
+	<dd class="news-text">Voir le blog en <a href="<?php echo $site->language('fr')->url(); ?>"><?php echo $site->language('fr')->name(); ?></a></dd>
+	<?php 
+}
+?>
+</dl>

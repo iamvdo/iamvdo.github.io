@@ -410,7 +410,7 @@ to set the default locale settings for all PHP functions
 c::set('languages', array(
   array(
     'code'    => 'fr',
-    'name'    => 'Français',
+    'name'    => 'français',
     'default' => true,
     'locale'  => 'fr',
     'url'     => '/'

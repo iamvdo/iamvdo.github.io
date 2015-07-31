@@ -7,6 +7,7 @@ l::set('article.publication', 'publié il y a');
 l::set('article.publicationAgo', '');
 l::set('article.new', 'RÉCENT');
 l::set('article.readingTime', 'Lecture');
+l::set('article.langAvailable', 'Article also in');
 
 l::set('date.justnow', 'à l\'instant');
 l::set('date.day', 'jour');

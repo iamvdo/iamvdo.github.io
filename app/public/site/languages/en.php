@@ -7,6 +7,7 @@ l::set('article.publication', 'published');
 l::set('article.publicationAgo', 'ago');
 l::set('article.new', 'NEW');
 l::set('article.readingTime', 'Reading');
+l::set('article.langAvailable', 'Article également dispo en');
 
 l::set('date.justnow', 'just now');
 l::set('date.day', 'day');
