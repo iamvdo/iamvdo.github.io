@@ -11,7 +11,7 @@ if ($otherLang == '') {
 if ($ownLang != $otherLang) {
   $p = $page->content($c[$ownLang]);
   ?>
-  <div class="article-utils article-utils--footer">
+  <div class="article-utils">
     <p class="u-right"><?php echo l::get('article.langAvailable') . ' <a href="' . $page->url($c[$ownLang]) .'">[' . strtoupper($c[$ownLang]) . '] ' . $p->title() . '</a>'; ?></p>
   </div>
   <?php

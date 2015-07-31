@@ -33,9 +33,6 @@
 			<div class="article-text language-css">
 				<?php echo $page->text()->kirbytext(); ?>
 			</div>
-			<?php
-			snippet('langAvailable');
-			?>
 			<div class="article-utils article-utils--footer">
 				<?php 
 				if ($page->hasPrevVisible('date')) {

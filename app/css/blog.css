@@ -41,8 +41,8 @@
 	border-bottom: none;
 	border-top: 1px solid #272727;
 }
-.article-utils + .article-utils--footer {
-	border: none;
+.article-utils + .article-utils {
+	border-bottom: none;
 }
 .utils-link {
 	position: relative;
