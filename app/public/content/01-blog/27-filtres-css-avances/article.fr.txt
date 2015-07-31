@@ -4,7 +4,7 @@ Title: Filtres CSS avancés
 
 Text: 
 
-En 2011, les navigateurs ont commencés à implémenter les filtres CSS raccourcis de la [spécification des Filtres CSS](http://www.w3.org/TR/filter-effects/). À cette époque, seuls les filtres SVG sont supportés, et Firefox était le seul navigateur capable de les appliquer sur du contenu HTML (c’est d’ailleurs quasiment encore le cas aujourd’hui).
+En 2011, les navigateurs ont commencé à implémenter les filtres CSS raccourcis de la [spécification des Filtres CSS](http://www.w3.org/TR/filter-effects/). À cette époque, seuls les filtres SVG sont supportés, et Firefox était le seul navigateur capable de les appliquer sur du contenu HTML (c’est d’ailleurs quasiment encore le cas aujourd’hui).
 
 Les filtres CSS raccourcis, comme `blur()`, `contrast()` ou `grayscale()` sont une avancée intéressante pour CSS, même si [les filtres SVG vous permettent de réaliser des effets totalement dingues](http://www.smashingmagazine.com/2015/05/why-the-svg-filter-is-awesome/). Vous trouverez [beaucoup](http://bennettfeely.com/filters/) [d’infos](http://www.html5rocks.com/en/tutorials/filters/understanding-css/) sur [ces filtres](https://css-tricks.com/almanac/properties/f/filter/) sur les internets.
 
