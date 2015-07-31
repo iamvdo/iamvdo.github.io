@@ -1,0 +1,119 @@
+Title: Filtres CSS avancés
+
+----
+
+Text: 
+
+En 2011, les navigateurs ont commencés à implémenter les filtres CSS raccourcis de la [spécification des Filtres CSS](http://www.w3.org/TR/filter-effects/). À cette époque, seuls les filtres SVG sont supportés, et Firefox était le seul navigateur capable de les appliquer sur du contenu HTML (c’est d’ailleurs quasiment encore le cas aujourd’hui).
+
+Les filtres CSS raccourcis, comme `blur()`, `contrast()` ou `grayscale()` sont une avancée intéressante pour CSS, même si [les filtres SVG vous permettent de réaliser des effets totalement dingues](http://www.smashingmagazine.com/2015/05/why-the-svg-filter-is-awesome/). Vous trouverez [beaucoup](http://bennettfeely.com/filters/) [d’infos](http://www.html5rocks.com/en/tutorials/filters/understanding-css/) sur [ces filtres](https://css-tricks.com/almanac/properties/f/filter/) sur les internets.
+
+Aujourd’hui, je vais aller plus loin en vous présentant deux avancées de CSS.
+
+##`backdrop-filter`
+
+Tout d’abord, il y a la propriété `backdrop-filter`, définit dans la spécification des Filtres CSS de niveau 2. **Elle permet d’appliquer des filtres à ce qu’il y a derrière l’élément (backdrop), et non à son arrière-plan (background)**. Le backdrop est en fait construit de tous les éléments qui sont vus à travers l’élément lui-même, donc derrière son arrière-plan, rogné aux limites de l’élément.
+
+Malgré mon [sceptissisme de départ](https://twitter.com/iamvdo/status/531822887632904192), j’ai commencé à jouer avec en février dans WebKit nighlies, et mon avis a changé : c’est vraiment génial. Et cet avis semble être unanime, vu que mon [Vine de démo](https://vine.co/v/OxmjlxdxKxl) a été vu plus de 20000 fois en moins de 48h.
+
+<figure>
+	<video src="https://v.cdn.vine.co/r/videos/A44431A0F71179224496406986752_28dc713cdfd.5.1.15900121724377662582.mp4?versionId=FW.6zXLaRfmZzzdtdjWYO3VfBLorjaE9" width="300" height="300" autoplay loop muted></video>
+	<figcaption class="caption">Ma démo Vine</figcaption>
+</figure>
+
+En juin dernier, Apple a annoncé lors de sa WWDC conférence que cette propriété sera supportée par Safari 9 dès l’automne. C’est une très bonne nouvelle. C’est donc le moment de faire quelques tests.
+
+Avec cette propriété, beaucoup d’effets pas évidents à réaliser jusque là deviennent très simples. L’exemple le plus courant est le style de transparence flouttée sur iOS :
+
+	.header {
+		background-color: rgba(255,255,255,.6);
+		backdrop-filter: blur(5px)
+	}
+
+Tous les éléments derrière le bandeau d’entête seront flouttés de 5px. C’est aussi simple que ça.
+
+[Voir le rendu sur JSBin](http://jsbin.com/mokupo/embed?css,output) (avec Safari 9)
+
+(image: backdrop-filter-1.gif caption: Résultat depuis mon iPad et iOS9)
+
+Dans la démo, j’utilise `@supports` qui me permet d’appliquer `backdrop-filter` avec quelques ajustements (couleur du fond et position) afin de conserver la lisibilité dans les navigateurs qui n’ont pas le support.
+
+`backdrop-filter` peut aussi améliorer la lisibilité des textes au dessus d’images :
+
+	.text {
+		backdrop-filter: blur(1px)
+	}
+
+[Voir le rendu sur JSBin](http://jsbin.com/rubofa/embed?css,output) (avec Safari 9)
+
+(image: css-backdrop-filter-1.png caption: Un léger flou permet d’améliorer la lisibilité des textes)
+
+En combinant plusieurs filtres, vous pouvez créer des effets graphiques vraiment sympas, proche de ce que vous pouvez obtenir avec les blend-modes CSS :
+
+	.text {
+		background: rgba(0,0,0,.6);
+		backdrop-filter: grayscale(1) contrast(3) blur(1px);
+	}
+
+[Voir le rendu sur JSBin](http://jsbin.com/ninuva/embed?css,output) (avec Safari 9)
+
+(image: css-backdrop-filter-2.png caption: Plusieurs filtres appliqués au backdrop)
+
+À noter :
+
+* l’arrière-plan de l’élément qui reçoit `backdrop-filter` doit être semi-transparent. Sinon, vous ne verrez pas l’effet.
+* [il y a un bug](https://code.google.com/p/chromium/issues/detail?id=497522) en combinant `backdrop-filter` et les propriétés de masques (comme `border-radius`, `mask`, `clip-path`, etc). Pas d’effets plus avancés pour le moment.
+* `backdrop-filter` crée un [nouveau contexte d’empilement](ce-que-vous-avez-toujours-voulu-savoir-sur-css#contexte-dempilement), comme pour `opacity`
+* la propriété est animable
+* pour l’instant, la propriété est préfixée dans Safari : `-webkit-backdrop-filter`
+* il y a [une page de support sur CanIUse](http://caniuse.com/#feat=css-backdrop-filter)
+
+##filter()
+
+Aujourd’hui il est donc possible d’appliquer un filtre directement sur l’élément, ou sur le backdrop, mais pas sur l’arrière-plan. En effet, la propriété `background-filter` n’existe pas. **C’est là où la fonction `filter()` prend le relai**. La fonction `filter()`, à ne pas confondre avec la propriété `filter`, prends deux paramètres : une image et un filtre, et renvoie une nouvelle image filtrée. Cette image peut donc être utilisée via n’importe quelle propriété CSS. Cela ressemble à :
+
+	.element {
+		background: filter(url(path/to/img.jpg), blur(5px));
+	}
+
+Il devient donc possible d’appliquer des filtres sur une image avant de l’appliquer en arrière-plan d’un élément. C’est en quelque sorte un polyfill pour `background-filter` (ou `background-opacity`, `background-blur`, peu importe), mais c’est beaucoup plus pratique et réutilisable.
+
+(image: css-filter-function-minions.png caption: Utilisation de la fonction filter)
+
+La bonne nouvelle, c’est que cette fonction est aussi supportée dans Safari 9, bien qu’Apple n’ait pas communiqué dessus.
+
+[Voir le rendu sur JSBin](http://jsbin.com/deroqa/embed?css,output) (only Safari 9)
+
+À noter :
+* il y a un bug avec `background-size`
+* la fonction est animable
+* pour l’instant, la fonction est préfixée dans Safari : `-webkit-filter()`
+
+
+Il est aussi important de noter que `backdrop-filter` et `filter()` peuvent être animées très simplement avec les transitions et animations CSS, ou depuis JavaScript.
+
+(image: filter-minion.gif caption: Animation sur l’opacité de l’arrière-plan)
+
+Je suis vraiment impatient de voir ces nouveautés arriver dans nos navigateurs. Il est déjà possible de réaliser ces effets avec SVG, mais cela simplifie grandement l’utilisation via CSS. Les dernières discussions autour de CSS sont principalement tournées vers l’architecture, les méthodologies et les outils. J’aime bien quand CSS fait parler de lui aussi la partie design graphique, ce pour quoi il a été pensé.
+
+Bon OK, le support est vraiment très faible pour le moment, mais n’oubliez pas que ces deux fonctionnalités seront disponibles sur des millions d’iPhones et d’iPads d’ici la fin de l’année 2015. Je dis ça, je dis rien. :)
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 2015-07-31 10:45
+
+----
+
+Tags: 
+
+----
+
+Big: 1
