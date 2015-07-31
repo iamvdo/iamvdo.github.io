@@ -36,7 +36,7 @@ With this property, you can achieve many effects that weren’t easily possible 
 		backdrop-filter: blur(5px)
 	}
 
-Every element behind the header is blurred by 5px. That's it.
+Every element behind the header is blurred by 5px. It's as simple as that.
 
 [See live result on JSBin](http://jsbin.com/mokupo/embed?css,output) (only Safari 9)
 
@@ -100,6 +100,8 @@ It's also worth mentioning that both `backdrop-filter` and `filter()` can be ani
 (image: filter-minion.gif caption: Animating opacity on background)
 
 I'm strongly looking forward to seeing browsers implement these filters features. SVG could do this as well, but such great effects can be done in a simplified way with CSS. From the past year, many CSS discussions were too much focused on architecture, methodologies & tools. It's good to remember that CSS is also everything about graphic design (along with SVG).
+
+OK, support is less than minimal for now, but hey, these features will be available in millions of iPhones and iPads before the end of the year 2015. Just sayin'. :)
 
 ----
 
