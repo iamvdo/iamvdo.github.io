@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?php echo c::get('lang.current') ?>">
+<html lang="<?php echo $site->language()->code(); ?>">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale=1">
