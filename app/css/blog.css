@@ -36,13 +36,13 @@
 	color: #ddd;
 	padding: 1em 0;
 	border-bottom: 1px solid #272727;
-	margin-bottom: 3em;
 }
 .article-utils--footer {
 	border-bottom: none;
 	border-top: 1px solid #272727;
-	margin-bottom: 0;
-	margin-top: 3em;
+}
+.article-utils + .article-utils--footer {
+	border: none;
 }
 .utils-link {
 	position: relative;
@@ -109,6 +109,8 @@
 	line-height: 1.9;
 	word-spacing: 1px;
 	letter-spacing: .4px;
+	margin-top: 2.4em;
+	margin-bottom: 2.4em;
 	/* background: #444; */
 	/*background: linear-gradient(rgba(68,68,68,0), #444 800px);*/
 	counter-reset: counter-figcaption;
