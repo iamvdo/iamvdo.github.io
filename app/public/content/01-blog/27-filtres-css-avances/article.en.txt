@@ -18,7 +18,7 @@ Today, I want to go a bit further, introducing new features with CSS.
 
 ##`backdrop-filter`
 
-First of all, there's the `backdrop-filter` property defined in the Filter Effect Level 2. **It allows to apply filters to the backdrop of an element, not the background**. Consider that the backdrop is made up of all elements that can be seen through the element itself, behind its background, cropped to its bounding-box.
+First of all, there's the `backdrop-filter` property defined in the Filter Effect Level 2. **It applies filters to the backdrop of an element, not the background**. Consider that the backdrop is made up of all elements that can be seen through the element itself, behind its background, cropped to its bounding-box.
 
 Even if [I was sceptical at first](https://twitter.com/iamvdo/status/531822887632904192), I started to play with it in February in WebKit nightlies, and changed my mind: it is pretty awesome. Everyone should agree given my [Vine’s post](https://vine.co/v/OxmjlxdxKxl) that got 20K+ views in less than 48 hours.
 
