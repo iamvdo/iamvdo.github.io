@@ -85,6 +85,7 @@ La bonne nouvelle, c’est que cette fonction est aussi supportée dans Safari 9
 [Voir le rendu sur JSBin](http://jsbin.com/deroqa/embed?css,output) (only Safari 9)
 
 À noter :
+* cette fonction est définie dans la [spécification des Filtres](http://www.w3.org/TR/filter-effects/#FilterCSSImageValue)
 * il y a un bug avec `background-size`
 * la fonction est animable
 * pour l’instant, la fonction est préfixée dans Safari : `-webkit-filter()`

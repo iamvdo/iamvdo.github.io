@@ -91,6 +91,7 @@ The good news is that this function, even with no mention from Apple, is also su
 [See live result on JSBin](http://jsbin.com/deroqa/embed?css,output) (only Safari 9)
 
 Few things you should be aware of:
+* the function is defined in the [Filter Effects specification](http://www.w3.org/TR/filter-effects/#FilterCSSImageValue)
 * there's a bug with `background-size`
 * it can be animated
 * as of now, this function is prefixed in Safari: `-webkit-filter()`
