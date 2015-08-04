@@ -88,7 +88,8 @@
 			<button class="u-align--center button button--large"><?php echo $msg; ?></button>
 		</div>
 		<script type="text/javascript">
-			var disqus_shortname = 'iamvdo';
+			var disqus_shortname  = 'iamvdo';
+			var disqus_identifier = '<?php echo $page->slug(); ?>';
 			(function() {
 				var disqus_thread = document.getElementById('disqus_thread');
 				function loadComments() {
