@@ -89,7 +89,7 @@
 		</div>
 		<script type="text/javascript">
 			var disqus_shortname  = 'iamvdo';
-			var disqus_identifier = '<?php echo $page->slug(); ?>';
+			var disqus_url = [location.protocol, '//', location.host, location.pathname].join('');
 			(function() {
 				var disqus_thread = document.getElementById('disqus_thread');
 				function loadComments() {
