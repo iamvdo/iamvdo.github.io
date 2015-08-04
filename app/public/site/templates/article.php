@@ -65,7 +65,7 @@
 			<?php
 			$count = '';
 			$msg = l::get('comments.write');
-			$rq = 'http://iamvdo.disqus.com/count-data.js?2=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '&nocache=' . rand() . rand();
+			$rq = 'http://iamvdo.disqus.com/count-data.js?2=http://' . $_SERVER['HTTP_HOST'] . strtok($_SERVER['REQUEST_URI'], '?') . '&nocache=' . rand() . rand();
 			$req = curl_init($rq);
 			curl_setopt($req, CURLOPT_RETURNTRANSFER, true);
 
