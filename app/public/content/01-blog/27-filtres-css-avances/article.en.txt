@@ -67,7 +67,7 @@ Combining multiple filters, you can create simple graphic effects, close to what
 
 Few things you should be aware of:
 
-* the background of the element where `backdrop-filter` is applied should be semi-transparent. Unless, you’ll never see the effect.
+* the background of the element where `backdrop-filter` is applied should be semi-transparent. Otherwise, you’ll never see the effect.
 * [there's a bug](https://code.google.com/p/chromium/issues/detail?id=497522) when combining `backdrop-filter` with any properties that crop elements (eg `border-radius`, `mask`, `clip-path`, etc). This means advanced effects are not possible for now.
 * `backdrop-filter` creates a new stacking context, as `opacity` does
 * it can be animated
