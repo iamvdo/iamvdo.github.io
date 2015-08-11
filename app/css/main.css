@@ -60,7 +60,7 @@ a {
 .article a[href^=http]::after,
 .intro a[href^=http]::after {
 	content: ''; 
-	position: absolute; z-index: 10;
+	position: absolute; top: 0; z-index: 10;
 	width: 1em; height: 1em;
 	background: url('../images/external.svg');
 	background-size: 150%;
