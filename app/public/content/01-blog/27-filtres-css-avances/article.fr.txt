@@ -89,7 +89,7 @@ La bonne nouvelle, c’est que cette fonction est aussi supportée dans Safari 9
 * il y a un bug avec `background-size`
 * la fonction est animable
 * pour l’instant, la fonction est préfixée dans Safari : `-webkit-filter()`
-
+* il y a [une page de support sur CanIUse](http://caniuse.com/#feat=css-filter-function)
 
 Il est aussi important de noter que `backdrop-filter` et `filter()` peuvent être animées très simplement avec les transitions et animations CSS, ou depuis JavaScript.
 
