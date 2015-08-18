@@ -1,0 +1,194 @@
+Title: CSS element() function
+
+----
+
+URL-Key: css-element-function
+
+----
+
+Text: 
+
+In July, I wrote about [advanced CSS filters techniques](advanced-css-filters), such as `backdrop-filter` and `filter()`. Today, I want to share a much more awesome CSS feature. But before starting, let me warn you: the feature I’ll show is only supported in Firefox for now and no other browser vendor has shown interest with. Maybe, this could change in a near future. I really hope so. **So, spread the world**.
+
+##`element()`
+
+The CSS Image Values and Replaced Content Module Level 4 [introduces the `element()` function](http://www.w3.org/TR/css4-images/#element-notation). This function was previously defined in Level 3 and so Firefox already have support for it, since its version 4 (since May 2011!). To put it simply, **this function renders any part of a website as a live image**. A. Live. Image! As you see a DOM element rendered right in the browser, you’ll get an image of it. Every changes to that element will be immediately seen in real-time in the image, even text selection.
+
+When I first discover this property back in 2011, I don’t believe it myself. How cool is that? How can this be even possible?
+
+Well, it’s actually working, and the syntax is very basic. **Simply reference the element you want to get a live view, using its `id` attribute**. For example, here’s a text and an image in `div#css-source`. The live image of this element can be used in another element’s background, say `div#css-result`.
+
+(code: 
+<div id="css-source">
+	<p>Lorem ipsum</p>
+	<img src="" alt="">
+</div>
+<div id="css-result"></div>
+)
+
+	#css-result {
+		background: element(#css-source);
+		background-size: 50% 50%;
+	}
+
+As `element()` creates an image, you can use every CSS properties you’re familiar with to apply and control it, like `background`, `background-repeat`, `background-size` and so on.
+
+Here's a live demo of what I'm talking about
+
+(codepen: vOwaWz height: 460)
+
+Have in mind that any part of a website can be referenced, even the whole site if you need it. Be careful though, your element itself can be a child of your source. However, Firefox deals well with recursive references.
+
+**`element()` brings CSS design to a new level, in an easily way**. Few ideas that comes to my mind (some that I've already used since the last 4 years):
+
+* when you have to deal with duplicated content in advanced effects
+* live thumbnails of previous/next slides in a slideshow
+* live zoom over an image, for example in an e-commerce product page
+* animated background, using CSS Animations or by referencing a video, canvas or SVG
+* faking `backdrop-filter` or `filter()`
+* [watermark with multiples backgrounds](http://jsbin.com/faponu/edit?html,css,output) from Lea Verou idea
+* and anything you’re currently thinking of ;)
+
+Few things we can note:
+
+* prefixed for now in Firefox: `-moz-element()`
+* impact on rendering performance when using multiple reference. Not as bad as CSS filters, but still something you have to consider
+* there’s a [CanIUse support page](http://caniuse.com/#feat=css-element-function)
+* [Issue Chromium](https://code.google.com/p/chromium/issues/detail?id=108972)
+* [Issue WebKit](https://bugs.webkit.org/show_bug.cgi?id=44650)
+* No mention from [IE Platform Status](https://status.modern.ie/)
+
+##Reflections
+
+We all know reflections are no longer a web design trend anymore (hello web 2.0!), but it’s a good starting point to better understand `element()`. The following demo is composed by an image and its `<figcaption>` inside a `<figure>` tag. The `element()` function is used on the `::after` pseudo-element’s background to get a live view of `<figure>`, while flipping it along the Y axis, and masking it using a SVG mask. The whole effect is done inside `@supports` at-rule to deal with progressive enhancement:
+
+(code:
+<figure class="reflection" id="css-element">
+	<img src="image.jpg" alt="">
+	<figcaption>San Francisco, CA</figcaption>
+</figure>
+)
+
+	@supports (background: element(#css-element)) {
+		.reflection::after {
+			background: element(#css-element);
+			transform: scaleY(-1);
+			mask: url('#mask');
+			opacity: .3;
+		}
+	}
+
+The live demo works in Firefox, and fallbacks to the old, non-standard `-webkit-box-reflect` property for WebKit based browsers (no support in IE/Edge)
+
+(codepen: aOraoG height: 450)
+
+Yeah, I know you’re tired of seeing this effect. Let’s go deeper.
+
+##3D Paperfold effect
+
+In some advanced effects, you sometimes have to deal with duplicated content, and the only reasonable choice here is JavaScript. It’s pretty easy when you have to deal with static content (images, texts, etc.) but **it becomes really painful with dynamic ones**. With `element()`, it’s really straightforward.
+
+For example, you can easily fold this Twitter login form into 2 pieces (hover over it with Firefox):
+
+(codepen: xGNaGJ height: 500)
+
+Let me explain:
+
+* the HTML login form is created and positioned
+* then, a layer mask is added on top of it, so the form is no longer visible
+* two pseudo-elements (`::before` and `::after`) are added on the form, and put on top of the layer mask
+* each pseudo-element is positioned at the exact same position than the login form and reference it using `element()`
+* then, CSS transforms, animations and filters are applied to these two pseudo-elements
+* also `pointer-events: none` is used to delegate events to the underlying layer that contains the login form, so the form is fully working
+
+Going further, we can fold anything that’s inside the page, like an interactive map:
+
+(codepen: OVYoXy height: 600)
+
+##Animated background
+
+A simple effect could also be to create animated backgrounds. Well, you may think of ol’ GIF animated background, but `element()` offers new possibilities like using a `<video>`, a `<canvas>` or a `<svg>` tag.
+Combine `<video>`, `<canvas>` and duplicated content and you can create this crazy 30+ pieces fold effect where you can draw in it while animation occurs. Pretty fun!
+
+(codepen: GJaXvJ height: 500)
+
+You may notice that this demo is also working in WebKit based browsers. Here’s how:
+
+* I’ve replaced `<video>` tag with an animated GIF as it works in CSS background. The drawback is that GIF file size is very heavy compared to the video: ~4MB (GIF) vs ~400KB (MP4) and ~600KB (WEBM). So I reduced frames.
+* I’ve used `-webkit-canvas()` which is similar to `element()`, but restricted to `<canvas>`. It’s a “not so bad” solution here because I was referencing a canvas. Be careful though, this function is non-standard and deprecated.
+
+##Faking `backdrop-filter`, `filter()`
+
+With `element()`, it becomes quite simple to create a `backdrop-filter` workaround, and so, increase browser support. What you have to do is set an element’s background to be the live view of the element that is below it. Simple, right?
+
+You can see [my demos from previous article](advanced-css-filters), now including Firefox support using `element()`:
+
+(codepen: RPmYQP height: 500)
+
+And one with dynamic content:
+
+(codepen: djEBu height: 500)
+
+Code is self explanatory:
+
+	h1 { … }
+
+	@supports ( backdrop-filter: blur(1px) ) {
+		h1 {
+			backdrop-filter: grayscale(1) contrast(3) blur(1px);
+		}
+	}
+
+	@supports (not (backdrop-filter: blur(1px))) and (background: element(#back)) {
+		h1::before {
+			content: '';
+			position: absolute;
+			z-index: -1;
+			top: 0; left: 0; bottom: 0; right: 0;
+			background: element(#back) fixed;
+			filter: grayscale(1) contrast(3) blur(1px);
+		}
+	}
+
+Using `@supports`, you can test:
+
+* if `backdrop-filter` is supported, apply it to the `<h1>`
+* if `backdrop-filter` isn’t supported but `element()` is, create a pseudo-element that will be positioned below the title, and set its background to be the live view of the background website.
+
+It is also worth mentioning that you can fake `backdrop-filter` with SVG filters. Something like:
+
+(codepen: VLOGdw height: 430)
+
+This way, you provide much better support, but there are many drawbacks. This SVG filter is not dynamic, even if it is theoritically possible. Indeed, no browsers (except IE/Edge and the old Opera engine) support the `enable-background` property (allowing `backgroundImage` as input for filter primitives). In addition, IE/Edge don’t support SVG filters on HTML content at all.
+
+##How to hide references
+
+In many effects, I had to create a layer mask to hide parts of the page. It’s because you can’t `display: none` an element that is currently used as a live background. Actually, the live image will no longer display that element at all.
+
+I’ve also tried to wrap the reference element inside a `<div>` tag with `height: 0` and `overflow: hidden`. That way, the element is still present in the page (and can be referenced as a live view) but no longer visible, so you don’t need for a layer mask. The problem is that some browsers degrade performance of unvisible elements (CSS animations, unanimated GIF images, etc.) and this is not what we want in that specific case.
+
+So I ended up using the mask technique. Do you think of any other solution?
+
+##Sum up
+
+Hopefully, I’ve convinced you that CSS `element()` is so awesome, despite its poor browser support and rendering performance apart. You should try it for yourself and share your awesome demos. We have to show our interest in. No doubt this will encourage browsers to consider it (again for Firefox)
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 2015-08-14 15:30
+
+----
+
+Tags: 
+
+----
+
+Big: 1
