@@ -1,6 +1,6 @@
 <?php snippet('doctype') ?>
 	<meta property="og:title" content="<?php echo $page->title(); ?>">
-	<meta property="og:url" content="<?php echo $site->full_url() . thisUrl(); ?>">
+	<meta property="og:url" content="<?php echo thisUrl(); ?>">
 	<meta property="og:description" content="<?php echo excerpt($page->text(), 300); ?>">
 	<title><?php echo html($page->title()) . ' - ' . html($site->author()); ?></title>
 	<meta name="description" content="<?php echo excerpt($page->text(), 300); ?>">
