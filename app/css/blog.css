@@ -298,3 +298,6 @@
 .button--large {
 	width: 100%;
 }
+.codepen-placeholder {
+	background: rgba(0,0,0,.2);
+}
