@@ -10,7 +10,8 @@ Text:
 
 In July, I wrote about [advanced CSS filters techniques](advanced-css-filters), such as `backdrop-filter` and `filter()`. Today, I want to share a much more awesome CSS feature. But before starting, let me warn you: the feature I’ll show is only supported in Firefox for now and no other browser vendor has shown interest with. Maybe, this could change in a near future. I really hope so. **So, spread the world**.
 
->If you have Firefox installed on your computer, maybe you should switch to get live demos working. Otherwise, I've added videos.
+>If you're not using Firefox right now, maybe you should switch to get live demos working. Otherwise, I've added videos.
+
 
 ##`element()`
 
