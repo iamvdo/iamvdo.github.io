@@ -99,6 +99,8 @@ Je suis vraiment impatient de voir ces nouveautés arriver dans nos navigateurs.
 
 Bon OK, le support est vraiment très faible pour le moment, mais n’oubliez pas que ces deux fonctionnalités seront disponibles sur des millions d’iPhones et d’iPads d’ici la fin de l’année 2015. Je dis ça, je dis rien. :)
 
+**Edit:** Il est également possible de [simuler `backdrop-filter` avec la fonction `element()` et/ou les filtres SVG](/en/blog/css-element-function#faking-backdrop-filter).
+
 ----
 
 Subtitle: 

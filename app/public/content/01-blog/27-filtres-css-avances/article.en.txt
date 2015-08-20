@@ -105,6 +105,8 @@ I'm strongly looking forward to seeing browsers implement these filters features
 
 OK, support is less than minimal for now, but hey, these features will be available in millions of iPhones and iPads before the end of the year 2015. Just sayin'. :)
 
+**Edit:** You can also [learn how to fake `backdrop-filter` using `element()` function and/or SVG filters](css-element-function#faking-backdrop-filter).
+
 ----
 
 Subtitle: 
