@@ -17,7 +17,9 @@ date_default_timezone_set('Europe/Paris');
   <channel>
     <title><?php echo (isset($title)) ? xml($title) : xml($site->title()) ?></title>
     <link><?php echo $site->full_url() . $site->homePage()->url(); ?></link>
-    <lastBuildDate><?php echo (isset($modified)) ? date('D, d M Y H:i:s T', $modified) : date('D, d M Y H:i:s T', $site->modified()) ?></lastBuildDate>
+    <lastBuildDate><?php 
+      echo ($items->first()->date()) ? date('D, d M Y H:i:s T', $items->first()->date()) : date('D, d M Y H:i:s T', $site->modified());
+       ?></lastBuildDate>
     <atom:link href="<?php echo xml(thisURL()) ?>" rel="self" type="application/rss+xml" />
 
     <?php if($page->description() || isset($description)): ?>
