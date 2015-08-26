@@ -138,11 +138,19 @@ krsort($links);
 	$mois = array('janv', 'févr', 'mars', 'avril', 'mai', 'juin', 'juil', 'août', 'sept', 'oct', 'nov', 'déc');
 	$today = new DateTime();
 	foreach($links as $content){
+		$date = $content['date'];
+		$time = new DateTime($date);
+		$time = $time->getTimestamp();
+		$delta = time() - $time;
+		// do not display future article
+		if ($delta <= 0) {
+			continue;
+		}
+
 		$element = 'item';
 		$title = utf8_encode($content['title']);
 		$subtitle = utf8_encode($content['subtitle']);
 		$url = $content['url'];
-		$date = $content['date'];
 		$source = strtolower($content['source']);
 		$media = $content['image'];
 		$big = $content['big'];
@@ -152,15 +160,11 @@ krsort($links);
 		
 		// classes
 		$classModifier = $element . '--' . $source;
-		//if ($source == 'ailleurs') { $classModifier .= ' ' . $element . '--blog'; $source = 'blog'; }
 		$classImg = ($media) ? $element . '--media' : '';
 		$classBig = ($big) ? $element . '--big' : '';
 
-		// date
-		$time = new DateTime($date);
-		$time = $time->getTimestamp();
-
-		$new = ( (time() - $time) < 60*60*24*12 );
+		// is new ?
+		$new = ( $delta < 60*60*24*12 );
 
 		?>
 		<li class="<?php echo $element . ' ' . $classModifier . ' ' . $classImg . ' ' . $classBig; ?>">
