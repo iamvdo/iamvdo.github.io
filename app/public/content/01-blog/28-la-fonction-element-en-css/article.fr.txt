@@ -1,0 +1,205 @@
+Title: La fonction CSS element()
+
+----
+
+Text: 
+
+En juillet dernier, j'ai écrit [un article sur les filtres avancés](filtres-css-avances) présentant `backdrop-filter` et `filter()`. Aujourd'hui, je vais vous présenter une fonctionnalité encore plus impressionnante. Mais avant de commencer, je dois vous prévenir : ce qui va être présenté est uniquement supporté par Firefox et aucun autre navigateur n'a montré son intérêt. Peut être que cela pourrait changer. Je l'espère vraiment. Alors, parlez-en autour de vous.
+
+>Si vous n'utilisez pas Firefox en ce moment, vous devriez peut-être le faire pour voir les démos. J'ai tout de même ajouté des vidéos dans le cas contraire.
+
+##`element()`
+
+Le module *CSS Image Values and Replaced Content Module Level 4* [introduit la fonction `element()`](http://www.w3.org/TR/css4-images/#element-notation). Cette fonction était précédemment définie dans le module de niveau 3 et donc Firefox avait déjà commencé à la supporter, depuis sa version 4 (mai 2011). Pour faire simple, **cette fonction crée une image dynamique de n'importe quel élément de la page**. Une. Image. Dynamique ! Cette image est le rendu visuel de l'élément DOM tel qu'il est affiché par le navigateur. Chaque modification de cet élément est automatiquement vu dans l'image, même la sélection de texte.
+
+Quand j'ai découvert cette fonction en 2011, je n'y ai pas cru. Quoi ? Comment est-ce possible ?
+
+Et bien pourtant ça fonctionne, et la syntaxe est vraiment très simple. **Il suffit de référencer l'élément dont on souhaite obtenir une image dynamique via son attribut `id`**. Par exemple, voici un texte et une image dans la `div#css-source`. L'image dynamique de cet élément peut être utilisée comme arrière-plan de la `div#css-result`.
+
+(code: 
+<div id="css-source">
+	<p>Lorem ipsum</p>
+	<img src="" alt="">
+</div>
+<div id="css-result"></div>
+)
+
+	#css-result {
+		background: element(#css-source);
+		background-size: 50% 50%;
+	}
+
+Comme `element()` crée une image, vous pouvez utiliser les propriétés CSS classiques pour l'appliquer et la contrôler, comme `background`, `background-repeat`, `background-size` et les autres.
+
+Voici une démo qui illustre cet exemple :
+
+(codepen: vOwaWz height: 460)
+
+(video: 1-basic caption: Résultat dans Firefox)
+
+Notez que n'importe quelle partie d'une page peut être référencée, même le site complet si vous le souhaitez. Attention quand même, votre élément peut être un descendant de votre source, donc des éléments peuvent apparaitre plusieurs fois. Néanmoins, Firefox a une bonne gestion des références récursives.
+
+**La fonction `element()` permet vraiment des effets CSS novateurs, de manière vraiment très simple**. Quelques idées qui me viennent en tête (certaines que j'ai déjà utilisée durant les 4 dernières années) :
+
+* quand vous devez gérer de la [duplication de contenu dans des effets avancés](#effet-3d-paperfold)
+* miniatures temps-réel des diapositives précédentes/suivantes dans un diaporama
+* zoom dynamique d'un produit sur un site e-commerce
+* [arrière-plans animés](#arriere-plans-animes), en utilisant les animations CSS ou en référencant une vidéo, un canvas ou un SVG
+* [simuler `backdrop-filter`](#simuler-backdrop-filter) ou `filter()`
+* [filigrane avec plusieurs arrière-plans](http://jsbin.com/faponu/edit?html,css,output) sur une idée de Lea Verou
+* et toutes les idées que vous pouvez avoir actuellement
+
+On peut tout de même noter :
+
+* préfixée dans Firefox : `-moz-element()`
+* impact sur la performance du rendu avec plusieurs références. Pas aussi mauvais que les filtres CSS, mais c'est à prendre en considérations
+* il y a une [page CanIUse](http://caniuse.com/#feat=css-element-function)
+* [issue Chromium](https://code.google.com/p/chromium/issues/detail?id=108972)
+* [issue WebKit](https://bugs.webkit.org/show_bug.cgi?id=44650)
+* Pas de mention sur [IE Platform Status](https://status.modern.ie/)
+
+##Reflets
+
+On sait bien que les reflets ne sont plus tendances (coucou Web 2.0 !), mais c'est un bon exemple pour bien comprendre `element()`. La démo qui suit est composée d'une image et de son `<figcaption>`, au sein d'un élément `<figure>`. La fonction `element()` est utilisée sur l'arrière-plan du pseudo-élément `::after` et utilise la vue dynamique de `<figure>`, tandis que cet élément est retourné le long de l'axe Y et masqué avec un masque SVG. L'effet complet est réalisé au sein de `@supports` pour une amélioration progressive.
+
+(code:
+<figure class="reflection" id="css-element">
+	<img src="image.jpg" alt="">
+	<figcaption>San Francisco, CA</figcaption>
+</figure>
+)
+
+	@supports (background: element(#css-element)) {
+		.reflection::after {
+			background: element(#css-element);
+			transform: scaleY(-1);
+			mask: url('#mask');
+			opacity: .3;
+		}
+	}
+
+La démo fonctionne dans Firefox, mais également dans les navigateurs basés sur WebKit grâce à la propriété non-standard `-webkit-box-reflect` (pas de support dans IE/Edge)
+
+(codepen: aOraoG height: 450)
+
+Oui, je sais, vous en avez assez de voir cet effet. Allons plus loin.
+
+##Effet 3D *Paperfold*
+
+Dans certains effets avancés, vous avez parfois besoin de gérer de la duplication de contenu, et la seule solution viable actuellement est de passer par JavaScript. C'est assez simple pour du contenu statique (images, textes, etc.) mais **cela devient très compliqué avec des contenus dynamiques**. C'est là où `element()` nous simplifie la vie.
+
+Par exemple, il devient très facile de plier en deux ce formulaire d'authentification Twitter (survolez avec Firefox)
+
+(codepen: xGNaGJ height: 500)
+
+(video: 2-login-form caption: Résultat avec Firefox)
+
+Laissez-moi vous expliquer :
+
+* le formulaire HTML est créé et positionné
+* puis, un élément ajouté au dessus vient le masquer
+* deux pseudo-éléments (`::before` and `::after`) sont ajoutés au formulaire et sont placés au dessus du masque
+* chaque pseudo-élément est superposé au formulaire et le référence avec `element()`
+* ensuite, des transformations CSS, des animations et des filtres sont appliqués sur ces deux pseudo-éléments
+* il y a aussi `pointer-events: none` qui est utilisé pour que les clics soient envoyés à la couche inférieure qui contient le formulaire, ce qui le rend totalement fonctionnel
+* tout cela seulement si `element()` est supporté, grâce à `@supports`
+
+Si l'on souhaite aller plus loin, on peut donc plier n'importe quel élément d'une page, comme une carte interactive :
+
+(codepen: OVYoXy height: 600)
+
+<figure>
+	<video src="https://mtc.cdn.vine.co/r/videos_h264high/D6CC244BD61241457142398599168_SW_WEBM_143896065827589b81784b2.mp4?versionId=TgjssVZxXxv5FklOTqY2yP2jnEfkKkaq" width="300" height="300" autoplay loop muted></video>
+	<figcaption class="caption">Résultat avec Firefox</figcaption>
+</figure>
+
+##Arrière-plans animés
+
+Un effet très simple pourrait aussi être de créer des arrière-plans animés. Il est déjà possible de le faire avec nos bons vieux GIFs, mais `element()` nous offre de nouvelles possibilités comme utiliser une `<video>`, un `<canvas>` ou un élément `<svg>`.
+
+En combinant `<video>`, `<canvas>` et la duplication de contenu, on peut obtenir cet effet complétement dingue composé de plus de 30 éléments et où l'on peut dessiner pendant que l'animation a lieu.
+
+(codepen: GJaXvJ height: 500)
+
+(video: 3-fold caption: Résultat dans Firefox)
+
+Vous pouvez aussi noter que cette démo fonctionne dans les navigateurs basés sur WebKit. Voilà pourquoi :
+
+* j'ai remplacé la `<video>` par un GIF animé. Le problème c'est que la taille d'un GIF est démesurée comparé à une vidéo : ~4MB (GIF) vs ~400KB (MP4) et ~600KB (WEBM). J'ai donc réduit le nombre d'images.
+* j'ai également utilisé `-webkit-canvas()` qui est similaire à `element()`, mais limité à, vous l'aurez compris, `<canvas>`. Cette une solution acceptable ici puisque je référence précisément un canvas. Attention quand même, cette fonction est non-standard et dépréciée.
+
+##Simuler `backdrop-filter`
+
+Avec `element()`, il devient également assez simple de simuler `backdrop-filter`, et ainsi donc d'augmenter le support navigateur. Ce qu'il faut faire, c'est définir l'arrière-plan d'un élément comme étant la vue dynamique de l'élément qui se trouve dessous. Simple, non ?
+
+Vous pouvez voir l'une de [mes précédentes démos](filtres-css-avances), maintenant qui inclut le support de Firefox :
+
+(codepen: RPmYQP height: 500)
+
+Et une autre avec du contenu dynamique :
+
+(codepen: djEBu height: 520)
+
+Le code parle de lui-même :
+
+	h1 { … }
+
+	@supports ( backdrop-filter: blur(1px) ) {
+		h1 {
+			backdrop-filter: grayscale(1) contrast(3) blur(1px);
+		}
+	}
+
+	@supports (not (backdrop-filter: blur(1px))) and (background: element(#back)) {
+		h1::before {
+			content: '';
+			position: absolute;
+			z-index: -1;
+			top: 0; left: 0; bottom: 0; right: 0;
+			background: element(#back) fixed;
+			filter: grayscale(1) contrast(3) blur(1px);
+		}
+	}
+
+En utilisant `@supports`, on peut donc tester :
+
+* si `backdrop-filter` est supporté, l'appliquer sur le `<h1>`
+* si `backdrop-filter` n'est pas supporté mais `element()` l'est, créer un pseudo-élément qui sera positionné sous le titre, définir son arrière-plan à être la vue dynamique de l'arrière-plan du site et appliquer le filtre.
+
+On peut aussi mentionner qu'il est possible de simuler `backdrop-filter` avec les filtres SVG. Quelque chose qui ressemble à ça (voir l'onglet HTML):
+
+(codepen: VLOGdw height: 430)
+
+Ainsi, vous offrez un encore meilleur support, mais il y a quelques limitations. Ce filtre SVG n'est pas dynamique, bien que ce soit théoriquement possible. En effet, aucun navigateur ne supporte [`backgroundImage` comme entrée pour les primitives de filtres](http://www.w3.org/TR/filter-effects/#valdef-in-backgroundimage). IE/Edge supporte la propriété dépréciée `enable-background` qui permet [d'accéder à `backgroundImage`](http://www.w3.org/TR/filter-effects/#AccessBackgroundImage), mais uniquement pour du contenu SVG.
+
+##Masquer les références
+
+Dans la plupart des effets, j'ai eu besoin de créer un masque pour cacher certaines parties de la page. C'est parce que vous ne pouvez pas simplement utiliser `display: none` sur un élément qui est utilisé comme arrière-plan. Et oui, l'image dynamique n'afficherait pas cet élément du tout.
+
+J'ai également essayé de mettre l'élément référence dans une `<div>` avec `height: 0` et `overflow: hidden`. Ainsi, l'élément est toujours présent dans la page (et peut donc être utilisé comme image dynamique) mais n'est plus visible, donc pas besoin de masque. Le problème est que certains navigateurs dégradent les performances des éléments invisibles (animations CSS, GIFs animés non animés, etc.) et ce n'est pas ce que nous voulons dans ce cas précis.
+
+J'ai donc utilisé la technique du masque. Vous pensez à une autre solution ?
+
+##Résumé
+
+J'espère vous avoir convaincu du potentiel énorme de `element()`, malgré son peu de support et ses légers problèmes de rendu. Vous devriez vraiment tester par vous même et partagez vos démos. Il faut montrer son importance, cela encouragera peut-être les navigateurs à considérer cette fonction (à nouveau pour Firefox)
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 2015-08-26 13:35
+
+----
+
+Tags: 
+
+----
+
+Big: 1
