@@ -122,3 +122,7 @@ Redirect permanent /post/26341983392 http://iamvdo.me/conf/w3cafe-2012
 Redirect permanent /post/40511090812 http://iamvdo.me/conf/sfeir-plays-2013
 Redirect permanent /post/48762843099 http://iamvdo.me/conf/9eme-meetup-html5-css3-pizzas
 Redirect permanent /post/54330620081 http://iamvdo.me/conf/kiwi-party-2013
+
+#redirect lab -> code
+Redirect permanent /lab /code
+Redirect permanent /en/lab /en/code

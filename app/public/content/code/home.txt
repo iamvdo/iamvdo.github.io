@@ -1,6 +1,6 @@
-Title: Laboratoire
+Title: Code
 ----
-Subtitle: Mes expériences sans réel but
+Subtitle: Open-source work
 ----
 Articles:
 

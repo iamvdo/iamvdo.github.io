@@ -1,6 +1,6 @@
-Title: Experiments
+Title: Code
 ----
-Subtitle: Experiences with no goal
+Subtitle: Open-source work
 ----
 Articles:
 
