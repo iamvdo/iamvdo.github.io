@@ -37,7 +37,8 @@
 	opacity: 1;
 	transform: perspective(500px) rotateX(0) translateY(0) translateZ(0);
 }
-.item--css3create {
+.item--css3create,
+.item--design {
 	background-color: hsl(185, 60%, 41%);
 }
 .item--conf {

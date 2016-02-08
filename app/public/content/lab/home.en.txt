@@ -7,16 +7,6 @@ Articles:
 {
 "0": 
   {
-  "title": "Skeuomorphic Payment Experiment",
-  "subtitle": "An online payment experiment that visually simulates a credit card",
-  "url": "http://iamvdo.me/css/skeuomorphic-payment-experiment/",
-  "image": "http://iamvdo.me/css/skeuomorphic-payment-experiment/images/skeuomorphic-payment-experiment.jpg",
-  "date": "2013-01-30 10:30:00",
-  "big": "1",
-  "lang": "en"
-  },
-"1": 
-  {
   "title": "SVG Sprites with <code>&lt;img></code> or <code>background-image</code>",
   "subtitle": "",
   "url": "http://lab.iamvdo.me/sprites-svg/",
@@ -25,7 +15,7 @@ Articles:
   "big": "0",
   "lang": "en"
   },
-"2": 
+"1": 
   {
   "title": "Media-queries Level 4 test",
   "subtitle": "Show currently active media-queries",

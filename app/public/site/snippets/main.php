@@ -23,7 +23,7 @@ if ( $isHomePage ) {
 	$childs = $pages->find('blog','conf','css')->children()->visible();
 
 	// + list all others articles
-	$search = array('css3create', 'ailleurs', 'lab', 'publi');
+	$search = array('css3create', 'ailleurs', 'lab', 'publi', 'design');
 	$data = array();
 	foreach ($search as $value) {
 		$json = json_decode($pages->find($value)->articles()->value, true);
@@ -54,7 +54,7 @@ if ( $isHomePage ) {
 				  ->filterBy('tags', $tag, ',');
 
 // else if we are in a special category (with others articles)
-} elseif ( $page->uri() === 'css3create' || $page->uri() === 'ailleurs' || $page->uri() === 'lab' || $page->uri() === 'publi') {
+} elseif ( $page->uri() === 'css3create' || $page->uri() === 'ailleurs' || $page->uri() === 'lab' || $page->uri() === 'publi' || $page->uri() === 'design') {
 
 	$childs = array();
 
