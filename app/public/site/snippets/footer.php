@@ -5,18 +5,9 @@
 			<h2>Vincent De Oliveira <small>(aka iamvdo)</small></h2>
 			<p><?php echo unwrap(markdown($site->footer())); ?></p>
 		</div>
-		<div class="underfooter superlink">
-			<?php snippet('menu'); ?>
-			<nav class="menu u-right">
-				<ul>
-					<li class="menu-item"><a href="http://twitter.com/iamvdo">Twitter</a></li>
-					<li class="menu-item"><a href="https://plus.google.com/u/0/109110310055687711031/posts">Google+</a></li>
-					<li class="menu-item"><a href="http://dribbble.com/iamvdo">Dribbble</a></li>
-					<li class="menu-item"><a href="http://github.com/iamvdo">GitHub</a></li>
-					<li class="menu-item">vincent@iamvdo.me</li>
-				</ul>
-			</nav>
-		</div>
+		<?php 
+		snippet('menubar');
+		 ?>
 		<div class="underfooter superlink u-align--center">
 			<p class="u-small"><?php echo unwrap(markdown($site->mentions())) . ' 2014 - ' . Date('Y'); ?></p>
 		</div>

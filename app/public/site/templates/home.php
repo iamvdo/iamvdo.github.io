@@ -17,6 +17,13 @@ $title .= html($site->title());
 	<?php 
 	snippet('header');
 	snippet('intro');
+	?>
+	<div class="wrap">
+	<?php
+	snippet('menubar');
+	?>
+	</div>
+	<?php
 	snippet('main');
 	snippet('footer');
 	snippet('script');

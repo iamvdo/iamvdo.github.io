@@ -43,6 +43,9 @@ html {
 	    -ms-text-size-adjust: none;
 	        text-size-adjust: none;
 }
+body {
+	padding-bottom: 5em;
+}
 h1,
 h2 {
 	color: white;
@@ -271,7 +274,7 @@ header{
 }
 .main{
 	overflow: hidden;
-	padding: 2em 0 0 0;
+	padding: .5em 0 0 0;
 }
 footer{
 	position: relative;
@@ -295,9 +298,6 @@ footer a:focus {
 	overflow: hidden;
 	padding: 1em 0 1em 0;
 	text-shadow: none;
-}
-.underfooter:last-of-type {
-	padding-bottom: 5em;
 }
 .underfooter > nav{
 	/* float: left; */
