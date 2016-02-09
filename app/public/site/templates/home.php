@@ -19,9 +19,11 @@ $title .= html($site->title());
 	snippet('intro');
 	?>
 	<div class="wrap">
-	<?php
-	snippet('menubar');
-	?>
+		<div class="underfooter superlink">
+			<?php
+			snippet('menu');
+			?>
+		</div>
 	</div>
 	<?php
 	snippet('main');
