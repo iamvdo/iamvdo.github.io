@@ -24,5 +24,25 @@ Articles:
   "date": "2016-02-11 11:15:00",
   "big": "1",
   "lang": "en"
+  },
+"2": 
+  {
+  "title": "Shine effect in pure CSS (+SVG)",
+  "subtitle": "Using masks, pseudo-elements and gradients",
+  "url": "http://codepen.io/iamvdo/pen/maJhu",
+  "image": "http://www.css3create.com/IMG/artoff86.png",
+  "date": "2013-01-17 15:13:34",
+  "big": "0",
+  "lang": "en"
+  },
+"3": 
+  {
+  "title": "Progressive blur with CSS & SVG",
+  "subtitle": "",
+  "url": "http://codepen.io/iamvdo/pen/xECmI",
+  "image": "http://www.css3create.com/IMG/artoff91.png",
+  "date": "2013-06-20 15:50:38",
+  "big": "0",
+  "lang": "en"
   }
 }
