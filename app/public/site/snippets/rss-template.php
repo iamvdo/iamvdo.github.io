@@ -19,8 +19,9 @@ date_default_timezone_set('Europe/Paris');
     <link><?php echo $site->full_url() . $site->homePage()->url(); ?></link>
     <lastBuildDate><?php 
       $first = reset($items);
-      echo ($first['modified']) ? date('D, d M Y H:i:s T', $first['modified']) : date('D, d M Y H:i:s T', $site->modified());
+      echo ($first['modified']) ? date('r', $first['modified']) : date('r', $site->modified());
        ?></lastBuildDate>
+    <description></description>
     <atom:link href="<?php echo xml(thisURL()) ?>" rel="self" type="application/rss+xml" />
   
     <?php foreach($items as $item): ?>
@@ -28,7 +29,7 @@ date_default_timezone_set('Europe/Paris');
       <title><?php echo xml($item['title']) ?></title>
       <link><?php echo xml($item['url']) ?></link>
       <guid><?php echo xml($item['url']) ?></guid>
-      <pubDate><?php echo date('D, d M Y H:i:s T', $item['modified']); ?></pubDate>
+      <pubDate><?php echo date('r', $item['modified']); ?></pubDate>
         
       <?php if(isset($descriptionField)): ?>
       <?php if(!$descriptionExcerpt): ?>
