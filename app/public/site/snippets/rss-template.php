@@ -18,7 +18,8 @@ date_default_timezone_set('Europe/Paris');
     <title><?php echo (isset($title)) ? xml($title) : xml($site->title()) ?></title>
     <link><?php echo $site->full_url() . $site->homePage()->url(); ?></link>
     <lastBuildDate><?php 
-      echo (reset($items)['modified']) ? date('D, d M Y H:i:s T', reset($items)['modified']) : date('D, d M Y H:i:s T', $site->modified());
+      $first = reset($items);
+      echo ($first['modified']) ? date('D, d M Y H:i:s T', $first['modified']) : date('D, d M Y H:i:s T', $site->modified());
        ?></lastBuildDate>
     <atom:link href="<?php echo xml(thisURL()) ?>" rel="self" type="application/rss+xml" />
   
