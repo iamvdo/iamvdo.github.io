@@ -272,6 +272,9 @@ header{
 	width: 95%;
 	margin: 0 auto;
 }
+.wrap--narrow {
+	max-width: 65em;
+}
 .main{
 	overflow: hidden;
 	padding: .5em 0 0 0;

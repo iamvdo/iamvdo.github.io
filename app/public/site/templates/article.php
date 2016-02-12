@@ -10,6 +10,13 @@
 	snippet('header');
 	snippet('intro');
 	?>
+	<div class="wrap wrap--narrow">
+		<div class="underfooter superlink">
+			<?php
+			snippet('menu');
+			?>
+		</div>
+	</div>
 	<section class="main article" role="main">
 		<?php 
 		snippet('aside-blog');
