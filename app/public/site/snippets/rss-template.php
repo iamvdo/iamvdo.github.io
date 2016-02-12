@@ -18,26 +18,22 @@ date_default_timezone_set('Europe/Paris');
     <title><?php echo (isset($title)) ? xml($title) : xml($site->title()) ?></title>
     <link><?php echo $site->full_url() . $site->homePage()->url(); ?></link>
     <lastBuildDate><?php 
-      echo ($items->first()->date()) ? date('D, d M Y H:i:s T', $items->first()->date()) : date('D, d M Y H:i:s T', $site->modified());
+      echo (reset($items)['modified']) ? date('D, d M Y H:i:s T', reset($items)['modified']) : date('D, d M Y H:i:s T', $site->modified());
        ?></lastBuildDate>
     <atom:link href="<?php echo xml(thisURL()) ?>" rel="self" type="application/rss+xml" />
-
-    <?php if($page->description() || isset($description)): ?>
-    <description><?php echo (isset($description)) ? xml($description) : xml($page->description()) ?></description>
-    <?php endif ?>
   
     <?php foreach($items as $item): ?>
     <item>
-      <title><?php echo xml($item->title()) ?></title>  
-      <link><?php echo $site->full_url(); echo xml($item->url()) ?></link>
-      <guid><?php echo $site->full_url(); echo xml($item->url()) ?></guid>
-      <pubDate><?php echo ($item->date()) ? date('D, d M Y H:i:s T', $item->date()) : date('D, d M Y H:i:s T', $item->modified()) ?></pubDate>
+      <title><?php echo xml($item['title']) ?></title>
+      <link><?php echo xml($item['url']) ?></link>
+      <guid><?php echo xml($item['url']) ?></guid>
+      <pubDate><?php echo date('D, d M Y H:i:s T', $item['modified']); ?></pubDate>
         
       <?php if(isset($descriptionField)): ?>
       <?php if(!$descriptionExcerpt): ?>
-      <description><![CDATA[<?php echo kirbytext($item->{$descriptionField}()) ?>]]></description>      
+      <description><![CDATA[<?php echo kirbytext($item['text']) ?>]]></description>
       <?php else: ?>
-      <description>toto<![CDATA[<?php echo excerpt($item->{$descriptionField()}, (isset($descriptionLength)) ? $descriptionLength : 140) ?>]]></description>
+      <description><![CDATA[<?php echo excerpt($item['text'], (isset($descriptionLength)) ? $descriptionLength : 140) ?>]]></description>
       <?php endif ?>
       <?php endif ?>
 
