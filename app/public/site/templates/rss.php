@@ -21,6 +21,8 @@ $articles = $pages->find('blog', 'conf')->children()->visible()->sortBy('date', 
 		$ownLang = site()->defaultLanguage()->code();
 	}
   return $ownLang == site()->language()->code();
+})->filter(function ($child) {
+  return time() - $child->date() > 0;
 })->limit(10)->toArray();
 
 foreach ($articles as $article) {
