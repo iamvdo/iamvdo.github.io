@@ -53,7 +53,7 @@
 						<?php
 					}
 				}
-				if ($page->hasNextVisible('date')) {
+				if ($page->hasNextVisible('date') and ((time() - $page->nextVisible('date')->date()) > 0)) {
 					$ownLang = $page->nextVisible('date')->content()->language();
 					if ($ownLang == '') {
 						$ownLang = $site->defaultLanguage()->code();
