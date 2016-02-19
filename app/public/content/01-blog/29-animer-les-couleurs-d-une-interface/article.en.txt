@@ -1,0 +1,95 @@
+Title: UI with rotating color scheme
+
+----
+
+URL-Key: ui-with-rotating-color-scheme
+
+----
+
+Text: 
+
+For my latest UI project [Sticky Elements][1], **I had a lot of fun making a rotating color scheme for the entire UI**. Gradients on background, text colors and even sliders (`<input type="range">`). And all that, only with CSS.
+
+## Animating color
+Animating colors is very easy thanks to CSS animations. In my specific case, I create an animation that will shift colors on chromatic circle using the `hsl` function (cause it's more legible), like so:
+
+	@keyframes wheelHueColor {
+		from, to { color: hsl(324, 70%, 45%); }
+		10%      { color: hsl(360, 65%, 45%); }
+		20%      { color: hsl( 36, 80%, 45%); }
+		30%      { color: hsl( 72, 75%, 35%); }
+		40%      { color: hsl(108, 65%, 35%); }
+		50%      { color: hsl(144, 75%, 35%); }
+		60%      { color: hsl(180, 75%, 35%); }
+		70%      { color: hsl(216, 60%, 45%); }
+		80%      { color: hsl(252, 65%, 50%); }
+		90%      { color: hsl(288, 60%, 40%); }
+	}
+	
+	.text {
+		color: hsl(324, 70%, 45%);
+		animation: wheelHueColor 100s infinite;
+	}
+
+Then, the animation is used with a duration of `100s` and repeated indefinitely. I've also added a fallback color in case the animation cannot be seen (no browser support, disable by user, etc.). And that's it.
+
+>**Note :** in order to produce better transitions between colors, it's preferable to add more than two steps in our keyframes, even if it's theoritically useless. In addition, we can adjust saturation and lightness of each color's step.
+
+## Animating a gradient
+
+To animate a CSS gradient, it's a bit more complicated. Four years ago, [I've shared two small tips (in French)][3] to make this happen, but both solutions have pitfalls. To sum up quickly:
+- The first one is to use a background-color as base, then add a semi-transparent gradient on top and animate the underlying color. The drawback is that you can't animate multiple colors, because your gradient remains the same.
+- The second one is to use `box-shadow` with `inset` keyword and a large spread value to fake a CSS gradient. This way you can animate multiple colors, but it isn't really practical, nor reliable.
+
+It's still impossible to animate a CSS gradient today (still waiting `cross-fade()`), so I decided to play with [CSS blending modes][4]. **The key here is to use a background color (animated with CSS) and a gradient on top with a blend mode applied. I've chosen the `overlay` one.**
+
+To animate the background color, we can create a new CSS `@keyframes` that will modify the `background-color` property. But, we can also reuse the `wheelHueColor` animation that we've already created, based on `color`. To make it work, we have to set the `currentColor` value to `background-color`. **This way, while animating, the actual text color is also set on the background.**
+
+For the gradient, a simple white to black `linear-gradient` will suit our needs. It's applied with its blend mode only when `background-blend-mode: overlay` is supported by the browser, thanks to `@supports`. No disgraceful black and white gradient on unsupported browsers.
+
+The result code looks like this:
+
+	.text {
+		animation: inherit;
+	}
+	.background {
+		color: hsl(324, 70%, 45%);
+		animation: wheelHueColor 100s infinite;
+		background-color: currentColor;
+	}
+	@supports (background-blend-mode: overlay) {
+		.background {
+			background-image: linear-gradient(45deg, white 10%, black 90%);
+			background-blend-mode: overlay;
+		}
+	}
+
+And here is a demo:
+
+(codepen: wMbPMj height: 500)
+
+[1]: http://design.iamvdo.me/stickyElements
+[2]: http://iamvdo.me/blog/les-avantages-de-hsl-par-rapport-a-rgb
+[3]: http://iamvdo.me/blog/astuce-utiliser-les-transitions-css-sur-les-degrades
+[4]: http://alistapart.com/article/blending-modes-demystified
+
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 2016-02-19 14:15
+
+----
+
+Tags: 
+
+----
+
+Big: 0
