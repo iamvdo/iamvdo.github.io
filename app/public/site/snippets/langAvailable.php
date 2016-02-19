@@ -8,12 +8,14 @@ $otherLang = (string)$page->content($c[$ownLang])->language();
 if ($otherLang == '') {
   $otherLang = $site->defaultLanguage()->code();
 }
-if ($ownLang != $otherLang) {
+if ($ownLang != $otherLang ) {
   $p = $page->content($c[$ownLang]);
+  if ((time() - strtotime($p->date())) > 0) {
   ?>
   <div class="article-utils">
     <p class="u-right"><?php echo l::get('article.langAvailable') . ' <a href="' . $page->url($c[$ownLang]) .'">[' . strtoupper($c[$ownLang]) . '] ' . $p->title() . '</a>'; ?></p>
   </div>
   <?php
+  }
 }
 ?>
