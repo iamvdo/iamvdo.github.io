@@ -1,0 +1,91 @@
+Title: Animer les couleurs d'une interface
+
+----
+
+Text: 
+
+Pour la démo de mon dernier projet [Sticky Elements][1], je me suis amusé à créer une interface qui change de couleur. Il y a un dégradé en arrière-plan, la couleur de certains textes et même les sliders d'options (`<input type="range">`). Et tout cela, uniquement en CSS.
+
+## Animer la couleur
+
+Changer la couleur d'un texte de manière automatique est plutot très simple via les animations CSS. Dans ce cas là, on crée donc une animation modifiant la couleur autour du cercle chromatique en [utilisant la fonction `hsl`][2] (car plus parlante pour un humain), comme ceci :
+
+	@keyframes wheelHueColor {
+		from, to { color: hsl(324, 70%, 45%); }
+		10%      { color: hsl(360, 65%, 45%); }
+		20%      { color: hsl( 36, 80%, 45%); }
+		30%      { color: hsl( 72, 75%, 35%); }
+		40%      { color: hsl(108, 65%, 35%); }
+		50%      { color: hsl(144, 75%, 35%); }
+		60%      { color: hsl(180, 75%, 35%); }
+		70%      { color: hsl(216, 60%, 45%); }
+		80%      { color: hsl(252, 65%, 50%); }
+		90%      { color: hsl(288, 60%, 40%); }
+	}
+	
+	.text {
+		color: hsl(324, 70%, 45%);
+		animation: wheelHueColor 100s infinite;
+	}
+
+Puis, on applique cette animation sans oublier la couleur par défaut au cas où l'animation ne se lance pas (pas de support navigateur, désactivée par l'utilisateur, etc.). Et le tour est joué.
+
+>**Note :** pour une meilleure transition entre les couleurs, il est préférable de préciser plusieurs étapes clés au lieu de deux qui auraient pu théoriquement suffire. De plus, cela permet d'ajuster la saturation et la luminance de chaque couleur à chaque étape.
+
+## Animer un dégradé en arrière-plan
+
+Pour animer un dégradé CSS, c'est un peu plus compliqué. [J'ai déjà partagé 2 astuces il y a 4 ans qui permettent d'y arriver][3] mais les deux solutions ont leurs défauts. Pour rappel:
+- La première consiste à utiliser une couleur de fond unie comme base, puis d'ajouter un dégradé semi-transparent au dessus, et d'animer la couleur de fond. Malheureusement, la couleur du dégradé lors de l'animation reste identique. Il n'est donc pas possible d'animer plusieurs couleurs
+- La seconde est d'utiliser `box-shadow` avec le mot-clé `inset` et une valeur d'étendue importante afin de simuler un dégradé. De cette façon, il devient possible d'animer plusieurs couleurs mais ce n'est pas vraiment pratique, ni vraiment optimisé.
+
+Comme il n'est toujours pas possible d'animer un dégradé CSS aujourd'hui (en attendant `cross-fade()`), j'ai choisi ici d'utiliser [les modes de fusion CSS][4]. La technique repose donc sur une couleur de fond (animée via CSS) et un dégradé au dessus avec un mode de fusion particulier. J'ai choisi le mode `overlay`.
+
+Pour animer la couleur de fond, il est bien entendu possible de créer une nouvelle animation CSS basée sur `background-color`. Mais nous pouvons également profiter de notre première animation sur `color`. Pour que cela fonctionne, il nous faut définir la valeur de `background-color` à `currentColor`. **Ainsi, lors de l'animation, la couleur actuellement animée est appliquée en arrière-plan**.
+
+Pour le dégradé, un simple `linear-gradient` de blanc vers noir fera l'affaire. Il est appliqué avec son mode de fusion uniquement lorsque le navigateur reconnait la déclaration `background-blend-mode: overlay`, testé avec `@supports`. Cela nous évite un dégradé blanc vers noir dans les navigateurs non supportés.
+
+Le code final est donc le suivant :
+
+	.text {
+		animation: inherit;
+	}
+	.background {
+		color: hsl(324, 70%, 45%);
+		animation: wheelHueColor 100s infinite;
+		background-color: currentColor;
+	}
+	@supports (background-blend-mode: overlay) {
+		.background {
+			background-image: linear-gradient(45deg, white 10%, black 90%);
+			background-blend-mode: overlay;
+		}
+	}
+
+Et voilà le rendu :
+
+(codepen: wMbPMj height: 500)
+
+[1]: http://design.iamvdo.me/stickyElements
+[2]: http://iamvdo.me/blog/les-avantages-de-hsl-par-rapport-a-rgb
+[3]: http://iamvdo.me/blog/astuce-utiliser-les-transitions-css-sur-les-degrades
+[4]: http://alistapart.com/article/blending-modes-demystified
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 2016-02-22 10:30
+
+----
+
+Tags: 
+
+----
+
+Big: 0
