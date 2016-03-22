@@ -66,7 +66,8 @@ Pour info, la valeur par défaut de `display` est `inline` et non `block`, la va
 
 L'utilisation qui en sera faite sera donc très limitée.
 
-**Update 24/10/2014**: Chrome 37 et Opera 24 supportent également `all`. Toujours aucun support dans Safari, ni IE.
+**Update 24/10/2014**: Chrome 37 et Opera 24 supportent également `all`.
+**Update 21/03/2016**: Supporté également par Safari 9.1. Toujours aucun support dans IE/Edge.
 
 ----
 
