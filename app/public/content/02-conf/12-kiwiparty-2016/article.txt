@@ -1,0 +1,29 @@
+Title: KiwiParty 2016
+
+----
+
+Text: Pour la cinquième année consécutive, j’ai eu l’occasion de participer à la [KiwiParty](http://kiwiparty.fr) pour y présenter une conférence sur SVG. Notamment sur les petites choses à savoir pour l’utiliser sans s’arracher les cheveux.
+
+Vous pouvez retrouver mes slides [«10 astuces SVG qui vont vous sauver la vie»](http://slides.iamvdo.me/kiwiparty16) en ligne.
+
+<iframe src="http://slides.iamvdo.me/kiwiparty16" frameborder="0" width="100%" height="500"></iframe>
+
+----
+
+Subtitle: 10 astuces SVG qui vont vous sauver la vie
+
+----
+
+Description: 
+
+----
+
+Date: 2016-06-03 09:30
+
+----
+
+Tags: 
+
+----
+
+Big: 0
