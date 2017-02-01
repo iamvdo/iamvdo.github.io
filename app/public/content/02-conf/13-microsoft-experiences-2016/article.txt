@@ -1,0 +1,27 @@
+Title: CSS, c'est pas de la science-fiction !
+
+----
+
+Text: Vous pouvez retrouver mes slides [«CSS, c’est pas de la science-fiction !»](http://slides.iamvdo.me/experiences16/#/) en ligne.
+
+<iframe src="http://slides.iamvdo.me/experiences16/#/" frameborder="0" width="100%" height="500"></iframe>
+
+----
+
+Subtitle: Microsoft expériences 2016
+
+----
+
+Description: 
+
+----
+
+Date: 2016-10-05 18:30
+
+----
+
+Tags: 
+
+----
+
+Big: 0
