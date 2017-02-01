@@ -1,4 +1,4 @@
-Title: KiwiParty 2016
+Title: 10 astuces SVG qui vont vous sauver la vie
 
 ----
 
@@ -10,7 +10,7 @@ Vous pouvez retrouver mes slides [«10 astuces SVG qui vont vous sauver la vie»
 
 ----
 
-Subtitle: 10 astuces SVG qui vont vous sauver la vie
+Subtitle: KiwiParty 2016
 
 ----
 

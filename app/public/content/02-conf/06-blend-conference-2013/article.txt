@@ -1,4 +1,4 @@
-﻿Title: Blend Conférence 2013
+﻿Title: Le futur des effets graphiques en CSS
 
 ----
 
@@ -29,7 +29,7 @@ Attention, prévoyez différents navigateurs et basculez de l'un à l'autre pour
 
 ----
 
-Subtitle: Le futur des effets graphiques en CSS
+Subtitle: Blend Conférence 2013
 
 ----
 

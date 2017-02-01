@@ -1,4 +1,4 @@
-﻿Title: Kiwi Party 2014
+﻿Title: Line-height, cette propriété méconnue
 
 ----
 
@@ -32,7 +32,7 @@ Mais la Kiwi Party, c'est aussi le `::before`, l'`::after`, et pour les plus té
 
 ----
 
-Subtitle: Line-height, cette propriété méconnue
+Subtitle: KiwiParty 2014
 
 ----
 

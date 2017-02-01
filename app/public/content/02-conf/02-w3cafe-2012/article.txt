@@ -1,6 +1,6 @@
-Title: W3Café 2012
+Title: Transitions, Animations, Transformations et plus si affinités
 ----
-Subtitle: Transitions, Animations, Transformations et plus si affinités
+Subtitle: W3Café 2012
 ----
 Date: 2012-06-29 14:00
 ----

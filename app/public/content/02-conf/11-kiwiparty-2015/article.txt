@@ -1,4 +1,4 @@
-Title: KiwiParty 2015
+Title: Icon-fonts vs SVG sprites
 
 ----
 
@@ -10,7 +10,7 @@ Vous pouvez retrouver [mes slides «Icon-fonts vs SVG sprites» en ligne](http:/
 
 ----
 
-Subtitle: Icon-fonts vs SVG sprites
+Subtitle: KiwiParty 2015
 
 ----
 

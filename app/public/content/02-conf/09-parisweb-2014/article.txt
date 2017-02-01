@@ -1,4 +1,4 @@
-Title: Paris-Web 2014
+Title: Les masques CSS, vers de nouveaux usages dans le webdesign
 
 ----
 
@@ -18,7 +18,7 @@ Je remercie toute l'équipe de Paris-Web qui a fait un boulot énorme sur cette 
 
 ----
 
-Subtitle: Les masques CSS, vers de nouveaux usages dans le webdesign
+Subtitle: Paris-Web 2014
 
 ----
 

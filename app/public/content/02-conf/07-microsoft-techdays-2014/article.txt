@@ -1,4 +1,4 @@
-﻿Title: Microsoft TechDays 2014
+﻿Title: CSS, c'est pas si facile!
 
 ----
 
@@ -14,7 +14,7 @@ Pour découvrir cette présentation, plusieurs options:
 
 ----
 
-Subtitle: CSS, c'est pas si facile!
+Subtitle: Microsoft TechDays 2014
 
 ----
 

@@ -1,6 +1,6 @@
-Title: SFEIR'Plays 2013
+Title: CSS3 avancées: transitions et layouts
 ----
-Subtitle: CSS3 avancées: transitions et layouts
+Subtitle: SFEIR'Plays 2013
 ----
 Date: 2013-01-09 19:00
 ----

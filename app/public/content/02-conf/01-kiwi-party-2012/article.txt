@@ -1,6 +1,6 @@
-Title: Kiwi Party 2012
+Title: Les effets graphiques (très) avancés
 ----
-Subtitle: Les effets graphiques (très) avancés
+Subtitle: KiwiParty 2012
 ----
 Date: 2012-05-04 12:00
 ----

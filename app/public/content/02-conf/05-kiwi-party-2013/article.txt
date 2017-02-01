@@ -1,6 +1,6 @@
-Title: Kiwi Party 2013
+Title: Ce que vous avez toujours voulu savoir sur CSS
 ----
-Subtitle: Ce que vous avez toujours voulu savoir sur CSS
+Subtitle: KiwiParty 2013
 ----
 Date: 2013-06-29 11:00
 ----

@@ -1,4 +1,4 @@
-Title: Blend Web Mix 2014
+Title: Les postprocesseurs CSS
 
 ----
 
@@ -17,7 +17,7 @@ Je remercie toute l'équipe de Blend pour m'avoir convié une deuxième année d
 
 ----
 
-Subtitle: Les postprocesseurs CSS
+Subtitle: Blend Web Mix 2014
 
 ----
 
