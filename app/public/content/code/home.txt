@@ -22,5 +22,23 @@ Articles:
   "image": "/images/Octocat.png",
   "date": "2015-08-05 14:10:00",
   "big": "0"
+  },
+"2": 
+  {
+  "title": "CSS & SVG Masks",
+  "subtitle": "Testcases on HTML content",
+  "url": "http://lab.iamvdo.me/css-svg-masks/",
+  "image": "/images/Octocat.png",
+  "date": "2017-02-01 22:30:00",
+  "big": "0"
+  },
+"3": 
+  {
+  "title": "Pleeease - Outil CSS",
+  "subtitle": "Optimisez votre workflow",
+  "url": "http://pleeease.io",
+  "image": "/images/Octocat.png",
+  "date": "2014-04-22 22:30:00",
+  "big": "1"
   }
 }
