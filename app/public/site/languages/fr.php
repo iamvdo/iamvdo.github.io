@@ -1,6 +1,6 @@
 <?php 
 
-l::set('home', 'Accueil');
+l::set('home', 'Tout voir');
 l::set('backHome', 'Retour accueil');
 
 l::set('article.publication', 'publié il y a');

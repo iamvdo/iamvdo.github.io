@@ -4,7 +4,7 @@ Subtitle: Transitions, Animations, Transformations et plus si affinités
 ----
 Date: 2012-06-29 14:00
 ----
-Big: 1
+Big: 0
 ----
 Text:
 

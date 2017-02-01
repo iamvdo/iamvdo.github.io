@@ -1,4 +1,4 @@
-Title: Vincent De Oliveira - CSS, SVG & UI
+Title: Vincent De Oliveira - CSS, SVG, UI & Maps
 
 ----
 
@@ -10,7 +10,7 @@ Author: Vincent De Oliveira
 
 ----
 
-Description: From Paris, I'm a CSS, SVG & UI addict. I love the web and the open-source, co-author of a french CSS3 book, I also made Pleeease and co-organize CSS Paris meetups
+Description: From Paris, I'm a CSS, SVG, UI & Maps addict. I love the web and the open-source, co-author of a french CSS3 book, I also made Pleeease and co-organize CSS Paris meetups
 
 ----
 
