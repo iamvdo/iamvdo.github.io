@@ -46,7 +46,8 @@ kirbytext::$tags['image'] = array(
 
     }
 
-    if(empty($alt)) $alt = pathinfo($url, PATHINFO_FILENAME);
+    //if(empty($alt)) $alt = pathinfo($url, PATHINFO_FILENAME);
+    if(empty($alt)) $alt = '';
 
     // link builder
     $_link = function($image) use($tag, $url, $link, $file) {
@@ -90,6 +91,7 @@ kirbytext::$tags['image'] = array(
       $figure->addClass($tag->attr('class'));
       $figure->append($image);
       if(!empty($caption)) {
+        $caption = urldecode($caption);
         $figure->append('<figcaption class="caption">' . html($caption) . '</figcaption>');
       }
       return $figure;
