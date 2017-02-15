@@ -104,11 +104,13 @@
  * articles-text
  *
  */
+ /* latin */
 .article-text {
 	text-shadow: 0 1px 2px rgba(0,0,0,.5);
-	line-height: 1.9;
-	word-spacing: 1px;
-	letter-spacing: .4px;
+	line-height: 2;
+	font-size: 1.05em;
+	//word-spacing: 1px;
+	//letter-spacing: .4px;
 	margin-top: 2.4em;
 	margin-bottom: 2.4em;
 	/* background: #444; */
@@ -117,7 +119,7 @@
 }
 .article-text h2 {
 	font-size: 1.7em;
-	font-weight: bold;
+	font-weight: 600;
 	padding: .5em 0;
 	margin-top: 2em;
 	text-shadow: 0 1px 2px rgba(0,0,0,.9);
@@ -129,14 +131,14 @@
 	margin-top: 1em;
 }
 .article-text p {
-	color: #eee;
+	color: #fff;
 	padding: .5em 0;
 	/* text-indent: 25px; */
 }
 
 .article-text a {
 	position: relative;
-	color: #eee;
+	color: #fff;
 	text-decoration: none;
 	padding: 4px 2px;
 	border-bottom: 2px solid #f03d36;
@@ -164,7 +166,7 @@
 	padding: 0 0 1em 1em;
 	line-height: 1.6;
 	list-style: none;
-	color: #eee;
+	color: #fff;
 }
 .article-text li {
 	position: relative;
