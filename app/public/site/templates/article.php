@@ -1,9 +1,17 @@
 <?php snippet('doctype') ?>
-	<meta property="og:title" content="<?php echo $page->title(); ?>">
+<?php 
+	$title = html($page->title());
+	$title .= ' - ' . html($site->author());
+	$description = $page->description();
+	if ($description == '') {
+		$description = excerpt($page->text(), 300);
+	}
+	?>
+	<meta property="og:title" content="<?php echo $title; ?>">
 	<meta property="og:url" content="<?php echo thisUrl(); ?>">
-	<meta property="og:description" content="<?php echo excerpt($page->text(), 300); ?>">
-	<title><?php echo html($page->title()) . ' - ' . html($site->author()); ?></title>
-	<meta name="description" content="<?php echo excerpt($page->text(), 300); ?>">
+	<meta property="og:description" content="<?php echo $description; ?>">
+	<title><?php echo $title; ?></title>
+	<meta name="description" content="<?php echo $description; ?>">
 </head>
 <body>
 	<?php 
