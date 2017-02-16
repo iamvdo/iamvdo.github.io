@@ -287,7 +287,7 @@ header{
 .superlink a {
 	position: relative;
 	font-weight: 300;
-	color: rgba(0,0,0,.5);
+	color: rgba(0,0,0,.75);
 	text-decoration: none;
 	transition: color .2s;
 }
