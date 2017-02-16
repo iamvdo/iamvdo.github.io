@@ -194,6 +194,8 @@ Be careful though, in all cases, it aligns the *virtual-area*, so the invisible 
 
 (image: vertical-align-top-virtual-height.png caption: vertical-align may produce odd result at first, but expected when visualizing line-height)
 
+Finally, `vertical-align` also accepts numerical values which raise or lower the box regarding to the baseline. That last option could come in handy.
+
 ##CSS is awesome
 
 We’ve talked about how `line-height` and `vertical-align` work together, but now the question is: are font metrics controllable with CSS? Short answer: no. Even if I really hope so.
