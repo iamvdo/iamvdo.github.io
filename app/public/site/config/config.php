@@ -341,6 +341,7 @@ c::set('yourproject.yourvar', 'yourvalue');
 
 */
 
+c::set('footnotes.global', true);
 
 /*
 

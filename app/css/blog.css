@@ -160,6 +160,13 @@
 	color: #fff;
 	text-shadow: 0 1px 2px rgba(0,0,0,1);
 }
+.article-text sup {
+	line-height: 0;
+	font-family: Georgia, serif;
+	font-size: .6em;
+	font-style: italic;
+	vertical-align: text-top;
+}
 .article-text ul,
 .article-text ol {
 	margin-left: 1.6em;
@@ -190,7 +197,7 @@
 	position: relative;
 	padding: .5em 0 .5em 2.6em;
 	margin: 1em 0;
-	font: italic 1em/1.7 Georgia, serif;
+	font: italic 1.05em/1.7 Georgia, serif;
 	text-indent: 2em;
 	border: 0 dashed #aaa;
 	border-width: 1px 0;
@@ -302,4 +309,13 @@
 }
 .codepen-placeholder {
 	background: rgba(0,0,0,.2);
+}
+.footnotes {
+	margin-top: 50px;
+	padding-top: 50px;
+	font-size: .8em;
+	border-top: 1px dashed #272727;
+}
+.footnotes li p {
+	display: inline-block;
 }
