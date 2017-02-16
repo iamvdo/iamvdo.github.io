@@ -29,11 +29,11 @@ Look at this simple HTML code, a `<p>` tag containing 3 `<span>`, each with a di
 
 Using the same `font-size` with different font-families produce elements with various heights:
 
-(image: font-size.jpg caption: Different font-families, same font-size, give various heights)
+(image: font-size.png caption: Different font-families, same font-size, give various heights)
 
 Even if we’re aware of that behavior, why `font-size: 100px` does not create elements with 100px height? I’ve measured and found these values: Helvetica:  115px, Gruppo: 97px and Catamaran: 164px
 
-(image: font-size-line-height.jpg caption: Elements with font-size: 100px have height that varies from 97px to 164px)
+(image: font-size-line-height.png caption: Elements with font-size: 100px have height that varies from 97px to 164px)
 
 Although it seems a bit weird at first, it’s totally expected. **The reason lays down inside the font itself**. Here is how it works:
 - a font defines its [em-square](http://designwithfontforge.com/en-US/The_EM_Square.html) (or UPM, units per em), a kind of container where each character will be drawn. This square uses relative units and is generally set at 1000 units. But it can also be 1024, 2048 or anything else.
@@ -44,13 +44,13 @@ Let’s take the Catamaran font and open it in [FontForge] to get metrics:
 - the em-square is 1000
 - the ascender is 1100 and the descender is 540. After running some tests, it seems that browsers use the HHead Ascent/Descent values (on a Mac) and Win Ascent/Descent values on Windows (these values may differ!). We also note that Capital height is 640 and X height is 485.
 
-(image: font-forge-metrics.jpg caption: Font metrics values using FontForge)
+(image: font-forge-metrics.png caption: Font metrics values using FontForge)
 
 That means the Catamaran font uses 1100 + 540 units in a 1000 units em-square, which gives a height of 164px when setting `font-size: 100px`. **This computed height defines the *content-area* of an element** and I will refer to this terminology for the rest of the article. You can think of the *content-area* as the area where the `background` property applies [1. it’s not strictly true].
 
 We can also predict that capital letters are 68px high (680 units) and lower case letters (x-height) are 49px high (485 units). As a result, `1ex` = 49px and `1em` = 100px, not 164px (thankfully, `em` is based on `font-size`, not computed height)
 
-(image: upm-px-equivalent.jpg caption: Catamaran font: UPM —Units Per Em— and pixels equivalent using font-size: 100px)
+(image: upm-px-equivalent.png caption: Catamaran font: UPM —Units Per Em— and pixels equivalent using font-size: 100px)
 
 Before going deeper, a short note on what this it involves. When a `<p>` element is rendered on screen, it can be composed of many lines, according to its width. Each line is made up of one or many inline elements (HTML tags or anonymous inline elements for text content) and is called a *line-box*. **The height of a *line-box* is based on its children’s height**. The browser therefore computes the height for each inline elements, and thus the height of the *line-box* (from its child’s highest point to its child’s lowest point). As a result, a *line-box* is always tall enough to contain all its children (by default).
 
@@ -70,7 +70,7 @@ It will generate 3 *line-boxes*:
 - the first and last one each contain a single anonymous inline element (text content)
 - the second one contains two anonymous inline elements, and the 3 `<span>`
 
-(image: line-boxes.jpg caption: A <code>&lt;p></code> (black border%29 is made of line-boxes (white borders%29 that contain inline elements (solid borders%29 and anonymous inline elements (dashed borders%29 )
+(image: line-boxes.png caption: A <code>&lt;p></code> (black border%29 is made of line-boxes (white borders%29 that contain inline elements (solid borders%29 and anonymous inline elements (dashed borders%29 )
 
 We clearly see that the second *line-box* is taller than the others, due to the computed *content-area* of its children, and more specifically, the one using the Catamaran font.
 
@@ -85,11 +85,11 @@ Even though it may sound strange, **an inline element has two different height: 
 - the *content-area* height is defined by the font metrics (as seen before)
 - **the *virtual-area* height is the `line-height`**, and it is the height **used to compute the *line-box*’s height**
 
-(image: line-height.jpg caption: Inline elements have two different height)
+(image: line-height.png caption: Inline elements have two different height)
 
 That being said, it breaks down the popular belief that `line-height` is the distance between baselines. In CSS, it is not.
 
-(image: line-height-yes-no.jpg caption: In CSS, the line-height is not the distance between baselines)
+(image: line-height-yes-no.png caption: In CSS, the line-height is not the distance between baselines)
 
 The computed difference of height between the *virtual-area* and the *content-area* is called the leading. Half this leading is added on top of the *content-area*, the other half is added on the bottom of the *content-area*. **The *content-area* is therefore always on the middle of the *virtual-area***.
 
@@ -102,7 +102,7 @@ There are also other kind of inline elements:
 
 For these specific inline elements, height is computed based on their `height`, `margin` and `border` properties. If `height` is `auto`, then `line-height` is used and the *content-area* is strictly equal to the `line-height`.
 
-(image: line-height-inline-block.jpg caption: Inline replaced elements, inline-block and blocksified inline elements have a content-area equal to their height, or line-height)
+(image: line-height-inline-block.png caption: Inline replaced elements, inline-block and blocksified inline elements have a content-area equal to their height, or line-height)
 
 Anyway, the problem we’re still facing is how much the `line-height`’s `normal` value is? And the answer, as for the computation of the *content-area*’s height, is to be found inside the font metrics.
 
@@ -117,7 +117,7 @@ As a comparison, the Arial font describes an em-square of 2048 units, an ascende
 
 **It becomes obvious that setting `line-height: 1` is a bad practice**. I remind you that unitless values are `font-size` relative, not *content-area* relative, and dealing with a *virtual-area* smaller than the *content-area* is the origin of many of our problems.
 
-(image: line-height-1.jpg caption: Using line-height%3A 1 can create a line-box smaller than the content-area)
+(image: line-height-1.png caption: Using line-height%3A 1 can create a line-box smaller than the content-area)
 
 But not only `line-height: 1`. For what it’s worth, on the 1117 fonts installed on my computer (yes, [I installed all fonts from Google Web Fonts](https://github.com/qrpike/Web-Font-Load)), 1059 fonts, around 95%, have a computed `line-height` greater than 1. Their computed `line-height` goes from 0.618 to 3.378. You’ve read it well, 3.378!
 
@@ -146,7 +146,7 @@ Start with that code:
 
 A `<p>` tag with 2 siblings `<span>` inheriting `font-family`, `font-size` and fixed `line-height`. Baselines will match and the *line-box*’s height is equal to their `line-height`.
 
-(image: vertical-align-baseline.jpg caption: Same font values, same baselines, everything seems OK)
+(image: vertical-align-baseline.png caption: Same font values, same baselines, everything seems OK)
 
 What if the second element has a smaller `font-size`?
 
@@ -156,7 +156,7 @@ What if the second element has a smaller `font-size`?
 
 As strange as it sounds, **default baseline alignment may result in a higher (!) *line-box***, as seen in the image below. I remind you that a *line-box*’s height is computed from its child’s highest point to its child’s lowest point.
 
-(image: vertical-align-baseline-nok.jpg caption: A smaller child element may result in a higher line-box's height)
+(image: vertical-align-baseline-nok.png caption: A smaller child element may result in a higher line-box's height)
 
 That could be [an argument in favor of using `line-height` unitless values](http://allthingssmitty.com/2017/01/30/nope-nope-nope-line-height-is-unitless/), but sometimes you need fixed ones to [create a perfect vertical rhythm](https://scotch.io/tutorials/aesthetic-sass-3-typography-and-vertical-rhythm#baseline-grids-and-vertical-rhythm). **To be honest, no matter what you choose, you’ll always have trouble with inline alignments**.
 
@@ -180,7 +180,7 @@ How high is the *line-box*? We should expect 200px, but it’s not what we get. 
 
 To resume, we’re facing the same previous problem as for siblings elements.
 
-(image: vertical-align-strut.jpg caption: Each child is aligned as if its line-box starts with an invisible zero-width character)
+(image: vertical-align-strut.png caption: Each child is aligned as if its line-box starts with an invisible zero-width character)
 
 Baseline alignment is screwed, but what about `vertical-align: middle` to the rescue? As you can read in the spec, `middle` “aligns the vertical midpoint of the box with the baseline of the parent box plus half the x-height of the parent”. **Baselines ratio are different, as well as x-height ratio, so `middle` alignment isn’t reliable either**. Worst, in most scenarios, `middle` is never really “at the middle”. Too many factors are involved and cannot be set via CSS (x-height, ascender/descender ratio, etc.)
 
@@ -188,11 +188,11 @@ As a side note, there are 4 other values, that may be useful in some cases:
 - `vertical-align: top` / `bottom` align to the top or the bottom of the *line-box*
 - `vertical-align: text-top` / `text-bottom` align to the top or the bottom of the *content-area*
 
-(image: vertical-align-top-bottom-text.jpg caption: Vertical-align: top, bottom, text-top and text-bottom)
+(image: vertical-align-top-bottom-text.png caption: Vertical-align: top, bottom, text-top and text-bottom)
 
 Be careful though, in all cases, it aligns the *virtual-area*, so the invisible height. Look at this simple example using `vertical-align: top`. **Invisible `line-height` may produce odd, but unsurprising, results**.
 
-(image: vertical-align-top-virtual-height.jpg caption: vertical-align may produce odd result at first, but expected when visualizing line-height)
+(image: vertical-align-top-virtual-height.png caption: vertical-align may produce odd result at first, but expected when visualizing line-height)
 
 ##CSS is awesome
 
@@ -222,7 +222,7 @@ First we set all font metrics as CSS custom properties [1. You could also use va
 		font-size: calc(var(--computedFontSize) * 1px);
 	}
 
-(image: css-metrics-capital-height.jpg caption: The capital height is now 100px high)
+(image: css-metrics-capital-height.png caption: The capital height is now 100px high)
 
 Pretty straightforward, isn’t it? But what if we want the text to be visually at the middle, so that the remaining space is equally distributed on top and bottom of the “B” letter? To achieve that, we have to compute `vertical-align` based on ascender/descender ratio.
 
@@ -265,7 +265,7 @@ At the end, we set the desired `line-height` and compute it while maintaining a 
 		line-height: calc(((var(--lineheight) * var(--fontSize)) - var(--valign)) * 1px);
 	}
 
-(image: css-metrics-results-line-height.jpg caption: Results with different line-height. The text is always on the middle)
+(image: css-metrics-results-line-height.png caption: Results with different line-height. The text is always on the middle)
 
 Adding an icon whose height is matching the letter “B” is now easy:
 
@@ -279,7 +279,7 @@ Adding an icon whose height is matching the letter “B” is now easy:
 		background-size: cover;
 	}
 
-(image: css-metrics-results-icon.jpg caption: Icon and B letter are the same height)
+(image: css-metrics-results-icon.png caption: Icon and B letter are the same height)
 
 [See result in jsbin](http://jsbin.com/tufatir/edit?css,output)
 
