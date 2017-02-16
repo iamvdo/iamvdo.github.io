@@ -57,10 +57,15 @@
 		width: 99%;
 		border: none;
 	}
+	.article-text {
+		font-size: 1em;
+	}
 	.article-text ul, .article-text ol {
 		margin-left: 0;
 	}
-}
+	.article-text blockquote {
+		font-size: 1em;
+	}
 /* max 576px */
 @media (max-width: 36em) {
 	header {
