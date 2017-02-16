@@ -8,7 +8,7 @@ URL-Key: css-font-metrics-line-height-and-vertical-align
 
 Text: `Line-height` and `vertical-align` are simple CSS properties. So simple that most of us are convinced to fully understand how they work and how to use them. But it’s not. They really are complex, maybe the hardest ones, as **they have a major role in the creation of one of the less-known feature of CSS: inline formatting context**.
 
-For example, `line-height` can be used with unit or unitless values (no matter what you choose, that’s not the point here), but the default value is `normal`. OK, but what normal is? We often read that it is (or should be) 1, or maybe 1.2, even the [CSS spec is unclear on that point](https://www.w3.org/TR/CSS2/visudet.html#propdef-line-height). We know that unitless `line-height` is `font-size` relative, but the problem is that `font-size: 100px` behaves differently across font-families, so is `line-height` always the same or different? Is it really between 1 and 1.2? And `vertical-align`, what are its implications regarding `line-height`?
+For example, `line-height` can be set as a length or a unitless value [1. no matter what you choose, that’s not the point here], but the default is `normal`. OK, but what normal is? We often read that it is (or should be) 1, or maybe 1.2, even the [CSS spec is unclear on that point](https://www.w3.org/TR/CSS2/visudet.html#propdef-line-height). We know that unitless `line-height` is `font-size` relative, but the problem is that `font-size: 100px` behaves differently across font-families, so is `line-height` always the same or different? Is it really between 1 and 1.2? And `vertical-align`, what are its implications regarding `line-height`?
 
 Deep dive into a not-so-simple CSS mechanism…
 
@@ -46,7 +46,7 @@ Let’s take the Catamaran font and open it in [FontForge] to get metrics:
 
 (image: font-forge-metrics.jpg caption: Font metrics values using FontForge)
 
-That means the Catamaran font uses 1100 + 540 units in a 1000 units em-square, which gives a height of 164px when setting `font-size: 100px`. **This computed height defines the *content-area* of an element** and I will refer to this terminology for the rest of the article. You can think of the *content-area* as the area where the `background` property applies (even if it’s not strictly true).
+That means the Catamaran font uses 1100 + 540 units in a 1000 units em-square, which gives a height of 164px when setting `font-size: 100px`. **This computed height defines the *content-area* of an element** and I will refer to this terminology for the rest of the article. You can think of the *content-area* as the area where the `background` property applies [1. it’s not strictly true].
 
 We can also predict that capital letters are 68px high (680 units) and lower case letters (x-height) are 49px high (485 units). As a result, `1ex` = 49px and `1em` = 100px, not 164px (thankfully, `em` is based on `font-size`, not computed height)
 
@@ -85,7 +85,7 @@ Even though it may sound strange, **an inline element has two different height: 
 - the *content-area* height is defined by the font metrics (as seen before)
 - **the *virtual-area* height is the `line-height`**, and it is the height **used to compute the *line-box*’s height**
 
-(image: line-height.jpg caption: One element, two different height)
+(image: line-height.jpg caption: Inline elements have two different height)
 
 That being said, it breaks down the popular belief that `line-height` is the distance between baselines. In CSS, it is not.
 
@@ -102,7 +102,7 @@ There are also other kind of inline elements:
 
 For these specific inline elements, height is computed based on their `height`, `margin` and `border` properties. If `height` is `auto`, then `line-height` is used and the *content-area* is strictly equal to the `line-height`.
 
-(image: line-height-inline-block.jpg caption: Inline replaced elements, inline-block and blocksified inline elements have a content-area equal their height, or line-height)
+(image: line-height-inline-block.jpg caption: Inline replaced elements, inline-block and blocksified inline elements have a content-area equal to their height, or line-height)
 
 Anyway, the problem we’re still facing is how much the `line-height`’s `normal` value is? And the answer, as for the computation of the *content-area*’s height, is to be found inside the font metrics.
 
@@ -197,9 +197,11 @@ Be careful though, in all cases, it aligns the *virtual-area*, so the invisible 
 ##CSS is awesome
 
 We’ve talked about how `line-height` and `vertical-align` work together, but now the question is: are font metrics controllable with CSS? Short answer: no. Even if I really hope so.
-Anyway, I think we should play a bit. Font metrics are constant, so we should be able to do something.
+Anyway, I think we have to play a bit. Font metrics are constant [1. font metrics are constant. But [computations in browsers are not](https://www.brunildo.org/test/normal-lh-plot.html) ¯\\_(ツ)_/¯], so we should be able to do something.
 
-What if, for example, I want a text using the Catamaran font, where the capital height is exactly 100px high? This example get you covered: first I set all font metrics as CSS custom properties, then compute `font-size` to get a capital height of 100.
+What if, for example, we want a text using the Catamaran font, where the capital height is exactly 100px high? Seems doable: let’s do some maths.
+
+First we set all font metrics as CSS custom properties [1. You could also use variables from preprocessors, custom properties are not required], then compute `font-size` to get a capital height of 100.
 
 	p {
 		/* font metrics */
@@ -279,7 +281,7 @@ Adding an icon whose height is matching the letter “B” is now easy:
 
 (image: css-metrics-results-icon.jpg caption: Icon and B letter are the same height)
 
-[See jsbin](http://jsbin.com/tufatir/edit?css,output)
+[See result in jsbin](http://jsbin.com/tufatir/edit?css,output)
 
 ##Takeaways
 
@@ -295,6 +297,7 @@ What we learned:
 - `vertical-align` is not very reliable
 - a *line-box*’s height is computed based on its children’s `line-height` and `vertical-align` properties
 - we cannot easily get/set font metrics with CSS
+- there is a related future spec to help with vertical alignment: the [Line Grid module](https://drafts.csswg.org/css-line-grid/)
 
 But I still love CSS :)
 
@@ -303,7 +306,7 @@ But I still love CSS :)
 - Get font metrics: [FontForge], [opentype.js](http://opentype.js.org/font-inspector.html)
 - [Compute `line-height: normal`, and some ratio in the browser](http://brunildo.org/test/aspect-lh-table2.html)
 - [Ahem](https://www.w3.org/Style/CSS/Test/Fonts/Ahem/), a special font to help understand how it works
-- An even deeper explanation of [inline formatting context](http://meyerweb.com/eric/css/inline-format.html)
+- An even deeper, institutional, explanation of [inline formatting context](http://meyerweb.com/eric/css/inline-format.html)
 
 
 [FontForge]: https://fontforge.github.io/en-US/
@@ -318,7 +321,7 @@ Description: An introduction to the inline formatting context. Explores line-hei
 
 ----
 
-Date: 2017-02-20 09:05
+Date: 2017-02-15 09:05
 
 ----
 
