@@ -66,6 +66,7 @@
 	.article-text blockquote {
 		font-size: 1em;
 	}
+}
 /* max 576px */
 @media (max-width: 36em) {
 	header {
