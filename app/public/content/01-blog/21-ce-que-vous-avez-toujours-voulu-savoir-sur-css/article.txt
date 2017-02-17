@@ -184,6 +184,7 @@ Nous venons de voir différentes valeurs de `display`, mais qu’en est-il de l�
 5. sinon, la valeur de `display` est appliquée
 
 <table class="table--2-1">
+	<caption class="caption">Valeurs de display quand float et position sont utilisés conjointement</caption>
 	<tr>
 		<th>Valeur spécifiée</th>
 		<th>Valeur calculée</th>
@@ -200,7 +201,6 @@ Nous venons de voir différentes valeurs de `display`, mais qu’en est-il de l�
 		<td><code>block</code>, <code>list-item</code>, <code>table</code></td>
 		<td>valeur spécifiée</td>
 	</tr>
-	<caption class="caption">Valeurs de display quand float et position sont utilisés conjointement</caption>
 </table>
 
 On remarque donc qu’un élément en `position: absolute`, `fixed`, ou flottant (à gauche ou à droite) aura la valeur de `display` automatiquement calculée à `block` ou `table`. Il est donc impossible de forcer l’affichage d’un élément utilisant ces modes de positionnement, et même il est totalement inutile de le préciser en CSS (puisque la valeur initiale de `display` est `inline`, elle sera calculée à `block`). Cet exemple vous montre ce cas:
