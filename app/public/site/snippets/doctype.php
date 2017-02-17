@@ -8,7 +8,7 @@
 	<link rel="icon" href="<?php echo url('images/favicon.png'); ?>">
 	<link rel="apple-touch-icon" sizes="152x152" href="<?php echo url('images/apple-touch-152.png'); ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo url('css/vendor.css'); ?>" media="only screen">
-	<link rel="stylesheet" type="text/css" href="<?php echo url('css/app.css'); ?>?v=2" media="only screen">
+	<link rel="stylesheet" type="text/css" href="<?php echo url('css/app.css'); ?>?v=3" media="only screen">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="@iamvdo">
 	<meta name="twitter:site:id" content="132682355">
