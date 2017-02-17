@@ -452,7 +452,7 @@ Subtitle:
 
 ----
 
-Description: 
+Description: Descritption détaillée de concepts avancés de CSS : le modèle de boite, le containing block, les interactions entre display, float et position, la fusion des marges, le block formatting context, les contextes d’empilements, etc.
 
 ----
 
