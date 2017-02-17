@@ -87,7 +87,7 @@ Even though it may sound strange, **an inline element has two different height: 
 
 (image: line-height.png caption: Inline elements have two different height)
 
-That being said, it breaks down the popular belief that `line-height` is the distance between baselines. In CSS, it is not.
+That being said, it breaks down the popular belief that `line-height` is the distance between baselines. In CSS, it is not [1. in other editing software, it might be the distance between baselines. In Word, or Photoshop, that is the case. The main difference is that the first line is also affected in CSS].
 
 (image: line-height-yes-no.png caption: In CSS, the line-height is not the distance between baselines)
 
@@ -203,7 +203,7 @@ Anyway, I think we have to play a bit. Font metrics are constant [1. font metric
 
 What if, for example, we want a text using the Catamaran font, where the capital height is exactly 100px high? Seems doable: let’s do some maths.
 
-First we set all font metrics as CSS custom properties [1. You could also use variables from preprocessors, custom properties are not required], then compute `font-size` to get a capital height of 100.
+First we set all font metrics as CSS custom properties [1. you could also use variables from preprocessors, custom properties are not required], then compute `font-size` to get a capital height of 100.
 
 	p {
 		/* font metrics */
@@ -284,6 +284,8 @@ Adding an icon whose height is matching the letter “B” is now easy:
 (image: css-metrics-results-icon.png caption: Icon and B letter are the same height)
 
 [See result in jsbin](http://jsbin.com/tufatir/edit?css,output)
+
+Note that this test is for demonstration purpose only. You can’t rely on this. If font is not loaded, fallback font has probably different font metrics, and nothing will work anymore.
 
 ##Takeaways
 
