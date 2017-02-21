@@ -1,0 +1,339 @@
+Title: CSS avancé : métriques des fontes, line-height et vertical-align
+
+----
+
+Text: 
+
+
+`Line-height` et `vertical-align` sont des propriétés très simples. Tellement simples que la majorité d’entre nous sommes persuadés de savoir comment elles fonctionnent et comment les utiliser. Mais non. Elles sont vraiment tout sauf simples, voire les plus complexes, **puisqu’elles ont un rôle important dans la création de l’une des choses les moins connues de CSS : le contexte de formatage *inline* (*inline formatting context*)**
+
+Par exemple, `line-height` peut être défini comme une longueur ou comme une valeur sans unité [1. peu importe le choix que vous faites, ce n'est pas le débat ici], mais la valeur par défaut est `normal`. OK, mais c’est combien normal ? On lit souvent que c’est (ou que ça devrait être) 1, ou alors 1.2, même [la spec CSS n’est pas très claire sur ce point](https://www.w3.org/TR/CSS2/visudet.html#propdef-line-height). Ce que l’on sait, c’est que le `line-height` sans unité est relatif à la propriété `font-size`, mais le problème c’est que `font-size: 100px` se comporte différemment entre les polices, donc est-ce que `line-height` est également différent ? Est-ce vraiment entre 1 et 1.2 ? Et `vertical-align`, quelles sont ses implications par rapport à `line-height` ?
+
+##Parlons taille de fontes avec `font-size`
+
+Prenons ce simple code HTML, un `<p>` qui contient trois `<span>`, chacun avec un `font-family` différent :
+
+<pre class="language-markup"><code>&lt;p>
+	&lt;span class="a">Ba&lt;/span>
+	&lt;span class="b">Ba&lt;/span>
+	&lt;span class="c">Ba&lt;/span>
+&lt;/p></code></pre>
+
+	p  { font-size: 100px }
+	.a { font-family: Helvetica }
+	.b { font-family: Gruppo    }
+	.c { font-family: Catamaran }
+
+Les éléments ont le même `font-size`, mais les polices produisent des éléments de hauteurs différentes :
+
+(image: font-size.png caption: Familles de polices différentes, tailles identiques, donnent des hauteurs différentes)
+
+Bien que ce soit un comportement connu, pourquoi `font-size: 100px` ne génére pas des éléments de 100px de haut ? J’ai donc mesuré et j’obtiens : Helvetica : 115px, Gruppo : 97px et Catamaran : 164px
+
+(image: font-size-line-height.png caption: Des éléments avec <code>font-size: 100px</code> ont des hauteurs qui varient de 97px à 164px)
+
+Même si ça semble étrange, c’est tout à fait normal. **La raison se trouve au sein de la police elle-même**. Voici comment cela fonctionne :
+- une fonte définit son [*em-square*](http://designwithfontforge.com/en-US/The_EM_Square.html) (ou UPM, *units per em*), une sorte de conteneur où chaque caractère sera dessiné. Cet *em-square* utilise des unités relatives et vaut généralement 1000 unités. Mais il peut aussi être défini à 1024, 2048 ou toute autre valeur.
+- relativement à cet *em-square*, les métriques de la fonte sont définies (ascendantes, descendantes, hauteur des capitales, hauteur d’x, etc.). Notez que certaines valeurs peuvent dépasser de l’*em-square*.
+- au sein du navigateur, les unités relatives sont transformées pour être adaptées à la taille de la police
+
+Prenons par exemple la police Catamaran et ouvrons-là dans [FontForge] pour obtenir ses métriques :
+- l’*em-square* est de 1000
+- les ascendantes sont de 1100 et les descendantes de 540. D’après mes tests, il semble que les navigateurs utilisent les champs *HHead Ascent*/*Descent* sur Mac OS, et *Win Ascent*/*Descent* sur Windows (ces valeurs peuvent être différentes !). On voit également que *Capital Height* vaut 640 et que *X Height* vaut 485.
+
+(image: font-forge-metrics.png caption: Métriques de fonte dans FontForge)
+
+Cela signifie que la police Catamaran utilises 1100 + 540 unités dans un *em-square* de 1000, ce qui nous donne une hauteur de 164px lorsque `font-size: 100px` est utilisé. **Cette hauteur calculée est le *content-area* d’un élément** et j’utiliserais ce terme en anglais pour le reste de l’article. Vous pouvez assimiler le *content-area* à la zone où le `background` s’applique [1. bien que ce ne soit pas tout à fait vrai].
+
+On peut également voir que les lettres capitales ont une hauteur de 68px (680 unités) et les lettres minuscules (hauteur d’x) une hauteur de 49px (485 unités). Par conséquent, `1ex` = 49px et `1em` = 100px, pas 164px (heureusement, `em` est relatif à `font-size`, pas à la hauteur calculée)
+
+(image: upm-px-equivalent.png caption: Police Catamaran : UPM —Units Per Em— et équivalents pixel avec <code>font-size: 100px</code>)
+
+Avant d’aller plus loin, un petite explication sur ce que cela implique. Quand un élément `<p>` est affiché à l’écran, il peut être composé de plusieurs lignes, en fonction de sa largeur. Chaque ligne est faite d’un ou plusieurs éléments *inline* (balises HTML ou éléments en ligne anonymes) et est appelée une *line-box*. **La hauteur d’une *line-box* est basée sur la hauteur de ses enfants**. Le navigateur doit alors calculer la hauteur de chaque enfant et ainsi en déduire la hauteur de la *line-box* (du point de l’enfant le plus haut au point de l’enfant le plus bas). Une *line-box* est donc toujours assez grande pour contenir tous ses enfants (par défaut).
+
+> Chaque élément HTML est en fait un empilement de *line-boxes*. Si vous connaissez la hauteur de chaque *line-box*, vous pouvez connaitre la hauteur de l’élément.
+
+Modifions le code précédent comme ceci :
+
+<pre class="language-markup"><code>&lt;p>
+	Good design will be better.
+	&lt;span class="a">Ba&lt;/span>
+	&lt;span class="b">Ba&lt;/span>
+	&lt;span class="c">Ba&lt;/span>
+	We get to make a consequence.
+&lt;/p></code></pre>
+
+Trois *line-boxes* seront générées :
+- la première et la dernière contiennent chacune un seul élément *inline* anonyme (contenu texte)
+- la seconde contient deux éléments *inline* anonymes et les trois `<span>`
+
+(image: line-boxes.png caption: Un <code>&lt;p></code> (bordure noire%29 est fait de line-boxes (bordures blanches%29 qui contiennent des éléments en ligne (bordures solides%29 et des éléments anonymes (bordures tiretées%29 )
+
+On voit clairement que la seconde *line-box* est plus haute que les autres, du à la hauteur du *content-area* de ses enfants, et notamment celui qui utilise la police Catamaran.
+
+**Le plus difficile dans la création des *line-boxes*, c’est que l’on a aucun moyen de les identifier, ni de les contrôler par CSS**. Même en appliquant un background sur `::first-line`, le résultat visuel n’est pas ce à quoi on s’attends.
+
+##`line-height` : vers les problèmes et au-delà
+
+Jusqu’à maintenant, j’ai évoqué deux notions : *content-area* et *line-box*. Si vous avez bien lu, j’ai dit que la hauteur d’une *line-box* est calculée par rapport à la hauteur de ses enfants, je ne pas dit que c’était par rapport à la hauteur du *content-area* de ses enfants. Et ça fait une grande différence.
+
+Aussi étrange que cela puisse paraitre, **un élément *inline* a deux hauteurs différentes : la hauteur de son *content-area* et la hauteur de sa *virtual-area*** (j’ai inventé le terme *virtual-area* car cette hauteur est invisible pour nous, donc vous ne trouverez aucune occurence dans la spec. J'utiliserais par contre également ce terme en anglais pour l’article)
+
+- la hauteur du *content-area* est définie par les métriques de la police (comme vu plus haut)
+- **la hauteur de la *virtual-area* est en fait le *line-height***, et c’est cette hauteur qui est **utilisée pour le calcul de la hauteur des *line-boxes***
+
+(image: line-height.png caption: Les éléments inline ont deux hauteurs différentes)
+
+Et donc, le mythe de croire que `line-height` est la distance entre les lignes de bases du texte s’effondre. En CSS, ce n’est pas le cas [1. dans d’autres logiciels d’édition, ça peut être le cas. Par exemple dans Word ou Photoshop. La différence principale est que la première ligne de texte est également affectée en CSS].
+
+(image: line-height-yes-no.png caption: En CSS, <code>line-height</code> n’est pas la distance entre les lignes de base du texte)
+
+La différence de hauteur entre la *virtual-area* et le *content-area* est appelée le *leading*. La moitié de ce *leading* est ajouté au-dessus du *content-area*, l’autre moitié est ajouté en dessous. **Le *content-area* est ainsi toujours au milieu de la *virtual-area***.
+
+En fonction de sa valeur calculée, le `line-height` (*virtual-area*) peut être égal, plus grand ou plus petit que le *content-area*. Dans le cas où la *virtual-area* est plus petite, le *leading* est négatif et la *line-box* sera alors visuellement plus petite que ses enfants.
+
+Il existe également d’autres types d’éléments *inline* :
+- éléments *inline* remplacés (`<img>`, `<input>`, `<svg>`, etc.)
+- éléments `inline-block` et tous les autres `inline-*`
+- éléments qui participent à un contexte de formatage spécifique (par exemple, dans un élément flexbox, les *flex items*, même *inline*, ont [une valeur calculée *blocksifiée*](http://iamvdo.me/blog/ce-que-vous-avez-toujours-voulu-savoir-sur-css#interactions-entre-display-float-position))
+
+Pour ces éléments *inline* particuliers, leur hauteur est calculée en fonction de leurs propriétés `height`, `margin` et `border`. Si `height` est `auto`, alors c’est `line-height` qui est utilisée et le *content-area* est de ce fait égal à `line-height`.
+
+(image: line-height-inline-block.png caption: Les éléments inline remplacés, <code>inline-%2A</code> et les éléments blocksifiés ont un content-area égal à <code>height</code>, ou <code>line-height</code>)
+
+Bref, le problème actuel, c’est toujours de savoir combien vaut `line-height: normal` ? La réponse, comme pour le calcul du *content-area* se trouve dans les métriques de notre fonte.
+
+Retournons donc dans FontForge. L'*em-square* de Catamaran est de 1000, mais on voit plusieurs valeurs pour les ascendantes/descendantes :
+
+- generals *Ascent/Descent* : les ascendantes sont de 770 et les descendantes de 230. Utilisées pour le dessin des glyphes. (table *«OS/2»*)
+- metrics *Ascent/Descent* : les ascendantes sont de 1100 et les descendantes de 540. Utilisées pour la hauteur du *content-area* (table *«hhea»* et *«OS/2»*)
+- metric *Line Gap*. Utilisée pour `line-height: normal`, en ajoutant cette valeur aux métriques *Ascent/Descent* (table *«hhea»*)
+
+Dans notre cas, la police Catamaran définit un interligne (*Line Gap*) de 0, donc **`line-height: normal` sera égal au *content-area*, qui est de 1640 unités, soit 1.64**.
+
+A titre de comparaison, la police Arial décrit un *em-square* de 2048 unités, des ascendantes de 1854, des descendantes de 434 et un interligne de 67. Cela veut dire que `font-size: 100px` nous donne un *content-area* de 112px (1117 unités) et une `line-height: normal` de 115px (1150 unités ou 1.15). Toutes ces métriques sont spécifiques à chaque police, et définies par le designer de la fonte.
+
+**Ça parait donc évident que `line-height: 1` est une mauvaise pratique**. Je vous rappelle que les valeurs sans unités font référence à la taille de la police, non pas à la taille du *content-area*, et devoir gérer une *virtual-area* plus petite que le *content-area* est la cause de pas mal de problèmes.
+
+(image: line-height-1.png caption: Lutilisation de <code>line-height%3A 1</code> peut créer une line-box plus petite que le content-area)
+
+Mais pas seulement `line-height: 1`. À titre d’information, j’ai 1117 polices installées sur ma machine (oui, [j’ai installé tout Google Web Fonts](https://github.com/qrpike/Web-Font-Load))), et 1059 polices, soit environ 95%, ont une valeur de `line-height` calculée plus grande que 1. Toutes les polices ont des valeurs de `line-height` qui vont de 0.618 à 3.378. Oui, vous avez bien lu, 3.378 !
+
+Quelques détails sur le calcul des *line-boxes* :
+- pour les éléments *inline*, `padding` et `border` augmentent la zone de l'arrière-plan (`background`), mais pas la hauteur du *content-area* (donc ni la hauteur de la *line-box*). Le *content-area* n’est donc pas toujours ce que vous voyez à l’écran. `margin-top` et `margin-bottom` n’ont pas d’effet
+- pour les éléments *inline* remplacés, `inline-*` et éléments *inline blocksifiés* : `padding`, `margin` et `border` augmentent la hauteur, et donc le *content-area* et la *line-box*
+
+##`vertical-align` : une propriété pour les gouverner toutes
+
+Je n’ai pas encore mentionné la propriété `vertical-align`, bien que ce soit un facteur essentiel dans le calcul de la hauteur d’une *line-box*. On peut même dire que **`vertical-align` a un rôle majeur dans le contexte de formatage *inline***
+
+La valeur par défaut est `baseline`. Vous vous souvenez des métriques ascendantes et descendantes ? Ces valeurs déterminent où la ligne de base (*baseline*) se situe, et donc le ratio. Comme le ratio entre ascendantes et descendantes est rarement 50/50, des effets inattendus se produisent rapidement, par exemple avec des éléments frères.
+
+Commençons avec ce code :
+
+<pre class="language-markup"><code>&lt;p>
+	&lt;span>Ba&lt;/span>
+	&lt;span>Ba&lt;/span>
+&lt;/p></code></pre>
+
+	p {
+		font-family: Catamaran;
+		font-size: 100px;
+		line-height: 200px;
+	}
+
+Un `<p>` contient deux `<span>` qui héritent chacun de `font-family`, `font-size` et d’une `line-height` fixe. Les lignes de base vont coincider et donc la hauteur de la *line-box* est égale à leur `line-height`.
+
+(image: vertical-align-baseline.png caption: Polices et tailles identiques, ligne de base identique, tout est OK)
+
+Que se passe t’il si le deuxième `<span>` a une `font-size` plus petite ?
+
+	span:last-child {
+		font-size: 50px;
+	}
+
+Le résultat est inattendu, mais **l’alignement par défaut `baseline` crée une *line-box* plus haute (!)** que précédemment, comme vous pouvez le voir dans l’image ci-dessous. Je vous rappelle que la hauteur d’une *line-box* est calculée entre le point de son enfant le plus haut, vers le point de son enfant le plus bas.
+
+(image: vertical-align-baseline-nok.png caption: Un enfant plus petit peut créer une line-box plus haute)
+
+Ça pourrait être [un argument en faveur de l’utilisation de valeur sans unité pour `line-height`](http://allthingssmitty.com/2017/01/30/nope-nope-nope-line-height-is-unitless/), mais dans certains cas vous avez besoin de valeurs fixes pour [créer un rhythme vertical parfait](https://scotch.io/tutorials/aesthetic-sass-3-typography-and-vertical-rhythm#baseline-grids-and-vertical-rhythm). **Pour être franc, peu importe ce que vous choisissez, vous aurez toujours des problèmes avec les alignements des éléments en ligne**.
+
+Prenons cet autre exemple. Un `<p>` avec `line-height: 200px`, qui contient un seul `<span>` qui hérite de `line-height`
+
+<pre class="language-markup"><code>&lt;p>
+	&lt;span>Ba&lt;/span>
+&lt;/p></code></pre>
+
+	p {
+		line-height: 200px;
+	}
+	span {
+		font-family: Catamaran;
+		font-size: 100px;
+	}
+
+Quelle est la hauteur de la *line-box* ? On s’attendrait à ce que soit 200px, mais non. Le problème ici vient du fait que le `<p>` a sa propre police (le défaut est `serif`). Les lignes de base entre le `<p>` et le `<span>` sont certainement différentes, et donc la hauteur de la *line-box* est plus haute que prévue. **Ce qui se passe, c’est que les navigateurs font leurs calculs comme si chaque *line-box* commençait par un caractère d’une largeur de 0px**, que la spec appelle le *strut*
+
+>Un caractère insivible, mais un effet bien visible.
+
+Pour faire simple, on retombe exactement sur le même problème que précédemment avec des éléments frères.
+
+(image: vertical-align-strut.png caption: Chaque enfant est également aligné par rapport à un caractère invisible d’une largeur de 0px)
+
+L’alignement `baseline` est faussé, alors est-ce que `vertical-align: middle` serait la solution ? Comme on peut le lire dans la spec, `middle` «aligne le point du milieu de la hauteur d’une boite avec la ligne de base du parent, plus la moitié de la hauteur d’x du parent». **Les ratios des lignes de base sont différents, mais aussi les ratios de hauteur d’x, donc `middle` n’est pas fiable non plus**. Pire, dans la majorité des cas, `middle` ne positionne pas l’élément au «centre». Trop de facteurs qui ne peuvent pas être modifiés par CSS entrent en jeu (hauteur d’x, ratio ascendantes/descendantes, etc.)
+
+Hormis ces deux là, il existe quatre autres valeurs qui peuvent être utiles dans certains cas :
+
+- `vertical-align: top` / `bottom` alignent sur le haut ou le bas de la *line-box*
+- `vertical-align: text-top` / `text-bottom` alignent sur le haut ou le bas du *content-area*
+
+(image: vertical-align-top-bottom-text.png caption: <code>Vertical-align: top</code>, <code>bottom</code>, <code>text-top</code> et <code>text-bottom</code>)
+
+Faites tout de même attention, car dans tout les cas, c'est la *virtual-area* qui est alignée, et donc la hauteur invisible. Regardez cet exemple qui utilise `vertical-align: top`. **Le `line-height` invisible peut générer un résultat étrange, mais en fait tout à fait normal**.
+
+(image: vertical-align-top-virtual-height.png caption: <code>vertical-align</code> peut produire un résultat étrange à première vue, mais totalement normal quand on visualise le <code>line-height</code>)
+
+Enfin, `vertical-align` accepte également des valeurs numériques qui font monter ou descendre la boite par rapport à la ligne de base. Cette dernière option peut dans certains cas se révéler intéressante.
+
+##CSS is awesome
+
+On a évoqué les interactions entre `line-height` et `vertical-align`, et la question que l’on peut se poser, c’est : est-ce que les métriques des fontes sont controllables en CSS ? Pour faire simple : non. Même si j’aimerais tellement que ce soit le cas.
+
+Peu importe, je pense qu’on peut quand même s‘amuser un peu. Les métriques des fontes sont des constantes, on devrait donc pouvoir faire quelque chose.
+
+Est-ce possible, par exemple, de faire en sorte que notre texte qui utilise la police Catamaran ait des lettres capitales de 100px de hauteur ? Ça semble jouable, faisons un peu de maths.
+
+Premièrement, définissons toutes les métriques de notre police comme des propriétés CSS *custom* (*aka CSS variables*) [1. on aurait aussi pu utiliser un préprocesseur, les propriétés CSS *custom* ne sont pas requises ici], et calculons `font-size` pour avoir une hauteur de lettres capitales de 100px.
+
+	p {
+		/* font metrics */
+		--font: Catamaran;
+		--capitalHeight: 0.68;
+		--descender: 0.54;
+		--ascender: 1.1;
+		--linegap: 0;
+
+		/* desired font-size for capital height */
+		--fontSize: 100;
+
+		/* apply font-family */
+		font-family: var(--font);
+
+		/* compute font-size to get capital height equal desired font-size */
+		--computedFontSize: (var(--fontSize) / var(--capitalHeight));
+		font-size: calc(var(--computedFontSize) * 1px);
+	}
+
+(image: css-metrics-capital-height.png caption: Les lettres capitales mesurent 100px de hauteur)
+
+Plutôt simple, non ? Bon, si nous voulons maintenant que le texte soit visuellement centré, de sorte que l’espace restant soit identique au-dessus et en-dessous de la lettre «B» ? Pour cela, nous allons calculer le `vertical-align`, en fonction du ratio ascendantes/descendantes.
+
+Calculons d’abord `line-height: normal` et la hauteur du *content-area* :
+
+	p {
+		…
+		--lineheightNormal: (var(--ascender) + var(--descender) + var(--linegap));
+		--contentArea: (var(--lineheightNormal) * var(--computedFontSize));
+	}
+
+Ensuite, nous avons besoin de :
+- la distance entre le bas de la lettre et le bas de la boite
+- la distance entre le haut de la lettre et le haut de la boite
+
+Comme ça :
+
+	p {
+		…
+		--distanceBottom: (var(--descender));
+		--distanceTop: (var(--ascender) - var(--capitalHeight));
+	}
+
+Nous pouvons donc en déduire le `vertical-align`, qui sera la différence entre ces deux distances, multipliée par la valeur calculée de `font-size` (cette valeur doit être appliquée à un enfant *inline*).
+
+	p {
+		…
+		--valign: ((var(--distanceBottom) - var(--distanceTop)) * var(--computedFontSize));
+	}
+	span {
+		vertical-align: calc(var(--valign) * -1px);
+	}
+
+Enfin, définissons le `line-height` souhaité, et calculons la valeur réelle afin de maintenir l’alignement vertical :
+
+	p {
+		…
+		/* desired line-height */
+		--lineheight: 3;
+		line-height: calc(((var(--lineheight) * var(--fontSize)) - var(--valign)) * 1px);
+	}
+
+(image: css-metrics-results-line-height.png caption: Résultats avec différents <code>line-height</code>. Le texte est toujours visuellement au centre)
+
+Il est maintenant très facile d’ajouter une icone de la même hauteur que la lettre :
+
+	span::before {
+		content: '';
+		display: inline-block;
+		width: calc(1px * var(--fontSize));
+		height: calc(1px * var(--fontSize));
+		margin-right: 10px;
+		background: url('https://cdn.pbrd.co/images/yBAKn5bbv.png');
+		background-size: cover;
+	}
+
+(image: css-metrics-results-icon.png caption: L’icone et la lettre B sont de même hauteur)
+
+[Voir le résultat dans JSBin](http://jsbin.com/tufatir/edit?css,output)
+
+Notez quand même que cet exemple est à prendre à titre de démo uniquement. Ce n’est absolument pas une solution fiable. Et ce pour plusieurs raisons :
+
+- bien que les métriques des fontes soit des constantes, les [calculs dans les navigateurs ne le sont pas](https://www.brunildo.org/test/normal-lh-plot.html) ¯&#8288;\\_&#8288;(ツ)&#8288;_/&#8288;¯
+- si la police ne se charge pas, votre solution *fallback* doit prévoir ce cas et donc éventuellement définir de multiples valeurs de métriques, ce qui devient vite lourd
+
+##À emporter
+
+Ce que l’on a appris :
+
+- le contexte de formatage *inline* est complexe
+- les éléments *inline* ont deux hauteurs :
+	- le *content-area* (basé sur les métriques des fontes)
+	- la *virtual-area* (`line-height`)
+	- aucune de ces deux hauteurs ne peut clairement être identifiées
+- `line-height: normal` est basé sur les métriques de fonte
+- `line-height: n` peut créer une *virtual-area* plus petite que le *content-area*
+- `vertical-align` n’est pas très fiable
+- la hauteur d’une *line-box* est calculée en fonction des propriétés `line-height` et `vertical-align` de chacun de ses enfants
+- on ne peut pas facilement modifier ces valeurs avec CSS
+- il existe une nouvelle spec en lien avec tout cela pour simplifier les alignements verticaux : le [Line Grid module](https://drafts.csswg.org/css-line-grid/)
+
+Mais j’aime toujours CSS :)
+
+##Ressources
+
+- Obtenir les métriques des fontes : [FontForge], [opentype.js](http://opentype.js.org/font-inspector.html)
+- [Calculer `line-height: normal` et les différents ratios dans le navigateur](http://brunildo.org/test/aspect-lh-table2.html)
+- [Ahem](https://www.w3.org/Style/CSS/Test/Fonts/Ahem/), une police spécialement conçue pour l’apprentissage
+- Une explication encore plus détaillée du [contexte de formatage *inline*](http://meyerweb.com/eric/css/inline-format.html)
+
+
+[FontForge]: https://fontforge.github.io/en-US/
+
+----
+
+Subtitle: 
+
+----
+
+Description: Une introduction au contexte de formatage *inline*. Exploration des propriétés line-height et vertical-align, ainsi que les métriques des fontes. Comprendre comment un texte est rendu à l’écran et comment le contrôler via CSS.
+
+----
+
+Date: 2017-02-21 11:30
+
+----
+
+Tags: CSS
+
+----
+
+Big: 1
