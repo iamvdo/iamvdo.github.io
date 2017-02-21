@@ -12,7 +12,7 @@ For example, `line-height` can be set as a length or a unitless value [1. no mat
 
 Deep dive into a not-so-simple CSS mechanism…
 
-##Let’s talk about font-size first
+##Let’s talk about `font-size` first
 
 Look at this simple HTML code, a `<p>` tag containing 3 `<span>`, each with a different `font-family`:
 
@@ -42,7 +42,7 @@ Although it seems a bit weird at first, it’s totally expected. **The reason la
 
 Let’s take the Catamaran font and open it in [FontForge] to get metrics:
 - the em-square is 1000
-- the ascender is 1100 and the descender is 540. After running some tests, it seems that browsers use the HHead Ascent/Descent values (on a Mac) and Win Ascent/Descent values on Windows (these values may differ!). We also note that Capital height is 640 and X height is 485.
+- the ascender is 1100 and the descender is 540. After running some tests, it seems that browsers use the *HHead Ascent*/*Descent* values on Mac OS, and *Win Ascent*/*Descent* values on Windows (these values may differ!). We also note that *Capital Height* is 640 and *X height* is 485.
 
 (image: font-forge-metrics.png caption: Font metrics values using FontForge)
 
@@ -91,18 +91,18 @@ That being said, it breaks down the popular belief that `line-height` is the dis
 
 (image: line-height-yes-no.png caption: In CSS, the line-height is not the distance between baselines)
 
-The computed difference of height between the *virtual-area* and the *content-area* is called the leading. Half this leading is added on top of the *content-area*, the other half is added on the bottom of the *content-area*. **The *content-area* is therefore always on the middle of the *virtual-area***.
+The computed difference of height between the *virtual-area* and the *content-area* is called the leading. Half this leading is added on top of the *content-area*, the other half is added on the bottom. **The *content-area* is therefore always on the middle of the *virtual-area***.
 
-Based on its computed value, the `line-height` (*virtual-area*) can be equal, taller or smaller than the *content-area*. In case of a smaller *virtual-area*, leading is negative and a *line-box* is smaller than its children.
+Based on its computed value, the `line-height` (*virtual-area*) can be equal, taller or smaller than the *content-area*. In case of a smaller *virtual-area*, leading is negative and a *line-box* is visually smaller than its children.
 
 There are also other kind of inline elements:
 - replaced inline elements (`<img>`, `<input>`, `<svg>`, etc.)
-- `inline-block` elements
+- `inline-block` and all `inline-*` elements
 - inline elements that participate in a specific formatting context (eg. in a flexbox element, all flex items are *blocksified*)
 
 For these specific inline elements, height is computed based on their `height`, `margin` and `border` properties. If `height` is `auto`, then `line-height` is used and the *content-area* is strictly equal to the `line-height`.
 
-(image: line-height-inline-block.png caption: Inline replaced elements, inline-block and blocksified inline elements have a content-area equal to their height, or line-height)
+(image: line-height-inline-block.png caption: Inline replaced elements, inline-block/inline-* and blocksified inline elements have a content-area equal to their height, or line-height)
 
 Anyway, the problem we’re still facing is how much the `line-height`’s `normal` value is? And the answer, as for the computation of the *content-area*’s height, is to be found inside the font metrics.
 
@@ -199,11 +199,11 @@ Finally, `vertical-align` also accepts numerical values which raise or lower the
 ##CSS is awesome
 
 We’ve talked about how `line-height` and `vertical-align` work together, but now the question is: are font metrics controllable with CSS? Short answer: no. Even if I really hope so.
-Anyway, I think we have to play a bit. Font metrics are constant [1. font metrics are constant. But [computations in browsers are not](https://www.brunildo.org/test/normal-lh-plot.html) ¯\\_(ツ)_/¯], so we should be able to do something.
+Anyway, I think we have to play a bit. Font metrics are constant, so we should be able to do something.
 
 What if, for example, we want a text using the Catamaran font, where the capital height is exactly 100px high? Seems doable: let’s do some maths.
 
-First we set all font metrics as CSS custom properties [1. you could also use variables from preprocessors, custom properties are not required], then compute `font-size` to get a capital height of 100.
+First we set all font metrics as CSS custom properties [1. you could also use variables from preprocessors, custom properties are not required], then compute `font-size` to get a capital height of 100px.
 
 	p {
 		/* font metrics */
@@ -283,9 +283,11 @@ Adding an icon whose height is matching the letter “B” is now easy:
 
 (image: css-metrics-results-icon.png caption: Icon and B letter are the same height)
 
-[See result in jsbin](http://jsbin.com/tufatir/edit?css,output)
+[See result in JSBin](http://jsbin.com/tufatir/edit?css,output)
 
-Note that this test is for demonstration purpose only. You can’t rely on this. If font is not loaded, fallback font has probably different font metrics, and nothing will work anymore.
+Note that this test is for demonstration purpose only. You can’t rely on this. Many reasons:
+- unless font metrics are constant, [computations in browsers are not](https://www.brunildo.org/test/normal-lh-plot.html) ¯&#8288;\\_&#8288;(ツ)&#8288;_/&#8288;¯
+- if font is not loaded, fallback font has probably different font metrics, and dealing with multiple values will quickly become quite unmanageable
 
 ##Takeaways
 
