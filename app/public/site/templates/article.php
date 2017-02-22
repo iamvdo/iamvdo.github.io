@@ -48,7 +48,7 @@
 			<div class="article-text language-css">
 				<?php echo $page->text()->kirbytext(); ?>
 			</div>
-			<p class="flattr"><?php echo l::get('flattr-text') ?> <a class="flattr-link" href="https://flattr.com/submit/auto?user_id=z5wn9l&url=<?php echo thisUrl() ?>"><?php echo l::get('flattr-link') ?></a></p>
+			<p class="flattr"><?php echo l::get('flattr-text') ?> <a class="flattr-link" href="https://flattr.com/submit/auto?user_id=iamvdo&url=<?php echo thisUrl() ?>"><?php echo l::get('flattr-link') ?></a></p>
 			<div class="article-utils article-utils--footer">
 				<?php 
 				if ($page->hasPrevVisible('date')) {
