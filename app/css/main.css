@@ -76,8 +76,7 @@ html {
 	width: 100%;
 	font: 300 1em VDO_Montserrat, sans-serif;
 	color: white;
-	background: #f03d36;
-	background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.15) 700px) no-repeat #f03d36;
+	background: #444;
 	-webkit-text-size-adjust: none;
 	   -moz-text-size-adjust: none;
 	    -ms-text-size-adjust: none;
@@ -85,6 +84,7 @@ html {
 }
 body {
 	padding-bottom: 5em;
+	background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.15) 700px) no-repeat #f03d36;
 }
 h1,
 h2 {
@@ -96,11 +96,11 @@ h2 {
 a {
 	color: #ddd;
 }
-.article a[href^=http],
+.article-text a[href^=http],
 .intro a[href^=http] {
 	margin-right: .8em;
 }
-.article a[href^=http]::after,
+.article-text a[href^=http]::after,
 .intro a[href^=http]::after {
 	content: ''; 
 	position: absolute; bottom: .8em; z-index: 10;
