@@ -48,6 +48,7 @@
 			<div class="article-text language-css">
 				<?php echo $page->text()->kirbytext(); ?>
 			</div>
+			<p class="flattr"><?php echo l::get('flattr-text') ?> <a class="flattr-link" href="//button.flattr.com/view/?fid=z5wn9l&button=compact&url=<?php echo urlencode(thisUrl()) ?>"><?php echo l::get('flattr-link') ?></a></p>
 			<div class="article-utils article-utils--footer">
 				<?php 
 				if ($page->hasPrevVisible('date')) {

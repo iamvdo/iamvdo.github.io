@@ -20,5 +20,7 @@ l::set('date.years', 'ans');
 l::set('comments.write', 'Écrire un commentaire');
 l::set('comments.load', 'Charger les commentaires');
 
+l::set('flattr-text', 'Si vous avez aimé cet article, pensez à');
+l::set('flattr-link', 'Flattr !');
 
  ?>
