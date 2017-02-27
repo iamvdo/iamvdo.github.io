@@ -84,7 +84,7 @@
 			$rq = 'http://iamvdo.disqus.com/count-data.js?2=http://' . $_SERVER['HTTP_HOST'] . strtok($_SERVER['REQUEST_URI'], '?') . '&nocache=' . rand() . rand();
 			$req = curl_init($rq);
 			curl_setopt($req, CURLOPT_RETURNTRANSFER, true);
-
+			curl_setopt($req, CURLOPT_FOLLOWLOCATION, true);
 			if ($str = curl_exec($req)) {
 				$needle = '"comments":';
 				$i = strrpos($str, $needle);
