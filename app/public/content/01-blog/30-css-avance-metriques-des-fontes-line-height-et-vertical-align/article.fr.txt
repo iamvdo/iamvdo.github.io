@@ -304,7 +304,6 @@ Ce que l’on a appris :
 - `vertical-align` n’est pas très fiable
 - la hauteur d’une *line-box* est calculée en fonction des propriétés `line-height` et `vertical-align` de chacun de ses enfants
 - on ne peut pas facilement modifier ces valeurs avec CSS
-- il existe une nouvelle spec en lien avec tout cela pour simplifier les alignements verticaux : le [Line Grid module](https://drafts.csswg.org/css-line-grid/)
 
 Mais j’aime toujours CSS :)
 
@@ -314,7 +313,8 @@ Mais j’aime toujours CSS :)
 - [Calculer `line-height: normal` et les différents ratios dans le navigateur](http://brunildo.org/test/aspect-lh-table2.html)
 - [Ahem](https://www.w3.org/Style/CSS/Test/Fonts/Ahem/), une police spécialement conçue pour l’apprentissage
 - Une explication encore plus détaillée du [contexte de formatage *inline*](http://meyerweb.com/eric/css/inline-format.html)
-
+- Il existe une nouvelle spec en lien avec tout cela pour simplifier les alignements verticaux : le [Line Grid module](https://drafts.csswg.org/css-line-grid/)
+- Une collection d’idées, la [Font Metrics API Level 1](https://drafts.css-houdini.org/font-metrics-api-1/) (Houdini)
 
 [FontForge]: https://fontforge.github.io/en-US/
 
