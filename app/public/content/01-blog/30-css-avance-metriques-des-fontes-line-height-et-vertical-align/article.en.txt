@@ -208,19 +208,19 @@ First we set all font metrics as CSS custom properties [1. you could also use va
 	p {
 		/* font metrics */
 		--font: Catamaran;
-		--capitalHeight: 0.68;
-		--descender: 0.54;
-		--ascender: 1.1;
-		--linegap: 0;
+		--fm-capitalHeight: 0.68;
+		--fm-descender: 0.54;
+		--fm-ascender: 1.1;
+		--fm-linegap: 0;
 
 		/* desired font-size for capital height */
-		--fontSize: 100;
+		--capital-height: 100;
 
 		/* apply font-family */
 		font-family: var(--font);
 
 		/* compute font-size to get capital height equal desired font-size */
-		--computedFontSize: (var(--fontSize) / var(--capitalHeight));
+		--computedFontSize: (var(--capital-height) / var(--fm-capitalHeight));
 		font-size: calc(var(--computedFontSize) * 1px);
 	}
 
@@ -232,7 +232,7 @@ First, compute `line-height: normal` and *content-area*’s height:
 
 	p {
 		…
-		--lineheightNormal: (var(--ascender) + var(--descender) + var(--linegap));
+		--lineheightNormal: (var(--fm-ascender) + var(--fm-descender) + var(--fm-linegap));
 		--contentArea: (var(--lineheightNormal) * var(--computedFontSize));
 	}
 
@@ -244,8 +244,8 @@ Like so:
 
 	p {
 		…
-		--distanceBottom: (var(--descender));
-		--distanceTop: (var(--ascender) - var(--capitalHeight));
+		--distanceBottom: (var(--fm-descender));
+		--distanceTop: (var(--fm-ascender) - var(--fm-capitalHeight));
 	}
 
 We can now compute `vertical-align`, which is the difference between the distances multiplied by the computed `font-size`. (we must apply this value to an inline child element)
@@ -263,8 +263,8 @@ At the end, we set the desired `line-height` and compute it while maintaining a 
 	p {
 		…
 		/* desired line-height */
-		--lineheight: 3;
-		line-height: calc(((var(--lineheight) * var(--fontSize)) - var(--valign)) * 1px);
+		--line-height: 3;
+		line-height: calc(((var(--line-height) * var(--capital-height)) - var(--valign)) * 1px);
 	}
 
 (image: css-metrics-results-line-height.png caption: Results with different line-height. The text is always on the middle)
@@ -274,8 +274,8 @@ Adding an icon whose height is matching the letter “B” is now easy:
 	span::before {
 		content: '';
 		display: inline-block;
-		width: calc(1px * var(--fontSize));
-		height: calc(1px * var(--fontSize));
+		width: calc(1px * var(--capital-height));
+		height: calc(1px * var(--capital-height));
 		margin-right: 10px;
 		background: url('https://cdn.pbrd.co/images/yBAKn5bbv.png');
 		background-size: cover;

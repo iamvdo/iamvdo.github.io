@@ -208,19 +208,19 @@ Premièrement, définissons toutes les métriques de notre police comme des prop
 	p {
 		/* font metrics */
 		--font: Catamaran;
-		--capitalHeight: 0.68;
-		--descender: 0.54;
-		--ascender: 1.1;
-		--linegap: 0;
+		--fm-capitalHeight: 0.68;
+		--fm-descender: 0.54;
+		--fm-ascender: 1.1;
+		--fm-linegap: 0;
 
 		/* desired font-size for capital height */
-		--fontSize: 100;
+		--capital-height: 100;
 
 		/* apply font-family */
 		font-family: var(--font);
 
 		/* compute font-size to get capital height equal desired font-size */
-		--computedFontSize: (var(--fontSize) / var(--capitalHeight));
+		--computedFontSize: (var(--capital-height) / var(--fm-capitalHeight));
 		font-size: calc(var(--computedFontSize) * 1px);
 	}
 
@@ -232,7 +232,7 @@ Calculons d’abord `line-height: normal` et la hauteur du *content-area* :
 
 	p {
 		…
-		--lineheightNormal: (var(--ascender) + var(--descender) + var(--linegap));
+		--lineheightNormal: (var(--fm-ascender) + var(--fm-descender) + var(--fm-linegap));
 		--contentArea: (var(--lineheightNormal) * var(--computedFontSize));
 	}
 
@@ -244,8 +244,8 @@ Comme ça :
 
 	p {
 		…
-		--distanceBottom: (var(--descender));
-		--distanceTop: (var(--ascender) - var(--capitalHeight));
+		--distanceBottom: (var(--fm-descender));
+		--distanceTop: (var(--fm-ascender) - var(--fm-capitalHeight));
 	}
 
 Nous pouvons donc en déduire le `vertical-align`, qui sera la différence entre ces deux distances, multipliée par la valeur calculée de `font-size` (cette valeur doit être appliquée à un enfant *inline*).
@@ -263,8 +263,8 @@ Enfin, définissons le `line-height` souhaité, et calculons la valeur réelle a
 	p {
 		…
 		/* desired line-height */
-		--lineheight: 3;
-		line-height: calc(((var(--lineheight) * var(--fontSize)) - var(--valign)) * 1px);
+		--line-height: 3;
+		line-height: calc(((var(--line-height) * var(--capital-height)) - var(--valign)) * 1px);
 	}
 
 (image: css-metrics-results-line-height.png caption: Résultats avec différents <code>line-height</code>. Le texte est toujours visuellement au centre)
@@ -274,8 +274,8 @@ Il est maintenant très facile d’ajouter une icone de la même hauteur que la 
 	span::before {
 		content: '';
 		display: inline-block;
-		width: calc(1px * var(--fontSize));
-		height: calc(1px * var(--fontSize));
+		width: calc(1px * var(--capital-height));
+		height: calc(1px * var(--capital-height));
 		margin-right: 10px;
 		background: url('https://cdn.pbrd.co/images/yBAKn5bbv.png');
 		background-size: cover;
