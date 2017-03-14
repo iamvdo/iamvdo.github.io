@@ -308,11 +308,11 @@ But I still love CSS :)
 
 ##Resources
 
-- Get font metrics: [FontForge], [opentype.js](http://opentype.js.org/font-inspector.html)
-- [Compute `line-height: normal`, and some ratio in the browser](http://brunildo.org/test/aspect-lh-table2.html)
+- get font metrics: [FontForge], [opentype.js](http://opentype.js.org/font-inspector.html)
+- [compute `line-height: normal`, and some ratio in the browser](http://brunildo.org/test/aspect-lh-table2.html)
 - [Ahem](https://www.w3.org/Style/CSS/Test/Fonts/Ahem/), a special font to help understand how it works
-- An even deeper, institutional, explanation of [inline formatting context](http://meyerweb.com/eric/css/inline-format.html)
-- There is a related future spec to help with vertical alignment: the [Line Grid module](https://drafts.csswg.org/css-line-grid/)
+- an even deeper, institutional, explanation of [inline formatting context](http://meyerweb.com/eric/css/inline-format.html)
+- there is a related future spec to help with vertical alignment: the [Line Grid module](https://drafts.csswg.org/css-line-grid/)
 - [Font Metrics API Level 1](https://drafts.css-houdini.org/font-metrics-api-1/), a collection of interesting ideas (Houdini)
 
 
