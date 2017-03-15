@@ -39,7 +39,7 @@ Même si ça semble étrange, c’est tout à fait normal. **La raison se trouve
 
 Prenons par exemple la police Catamaran et ouvrons-là dans [FontForge] pour obtenir ses métriques :
 - l’*em-square* est de 1000
-- les ascendantes sont de 1100 et les descendantes de 540. D’après mes tests, il semble que les navigateurs utilisent les champs *HHead Ascent*/*Descent* sur Mac OS, et *Win Ascent*/*Descent* sur Windows (ces valeurs peuvent être différentes !). On voit également que *Capital Height* vaut 640 et que *X Height* vaut 485.
+- les ascendantes sont de 1100 et les descendantes de 540. D’après mes tests, il semble que les navigateurs utilisent les champs *HHead Ascent*/*Descent* sur Mac OS, et *Win Ascent*/*Descent* sur Windows (ces valeurs peuvent être différentes !). On voit également que *Capital Height* vaut 680 et que *X Height* vaut 485.
 
 (image: font-forge-metrics.png caption: Métriques de fonte dans FontForge)
 

@@ -42,7 +42,7 @@ Although it seems a bit weird at first, it’s totally expected. **The reason la
 
 Let’s take the Catamaran font and open it in [FontForge] to get metrics:
 - the em-square is 1000
-- the ascender is 1100 and the descender is 540. After running some tests, it seems that browsers use the *HHead Ascent*/*Descent* values on Mac OS, and *Win Ascent*/*Descent* values on Windows (these values may differ!). We also note that *Capital Height* is 640 and *X height* is 485.
+- the ascender is 1100 and the descender is 540. After running some tests, it seems that browsers use the *HHead Ascent*/*Descent* values on Mac OS, and *Win Ascent*/*Descent* values on Windows (these values may differ!). We also note that *Capital Height* is 680 and *X height* is 485.
 
 (image: font-forge-metrics.png caption: Font metrics values using FontForge)
 
