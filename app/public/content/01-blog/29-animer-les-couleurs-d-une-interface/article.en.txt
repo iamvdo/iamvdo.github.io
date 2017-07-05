@@ -41,7 +41,7 @@ To animate a CSS gradient, it's a bit more complicated. Four years ago, [I've sh
 - The first one is to use a background-color as base, then add a semi-transparent gradient on top and animate the underlying color. The drawback is that you can't animate multiple colors, because your gradient remains the same.
 - The second one is to use `box-shadow` with `inset` keyword and a large spread value to fake a CSS gradient. This way you can animate multiple colors, but it isn't really practical, nor reliable.
 
-It's still impossible to animate a CSS gradient today (still waiting `cross-fade()`), so I decided to play with [CSS blending modes][4]. **The key here is to use a background color (animated with CSS) and a gradient on top with a blend mode applied. I've chosen the `overlay` one.**
+It's still impossible to animate a CSS gradient today [1. Even if it should be. See support right now: [Open JSBin](http://jsbin.com/voroje/edit?html,css,output)] (still waiting `cross-fade()`), so I decided to play with [CSS blending modes][4]. **The key here is to use a background color (animated with CSS) and a gradient on top with a blend mode applied. I've chosen the `overlay` one.**
 
 To animate the background color, we can create a new CSS `@keyframes` that will modify the `background-color` property. But, we can also reuse the `wheelHueColor` animation that we've already created, based on `color`. To make it work, we have to set the `currentColor` value to `background-color`. **This way, while animating, the actual text color is also set on the background.**
 
