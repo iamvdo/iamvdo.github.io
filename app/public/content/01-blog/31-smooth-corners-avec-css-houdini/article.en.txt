@@ -1,0 +1,165 @@
+Title: Smooth corners with CSS Houdini
+
+----
+
+URL-Key: smooth-corners-with-css-houdini
+
+----
+
+Text: Recently, I’ve [shared on Twitter](https://twitter.com/iamvdo/status/908308376886575104) an article about [optical illusions in user interfaces](https://medium.muz.li/optical-effects-9fca82b4cd9a). I love illusions, but that’s a new one to me: **a modified circle can look more circular than a geometric one!** And this is also true for rounded rectangles. Surprisingly, Apple is using this trick for all their icons since iOS7. Mathematically, it’s known as the [Lamé Curve or Superellipse](https://en.wikipedia.org/wiki/Superellipse).
+
+(image: ios6-ios7.jpg caption: Differences between icons shapes in iOS6 and iOS7 (<a href="https://ivomynttinen.com/blog/ios-design-guidelines">source</a>%29)
+
+At the same time, [I’ve experimented with the Paint API from Houdini](http://lab.iamvdo.me/houdini) for a talk. This API defines a new way to draw content into a CSS `<image>` during the paint phase of the rendering engine. **It basically gives the ability to programmatically draw a background**. So, drawing a superellipse should be easy.
+
+Few weeks later, Sketch released a new version and introduced “Smooth corners” feature which is, as far as I know, a superellipse. **But I love the name, so let’s create smooth corners in CSS**.
+
+First, let’s add a new `paintWorklet` module[1. Chrome with flag. PaintWorklet is either on CSS (Canary) or window (stable)]
+
+```javascript
+(CSS.paintWorklet || paintWorklet).addModule('smooth-corners.js')
+```
+
+Then, from this new loaded file, register a new *paint* called `smooth-corners`, with a `paint` method drawing a superellipse (algorithm from QT codebase, with no rounding values):
+
+```javascript
+registerPaint('smooth-corners', class {
+  paint(ctx, geom) {
+    ctx.fillStyle = 'black'
+
+    // n=4 draw a squircle
+    const n = 4
+
+    let m = n
+    if (n > 100) m = 100
+    if (n < 0.00000000001) m = 0.00000000001
+    const r = geom.width / 2
+    const w = geom.width / 2
+    const h = geom.height / 2
+
+    ctx.beginPath();
+
+    for (let i = 0; i < (2*r+1); i++) {
+      const x = (i-r) + w
+      const y = (Math.pow(Math.abs(Math.pow(r,m)-Math.pow(Math.abs(i-r),m)),1/m)) + h
+
+      if (i == 0)
+        ctx.moveTo(x, y)
+      else
+        ctx.lineTo(x, y)
+    }
+
+    for (let i = (2*r); i < (4*r+1); i++) {
+      const x = (3*r-i) + w
+      const y = (-Math.pow(Math.abs(Math.pow(r,m)-Math.pow(Math.abs(3*r-i),m)),1/m)) + h
+      ctx.lineTo(x, y)
+    }
+
+    ctx.closePath()
+    ctx.fill()
+  }
+})
+```
+
+Speaking about arguments of the `paint` method:
+- `ctx` is a `PaintRenderingContext2D` object, which is a subset of `CanvasRenderingContext2D`, so you can (mostly) draw anything you want
+- `geom` is a `PaintSize` object which is the size of the image to be drawn
+
+Now, we can use it from CSS with the new `paint()` function. It will draw a black rounded rectangle with smooth corners
+
+```css
+.el {
+  background: paint(smooth-corners);
+}
+```
+
+To keep things simple, we can use the generated image as a CSS mask[1. Don’t forget to use Autoprefixer for specific WebKit prefixes], so we can use background for colors, gradients or images.
+
+```css
+.el {
+  background: linear-gradient(deeppink, orangered);
+  mask-image: paint(smooth-corners);
+}
+```
+
+  >Using CSS masks has side-effects, like masking everything outside of the box (shadows, etc.). You should be able to draw gradient or images from the `registerPaint` if you need to.
+
+(image: squircle.jpg caption: Smooth corners in CSS)
+
+That’s nice, but not very reliable. **Right now, we draw a specific superellipse named a squircle[1. A mix between square and circle], because the `n` variable is set to `4`**. How do we draw a superellipse with a different exponent? iOS icons use `5` for example. Let’s do it with CSS custom properties.
+
+First, use a custom property `--smooth-corners`
+
+```css
+.el {
+  --smooth-corners: 4;
+  background: linear-gradient(deeppink, orangered);
+  mask-image: paint(smooth-corners);
+}
+```
+
+And get value from `registerPaint` function
+
+```javascript
+registerPaint('smooth-corners', class {
+  static get inputProperties() {
+      return [
+          '--smooth-corners'
+      ]
+  }
+  paint(ctx, geom, properties) {
+    const exp = properties.get('--smooth-corners').toString()
+
+    const n = exp
+  }
+})
+```
+
+Note that the `paint()` method receives a third argument `properties`, which is an API to retreive properties values and more. Here we get `--smooth-corners` value and use it for the `n` variable.
+
+**The full power now is that we can author `--smooth-corners` from CSS directly**, and property could even be animated if we register it using `CSS.registerProperty` (from [CSS Houdini Properties & Values API](https://drafts.css-houdini.org/css-properties-values-api/)).
+
+For now, only Chrome[1. For developers, with experimental Web platform flag enabled] supports the Paint API form Houdini, so we do progressive enhancement:
+
+```css
+.el {
+  border-radius: 60px;
+  background: linear-gradient(...)
+}
+
+@supports (mask-image: paint(smooth-corners)) {
+  .el.is-loaded {
+    border-radius: 0;
+    mask-image: paint(smooth-corners);
+    --smooth-corners: 5;
+  }
+}
+```
+
+**Also, as Houdini is JS-in-CSS, it’s better to wait for JavaScript to be loaded or ready**. Here, I decided to add `.is-loaded` class to the element.
+
+In production, we should be able to automate authored CSS with a PostCSS plugin for example.
+
+Play with it IRL http://lab.iamvdo.me/houdini/smooth-corners in a supported browser
+
+<iframe src="http://lab.iamvdo.me/houdini/smooth-corners" frameborder="0" width="100%" height="550" style="background: white"></iframe>
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 2017-10-23 15:15
+
+----
+
+Tags: CSS
+
+----
+
+Big: 1
