@@ -19,6 +19,6 @@ Articles:
   "url": "https://github.com/iamvdo/speedometer-pwa",
   "image": "https://iamvdo.github.io/speedometer-pwa/img/icon-256x256.png",
   "date": "2016-01-31 10:00:00",
-  "big": "1"
+  "big": "0"
   }
 }
