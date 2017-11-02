@@ -7,11 +7,11 @@ foreach ($search as $value) {
   $json = json_decode($pages->find($value)->articles()->value, true);
   for ($i=0; $i < sizeof($json); $i++) {
     $time = strtotime($json[$i]['date']);
-    $myPages[$time]['title'] = unwrap(kirbytext(utf8_decode($json[$i]['title'])));
-    $myPages[$time]['title'] .= (isset($json[$i]['subtitle']) && $json[$i]['subtitle'] !== '') ? ' - ' . utf8_decode($json[$i]['subtitle']) : '';
+    $myPages[$time]['title'] = unwrap(kirbytext($json[$i]['title']));
     $myPages[$time]['modified'] = $time;
     $myPages[$time]['url'] = $json[$i]['url'];
-    $myPages[$time]['text'] = 'External link: ' . $myPages[$time]['url'];
+    $myPages[$time]['text'] = (isset($json[$i]['subtitle']) && $json[$i]['subtitle'] !== '') ? $json[$i]['subtitle'] . ' - ' : '';
+    $myPages[$time]['text'] .= $myPages[$time]['url'];
   }
 }
 
