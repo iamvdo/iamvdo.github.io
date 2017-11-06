@@ -6,11 +6,11 @@ URL-Key: smooth-corners-with-css-houdini
 
 ----
 
-Text: Recently, I’ve [shared on Twitter](https://twitter.com/iamvdo/status/908308376886575104) an article about [optical illusions in user interfaces](https://medium.muz.li/optical-effects-9fca82b4cd9a). I love illusions, but that’s a new one to me: **a modified circle can look more circular than a geometric one!** And this is also true for rounded rectangles. Surprisingly, Apple is using this trick for all their icons since iOS7. Mathematically, it’s known as the [Lamé Curve or Superellipse](https://en.wikipedia.org/wiki/Superellipse).
+Text: Recently, I’ve [shared on Twitter](https://twitter.com/iamvdo/status/908308376886575104) an article about [optical illusions in user interfaces](https://medium.muz.li/optical-effects-9fca82b4cd9a). I love illusions, but that’s a new one to me: **a modified circle can look more circular than a geometric one!** And this is also true for rounded rectangles. Surprisingly enough, I also discovered that Apple is using this trick for all their icons since iOS7. Mathematically, it’s known as the [Lamé Curve or Superellipse](https://en.wikipedia.org/wiki/Superellipse).
 
 (image: ios6-ios7.jpg caption: Differences between icons shapes in iOS6 and iOS7 (<a href="https://ivomynttinen.com/blog/ios-design-guidelines">source</a>%29)
 
-At the same time, [I’ve experimented with the Paint API from Houdini](http://lab.iamvdo.me/houdini) for a talk. This API defines a new way to draw content into a CSS `<image>` during the paint phase of the rendering engine. **It basically gives the ability to programmatically draw a background**. So, drawing a superellipse should be easy.
+At the same time, [I was experimenting with the Paint API from Houdini](http://lab.iamvdo.me/houdini) for a talk. This API defines a new way to draw content into a CSS `<image>` during the paint phase of the rendering engine. **It basically gives the ability to programmatically draw an image to be used as a background** for example. So, drawing a superellipse should be easy.
 
 Few weeks later, Sketch released a new version and introduced “Smooth corners” feature which is, as far as I know, a superellipse. **But I love the name, so let’s create smooth corners in CSS**.
 
@@ -20,7 +20,7 @@ First, let’s add a new `paintWorklet` module[1. Chrome with flag. PaintWorklet
 (CSS.paintWorklet || paintWorklet).addModule('smooth-corners.js')
 ```
 
-Then, from this new loaded file, register a new *paint* called `smooth-corners`, with a `paint` method drawing a superellipse (algorithm from QT codebase, with no rounding values):
+Then, from this new loaded file, register a new *paint* called `smooth-corners`, with a `paint` method which is drawing a superellipse (algorithm from QT codebase):
 
 ```javascript
 registerPaint('smooth-corners', class {
@@ -73,7 +73,7 @@ Now, we can use it from CSS with the new `paint()` function. It will draw a blac
 }
 ```
 
-To keep things simple, we can use the generated image as a CSS mask[1. Don’t forget to use Autoprefixer for specific WebKit prefixes], so we can use background for colors, gradients or images.
+To keep things simple, we will use the generated image as a CSS mask[1. Don’t forget to use Autoprefixer for specific WebKit prefixes]. That way, we can easily set `background` for colors, gradients or images.
 
 ```css
 .el {
@@ -82,11 +82,9 @@ To keep things simple, we can use the generated image as a CSS mask[1. Don’t f
 }
 ```
 
-  >Using CSS masks has side-effects, like masking everything outside of the box (shadows, etc.). You should be able to draw gradient or images from the `registerPaint` if you need to.
-
 (image: squircle.jpg caption: Smooth corners in CSS)
 
-That’s nice, but not very reliable. **Right now, we draw a specific superellipse named a squircle[1. A mix between square and circle], because the `n` variable is set to `4`**. How do we draw a superellipse with a different exponent? iOS icons use `5` for example. Let’s do it with CSS custom properties.
+That’s nice, but not very reliable. **Right now, we draw a specific superellipse named a squircle[1. A mix between the words “square” and “circle”], because the `n` variable is set to `4`**. So, how do we draw a superellipse with a different exponent? iOS icons use `5` for example. Let’s do it with CSS custom properties.
 
 First, use a custom property `--smooth-corners`
 
@@ -117,9 +115,9 @@ registerPaint('smooth-corners', class {
 
 Note that the `paint()` method receives a third argument `properties`, which is an API to retreive properties values and more. Here we get `--smooth-corners` value and use it for the `n` variable.
 
-**The full power now is that we can author `--smooth-corners` from CSS directly**, and property could even be animated if we register it using `CSS.registerProperty` (from [CSS Houdini Properties & Values API](https://drafts.css-houdini.org/css-properties-values-api/)).
+**The full power now is that we can author `--smooth-corners` right from CSS**, and property could even be animated if we [register it using `CSS.registerProperty`](http://lab.iamvdo.me/houdini/animated-gradient) (from [CSS Houdini Properties & Values API](https://drafts.css-houdini.org/css-properties-values-api/)).
 
-For now, only Chrome[1. For developers, with experimental Web platform flag enabled] supports the Paint API form Houdini, so we do progressive enhancement:
+For now, only Chrome[1. For developers, with experimental Web platform flag enabled] supports the Paint API from Houdini, so we do progressive enhancement:
 
 ```css
 .el {
@@ -142,7 +140,13 @@ In production, we should be able to automate authored CSS with a PostCSS plugin 
 
 Play with it IRL http://lab.iamvdo.me/houdini/smooth-corners in a supported browser
 
-<iframe src="http://lab.iamvdo.me/houdini/smooth-corners" frameborder="0" width="100%" height="550" style="background: white"></iframe>
+<iframe src="http://lab.iamvdo.me/houdini/smooth-corners" frameborder="0" width="100%" height="700" style="background: white"></iframe>
+
+##Notes
+
+Using a CSS mask basically masks everything outside of the box (it’s the purpose of a mask 😁). You should be able to draw a gradient or an image from the `registerPaint` if you need to (but it seems that `<image>` type is not yet well supported, so you have to deal with it for now).
+
+If you want to experiment a bit, see other demos on how to draw an image: [create your own background properties, like `background-opacity`](http://lab.iamvdo.me/houdini/background-properties) or how to pass arguments instead of properties: [draw a gradient from 4 corners](http://lab.iamvdo/houdini/corners-gradient). I will be happy to share your work!
 
 ----
 
@@ -154,7 +158,7 @@ Description:
 
 ----
 
-Date: 2017-10-23 15:15
+Date: 2017-11-06 10:50
 
 ----
 
