@@ -1,0 +1,31 @@
+Title: CSS Houdini, c'est plus que de la magie !
+
+----
+
+Text: Pour la sixième année consécutive, j’ai eu l’occasion de participer à la [KiwiParty](http://kiwiparty.fr) qui était cette année accueillie par [BlendWebMix](http://www.blendwebmix.com/), à Lyon.
+
+J’y ai présenté une conférence sur la prochaine révolution de CSS, à savoir la spécification Houdini. Notamment, sur comment interagir avec les customs properties pour hacker le moteur de rendu CSS, et réaliser des effets jusque-là impossibles grâce à la Paint API.
+
+Vous pouvez retrouver mes slides [«CSS Houdini, c’est plus que de la magie !»](http://slides.iamvdo.me/kiwiparty17) en ligne.
+
+Ainsi que le site d’expérimentations mis en place: http://lab.iamvdo.me/houdini
+
+----
+
+Subtitle: KiwiParty - BlendWebMix 2017
+
+----
+
+Description: 
+
+----
+
+Date: 2017-10-26 17:30
+
+----
+
+Tags: 
+
+----
+
+Big: 0
