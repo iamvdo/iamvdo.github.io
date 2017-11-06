@@ -164,7 +164,7 @@ krsort($links);
 		$classBig = ($big) ? $element . '--big' : '';
 
 		// is new ?
-		$new = ( $delta < 60*60*24*12 );
+		$new = ( $delta < 60*60*24*20 );
 
 		?>
 		<li class="<?php echo $element . ' ' . $classModifier . ' ' . $classImg . ' ' . $classBig; ?>">
