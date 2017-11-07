@@ -24,7 +24,7 @@ Then, from this new loaded file, register a new *paint* called `smooth-corners`,
 
 ```javascript
 registerPaint('smooth-corners', class {
-  paint(ctx, geom) {
+  paint(ctx, size) {
     ctx.fillStyle = 'black'
 
     // n=4 draw a squircle
@@ -33,9 +33,9 @@ registerPaint('smooth-corners', class {
     let m = n
     if (n > 100) m = 100
     if (n < 0.00000000001) m = 0.00000000001
-    const r = geom.width / 2
-    const w = geom.width / 2
-    const h = geom.height / 2
+    const r = size.width / 2
+    const w = size.width / 2
+    const h = size.height / 2
 
     ctx.beginPath();
 
@@ -63,7 +63,7 @@ registerPaint('smooth-corners', class {
 
 Speaking about arguments of the `paint` method:
 - `ctx` is a `PaintRenderingContext2D` object, which is a subset of `CanvasRenderingContext2D`, so you can (mostly) draw anything you want
-- `geom` is a `PaintSize` object which is the size of the image to be drawn
+- `size` is a `PaintSize` object which is the size of the image to be drawn
 
 Now, we can use it from CSS with the new `paint()` function. It will draw a black rounded rectangle with smooth corners
 
@@ -105,15 +105,15 @@ registerPaint('smooth-corners', class {
           '--smooth-corners'
       ]
   }
-  paint(ctx, geom, properties) {
-    const exp = properties.get('--smooth-corners').toString()
+  paint(ctx, size, styleMap) {
+    const exp = styleMap.get('--smooth-corners').toString()
 
     const n = exp
   }
 })
 ```
 
-Note that the `paint()` method receives a third argument `properties`, which is an API to retreive properties values and more. Here we get `--smooth-corners` value and use it for the `n` variable.
+Note that the `paint()` method receives a third argument `styleMap`, which is an API to retreive computed value’s for properties listed in `inputProperties`. Here we get `--smooth-corners` value and use it for the `n` variable.
 
 **The full power now is that we can author `--smooth-corners` right from CSS**, and property could even be animated if we [register it using `CSS.registerProperty`](http://lab.iamvdo.me/houdini/animated-gradient) (from [CSS Houdini Properties & Values API](https://drafts.css-houdini.org/css-properties-values-api/)).
 
