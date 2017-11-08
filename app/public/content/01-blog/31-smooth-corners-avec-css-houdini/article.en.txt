@@ -115,7 +115,7 @@ registerPaint('smooth-corners', class {
 
 Note that the `paint()` method receives a third argument `styleMap`, which is an API to retreive computed value’s for properties listed in `inputProperties`. Here we get `--smooth-corners` value and use it for the `n` variable.
 
-**The full power now is that we can author `--smooth-corners` right from CSS**, and property could even be animated if we [register it using `CSS.registerProperty`](http://lab.iamvdo.me/houdini/animated-gradient) (from [CSS Houdini Properties & Values API](https://drafts.css-houdini.org/css-properties-values-api/)).
+**The full power now is that we can author `--smooth-corners` right from CSS**, and property could even be animated if we [register it using `CSS.registerProperty`](http://lab.iamvdo.me/houdini/animating-gradient) (from [CSS Houdini Properties & Values API](https://drafts.css-houdini.org/css-properties-values-api/)).
 
 For now, only Chrome[1. For developers, with experimental Web platform flag enabled] supports the Paint API from Houdini, so we do progressive enhancement:
 
@@ -146,7 +146,7 @@ Play with it IRL http://lab.iamvdo.me/houdini/smooth-corners in a supported brow
 
 Using a CSS mask basically masks everything outside of the box (it’s the purpose of a mask 😁). You should be able to draw a gradient or an image from the `registerPaint` if you need to (but it seems that `<image>` type is not yet well supported, so you have to deal with it for now).
 
-If you want to experiment a bit, see other demos on how to draw an image: [create your own background properties, like `background-opacity`](http://lab.iamvdo.me/houdini/background-properties) or how to pass arguments instead of properties: [draw a gradient from 4 corners](http://lab.iamvdo/houdini/corners-gradient). I will be happy to share your work!
+If you want to experiment a bit, see other demos on how to draw an image: [create your own background properties, like `background-opacity`](http://lab.iamvdo.me/houdini/background-properties) or how to pass arguments instead of properties: [draw a gradient from 4 corners](http://lab.iamvdo.me/houdini/corners-gradient). I will be happy to share your work!
 
 ----
 
