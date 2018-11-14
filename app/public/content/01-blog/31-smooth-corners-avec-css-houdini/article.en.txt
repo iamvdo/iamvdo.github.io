@@ -10,7 +10,7 @@ Text: Recently, I’ve [shared on Twitter](https://twitter.com/iamvdo/status/908
 
 (image: ios6-ios7.jpg caption: Differences between icons shapes in iOS6 and iOS7 (<a href="https://ivomynttinen.com/blog/ios-design-guidelines">source</a>%29)
 
-At the same time, [I was experimenting with the Paint API from Houdini](http://lab.iamvdo.me/houdini) for a talk. This API defines a new way to draw content into a CSS `<image>` during the paint phase of the rendering engine. **It basically gives the ability to programmatically draw an image to be used as a background** for example. So, drawing a superellipse should be easy.
+At the same time, [I was experimenting with the Paint API from Houdini](https://css-houdini.rocks) for a talk. This API defines a new way to draw content into a CSS `<image>` during the paint phase of the rendering engine. **It basically gives the ability to programmatically draw an image to be used as a background** for example. So, drawing a superellipse should be easy.
 
 Few weeks later, Sketch released a new version and introduced “Smooth corners” feature which is, as far as I know, a superellipse. **But I love the name, so let’s create smooth corners in CSS**.
 
@@ -115,7 +115,7 @@ registerPaint('smooth-corners', class {
 
 Note that the `paint()` method receives a third argument `styleMap`, which is an API to retreive computed value’s for properties listed in `inputProperties`. Here we get `--smooth-corners` value and use it for the `n` variable.
 
-**The full power now is that we can author `--smooth-corners` right from CSS**, and property could even be animated if we [register it using `CSS.registerProperty`](http://lab.iamvdo.me/houdini/animating-gradient) (from [CSS Houdini Properties & Values API](https://drafts.css-houdini.org/css-properties-values-api/)).
+**The full power now is that we can author `--smooth-corners` right from CSS**, and property could even be animated if we [register it using `CSS.registerProperty`](https://css-houdini.rocks/animating-gradient) (from [CSS Houdini Properties & Values API](https://drafts.css-houdini.org/css-properties-values-api/)).
 
 For now, only Chrome[1. For developers, with experimental Web platform flag enabled] supports the Paint API from Houdini, so we do progressive enhancement:
 
@@ -138,15 +138,15 @@ For now, only Chrome[1. For developers, with experimental Web platform flag enab
 
 In production, we should be able to automate authored CSS with a PostCSS plugin for example.
 
-Play with it IRL http://lab.iamvdo.me/houdini/smooth-corners in a supported browser
+Play with it IRL https://css-houdini.rocks/smooth-corners in a supported browser
 
-<iframe src="http://lab.iamvdo.me/houdini/smooth-corners" frameborder="0" width="100%" height="700" style="background: white"></iframe>
+<iframe src="https://css-houdini.rocks/smooth-corners" frameborder="0" width="100%" height="700" style="background: white"></iframe>
 
 ##Notes
 
 Using a CSS mask basically masks everything outside of the box (it’s the purpose of a mask 😁). You should be able to draw a gradient or an image from the `registerPaint` if you need to (but it seems that `<image>` type is not yet well supported, so you have to deal with it for now).
 
-If you want to experiment a bit, see other demos on how to draw an image: [create your own background properties, like `background-opacity`](http://lab.iamvdo.me/houdini/background-properties) or how to pass arguments instead of properties: [draw a gradient from 4 corners](http://lab.iamvdo.me/houdini/corners-gradient). I will be happy to share your work!
+If you want to experiment a bit, see other demos on how to draw an image: [create your own background properties, like `background-opacity`](https://css-houdini.rocks/background-properties) or how to pass arguments instead of properties: [draw a gradient from 4 corners](https://css-houdini.rocks/corners-gradient). I will be happy to share your work!
 
 ----
 
