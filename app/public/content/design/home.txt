@@ -40,5 +40,59 @@ Articles:
   "image": "https://pbs.twimg.com/media/DNEgPOxWkAEydf5.jpg:large",
   "date": "2017-10-26 17:20:00",
   "big": "1"
+  },
+"4": 
+  {
+  "title": "Slanted backgrounds with CSS Houdini",
+  "subtitle": "",
+  "url": "https://css-houdini.rocks/slanted-backgrounds",
+  "image": "https://pbs.twimg.com/media/DY57j0PWAAAEZ_u.jpg",
+  "date": "2018-03-22 17:20:00",
+  "big": "0"
+  },
+"5": 
+  {
+  "title": "Dynamic hover masks with CSS Houdini",
+  "subtitle": "",
+  "url": "https://css-houdini.rocks/dynamic-hover-masks",
+  "image": "https://pbs.twimg.com/tweet_video_thumb/DY58nVmW0AE1gld.jpg",
+  "date": "2018-03-22 17:21:00",
+  "big": "0"
+  },
+"6": 
+  {
+  "title": "Random bubbles mask with CSS Houdini",
+  "subtitle": "",
+  "url": "https://css-houdini.rocks/random-bubbles-mask",
+  "image": "https://pbs.twimg.com/tweet_video_thumb/DY580oWX4AI9hiQ.jpg",
+  "date": "2018-03-22 17:22:00",
+  "big": "0"
+  },
+"7": 
+  {
+  "title": "Highlighter marker annotations with CSS Houdini",
+  "subtitle": "",
+  "url": "https://css-houdini.rocks/highlighter-marker-annotations",
+  "image": "https://pbs.twimg.com/tweet_video_thumb/DaaDnDWX4AEe-9z.jpg",
+  "date": "2018-04-10 17:20:00",
+  "big": "1"
+  },
+"8": 
+  {
+  "title": "SVG Path Layout with CSS Houdini",
+  "subtitle": "",
+  "url": "https://css-houdini.rocks/svg-path-layout",
+  "image": "https://pbs.twimg.com/tweet_video_thumb/DbeYC1XXkAE_0xc.jpg",
+  "date": "2018-04-23 17:20:00",
+  "big": "1"
+  },
+"9": 
+  {
+  "title": "Random irregular grid with CSS Houdini",
+  "subtitle": "",
+  "url": "https://css-houdini.rocks/irregular-grid",
+  "image": "https://pbs.twimg.com/ext_tw_video_thumb/1055071015007608834/pu/img/SPCMKfdhIgC735lH.jpg",
+  "date": "2018-10-26 17:20:00",
+  "big": "1"
   }
 }
