@@ -1,0 +1,60 @@
+Title: CSS debugging is hard
+
+----
+
+URL-Key: css-debugging-is-hard
+
+----
+
+Text: **CSS is sometimes hard to debug**. Let’s take an example based on the [apple.com](https://apple.com) website.
+
+Today, [Blink announces intent to ship `backdrop-filter`](https://groups.google.com/a/chromium.org/forum/m/#!topic/blink-dev/GRl1_Qy97jM), a really nice CSS property that allow to [apply filters to the backdrop](advanced-css-filters) (what is underneath) of an element. This property is already shipped into Safari and Edge, and can be tested in Chrome with the Web Platfom flag since late 2015.
+
+The Apple website is using it since then, and I’m aware of a specific bug where the backdrop is blurred outside of the element. I’ve always thought of an implementation bug. 
+
+(image:1-apple-website.png caption: backdrop-filter seems to be applied outside of the element)
+
+Checking the code again, I’ve found out this is not a bug [1. To be fair, I'm not sure if `backdrop-filter` should be applied to line-boxes or background area. So maybe it’s a bug], and not related to `backdrop-filter` either. The problem is just CSS basics.
+
+When I’m inspecting for an unknown empty space, the first thing I do is to look at each elements to see how it goes (and trying to think at all CSS properties that affects layout, checking and unchecking things). No luck here.
+
+(image:2-apple-inspecting.gif caption:Inspecting with no luck)
+
+The problem might be elsewhere. I shall not waste your time, **this is a problem with inline alignments**, as explained in my [deep-dive CSS line-height and vertical-align blog post](css-font-metrics-line-height-and-vertical-align). Specifically, with default alignment which is `baseline` and `display: inline-block` elements.
+
+Let’s look at Apple website again. Each link inside `<li>` is set to be `inline-block`, with a height of 44px (the same height that the navigation bar). In inline formatting context, elements are aligned regarding their baselines, unless specified. But for `display: inline-block` elements (and other `inline-*`), **they are aligned with their bottom `border`** (including `padding` and `margin`). This is what happens here.
+
+To better understand, let’s add a zero-width joiner character (`&zwj;`) at the beginning of an `<li>`
+
+(image:3-apple-zwj.gif caption:Adding a zero-width joiner character reveal the problem)
+
+It becomes obvious. **The link is aligned with the baseline of the parent, and so the line-box is taller than expected**. As I mentioned in [my previous article](css-font-metrics-line-height-and-vertical-align), the line-box can’t be seen, even with a background.
+
+Thus, the fix is easy: using a simple `vertical-align`.
+
+(image:4-apple-fixed.gif caption:Using vertical-align to fix line-box height)
+
+Other solutions could have been used:
+
+- Using `display: inline-flex` for the `<li>` (children are blocksified and the links’ computed values become `block`)
+- Using `float: left` for the links (but hey, who is using `float` these days ;) )
+
+----
+
+Subtitle: 
+
+----
+
+Description: 
+
+----
+
+Date: 2019-03-13 17:15
+
+----
+
+Tags: CSS
+
+----
+
+Big: 0
