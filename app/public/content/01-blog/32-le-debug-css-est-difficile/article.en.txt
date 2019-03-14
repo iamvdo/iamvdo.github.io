@@ -22,7 +22,10 @@ When I’m inspecting for an unknown empty space, the first thing I do is to loo
 
 The problem might be elsewhere. I shall not waste your time, **this is a problem with inline alignments**, as explained in my [deep-dive CSS line-height and vertical-align blog post](css-font-metrics-line-height-and-vertical-align). Specifically, with default alignment which is `baseline` and `display: inline-block` elements.
 
-Let’s look at Apple website again. Each link inside `<li>` is set to be `inline-block`, with a height of 44px (the same height that the navigation bar). In inline formatting context, elements are aligned regarding their baselines, unless specified. But for `display: inline-block` elements (and other `inline-*`), **they are aligned with their bottom `border`** (including `padding` and `margin`). This is what happens here.
+Let’s look at Apple website again. Each link inside `<li>` is set to be `inline-block`, with a height of 44px (the same height that the navigation bar). In inline formatting context, elements are aligned regarding their baselines, unless specified. But for `display: inline-block`, things get complicated.
+
+- if element has text and `overflow` is `visible`, the baseline is its last line-box (the last line)
+- if element hasn’t text or if `overflow` is other than `visible`, the baseline is the bottom margin edge. This is what happens here.
 
 To better understand, let’s add a zero-width joiner character (`&zwj;`) at the beginning of an `<li>`
 
