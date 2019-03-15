@@ -30,6 +30,8 @@ foreach ($articles as $article) {
   $myPages[$time]['title'] = $article['content']['title'];
   $myPages[$time]['modified'] = $time;
   $myPages[$time]['url'] = $site->full_url() . $article['url'];
+  $relativeUrl = $site->full_url() . $article['contentUrl'];
+  $article['content']['text'] = preg_replace('/\(image\:\s?(\S+)/', '(image:' . $relativeUrl . '/$1',$article['content']['text']);
   $myPages[$time]['text'] = $article['content']['text'];
 }
 
