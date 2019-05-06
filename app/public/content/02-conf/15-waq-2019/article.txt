@@ -1,0 +1,32 @@
+Title: CSS Houdini, c'est plus que de la magie !
+
+----
+
+Text: En avril dernier, j’ai eu la chance de participer à [Web à Québec](https://webaquebec.org/), à… Québec !
+
+J’y ai présenté CSS Houdini: une nouvelle spécification CSS qui permet de *hacker* le moteur de rendu CSS, et de réaliser des effets jusque-là impossibles. Pour en savoir plus, je vous invite à parcourir les slides en français ou en anglais:
+
+- FR: [CSS Houdini, c’est plus que de la magie !](http://slides.iamvdo.me/waq19-fr)
+- EN: [CSS Houdini, More than magic!](http://slides.iamvdo.me/waq19)
+
+Ainsi que le site d’expérimentations mis en place: https://css-houdini.rocks
+
+----
+
+Subtitle: Web à Québec 2019
+
+----
+
+Description: 
+
+----
+
+Date: 2019-04-09 15:00
+
+----
+
+Tags: 
+
+----
+
+Big: 0
