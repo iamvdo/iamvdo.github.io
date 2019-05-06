@@ -1,8 +1,8 @@
-#Static files for iamvdo.me
+# Static files for iamvdo.me
 
 These files are compiled using [Brunch](http://github.com/brunch/brunch)
 
-##How to
+## How to
 
 First
 
@@ -11,7 +11,7 @@ First
 Then
 
 	bower install
-  
+
 And
 
 	brunch build -P
