@@ -461,7 +461,7 @@ This is the key point of CSS Houdini: improve performance of browser rendering. 
 
 As an example, see [how a box-shadow can be animated efficiently](https://tobiasahlin.com/blog/how-to-animate-box-shadow/) (spoiler: animate the opacity of a pseudo-element instead)
 
-**The use of worklets, isolated from the page and the main thread [1. [Depuis Chrome 81](https://twitter.com/flackrw/status/1225098733752328192) avec [quelques contraintes](https://twitter.com/flackrw/status/1225101685577736198)], gives performant results**, without the exclusive use of `transform`/`opacity`. And this is great!
+**The use of worklets, isolated from the page and the main thread [1. [Since Chrome 81](https://twitter.com/flackrw/status/1225098733752328192) with [some constraints](https://twitter.com/flackrw/status/1225101685577736198)], gives performant results**, without the exclusive use of `transform`/`opacity`. And this is great!
 
 Ironically, my first demo above (registering a custom property to set box-shadow’s blur) is not performant, cause there is no worklet involved.
 
