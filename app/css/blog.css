@@ -199,12 +199,10 @@
 	margin: 1em 0;
 	font: italic 1.05em/1.7 Georgia, serif;
 	text-indent: 2em;
-	border: 0 dashed #aaa;
-	border-width: 1px 0;
 	quotes: "«" "»";
 }
 .article-text blockquote * {
-	color: #aaa;
+	color: #ddd;
 }
 .article-text blockquote::before {
 	content: open-quote;
@@ -274,6 +272,10 @@
 .article-text td {
 	padding: 0.5em;
 }
+.article-text abbr {
+	text-decoration: none;
+	border-bottom: 1px dashed;
+}
 .media-legend {
 }
 .article-text .self-link {
@@ -290,6 +292,14 @@
 }
 .article-text .self-link::before {
 	content: '#';
+}
+.article-text .note {
+	background: rgba(255,255,255,.1);
+	padding: .5em;
+	margin: .5em 0;
+	font-size: .9em;
+	border-radius: 3px;
+	color: #ddd;
 }
 .button {
 	font-size: medium;
