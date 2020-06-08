@@ -62,7 +62,7 @@
 .utils-link::before {
 	content: '←';
 	position: absolute;
-	left: -1em; top: -0.45em;
+	left: -1em; top: -0.35em;
 	font-family: 'sourcesanspro', sans-serif;
 	font-size: 2em;
 	pointer-events: none;
@@ -106,10 +106,11 @@
  */
  /* latin */
 .article-text {
+	font-family: Lato, sans-serif;
 	text-shadow: 0 1px 2px rgba(0,0,0,.5);
 	line-height: 2;
-	font-size: 1.05em;
-	//word-spacing: 1px;
+	font-size: 1.15em;
+	word-spacing: 1px;
 	//letter-spacing: .4px;
 	margin-top: 2.4em;
 	margin-bottom: 2.4em;
@@ -131,7 +132,7 @@
 	margin-top: 1em;
 }
 .article-text p {
-	color: #fff;
+	color: #eaeaea;
 	padding: .5em 0;
 	/* text-indent: 25px; */
 }

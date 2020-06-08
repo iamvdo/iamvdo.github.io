@@ -9,6 +9,7 @@ pre {
 	color: #f8f8f2;
 	text-shadow: 0 1px rgba(0,0,0,0.3);
 	font-family: Consolas, Monaco, 'Andale Mono', monospace;
+	font-size: 1.05rem;
 	direction: ltr;
 	text-align: left;
 	white-space: pre;
@@ -42,6 +43,7 @@ pre {
 	padding: 4px 2px;
 	border-radius: 0;
 	white-space: nowrap;
+	font-size: .9em;
 }
 
 .token.comment,

@@ -9,45 +9,47 @@
 	font-style: normal;
 }
 @font-face {
-  font-family: 'VDO_Montserrat';
-  font-weight: 300;
-  font-style: normal;
-  src: url('https://fonts.gstatic.com/s/montserrat/v10/IVeH6A3MiFyaSEiudUMXE6SxSvC1lIsK_unZDHWqTBg.eot');
-  src: url('https://fonts.gstatic.com/s/montserrat/v10/IVeH6A3MiFyaSEiudUMXE6SxSvC1lIsK_unZDHWqTBg.eot?#iefix') format('embedded-opentype'),
-       url('https://fonts.gstatic.com/s/montserrat/v10/IVeH6A3MiFyaSEiudUMXEweOulFbQKHxPa89BaxZzA0.woff2') format('woff2'),
-       url('https://fonts.gstatic.com/s/montserrat/v10/IVeH6A3MiFyaSEiudUMXE4o3ZslTYfJv0R05CazkwN8.woff') format('woff'),
-       url('https://fonts.gstatic.com/s/montserrat/v10/IVeH6A3MiFyaSEiudUMXE-LrC4Du4e_yfTJ8Ol60xk0.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'VDO_Montserrat';
-  font-weight: 300;
-  font-style: italic;
-  src: url('https://fonts.gstatic.com/s/montserrat/v10/zhwB3-BAdyKDf0geWr9Ft4ySLpARcVRs9uFJp0LRZgE.eot');
-  src: url('https://fonts.gstatic.com/s/montserrat/v10/zhwB3-BAdyKDf0geWr9Ft4ySLpARcVRs9uFJp0LRZgE.eot?#iefix') format('embedded-opentype'),
-       url('https://fonts.gstatic.com/s/montserrat/v10/zhwB3-BAdyKDf0geWr9Ft0ZRWJQ0UjzR2Uv6RollX_g.woff2') format('woff2'),
-       url('https://fonts.gstatic.com/s/montserrat/v10/zhwB3-BAdyKDf0geWr9Ft2B7wJ9CoPCp9n30ZBThZ1I.woff') format('woff'),
-       url('https://fonts.gstatic.com/s/montserrat/v10/zhwB3-BAdyKDf0geWr9FtwV_pQ1T3xN3K1c3sB361us.ttf') format('truetype');
+	font-family: Montserrat;
+	font-weight: 400;
+	font-style: normal;
+	src: local(Montserrat),
+		 url(../fonts/montserrat-regular.woff),
+		 url(../fonts/montserrat-regular.woff2);
+	font-display: swap;
 }
 @font-face {
-  font-family: 'VDO_Montserrat';
-  font-weight: 600;
-  font-style: normal;
-  src: url('https://fonts.gstatic.com/s/montserrat/v10/q2OIMsAtXEkOulLQVdSl08G3e9iX24ta7lLMfbqPFME.eot');
-  src: url('https://fonts.gstatic.com/s/montserrat/v10/q2OIMsAtXEkOulLQVdSl08G3e9iX24ta7lLMfbqPFME.eot?#iefix') format('embedded-opentype'),
-       url('https://fonts.gstatic.com/s/montserrat/v10/q2OIMsAtXEkOulLQVdSl03XcDWh-RbO457623Zi1kyw.woff2') format('woff2'),
-       url('https://fonts.gstatic.com/s/montserrat/v10/q2OIMsAtXEkOulLQVdSl023La9Kxrc1laXJvjyGQa-A.woff') format('woff'),
-       url('https://fonts.gstatic.com/s/montserrat/v10/q2OIMsAtXEkOulLQVdSl07h9hBNNhK4RjzVManoH7kY.ttf') format('truetype');
+	font-family: Montserrat;
+	font-weight: 700;
+	font-style: bold;
+	src: local(Montserrat),
+		 url(../fonts/montserrat-bold.woff),
+		 url(../fonts/montserrat-bold.woff2);
+	font-display: swap;
+  }
+@font-face {
+	font-family: Lato;
+	font-weight: 400;
+	src: local('Lato'),
+		 url(../fonts/lato-regular.woff2),
+		 url(../fonts/lato-regular.woff);
+	font-display: swap;
 }
 @font-face {
-  font-family: 'VDO_Montserrat';
-  font-weight: 600;
-  font-style: italic;
-  src: url('https://fonts.gstatic.com/s/montserrat/v10/zhwB3-BAdyKDf0geWr9FtzBIQ40lcwWW3vj9tFMKvqw.eot');
-  src: url('https://fonts.gstatic.com/s/montserrat/v10/zhwB3-BAdyKDf0geWr9FtzBIQ40lcwWW3vj9tFMKvqw.eot?#iefix') format('embedded-opentype'),
-       url('https://fonts.gstatic.com/s/montserrat/v10/zhwB3-BAdyKDf0geWr9Ft93uLUHnU24AL_1IdxwhTqs.woff2') format('woff2'),
-       url('https://fonts.gstatic.com/s/montserrat/v10/zhwB3-BAdyKDf0geWr9FtxefZI2gqg-NXpw43Z_DJ3I.woff') format('woff'),
-       url('https://fonts.gstatic.com/s/montserrat/v10/zhwB3-BAdyKDf0geWr9Ft1FZMcfX2SbzQ69I7OWmkGo.ttf') format('truetype');
+	font-family: Lato;
+	font-weight: 400;
+	font-style: italic;
+	src: local('Lato'),
+		 url(../fonts/lato-italic.woff2),
+		 url(../fonts/lato-italic.woff);
+	font-display: swap;
+}
+@font-face {
+	font-family: Lato;
+	font-weight: 700;
+	src: local('Lato'),
+		 url(../fonts/lato-bold.woff2),
+		 url(../fonts/lato-bold.woff);
+	font-display: swap;
 }
 
 :root {
@@ -74,7 +76,7 @@ html, body {
 html {
 	position: relative;
 	width: 100%;
-	font: 300 1em VDO_Montserrat, sans-serif;
+	font: 1em Montserrat, sans-serif;
 	color: white;
 	background: #444;
 	-webkit-text-size-adjust: none;
@@ -149,7 +151,7 @@ header{
 	font-family: 'sourcesanspro', sans-serif;
 	font-size: 1.6em;
 	position: absolute;
-	left: .5em; top: .45em;
+	left: .5em; top: .55em;
 	opacity: 0;
 	transform: translate(-50px);
 	transition: transform .3s cubic-bezier(.5,2,.5,.8), opacity .3s;
@@ -246,7 +248,7 @@ header{
 	display: inline;
 }
 .news-title {
-	font-weight: 600;
+	font-weight: bold;
 }
 .news-text + .news-title {
 	margin-left: 1em;
@@ -268,7 +270,7 @@ header{
 	vertical-align: middle;
 }
 .intro-title{
-	font-weight: 600;
+	font-weight: bold;
 	letter-spacing: -.07em;
 	text-align: center;
 	color: white;
@@ -278,6 +280,7 @@ header{
 	font-style: normal;
 }
 .intro-more {
+	font-family: Lato, sans-serif;
 	font-size: medium;
 }
 .intro-more,
