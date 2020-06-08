@@ -1,4 +1,15 @@
 <?php 
+
+if ($page->translation()->value() != '') {
+  $text = $page->translation()->value();
+  $tr = explode(' ', $text);
+  ?>
+  <div class="article-utils">
+    <p class="u-right"><?php echo l::get('article.langAvailable') . ' <a href="' . $tr[1] .'">[' . $tr[0] . ']</a>'; ?></p>
+  </div>
+  <?php
+} else {
+
 $c = array('fr' => 'en', 'en' => 'fr');
 $ownLang = (string)$page->content()->language();
 if ($ownLang == '') {
@@ -17,5 +28,7 @@ if ($ownLang != $otherLang ) {
   </div>
   <?php
   }
+}
+
 }
 ?>

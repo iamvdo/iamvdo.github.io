@@ -526,3 +526,7 @@ Tags: CSS
 ----
 
 Big: 1
+
+----
+
+Translation: FR https://www.alsacreations.com/article/lire/1809-css-houdini-magie-ou-poudre-aux-yeux.html
