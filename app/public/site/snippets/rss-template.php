@@ -25,6 +25,12 @@ date_default_timezone_set('Europe/Paris');
     <atom:link href="<?php echo xml(thisURL()) ?>" rel="self" type="application/rss+xml" />
   
     <?php foreach($items as $item): ?>
+    <?php 
+      // hotfix (houdini worklets)
+      if ($item['title'] == 'CSS Houdini') {
+        $item['url'] = str_replace( 'http://', 'https://', $item['url']);
+      }
+      ?>
     <item>
       <title><?php echo xml($item['title']) ?></title>
       <link><?php echo xml($item['url']) ?></link>
