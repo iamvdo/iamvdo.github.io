@@ -159,7 +159,7 @@ registerPaint('slanted', class {
 Its `paint()` method contains drawing commands that build the slanted shape, and can use its 2 arguments:
 
 - `ctx` is the drawing context
-- `geom` is an objet containing the size of the element where the painting will occur
+- `geom` is an object containing the size of the element where the painting will occur
 
 The drawing is based on simple commands, as for the HTML `<canvas>` element: `moveTo()` to move the pointer, `lineTo()` to draw a straight line, etc.
 
