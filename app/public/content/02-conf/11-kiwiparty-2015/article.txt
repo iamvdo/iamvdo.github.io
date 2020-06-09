@@ -6,7 +6,7 @@ Text: Pour la quatrième année consécutive, j’ai eu l’occasion de particip
 
 Vous pouvez retrouver [mes slides «Icon-fonts vs SVG sprites» en ligne](http://slides.iamvdo.me/kiwiparty15).
 
-<iframe src="http://slides.iamvdo.me/kiwiparty15" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://slides.iamvdo.me/kiwiparty15" frameborder="0" width="100%" height="500"></iframe>
 
 ----
 

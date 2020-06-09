@@ -38,7 +38,7 @@ Et surtout, expérimentez!
 
 **Edit**: La vidéo est en ligne!
 
-<iframe frameborder="0" height="315" src="http://www.youtube.com/embed/FOc0LqviDng" width="560"></iframe>
+<iframe frameborder="0" height="315" src="https://www.youtube.com/embed/FOc0LqviDng" width="560"></iframe>
 
 **Edit 2**: Quelques tweets pour vous donner envie de regarder la vidéo:
 <blockquote class="twitter-tweet" lang="fr"><p>La pres de <a href="https://twitter.com/iamvdo">@iamvdo</a> sur <a href="https://twitter.com/search?q=%23CSS3&amp;src=hash">#CSS3</a> est un concentré de fonctionnalités aussi géniales les une que les autres <a href="https://twitter.com/search?q=%23FranceHTML5&amp;src=hash">#FranceHTML5</a></p>&mdash; J.M. Cléry (@_jmpp) <a href="https://twitter.com/_jmpp/statuses/326766591687663616">23 Avril 2013</a></blockquote>

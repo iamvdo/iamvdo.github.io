@@ -140,7 +140,7 @@ In production, we should be able to automate authored CSS with a PostCSS plugin 
 
 Play with it IRL https://css-houdini.rocks/smooth-corners in a supported browser
 
-<iframe src="https://css-houdini.rocks/smooth-corners" frameborder="0" width="100%" height="700" style="background: white"></iframe>
+<iframe src="https://css-houdini.rocks/smooth-corners/" frameborder="0" width="100%" height="700" style="background: white"></iframe>
 
 ##Notes
 

@@ -6,7 +6,7 @@ Text: Pour la cinquième année consécutive, j’ai eu l’occasion de particip
 
 Vous pouvez retrouver mes slides [«10 astuces SVG qui vont vous sauver la vie»](http://slides.iamvdo.me/kiwiparty16) en ligne.
 
-<iframe src="http://slides.iamvdo.me/kiwiparty16" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="https://slides.iamvdo.me/kiwiparty16" frameborder="0" width="100%" height="500"></iframe>
 
 ----
 

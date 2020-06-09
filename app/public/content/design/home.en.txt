@@ -10,7 +10,7 @@ Articles:
   "title": "Skeuomorphic Payment Experiment",
   "subtitle": "An online payment experiment that visually simulates a credit card",
   "url": "http://design.iamvdo.me/skeuomorphic-payment-experiment/",
-  "image": "http://design.iamvdo.me/skeuomorphic-payment-experiment/images/skeuomorphic-payment-experiment.jpg",
+  "image": "https://design.iamvdo.me/skeuomorphic-payment-experiment/images/skeuomorphic-payment-experiment.jpg",
   "date": "2013-01-30 10:30:00",
   "big": "1",
   "lang": "en"
@@ -20,7 +20,7 @@ Articles:
   "title": "Sticky Elements",
   "subtitle": "Fun UI experiment with sticky elements",
   "url": "http://design.iamvdo.me/stickyElements",
-  "image": "http://imgs.iamvdo.me/stickyElements.gif",
+  "image": "https://imgs.iamvdo.me/stickyElements.gif",
   "date": "2016-02-11 11:15:00",
   "big": "1",
   "lang": "en"
@@ -30,7 +30,7 @@ Articles:
   "title": "Shine effect in pure CSS (+SVG)",
   "subtitle": "Using masks, pseudo-elements and gradients",
   "url": "http://codepen.io/iamvdo/pen/maJhu",
-  "image": "http://www.css3create.com/IMG/artoff86.png",
+  "image": "https://www.css3create.com/IMG/artoff86.png",
   "date": "2013-01-17 15:13:34",
   "big": "0",
   "lang": "en"
@@ -40,7 +40,7 @@ Articles:
   "title": "Progressive blur with CSS & SVG",
   "subtitle": "",
   "url": "http://codepen.io/iamvdo/pen/xECmI",
-  "image": "http://www.css3create.com/IMG/artoff91.png",
+  "image": "https://www.css3create.com/IMG/artoff91.png",
   "date": "2013-06-20 15:50:38",
   "big": "0",
   "lang": "en"
@@ -50,7 +50,7 @@ Articles:
   "title": "Morphing (hamburger) menu",
   "subtitle": "",
   "url": "http://design.iamvdo.me/morphing-hamburger-menu/",
-  "image": "http://design.iamvdo.me/morphing-hamburger-menu/images/morphing-menu.gif",
+  "image": "https://design.iamvdo.me/morphing-hamburger-menu/images/morphing-menu.gif",
   "date": "2016-04-14 17:20:00",
   "big": "1",
   "lang": "en"

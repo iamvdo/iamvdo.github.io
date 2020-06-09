@@ -25,5 +25,5 @@ Les 10 designs considérés les plus «laids» seront récompensés.
 Plus d'infos sur le [site officiel](http://concours.livre-css3.fr).
 
 
-(image:http://concours.livre-css3.fr/images/livreCSS3.png text: Les 10 livres CSS3 à gagner)
+(image:https://concours.livre-css3.fr/images/livreCSS3.png text: Les 10 livres CSS3 à gagner)
  

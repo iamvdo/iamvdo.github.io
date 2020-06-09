@@ -17,7 +17,7 @@ Au programme, deux conférences:
 
 Vous pouvez retrouver le programme détaillé, les liens vers nos présentations respectives ainsi que les vidéos de l'évènement, sur [le blog de SFEIR](http://blog.sfeir.com/2013/01/sfeirplays-transcendez-vos.html).
 
-<iframe frameborder="0" height="360" src="http://www.youtube.com/embed/mGsruajd7K0?feature=player_detailpage" width="640"></iframe>
+<iframe frameborder="0" height="360" src="https://www.youtube.com/embed/mGsruajd7K0?feature=player_detailpage" width="640"></iframe>
 
 Un grand merci aux organisateurs de cet évènement.
  

@@ -12,7 +12,7 @@ Pour découvrir la conférence, vous pouvez:
 * regarder la vidéo ci-dessous
 * voir ce que [les gens en ont pensé via Storify](https://storify.com/iamvdo/les-masques-css)
 
-<iframe src="http://new.livestream.com/accounts/1764940/events/3463433/videos/65099212/player?width=640&height=360&autoPlay=false&mute=false" width="640" height="360" frameborder="0" scrolling="no"></iframe>
+<iframe src="https://new.livestream.com/accounts/1764940/events/3463433/videos/65099212/player?width=640&height=360&autoPlay=false&mute=false" width="640" height="360" frameborder="0" scrolling="no"></iframe>
 
 Je remercie toute l'équipe de Paris-Web qui a fait un boulot énorme sur cette conférence. Merci aussi à tous pour vos commentaires et retours sur mon intervention en particulier, c'est toujours très agréable. :)
 
