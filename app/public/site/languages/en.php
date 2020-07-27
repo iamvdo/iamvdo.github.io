@@ -20,7 +20,7 @@ l::set('date.years', 'years');
 l::set('comments.write', 'Leave a comment');
 l::set('comments.load', 'Load comments');
 
-l::set('flattr-text', 'If you like the article, consider');
-l::set('flattr-link', 'Flattr it!');
+l::set('bmac-text', 'If this article helps you');
+l::set('bmac-link', 'Buy me a coffee!');
 
  ?>

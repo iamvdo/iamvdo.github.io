@@ -8,10 +8,6 @@
 
   ga('create', 'UA-17376769-7', 'auto');
   ga('send', 'pageview');
-
-  document.querySelector('.flattr-link').addEventListener('click', function () {
-    ga('send', 'event', 'Flattr', 'Click');
-  });
 </script>
 <script>
   var _paq = _paq || [];

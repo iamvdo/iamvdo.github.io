@@ -45,10 +45,11 @@
 			<?php
 			snippet('langAvailable');
 			?>
+			<p class="bmac"><?php echo l::get('bmac-text') ?> <a class="bmac-link" href="https://www.buymeacoffee.com/iamvdo"><?php echo l::get('bmac-link') ?></a></p>
 			<div class="article-text language-css">
 				<?php echo $page->text()->kirbytext(); ?>
 			</div>
-			<p class="flattr"><?php echo l::get('flattr-text') ?> <a class="flattr-link" href="https://flattr.com/submit/auto?user_id=iamvdo&url=<?php echo thisUrl() ?>"><?php echo l::get('flattr-link') ?></a></p>
+			<p class="bmac"><?php echo l::get('bmac-text') ?> <a class="bmac-link" href="https://www.buymeacoffee.com/iamvdo"><?php echo l::get('bmac-link') ?></a></p>
 			<div class="article-utils article-utils--footer">
 				<?php 
 				if ($page->hasPrevVisible('date')) {
