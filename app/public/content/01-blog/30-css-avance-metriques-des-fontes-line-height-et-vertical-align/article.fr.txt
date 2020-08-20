@@ -313,7 +313,9 @@ Mais j’aime toujours CSS :)
 - [calculer `line-height: normal` et les différents ratios dans le navigateur](http://brunildo.org/test/aspect-lh-table2.html)
 - [Ahem](https://www.w3.org/Style/CSS/Test/Fonts/Ahem/), une police spécialement conçue pour l’apprentissage
 - une explication encore plus détaillée du [contexte de formatage *inline*](http://meyerweb.com/eric/css/inline-format.html)
-- il existe une nouvelle spec en lien avec tout cela pour simplifier les alignements verticaux : le [Line Grid module](https://drafts.csswg.org/css-line-grid/)
+- [Capsize](https://seek-oss.github.io/capsize/), un outil pour contrôler simplement les tailles des textes
+- La spécification à jour [CSS Inline Layout Module Level 3](https://drafts.csswg.org/css-inline-3/)
+- [Un billet de blog sur la propriété `leading-trim`](https://medium.com/microsoft-design/leading-trim-the-future-of-digital-typesetting-d082d84b202), pour assurer un espacement régulier en contrôlant le *leading*
 - une collection d’idées, la [Font Metrics API Level 1](https://drafts.css-houdini.org/font-metrics-api-1/) (Houdini)
 
 [FontForge]: https://fontforge.github.io/en-US/

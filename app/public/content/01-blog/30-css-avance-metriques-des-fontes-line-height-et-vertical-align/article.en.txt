@@ -312,7 +312,9 @@ But I still love CSS :)
 - [compute `line-height: normal`, and some ratio in the browser](http://brunildo.org/test/aspect-lh-table2.html)
 - [Ahem](https://www.w3.org/Style/CSS/Test/Fonts/Ahem/), a special font to help understand how it works
 - an even deeper, institutional, explanation of [inline formatting context](http://meyerweb.com/eric/css/inline-format.html)
-- there is a related future spec to help with vertical alignment: the [Line Grid module](https://drafts.csswg.org/css-line-grid/)
+- [Capsize](https://seek-oss.github.io/capsize/), a tool to make the sizing and layout of text predictable
+- Up to date specification [CSS Inline Layout Module Level 3](https://drafts.csswg.org/css-inline-3/)
+- [A blog post about the `leading-trim` property](https://medium.com/microsoft-design/leading-trim-the-future-of-digital-typesetting-d082d84b202), to ensure consistent spacing by controling the leading
 - [Font Metrics API Level 1](https://drafts.css-houdini.org/font-metrics-api-1/), a collection of interesting ideas (Houdini)
 
 
