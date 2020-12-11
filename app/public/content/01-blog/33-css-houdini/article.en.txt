@@ -118,7 +118,7 @@ There you go, a nice hovering animation, only updating the desired value.
 
 >By the way, avoid adding too much custom properties on `:root` or `body` elements. [You will face some performance pitfalls](https://lisilinhart.info/posts/css-variables-performance).
 
-<p class="note">Support for registering properties is only Blink-based browsers (Chrome, Opera, Edge) for now, and only the JS version. The new at-rule <a href="https://www.google.com/url?q=https://groups.google.com/a/chromium.org/forum/%23!msg/blink-dev/3ygpsew53a0/T7acB6sRBQAJ&sa=D&ust=1587715683036000&usg=AFQjCNERywO_q91gn_3An4tOEBrMjRkQ9g"><code>@property</code> will be supported soon</a>. However, in both cases, not every types are implemented (also bound to Typed OM), without exhautive list.</p>
+<p class="note">Support for registering properties is only Blink-based browsers (Chrome, Opera, Edge) for now. However, in both cases (CSS & JS), not every types are implemented (also bound to Typed OM), without exhautive list.</p>
 
 ## Build our own graphic effects
 
