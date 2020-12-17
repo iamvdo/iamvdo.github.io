@@ -124,5 +124,25 @@ Articles:
   "date": "2018-10-26 17:20:00",
   "big": "1",
   "lang": "en"
+  },
+"12": 
+  {
+  "title": "Inner borders",
+  "subtitle": "Draw inner borders with CSS Houdini",
+  "url": "https://css-houdini.rocks/inner-borders",
+  "image": "",
+  "date": "2020-03-25 15:00:00",
+  "big": "0",
+  "lang": "en"
+  },
+"13": 
+  {
+  "title": "SVG-in-CSS",
+  "subtitle": "Generic Houdini worklet to draw SVG shapes",
+  "url": "https://css-houdini.rocks/svg-in-css",
+  "image": "images/svg-in-css.png",
+  "date": "2020-12-16 15:00:00",
+  "big": "1",
+  "lang": "en"
   }
 }
