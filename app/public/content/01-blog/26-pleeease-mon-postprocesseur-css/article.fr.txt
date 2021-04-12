@@ -2,9 +2,9 @@
 
 ----
 
-Text: La semaine dernière, je vous parlais [d’optimisation de workflow front-end](brunch-un-worflow-front-end-simplifie) avec mon task runner préféré [Brunch](http://brunch.io). Aujourd’hui, je vous présente [Pleeease](http://pleeease.io), un post-processeur CSS maison. Apprenez à l’intégrer dans votre workflow pour traiter votre CSS de manière optimale.
+Text: La semaine dernière, je vous parlais [d’optimisation de workflow front-end](brunch-un-worflow-front-end-simplifie) avec mon task runner préféré [Brunch](http://brunch.io). Aujourd’hui, je vous présente [Pleeease](http://pleeease.iamvdo.me), un post-processeur CSS maison. Apprenez à l’intégrer dans votre workflow pour traiter votre CSS de manière optimale.
 
-(image: pleeease-logo.jpg text: Pleeease.io)
+(image: pleeease-logo.jpg text: Pleeease Logo)
 
 ##Pourquoi Pleeease?
 
@@ -139,11 +139,11 @@ Pleeease crée le nouveau fichier:
 
 Utilise le post-processeur [CSS Wring](https://github.com/hail2u/node-csswring).
 
-Certaines de ces tâches sont configurables, voir [toutes les options disponibles](http://pleeease.io/options.html).
+Certaines de ces tâches sont configurables, voir [toutes les options disponibles](http://pleeease.iamvdo.me/docs).
 
 ##Utilisez Pleeease en mode autonome
 
-La manière la plus simple d’utiliser Pleeease est en mode autonome, via [la ligne de commande](http://pleeease.io/tool.html). Cette méthode est faite pour vous si vous n’utilisez pas de task runner ou si vous travaillez sur un petit projet.
+La manière la plus simple d’utiliser Pleeease est en mode autonome, via [la ligne de commande](http://pleeease.iamvdo.me/docs/#cli). Cette méthode est faite pour vous si vous n’utilisez pas de task runner ou si vous travaillez sur un petit projet.
 
 Tout d’abord, vous aurez besoin d’installer [Node.js](http://nodejs.org) qui est couramment livré avec son gestionnaire de modules `npm`. Ensuite, lancez l’installation de Pleeease de manière globale au système.
 
@@ -208,7 +208,7 @@ Une fois votre fichier de configuration défini, il vous suffit de lancer `compi
 
 	$ pleeease compile | watch
 
-C’est également dans ce fichier que vous pouvez préciser quelles tâches doivent êtres effectuées ou non. Pour cela, [voir les options complètes](http://pleeease.io/options.html).
+C’est également dans ce fichier que vous pouvez préciser quelles tâches doivent êtres effectuées ou non. Pour cela, [voir les options complètes](http://pleeease.iamvdo.me/docs).
 
 ##Utilisez Pleeease avec Brunch
 

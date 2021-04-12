@@ -36,7 +36,7 @@ Articles:
   {
   "title": "Pleeease - Outil CSS",
   "subtitle": "Optimisez votre workflow",
-  "url": "http://pleeease.io",
+  "url": "http://pleeease.iamvdo.me",
   "image": "/images/Octocat.png",
   "date": "2014-04-22 22:30:00",
   "big": "1"

@@ -10,7 +10,7 @@ Author: Vincent De Oliveira
 
 ----
 
-Description: Formateur CSS & UI. Auteur du livre CSS3 Le design web moderne. Créateur de css3create.com et de pleeease.io.
+Description: Formateur CSS, SVG & UI. Auteur du livre CSS3 Le design web moderne.
 
 ----
 
@@ -18,7 +18,7 @@ Full_url: http://iamvdo.me
 
 ----
 
-Footer: Salut! Passionné du web, je suis formateur web à l'[ENSG Géomatique](http://ensg.eu), co-auteur du [livre «CSS3 Le design web moderne»](http://livre-css3.fr), créateur de [CSS3Create](http://css3create.com) et de [Pleeease](http://pleeease.io). J'écris sur [mon blog](/) et [ailleurs](/ailleurs) et anime même quelques [conférences](/conf)!
+Footer: Salut! Passionné du web, je suis formateur web à l'[ENSG Géomatique](http://ensg.eu), co-auteur du [livre «CSS3 Le design web moderne»](http://livre-css3.fr), créateur de [CSS3Create](http://css3create.com) et de [Pleeease](http://pleeease.iamvdo.me). J'écris sur [mon blog](/) et [ailleurs](/ailleurs) et anime même quelques [conférences](/conf)!
 
 ----
 
