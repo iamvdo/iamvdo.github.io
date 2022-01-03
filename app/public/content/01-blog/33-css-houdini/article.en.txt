@@ -116,7 +116,7 @@ There you go, a nice hovering animation, only updating the desired value.
 
 **This is a first step to extend CSS: ask browsers to learn a new property, previously unknown**. And animations aren’t the only purpose of registering custom properties. It can also improve peformance overall, by specifying that a custom property doesn’t inherit (it will prevent browsers to update styles of many nested elements).
 
->By the way, avoid adding too much custom properties on `:root` or `body` elements. [You will face some performance pitfalls](https://lisilinhart.info/posts/css-variables-performance).
+>By the way, avoid adding too many custom properties on `:root` or `body` elements. [You will face some performance pitfalls](https://lisilinhart.info/posts/css-variables-performance).
 
 <p class="note">Support for registering properties is only Blink-based browsers (Chrome, Opera, Edge) for now. However, in both cases (CSS & JS), not every types are implemented (also bound to Typed OM), without exhautive list.</p>
 
