@@ -32,7 +32,7 @@ Avec cette propriété, beaucoup d’effets pas évidents à réaliser jusque l�
 
 Tous les éléments derrière le bandeau d’entête seront flouttés de 5px. C’est aussi simple que ça.
 
-[Voir le rendu sur JSBin](http://jsbin.com/mokupo/embed?css,output) (avec Safari 9)
+[Voir le rendu sur JSBin](http://output.jsbin.com/mokupo)
 
 (image: backdrop-filter-1.gif caption: Résultat depuis mon iPad et iOS9)
 
@@ -44,7 +44,7 @@ Dans la démo, j’utilise `@supports` qui me permet d’appliquer `backdrop-fil
 		backdrop-filter: blur(1px)
 	}
 
-[Voir le rendu sur JSBin](http://jsbin.com/rubofa/embed?css,output) (avec Safari 9)
+[Voir le rendu sur JSBin](http://output.jsbin.com/rubofa)
 
 (image: css-backdrop-filter-1.png caption: Un léger flou permet d’améliorer la lisibilité des textes)
 
@@ -55,7 +55,7 @@ En combinant plusieurs filtres, vous pouvez créer des effets graphiques vraimen
 		backdrop-filter: grayscale(1) contrast(3) blur(1px);
 	}
 
-[Voir le rendu sur JSBin](http://jsbin.com/ninuva/embed?css,output) (avec Safari 9)
+[Voir le rendu sur JSBin](http://output.jsbin.com/ninuva)
 
 (image: css-backdrop-filter-2.png caption: Plusieurs filtres appliqués au backdrop)
 
@@ -82,7 +82,7 @@ Il devient donc possible d’appliquer des filtres sur une image avant de l’ap
 
 La bonne nouvelle, c’est que cette fonction est aussi supportée dans Safari 9, bien qu’Apple n’ait pas communiqué dessus.
 
-[Voir le rendu sur JSBin](http://jsbin.com/deroqa/embed?css,output) (only Safari 9)
+[Voir le rendu sur JSBin](http://output.jsbin.com/deroqa) (seulement Safari 9+)
 
 À noter :
 * cette fonction est définie dans la [spécification des Filtres](http://www.w3.org/TR/filter-effects/#FilterCSSImageValue)

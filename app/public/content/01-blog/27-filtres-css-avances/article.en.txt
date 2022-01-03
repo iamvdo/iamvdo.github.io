@@ -38,7 +38,7 @@ With this property, you can achieve many effects that weren’t easily possible 
 
 Every element behind the header is blurred by 5px. It's as simple as that.
 
-[See live result on JSBin](http://jsbin.com/mokupo/embed?css,output) (only Safari 9)
+[See live result on JSBin](https://output.jsbin.com/mokupo)
 
 (image: backdrop-filter-1.gif caption: Result from my iPad using iOS9)
 
@@ -50,7 +50,7 @@ In the demo, I use `@supports` in order to apply `backdrop-filter` along with sm
 		backdrop-filter: blur(1px)
 	}
 
-[See live result on JSBin](http://jsbin.com/rubofa/embed?css,output) (only Safari 9)
+[See live result on JSBin](https://output.jsbin.com/rubofa)
 
 (image: css-backdrop-filter-1.png caption: A very small blur can improve readability)
 
@@ -61,7 +61,7 @@ Combining multiple filters, you can create simple graphic effects, close to what
 		backdrop-filter: grayscale(1) contrast(3) blur(1px);
 	}
 
-[See live result on JSBin](http://jsbin.com/ninuva/embed?css,output) (only Safari 9)
+[See live result on JSBin](http://output.jsbin.com/ninuva)
 
 (image: css-backdrop-filter-2.png caption: Multiple filters applied on backdrop)
 
@@ -88,7 +88,7 @@ As a result, you’re now able to apply filters to images before using them in b
 
 The good news is that this function, even with no mention from Apple, is also supported in Safari 9.
 
-[See live result on JSBin](http://jsbin.com/deroqa/embed?css,output) (only Safari 9)
+[See live result on JSBin](http://output.jsbin.com/deroqa) (only Safari 9+)
 
 Few things you should be aware of:
 * the function is defined in the [Filter Effects specification](http://www.w3.org/TR/filter-effects/#FilterCSSImageValue)
