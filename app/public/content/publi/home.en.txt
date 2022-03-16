@@ -7,7 +7,7 @@ Articles:
   {
   "title": "Book: CSS3 Le design web moderne (in French)",
   "subtitle": "Éditions Dunod",
-  "url": "http://livre-css3.fr",
+  "url": "http://livre-css3.iamvdo.me",
   "image": "https://www.css3create.com/squelettes/images/livreCSS3.png",
   "date": "2012-08-16 08:00:00",
   "big": "1",

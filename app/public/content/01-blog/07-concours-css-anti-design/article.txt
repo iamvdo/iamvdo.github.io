@@ -10,9 +10,9 @@ Tags: CSS3, concours, livre
 ----
 Text:
 
-**Mise à jour:** Le concours est terminé. Merci à tous les participants d'avoir joué le jeu. [Vous pouvez découvrir les designs les plus kitsch](http://concours.livre-css3.fr). 
+**Mise à jour:** Le concours est terminé. Merci à tous les participants d'avoir joué le jeu. [Vous pouvez découvrir les designs les plus kitsch](http://livre-css3-concours.iamvdo.me). 
 
-Bonjour à tous. Suite à la sortie de mon [livre sur CSS3](http://livre-css3.fr) (que j'ai co-écrit avec Cédric Esnault), nous vous proposons un [concours pour vous faire gagner 10 exemplaires](http://concours.livre-css3.fr)!  
+Bonjour à tous. Suite à la sortie de mon [livre sur CSS3](http://livre-css3.iamvdo.me) (que j'ai co-écrit avec Cédric Esnault), nous vous proposons un [concours pour vous faire gagner 10 exemplaires](http://livre-css3-concours.iamvdo.me)!  
 
 Pour ce faire, et comme nous ne voulions pas simplement un «[Retweet pour participer](https://twitter.com/iamvdo/status/271606160195457024)», nous avons choisi de vous mettre au défi en vous demandant de **réaliser le design d'un formulaire**, mais de la façon **la plus kitsch possible**! Tout le monde a donc sa chance. :)
 
@@ -22,8 +22,8 @@ Dans un deuxième temps, tous les designs réalisés seront exposés au public, 
 
 Les 10 designs considérés les plus «laids» seront récompensés.
 
-Plus d'infos sur le [site officiel](http://concours.livre-css3.fr).
+Plus d'infos sur le [site officiel](http://livre-css3-concours.iamvdo.me).
 
 
-(image:https://concours.livre-css3.fr/images/livreCSS3.png text: Les 10 livres CSS3 à gagner)
+(image:http://livre-css3-concours.iamvdo.me/images/livreCSS3.png text: Les 10 livres CSS3 à gagner)
  
