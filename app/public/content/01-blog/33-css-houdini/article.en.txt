@@ -274,11 +274,11 @@ el.addEventListener('click', e => {
 
 **Boom! The famous ripple effect from Google Material Design in a few lines of code**. And, a very performant solution.
 
-Thanks to these kind of worklets, we can consider many new effects, or at least make some easier to build. In all my experiments, you can check how to create [a tooltip arrow](https://css-houdini.rocks/tooltip), a [superellipse](https://css-houdini.rocks/smooth-corners) (aka, iOS rounded corners), [rough borders](https://css-houdini.rocks/rough-boxes) or [highlighter marker annotations](https://css-houdini.rocks/highlighter-marker-annotations), [corners gradient](https://css-houdini.rocks/corners-gradient), or a [randomly irregular grid](https://css-houdini.rocks/irregular-grid) if we combine it with CSS masks.
+Thanks to these kind of worklets, we can consider many new effects, or at least make some easier to build. In all my experiments, you can check how to create [a tooltip arrow](https://css-houdini.iamvdo.me/tooltip), a [superellipse](https://css-houdini.iamvdo.me/smooth-corners) (aka, iOS rounded corners), [rough borders](https://css-houdini.iamvdo.me/rough-boxes) or [highlighter marker annotations](https://css-houdini.iamvdo.me/highlighter-marker-annotations), [corners gradient](https://css-houdini.iamvdo.me/corners-gradient), or a [randomly irregular grid](https://css-houdini.iamvdo.me/irregular-grid) if we combine it with CSS masks.
 
-(image:css-houdini-rocks.jpg caption: Many available effects on https://css-houdini.rocks)
+(image:css-houdini-rocks.jpg caption: Many available effects on https://css-houdini.iamvdo.me)
 
-<p class="note">Support of CSS Paint API is only Blink-based browsers. And not 100%: attributes of the CSS <code>paint()</code> function are not supported yet. Using attributes, instead of custom properties, we can produce different results on the same element, as it is shown on the <a href="https://css-houdini.rocks/inner-borders">inset borders demo</a></p>
+<p class="note">Support of CSS Paint API is only Blink-based browsers. And not 100%: attributes of the CSS <code>paint()</code> function are not supported yet. Using attributes, instead of custom properties, we can produce different results on the same element, as it is shown on the <a href="https://css-houdini.iamvdo.me/inner-borders">inset borders demo</a></p>
 <p class="note">Also, all Houdini APIs are closely tied together. To retrieve a custom property from inside a worklet, and use it as object, browsers should implement the Properties & Values API (to register a custom property’s type) and also Typed OM. Even Chrome has an unpredictable implementation. Many tests are required to discover what is supported.</p>
 
 
@@ -347,7 +347,7 @@ Then, CSS side:
 
 Well, JS code may seems complex at first, but not that much in reality. And above all, the code is isolated from the rest of the page, and called only during the *Layout* phase, which makes it very performant, as explained before.
 
-Of course, we can build many other layout systems, like the ones used when designing iOS/Android applications. As an example, Google engineers implemented the [Android’s RelativeLayout](https://github.com/GoogleChromeLabs/houdini-samples/tree/master/layout-worklet/relative). We can also be more creative, and build a [layout where elements are set along a SVG path](https://css-houdini.rocks/svg-path-layout), defined on a custom property:
+Of course, we can build many other layout systems, like the ones used when designing iOS/Android applications. As an example, Google engineers implemented the [Android’s RelativeLayout](https://github.com/GoogleChromeLabs/houdini-samples/tree/master/layout-worklet/relative). We can also be more creative, and build a [layout where elements are set along a SVG path](https://css-houdini.iamvdo.me/svg-path-layout), defined on a custom property:
 
 ```css
 .el {
@@ -448,9 +448,9 @@ It is therefore impossible to set sizes, nor margins, on one element, nor change
 
 One of the main purpose of CSS Houdini is to be able to create polyfills (write own code for browsers that lack support). It’s true, Houdini can help, but keep in mind that browsers that implement Houdini but do not support other feature are very rare. Here are some counter-examples I can think of:
 
-- [the `corner-shape` property](https://drafts.csswg.org/css-backgrounds-4/#corner-shaping) isn’t implemented in any browsers, but [doable with the Paint API](https://css-houdini.rocks/corner-shape)
+- [the `corner-shape` property](https://drafts.csswg.org/css-backgrounds-4/#corner-shaping) isn’t implemented in any browsers, but [doable with the Paint API](https://css-houdini.iamvdo.me/corner-shape)
 - the `subgrid` mode from Grid Layout supported in Firefox, [doable with the Layout API](https://rawgit.com/FremyCompany/css-grid-polyfill/houdini-experiment/bin/demo%5Bsubgrid%5D.html)
-- [the `filter()` function](http://iamvdo.me/blog/filtres-css-avances#filter) supported in Safari and [doable with the Paint API](https://css-houdini.rocks/background-properties)
+- [the `filter()` function](http://iamvdo.me/blog/filtres-css-avances#filter) supported in Safari and [doable with the Paint API](https://css-houdini.iamvdo.me/background-properties)
 - and presumably more
 
 However, no magic here, **the vast majority of CSS is non-polyfillable[2. If you doubt, read [The Dark Side Of Polyfilling CSS](https://philipwalton.com/articles/the-dark-side-of-polyfilling-css/)]**
@@ -483,7 +483,7 @@ Personnally, I’d have liked to be able to use SVG from a worklet. Declarative 
 
 In any case, it therefore appears that the produced code is complex to write and to set up. **Above all, it is often more complex than classic JS, using the DOM**.
 
-Without going deep dive, worklets are autonomous environments, and cannot handle state. To be reliable, browsers should instanciate 2 different worklets, and render only one, indifferently. It makes really difficult to achieve some simple effects, [like this one on rough borders](https://css-houdini.rocks/rough-boxes/), where each repaint draws different borders. I’ve had a lot of trouble with that. Alternatives exist, but once again, it makes code harder and thus leads to more side effects.
+Without going deep dive, worklets are autonomous environments, and cannot handle state. To be reliable, browsers should instanciate 2 different worklets, and render only one, indifferently. It makes really difficult to achieve some simple effects, [like this one on rough borders](https://css-houdini.iamvdo.me/rough-boxes/), where each repaint draws different borders. I’ve had a lot of trouble with that. Alternatives exist, but once again, it makes code harder and thus leads to more side effects.
 
 More simply, you should not under estimate the loading time of JS, and also the non-presence. And also Houdini support. As of today, styles set using `paint()` and `layout()` produce FOUC (Flash of Unstyled Content).
 

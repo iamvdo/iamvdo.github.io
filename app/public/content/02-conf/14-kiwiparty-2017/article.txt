@@ -8,7 +8,7 @@ J’y ai présenté une conférence sur la prochaine révolution de CSS, à savo
 
 Vous pouvez retrouver mes slides [«CSS Houdini, c’est plus que de la magie !»](http://slides.iamvdo.me/kiwiparty17) en ligne.
 
-Ainsi que le site d’expérimentations mis en place: https://css-houdini.rocks
+Ainsi que le site d’expérimentations mis en place: https://css-houdini.iamvdo.me
 
 ----
 

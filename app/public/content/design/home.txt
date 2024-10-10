@@ -36,7 +36,7 @@ Articles:
   {
   "title": "CSS Houdini Rocks",
   "subtitle": "Expérimentations",
-  "url": "https://css-houdini.rocks",
+  "url": "https://css-houdini.iamvdo.me",
   "image": "https://pbs.twimg.com/media/DNEgPOxWkAEydf5.jpg:large",
   "date": "2017-10-26 17:20:00",
   "big": "1"
@@ -45,7 +45,7 @@ Articles:
   {
   "title": "Slanted backgrounds with CSS Houdini",
   "subtitle": "",
-  "url": "https://css-houdini.rocks/slanted-backgrounds",
+  "url": "https://css-houdini.iamvdo.me/slanted-backgrounds",
   "image": "https://pbs.twimg.com/media/DY57j0PWAAAEZ_u.jpg",
   "date": "2018-03-22 17:20:00",
   "big": "0"
@@ -54,7 +54,7 @@ Articles:
   {
   "title": "Dynamic hover masks with CSS Houdini",
   "subtitle": "",
-  "url": "https://css-houdini.rocks/dynamic-hover-masks",
+  "url": "https://css-houdini.iamvdo.me/dynamic-hover-masks",
   "image": "https://pbs.twimg.com/tweet_video_thumb/DY58nVmW0AE1gld.jpg",
   "date": "2018-03-22 17:21:00",
   "big": "0"
@@ -63,7 +63,7 @@ Articles:
   {
   "title": "Random bubbles mask with CSS Houdini",
   "subtitle": "",
-  "url": "https://css-houdini.rocks/random-bubbles-mask",
+  "url": "https://css-houdini.iamvdo.me/random-bubbles-mask",
   "image": "https://pbs.twimg.com/tweet_video_thumb/DY580oWX4AI9hiQ.jpg",
   "date": "2018-03-22 17:22:00",
   "big": "0"
@@ -72,7 +72,7 @@ Articles:
   {
   "title": "Highlighter marker annotations with CSS Houdini",
   "subtitle": "",
-  "url": "https://css-houdini.rocks/highlighter-marker-annotations",
+  "url": "https://css-houdini.iamvdo.me/highlighter-marker-annotations",
   "image": "https://pbs.twimg.com/tweet_video_thumb/DaaDnDWX4AEe-9z.jpg",
   "date": "2018-04-10 17:20:00",
   "big": "1"
@@ -81,7 +81,7 @@ Articles:
   {
   "title": "SVG Path Layout with CSS Houdini",
   "subtitle": "",
-  "url": "https://css-houdini.rocks/svg-path-layout",
+  "url": "https://css-houdini.iamvdo.me/svg-path-layout",
   "image": "https://pbs.twimg.com/tweet_video_thumb/DbeYC1XXkAE_0xc.jpg",
   "date": "2018-04-23 17:20:00",
   "big": "1"
@@ -90,7 +90,7 @@ Articles:
   {
   "title": "Random irregular grid with CSS Houdini",
   "subtitle": "",
-  "url": "https://css-houdini.rocks/irregular-grid",
+  "url": "https://css-houdini.iamvdo.me/irregular-grid",
   "image": "https://pbs.twimg.com/ext_tw_video_thumb/1055071015007608834/pu/img/SPCMKfdhIgC735lH.jpg",
   "date": "2018-10-26 17:20:00",
   "big": "1"
@@ -99,7 +99,7 @@ Articles:
   {
   "title": "Bordures internes",
   "subtitle": "Dessinez des bordures internes avec Houdini",
-  "url": "https://css-houdini.rocks/inner-borders",
+  "url": "https://css-houdini.iamvdo.me/inner-borders",
   "image": "",
   "date": "2020-03-25 15:00:00",
   "big": "0"
@@ -108,7 +108,7 @@ Articles:
   {
   "title": "SVG-in-CSS",
   "subtitle": "Worklet Houdini générique pour dessiner des formes SVG",
-  "url": "https://css-houdini.rocks/svg-in-css",
+  "url": "https://css-houdini.iamvdo.me/svg-in-css",
   "image": "images/svg-in-css.png",
   "date": "2020-12-16 15:00:00",
   "big": "1"

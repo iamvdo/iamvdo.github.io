@@ -9,7 +9,7 @@ J’y ai présenté CSS Houdini: une nouvelle spécification CSS qui permet de *
 - FR: [CSS Houdini, c’est plus que de la magie !](https://slides.iamvdo.me/waq19/fr)
 - EN: [CSS Houdini, More than magic!](https://slides.iamvdo.me/waq19)
 
-Ainsi que le site d’expérimentations mis en place: https://css-houdini.rocks
+Ainsi que le site d’expérimentations mis en place: https://css-houdini.iamvdo.me
 
 ----
 
